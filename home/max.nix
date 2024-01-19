@@ -15,8 +15,6 @@
 
     #User Apps
     neovim
-    wezterm
-    foot
     firefox
     webcord
     bottles

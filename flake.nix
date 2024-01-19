@@ -10,9 +10,14 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
+
+    # TODO: Remove this once the PR is merged 
+    wezterm = {
+      url = "github:happenslol/wezterm?dir=nix&ref=add-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  # TODO: Split into nixosConfigurations and homeConfigurations
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
     let
       mkNixos = hostname: username: system:
