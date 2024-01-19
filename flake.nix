@@ -15,44 +15,44 @@
   # TODO: Split into nixosConfigurations and homeConfigurations
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
     let
-      lib = nixpkgs.lib;
-      opts = ({ lib, ... }: {
-        options.deviceName = lib.mkOption {
-          type = lib.types.str;
-          default = "vm";
-        };
-      });
-    in
-    {
-      nixosConfigurations = {
-        vm = lib.nixosSystem rec {
-          specialArgs = { inherit inputs; };
-          system = "x86_64-linux";
+      mkNixos = hostname: username: system:
+        nixpkgs.lib.nixosSystem rec {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            hostname = hostname;
+          };
           modules = [
-            opts
-            ./nixos/hardware-configuration-vm.nix
+            ./nixos/hardware-configuration-${hostname}.nix
             ./nixos/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.max = import ./home/home.nix;
+              home-manager.users.${username} = import ./home/${username}.nix;
               home-manager.extraSpecialArgs = specialArgs;
             }
           ];
         };
+
+      mkHome = username: pkgs:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            hyprland.homeManagerModules.default
+            ./home/${username}.nix
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        vm = mkNixos "vm" "max" "x86_64-linux";
       };
 
       homeConfigurations = {
-        max = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs; };
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = [
-            opts
-            hyprland.homeManagerModules.default
-            ./home/home.nix
-          ];
-        };
+        max = mkHome "max" nixpkgs.legacyPackages.x86_64-linux;
       };
     };
 }
+

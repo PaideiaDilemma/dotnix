@@ -1,4 +1,4 @@
-{ config, lib, pkgs, osConfig, ... }:
+{ config, lib, pkgs, hostname, ... }:
 
 {
   imports = [
@@ -272,7 +272,7 @@
   '';
 
   xdg.configFile."hypr/device.conf".text =
-    if osConfig.deviceName == "desktop" then ''
+    if hostname == "desktop" then ''
       monitor = DP-2, 1280x1024@75.025, 640x0, 1
       monitor = HDMI-A-1, 1920x1080@60, 0x1024, 1
       monitor = DP-3, 1920x1080@144, 1920x597, 1
@@ -294,7 +294,7 @@
           kb_layout = de
       }
     ''
-    else if osConfig.deviceName == "vm" then ''
+    else if hostname == "vm" then ''
       monitor=Virtual-1,1920x1080@60,auto,1
 
       input {
@@ -311,7 +311,7 @@
   # TODO: Add device-laptop.conf here
   #
   xdg.configFile."hypr/hyprpaper.conf".text =
-    if osConfig.deviceName == "desktop" then ''
+    if hostname == "desktop" then ''
       preload = ~/media/picture/walDP-3.png
       preload = ~/media/picture/walHDMI-A-1.png
       preload = ~/media/picture/walDP-2.png
@@ -320,7 +320,7 @@
       wallpaper = HDMI-A-1,~/media/picture/walHDMI-A-1.png
       wallpaper = DP-2,~/media/picture/walDP-2.png
     ''
-    else if osConfig.deviceName == "vm" then ''
+    else if hostname == "vm" then ''
       preload = ~/media/picture/walVirtual-1.png
 
       wallpaper = Virtual-1,~/media/picture/walVirtual-1.png
