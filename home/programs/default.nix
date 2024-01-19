@@ -4,6 +4,7 @@
     ./hypr
     ./kde
     ./mako
+    ./python
     ./rofi
     ./wallrnd
     ./waybar
