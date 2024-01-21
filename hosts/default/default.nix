@@ -6,9 +6,11 @@
     ./services
   ];
 
-  programs.dconf.enable = true;
-  programs.git.enable = true;
-  programs.zsh.enable = true;
+  programs = {
+    dconf.enable = true;
+    git.enable = true;
+    zsh.enable = true;
+  };
 
   users.defaultUserShell = pkgs.zsh;
 

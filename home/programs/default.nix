@@ -3,6 +3,7 @@
     ./foot
     ./hypr
     ./kde
+    ./lazyvim
     ./mako
     ./python
     ./rofi
