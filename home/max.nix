@@ -19,6 +19,8 @@
     krita
     inkscape
     wdisplays
+    libreoffice
+    steam
 
     #utils
     wlr-randr
