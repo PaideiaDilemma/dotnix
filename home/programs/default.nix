@@ -8,6 +8,7 @@
     ./mako
     ./python
     ./rofi
+    ./steam
     ./wallrnd
     ./waybar
     ./wezterm

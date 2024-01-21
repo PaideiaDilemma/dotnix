@@ -20,7 +20,6 @@
     inkscape
     wdisplays
     libreoffice
-    steam
 
     #utils
     wlr-randr
@@ -46,7 +45,6 @@
 
     #misc
     cava
-    nitch
     tty-clock
     hyprpaper
 
