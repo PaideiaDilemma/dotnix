@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 {
   #Evremap service to fix my keyboard layout..
   #systemd.services.keyboard-remaps = {
@@ -20,5 +20,34 @@
     };
   };
 
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
   services.dbus.enable = true;
+
+  # Enable the X11 windowing system.
+  services.xserver = {
+    enable = true;
+    layout = "de";
+    libinput.enable = true;
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+
+  imports = [
+    inputs.nix-gaming.nixosModules.pipewireLowLatency
+  ];
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+
+    lowLatency.enable = true;
+  };
+
+  security.rtkit.enable = true;
 }

@@ -11,6 +11,8 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
     # TODO: Remove this once the PR is merged 
     wezterm = {
       url = "github:happenslol/wezterm?dir=nix&ref=add-nix-flake";
@@ -28,8 +30,8 @@
             hostname = hostname;
           };
           modules = [
-            ./nixos/hardware-configuration-${hostname}.nix
-            ./nixos/configuration.nix
+            ./hardware/${hostname}.nix
+            ./hosts/default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
