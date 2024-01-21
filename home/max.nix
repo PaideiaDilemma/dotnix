@@ -14,7 +14,6 @@
   home.packages = (with pkgs; [
 
     #User Apps
-    firefox
     webcord
     bottles
     krita
