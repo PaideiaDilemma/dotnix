@@ -10,6 +10,7 @@
     ./wallrnd
     ./waybar
     ./wezterm
+    ./wlclipmgr
     ./zsh
   ];
 }
