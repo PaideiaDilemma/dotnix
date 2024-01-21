@@ -3,7 +3,7 @@
   imports = [
     ./programs
     ./scripts
-    ./themes
+    ./theme
   ];
 
   home = {
