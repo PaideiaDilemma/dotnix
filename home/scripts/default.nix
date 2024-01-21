@@ -3,7 +3,7 @@
 let
   hyprsetwallpaper = pkgs.stdenv.mkDerivation {
     name = "hyprsetwallpaper";
-    unpackPhase = ":";
+    dontUnpack = true;
     buildInputs = [
       (pkgs.python3.withPackages (ps: with ps; [
         pillow

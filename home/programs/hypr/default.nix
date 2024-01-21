@@ -57,7 +57,7 @@
     env = PASSWORD_STORE_DIR,$HOME/.config/pass
 
     env = _JAVA_AWT_WM_NONREPARENTING,1
-    #env = NVIM_APPNAME,lazyvim
+    env = NVIM_APPNAME,lazyvim
 
     exec-once = waybar
     exec-once = hyprpaper

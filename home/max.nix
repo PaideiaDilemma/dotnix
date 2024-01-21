@@ -14,7 +14,6 @@
   home.packages = (with pkgs; [
 
     #User Apps
-    neovim
     firefox
     webcord
     bottles
