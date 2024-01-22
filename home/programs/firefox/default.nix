@@ -23,10 +23,25 @@
           };
         };
         settings = {
+          # Those should be fine
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "geo.enabled" = false;
+          "dom.battery.enabled" = false;
+          "beacon.enabled" = false;
+          "extensions.pocket.enabled" = false;
+          # These are a bit more intrusive and might break some websites
           "privacy.resistFingerprinting" = true;
+          "privacy.trackingprotection.enabled" = true;
+          "privacy.trackingprotection.fingerprinting.enabled" = true;
+          "browser.send_pings" = false;
+          "network.dns.echconfig.enabled" = true;
+          "network.dns.use_https_rr_as_altsvc" = true;
+          # There regularily break websites like google
+          "browser.safebrowsing.phishing.enabled" = false;
+          "browser.safebrowsing.malware.enabled" = false;
         };
         search = {
+          default = "DuckDuckGo";
           privateDefault = "DuckDuckGo";
           engines = {
             "Nix Packages" = {
