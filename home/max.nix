@@ -31,7 +31,6 @@
     catimg
     curl
     appimage-run
-    wlsunset
     mako
     pavucontrol
     sqlite

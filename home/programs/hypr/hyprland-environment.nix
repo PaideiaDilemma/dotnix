@@ -6,7 +6,6 @@
       NVIM_APPNAME = "lazyvim";
       BROWSER = "firefox";
       TERMINAL = "wezterm";
-      #PASSWORD_STORE_DIR = "$HOME/.config/pass";
 
       WLR_RENDERER = "vulkan";
 
@@ -25,6 +24,7 @@
       XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_SESSION_DESKTOP = "Hyprland";
       XDG_SESSION_TYPE = "wayland";
+      #PASSWORD_STORE_DIR = "$HOME/.config/pass";
 
       #__GLX_VENDOR_LIBRARY_NAME= "nvidia";
       #LIBVA_DRIVER_NAME= "nvidia"; # hardware acceleration

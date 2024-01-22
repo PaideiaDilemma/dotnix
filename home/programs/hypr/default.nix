@@ -7,6 +7,11 @@
 
   home.packages = with pkgs; [
     waybar
+    wlsunset
+    hyprpaper
+    hyprpicker
+    swayidle
+    swaylock
   ];
 
   systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
@@ -34,13 +39,12 @@
     exec-once = hyprpaper
     exec-once = hyprctl setcursor PearWhiteCursors 24
     exec-once = wlsunset -l 48.2, -L 16.3 -t 4800
-    # TODO!!!
-    #exec-once = /usr/lib/kdeconnectd
-    #exec-once = kdeconnect-indicator
-    #exec-once = wlclipmgr watch --block "password store sleep:2"
-    #exec-once = swayidle -w timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
-    #exec-once = swayidle -w timeout 20 '~/.config/scripts/hyprsetwallpaper.py -g -c'
-    #before-sleep 'swaylock -f -c 000000'timeout 600 'swaylock -f -c 000000'
+    exec-once = /usr/lib/kdeconnectd
+    exec-once = kdeconnect-indicator
+    exec-once = wlclipmgr watch --block "password store sleep:2"
+    exec-once = swayidle -w timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+    exec-once = swayidle -w timeout 20 'hyprsetwallpaper.py -g -c'
+    before-sleep 'swaylock -f -c 000000'timeout 600 'swaylock -f -c 000000'
 
     general {
         sensitivity = 1.0 # for mouse cursor

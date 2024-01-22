@@ -2,6 +2,7 @@
   imports = [
     ./firefox
     ./foot
+    ./gnupg
     ./hypr
     ./kde
     ./lazyvim
