@@ -7,11 +7,12 @@ let
       owner = "PaideiaDilemma";
       repo = "LazyVim";
       rev = "main";
-      hash = "sha256-ZW8W+nOvu5bHsP91AzhGoYhrJmGq9VSy3xsGrrlCcNc=";
+      hash = "sha256-HK2LvloYstXiMUMh2oEKIV9O3pQDjHH2jDyl0isnm9U=";
     };
     installPhase = ''
       mkdir -p $out/lazyvim
       cp -r $src/* $out/lazyvim
+      # Needs to be writeable
       rm $out/lazyvim/lazy-lock.json
     '';
   };

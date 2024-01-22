@@ -1,5 +1,6 @@
 {
   imports = [
+    ./btop
     ./firefox
     ./foot
     ./gnupg

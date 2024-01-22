@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 {
   home.packages = with pkgs.libsForQt5; [
+    kdegraphics-thumbnailers
     dolphin
   ];
 
