@@ -20,6 +20,8 @@
     inkscape
     wdisplays
     libreoffice
+    thunderbird
+    cutter
 
     #utils
     wlr-randr

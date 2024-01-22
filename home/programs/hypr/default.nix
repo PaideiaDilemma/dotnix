@@ -2,7 +2,7 @@
 
 {
   imports = [
-    #./hyprland-environment.nix
+    ./hyprland-environment.nix
   ];
 
   home.packages = with pkgs; [
@@ -32,32 +32,6 @@
     $cyan = 00A0BA
     $blue = 6E8DD5
     $purple = AC78BD
-
-    env = WLR_NO_HARDWARE_CURSORS,1
-    #env = WLR_RENDERER,"vulkan"
-    env = WLR_RENDERER_ALLOW_SOFTWARE,1
-
-    env = XDG_CURRENT_DESKTOP,Hyprland
-    env = XDG_SESSION_TYPE,wayland
-    env = XDG_SESSION_DESKTOP,Hyprland
-
-    #env = XCURSOR_SIZE,24
-    #env = XCURSOR_THEME,PearWhiteCursors
-    #SDL_VIDEODRIVER,wayland
-
-    env = QT_AUTO_SCREEN_SCALE_FACTOR,1
-    env = QT_QPA_PLATFORM,wayland;xcb
-    env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-    env = QT_QPA_PLATFORMTHEME,qt6ct
-
-    env = MOZ_ENABLE_WAYLAND,1
-
-    env = BROWSER,firefox
-    env = GNUPGHOME,$HOME/.config/gnupg/
-    env = PASSWORD_STORE_DIR,$HOME/.config/pass
-
-    env = _JAVA_AWT_WM_NONREPARENTING,1
-    env = NVIM_APPNAME,lazyvim
 
     exec-once = waybar
     exec-once = hyprpaper
