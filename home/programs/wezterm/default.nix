@@ -3,6 +3,7 @@
   programs.wezterm = {
     enable = true;
     package = inputs.wezterm.packages.${pkgs.system}.default;
+    enableZshIntegration = true;
     colorSchemes.penumbra = {
       background = "#303338";
       foreground = "#FFF7ED";

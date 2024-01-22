@@ -11,11 +11,13 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
 
-    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # TODO: Remove this once the PR is merged 
     wezterm = {
-      url = "github:happenslol/wezterm?dir=nix&ref=add-nix-flake";
+      url = "github:wez/wezterm?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
