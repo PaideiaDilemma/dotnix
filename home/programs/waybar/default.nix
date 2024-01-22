@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.packages = (with pkgs; [
+    playerctl
+    pavucontrol
+  ]);
+
   programs.waybar = {
     enable = true;
     systemd = {
@@ -116,6 +121,11 @@
       		  font-family: "Noto Sans";
       		}
 
+      		#submap {
+      		  font-family: "Noto Sans";
+            color: @accent1;
+      		}
+
       		#clock,
       		#battery,
       		#temperature #cpu,
@@ -216,7 +226,8 @@
       		#custom-media {
       		}
 
-      		#custom-media.custom-spotify {
+      		#custom-spotify {
+      		  font-family: "Noto Sans";
       		}
 
       		#custom-media.custom-vlc {
@@ -277,6 +288,8 @@
       ];
       # "modules-center" = [];
       "modules-right" = [
+        "custom/spotify"
+        "custom/separator"
         "cpu"
         "temperature#cpu"
         "temperature#gpu"
@@ -294,39 +307,20 @@
         "format" = "{}";
         "all-outputs" = true;
       };
-      "sway/workspaces" = {
-        "disable-scroll" = true;
-        "format" = "{name}";
-        "all-outputs" = true;
-      };
-      "sway/mode" = {
-        "format" = "<span style=\"italic\">{}</span>";
-      };
-      "sway/window" = {
-        "format" = "{}";
-        "all-outputs" = true;
-      };
       "hyprland/workspaces" = {
         "format" = "{name}";
-
-        "format-icons" = {
-          "urgent" = "";
-          #"active" = "";
-          #"default" = "";
-        };
+        "tooltip-format" = "{title}";
         "all-outputs" = true;
         "sort-by-name" = false;
         "on-click" = "activate";
+        "on-click-middle" = "close";
         "sort-by-coordinates" = true;
         "active-only" = false;
         "show-special" = true;
       };
-      "sway/language" = {
-        "format" = "{}";
-        "on-click" = "swaymsg input type:keyboard xkb_switch_layout next";
-      };
-      "custom/language" = {
-        "exec" = "swaymsg --type get_inputs | grep \"xkb_active_layout_name\" | sed -u '1!d; s/^.*xkb_active_layout_name\": \"#; s/ (US)#; s/\";#' && swaymsg --type subscribe --monitor '[\"input\"]' | sed -u 's/^.*xkb_active_layout_name\": \"#; s/\",.*$#; s/ (US)#'";
+      "hyprland/submap" = {
+        "format" = "󰘴 {} ";
+        "tooltip" = false;
       };
       "custom/separator" = {
         "format" = "|";
@@ -353,8 +347,8 @@
         "interval" = 1;
       };
       "cpu" = {
-        "format" = "﬙ {usage}%";
-        "on-click" = "wezterm --config font_size=10 start btop";
+        "format" = " {usage}%";
+        "on-click" = ''foot btop'';
       };
       "memory" = {
         "format" = " {}%";
@@ -383,52 +377,64 @@
         "format-icons" = [ "" "" ];
       };
       "battery" = {
+        "bat" = "BAT0";
+        "interval" = 30;
         "states" = {
-          # "good" = 95;
-          "warning" = 30;
+          "full" = 100;
+          "good" = 95;
+          "ok" = 65;
+          "warning" = 40;
           "critical" = 15;
         };
+        "tooltip-format" = "{timeTo} [Power draw rn: {power}W]";
         "format" = "{icon} {capacity}%";
-        "format-charging" = " {capacity}%";
-        "format-plugged" = " {capacity}%";
-        "format-alt" = "{icon} {time}";
-        # "format-good" = ""; # An empty format will hide the module
-        # "format-full" = "";
-        "format-icons" = [ "" "" "" "" "" ];
+        "format-charging-full" = "󰂅 {capacity}%";
+        "format-charging-good" = "󰢞 {capacity}%";
+        "format-charging-ok" = "󰢝 {capacity}%";
+        "format-charging-warning" = "󰂆 {capacity}%";
+        "format-charging-critical" = "󰢟 {capacity}%";
+        "format-icons" = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+        "format-icons-charge" = [ "󰢟" "󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰢝" "󰂉" "󰢞" "󰂊" "󰂅" ];
       };
       "battery#bat2" = {
         "bat" = "BAT2";
       };
       "network" = {
         # "interface" = "wlp2*"; # (Optional) To force the use of this interface
-        "format-wifi" = " {essid} ({signalStrength}%)";
-        "format-ethernet" = " {ipaddr}/{cidr}";
+        "format-wifi" = "{icon} {essid} ({signalStrength}%)";
+        "format-icons" = [ "󰤟" "󰤢" "󰤥" "󰤨" ];
+        "format-ethernet" = "󰈀 {ipaddr}/{cidr}";
         "format-linked" = " {ifname} (No IP)";
-        "format-disconnected" = " Disconnected";
+        "format-disconnected" = "󰤮 Disconnected";
         "format-alt" = "{ifname}: {ipaddr}/{cidr}";
       };
       "pulseaudio" = {
-        # "scroll-step" = 1; # %, can be a float
+        # "scroll-step": 1, // %, can be a float
         "format" = "{icon} {volume}% {format_source}";
-        "format-bluetooth" = "{volume}% {icon} {format_source}";
-        "format-bluetooth-muted" = " {icon} {format_source}";
-        "format-muted" = "ﱝ 0% {format_source}";
+        "format-bluetooth" = "󰥰 {volume}% {format_source}";
+        "format-bluetooth-muted" = "󰗿 {volume}% {format_source}";
+        "format-muted" = "󰝟 {volume}% {format_source}";
         "format-source" = " {volume}%";
         "format-source-muted" = "";
         "format-icons" = {
-          "headphone" = "";
+          "headphone" = "󰋋";
           "hands-free" = "";
           "headset" = "";
           "phone" = "";
           "portable" = "";
           "car" = "";
-          "default" = [ "奄" "奔" "墳" ];
+          "default" = [ "󰕿" "󰖀" "󰕾" ];
         };
         "on-click" = "pavucontrol";
       };
-      "custom/waylandvsxorg" = {
-        "exec" = "$HOME/bin/window_wayland_xorg.sh";
-        "interval" = 2;
+      "custom/spotify" = {
+        "exec" = "playerctl --player=spotify metadata --format '{{ artist }} - {{ title }}' 2> /dev/null || true";
+        "interval" = 1;
+        "format" = "{}   ";
+        "return-type" = "json";
+        "on-click" = "playerctl --player=spotify play-pause";
+        "on-scroll-up" = "playerctl --player=spotify next";
+        "on-scroll-down" = "playerctl --player=spotify previous";
       };
     }];
   };

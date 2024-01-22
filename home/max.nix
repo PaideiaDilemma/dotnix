@@ -42,12 +42,10 @@
     rofi-wayland
     wl-clipboard
     imv
-    hyprpicker
 
     #misc
     cava
     tty-clock
-    hyprpaper
 
   ]) ++ (with pkgs.gnome; [
     gnome-software

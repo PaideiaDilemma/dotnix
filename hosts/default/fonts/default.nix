@@ -3,9 +3,7 @@
 {
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
-      fira-code
-      fira-code-symbols
+      (nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; })
       font-awesome
       noto-fonts
       noto-fonts-cjk

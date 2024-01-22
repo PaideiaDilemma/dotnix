@@ -43,9 +43,10 @@
     exec-once = /usr/lib/kdeconnectd
     exec-once = kdeconnect-indicator
     exec-once = wlclipmgr watch --block "password store sleep:2"
-    exec-once = swayidle -w timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
-    exec-once = swayidle -w timeout 20 'hyprsetwallpaper.py -g -c'
-    before-sleep 'swaylock -f -c 000000'timeout 600 'swaylock -f -c 000000'
+    # TODO: Add device specific config
+    #exec-once = swayidle -w timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+    #before-sleep 'swaylock -f -c 000000'timeout 600 'swaylock -f -c 000000'
+    exec-once = swayidle -w timeout 20 'hyprsetwallpaper -g -c'
 
     general {
         sensitivity = 1.0 # for mouse cursor
@@ -274,13 +275,17 @@
       }
     ''
     else if hostname == "vm" then ''
-      monitor=Virtual-1,1920x1080@60,auto,1
+      monitor=Virtual-1,1920x1080,auto,1
 
       input {
           kb_layout = de
           follow_mouse = 1
           natural_scroll = 0
           left_handed = 0
+      }
+
+      animations {
+          enabled = 0
       }
     ''
     else ''

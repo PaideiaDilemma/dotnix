@@ -37,7 +37,7 @@
     extraConfig = ''
       local wezterm = require("wezterm")
       local function font_with_fallback(name, params)
-        local names = { name, "Font Awesome", "Hack Nerd Font Mono" }
+        local names = { name, "Font Awesome 6 Free", "Hack Nerd Font Mono" }
         return wezterm.font_with_fallback(names, params)
       end
 
