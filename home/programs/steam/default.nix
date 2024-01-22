@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   nixpkgs.overlays = [
     (_: prev: {
@@ -8,5 +8,7 @@
     })
   ];
 
-  programs.steam.enable = true;
+  home.packages = (with pkgs; [
+    steam
+  ]);
 }
