@@ -1,4 +1,4 @@
-{ config, lib, pkgs, hostname, ... }:
+{ inputs, config, lib, pkgs, hostname, ... }:
 
 {
   imports = [
@@ -6,6 +6,7 @@
   ];
 
   home.packages = with pkgs; [
+    inputs.hyprland.packages.${pkgs.system}.hyprland
     waybar
     wlsunset
     hyprpaper

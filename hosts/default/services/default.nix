@@ -14,7 +14,7 @@
     settings = rec {
       initial_session = {
         user = "max";
-        command = "$SHELL -l ${pkgs.hyprland}/bin/Hyprland";
+        command = "$SHELL -l ${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
       };
       default_session = initial_session;
     };
