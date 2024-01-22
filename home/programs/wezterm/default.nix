@@ -2,8 +2,9 @@
 {
   programs.wezterm = {
     enable = true;
+    enableZshIntegration = false;
+    enableBashIntegration = false;
     package = inputs.wezterm.packages.${pkgs.system}.default;
-    enableZshIntegration = true;
     colorSchemes.penumbra = {
       background = "#303338";
       foreground = "#FFF7ED";
@@ -40,7 +41,7 @@
         return wezterm.font_with_fallback(names, params)
       end
 
-      local font_name = "Fira Code"
+      local font_name = "FiraCode Nerd Font"
       return {
         ssh_domains = {
           {
