@@ -12,9 +12,6 @@
   systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 
   xdg.configFile."hypr/hyprland.conf".text = ''
-    # Include device specific config
-    source = ~/.config/hypr/device.conf
-
     $terminal = foot
     $sun_p = FFFDFB
     $sun = FFF7ED
@@ -243,6 +240,9 @@
       submap = passthrough
     bind = CTRL , Alt_L, submap, reset
       submap = reset
+
+    # Include device specific config
+    source = ~/.config/hypr/device.conf
   '';
 
   xdg.configFile."hypr/device.conf".text =
