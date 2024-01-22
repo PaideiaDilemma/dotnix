@@ -3,6 +3,7 @@
     ./btop
     ./firefox
     ./foot
+    ./gdb
     ./gnupg
     ./hypr
     ./kde

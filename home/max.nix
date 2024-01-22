@@ -9,6 +9,7 @@
   home = {
     username = "max";
     homeDirectory = "/home/max";
+    enableDebugInfo = false;
   };
 
   home.packages = (with pkgs; [
@@ -42,6 +43,8 @@
     rofi-wayland
     wl-clipboard
     imv
+    scrcpy
+    burpsuite
 
     #misc
     cava
