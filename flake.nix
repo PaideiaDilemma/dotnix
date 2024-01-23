@@ -20,11 +20,13 @@
       url = "github:wez/wezterm?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
     let
-      mkNixos = hostname: username: system:
+      mkNixos = hostname: hardware: username: system:
         nixpkgs.lib.nixosSystem rec {
           inherit system;
           specialArgs = {
@@ -32,8 +34,8 @@
             hostname = hostname;
           };
           modules = [
-            ./hardware/${hostname}.nix
-            ./hosts/default
+            ./hardware/${hardware}.nix
+            ./hosts/${hostname}
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -56,7 +58,8 @@
     in
     {
       nixosConfigurations = {
-        vm = mkNixos "vm" "max" "x86_64-linux";
+        vm = mkNixos "vm" "vm1" "max" "x86_64-linux";
+        wsl = mkNixos "wsl" "wsl1" "max" "x86_64-linux";
       };
 
       homeConfigurations = {
