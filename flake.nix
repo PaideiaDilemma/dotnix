@@ -31,7 +31,8 @@
           inherit system;
           specialArgs = {
             inherit inputs;
-            hostname = hostname;
+            inherit hostname;
+            inherit username;
           };
           modules = [
             ./hardware/${hardware}.nix
@@ -40,7 +41,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home/${username}.nix;
+              home-manager.users.${username} = import ./home/home.nix;
               home-manager.extraSpecialArgs = specialArgs;
             }
           ];
@@ -59,7 +60,7 @@
     {
       nixosConfigurations = {
         vm = mkNixos "vm" "vm1" "max" "x86_64-linux";
-        wsl = mkNixos "wsl" "wsl1" "max" "x86_64-linux";
+        wsl = mkNixos "wsl" "none" "nixos" "x86_64-linux";
       };
 
       homeConfigurations = {

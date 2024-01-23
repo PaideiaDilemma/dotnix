@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, username, ... }:
 {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl
@@ -7,22 +7,27 @@
     ./services
   ];
 
+  wsl = {
+    enable = true;
+    startMenuLaunchers = true;
+    wslConf.automount.root = "/mnt";
+    wslConf.interop.appendWindowsPath = false;
+    wslConf.network.generateHosts = false;
+    wslConf.user.default = username;
+    defaultUser = username;
+
+    # Enable integration with Docker Desktop (needs to be installed)
+    docker-desktop.enable = false;
+  };
+
   programs = {
     dconf.enable = true;
     git.enable = true;
     zsh.enable = true;
     virt-manager.enable = true;
-    hyprland = {
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      xwayland.enable = true;
-    };
   };
 
   users.defaultUserShell = pkgs.zsh;
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   #networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -59,7 +64,7 @@
     libevdev
   ];
 
-  users.users.max = {
+  users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
@@ -81,20 +86,7 @@
 
   # List services that you want to enable:
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPortRanges = [
-      { from = 1714; to = 1764; } # KDE Connect
-    ];
-    allowedUDPPortRanges = [
-      { from = 1714; to = 1764; } # KDE Connect
-    ];
-  };
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
+  networking.firewall.enable = false;
 
   nix.gc = {
     automatic = true;
@@ -114,7 +106,6 @@
     settings = {
       substituters = [
         "https://cache.nixos.org/"
-        "https://hyprland.cachix.org"
         "https://nix-gaming.cachix.org"
       ];
       trusted-public-keys = [

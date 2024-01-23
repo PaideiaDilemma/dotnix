@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, username, ... }: {
 
   imports = [
     ./programs
@@ -7,8 +7,8 @@
   ];
 
   home = {
-    username = "max";
-    homeDirectory = "/home/max";
+    username = username;
+    homeDirectory = "/home/${username}";
     enableDebugInfo = false;
   };
 

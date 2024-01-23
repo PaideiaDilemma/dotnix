@@ -58,7 +58,7 @@
     libevdev
   ];
 
-  users.users.max = {
+  users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
@@ -89,11 +89,6 @@
       { from = 1714; to = 1764; } # KDE Connect
     ];
   };
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
 
   nix.gc = {
     automatic = true;
