@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, userName, ... }:
 {
   imports = [
     ./fonts
@@ -23,7 +23,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  #networking.hostName = "nixos"; # Define your hostname.
+  #networking.hostName = hostName; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
@@ -58,12 +58,9 @@
     libevdev
   ];
 
-  users.users.${username} = {
+  users.users.${userName} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      neovim
-    ];
   };
 
   nixpkgs.config.allowUnfree = true;

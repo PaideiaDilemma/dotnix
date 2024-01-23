@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, username, ... }:
+{ inputs, config, lib, pkgs, userName, ... }:
 {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl
@@ -13,8 +13,8 @@
     wslConf.automount.root = "/mnt";
     wslConf.interop.appendWindowsPath = false;
     wslConf.network.generateHosts = false;
-    wslConf.user.default = username;
-    defaultUser = username;
+    wslConf.user.default = userName;
+    defaultUser = userName;
 
     # Enable integration with Docker Desktop (needs to be installed)
     docker-desktop.enable = false;
@@ -29,7 +29,7 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  #networking.hostName = "nixos"; # Define your hostname.
+  # networking.hostName = hostName; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
@@ -64,7 +64,7 @@
     libevdev
   ];
 
-  users.users.${username} = {
+  users.users.${userName} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [

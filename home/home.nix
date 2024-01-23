@@ -1,4 +1,4 @@
-{ pkgs, username, ... }: {
+{ pkgs, userName, hardware, ... }: {
 
   imports = [
     ./programs
@@ -7,14 +7,54 @@
   ];
 
   home = {
-    username = username;
-    homeDirectory = "/home/${username}";
+    username = userName;
+    homeDirectory = "/home/${userName}";
     enableDebugInfo = false;
+  };
+
+  hyprhome = if hardware == "vm1" then {
+    enable = true;
+    enableAnimations = false;
+    isVirtualMachine = true;
+    monitors = {
+      "Virtual-1" = {
+        resolution = "1920x1080";
+        position = "auto";
+        scale = "1";
+        initalWorkspace = "1";
+      };
+    };
+  }
+
+  else if hardware == "desktop" then {
+    enable = true;
+    monitors = {
+      "DP-3" = {
+        resolution = "1920x1080@144";
+        position = "1920x597";
+        scale = "1";
+        initalWorkspace = "1";
+      };
+      "HDMI-A-1" = {
+        resolution = "1920x1080@60";
+        position = "0x1024";
+        scale = "10";
+        initalWorkspace = "10";
+      };
+      "DP-2" = {
+        resolution = "1280x1024@75.025";
+        position = "640x0";
+        scale = "100";
+        initalWorkspace = "100";
+      };
+    };
+  } else {
+    enable = true;
   };
 
   home.packages = (with pkgs; [
 
-    #User Apps
+    # Graphical Applications
     webcord
     bottles
     krita
@@ -22,9 +62,12 @@
     wdisplays
     libreoffice
     thunderbird
+    ghidra
     cutter
+    cutterPlugins.rz-ghidra
+    burpsuite
 
-    #utils
+    # Terminal Applications
     wlr-randr
     git
     rustup
@@ -44,27 +87,11 @@
     wl-clipboard
     imv
     scrcpy
-    burpsuite
-
-    #misc
-    cava
-    tty-clock
 
   ]) ++ (with pkgs.gnome; [
-    gnome-software
     gnome-tweaks
     eog
   ]);
-
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-
-    "org/gnome/shell/extensions/user-theme" = {
-      name = "Tokyonight-Dark-B-LB";
-    };
-  };
 
   xdg.configFile."user-dirs.dirs".text = ''
     XDG_DESKTOP_DIR="$HOME/desk"

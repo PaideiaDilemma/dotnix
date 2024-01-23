@@ -26,41 +26,46 @@
 
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
     let
-      mkNixos = hostname: hardware: username: system:
+      mkNixos = hardware: host: userName: system:
         nixpkgs.lib.nixosSystem rec {
           inherit system;
           specialArgs = {
             inherit inputs;
-            inherit hostname;
-            inherit username;
+            inherit hardware;
+            inherit userName;
           };
           modules = [
             ./hardware/${hardware}.nix
-            ./hosts/${hostname}
+            ./hosts/${host}
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home/home.nix;
+              home-manager.users.${userName} = import ./home/home.nix;
               home-manager.extraSpecialArgs = specialArgs;
             }
           ];
         };
 
-      mkHome = username: pkgs:
+      mkHome = userName: pkgs:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit userName;
+          };
           modules = [
             hyprland.homeManagerModules.default
-            ./home/${username}.nix
+            ./home/home.nix
           ];
         };
     in
     {
       nixosConfigurations = {
-        vm = mkNixos "vm" "vm1" "max" "x86_64-linux";
-        wsl = mkNixos "wsl" "none" "nixos" "x86_64-linux";
+        vm = mkNixos "vm1" "default" "max" "x86_64-linux";
+        # currently it is handier for the username to just be "nixos"
+        # https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/3
+        wsl = mkNixos "none" "wsl" "nixos" "x86_64-linux";
       };
 
       homeConfigurations = {
@@ -68,4 +73,8 @@
       };
     };
 }
+
+
+
+
 
