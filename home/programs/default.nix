@@ -16,6 +16,6 @@
     ./waybar
     ./wezterm
     ./wlclipmgr
-    ./zsh
+    ./shell
   ];
 }
