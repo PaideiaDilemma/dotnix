@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, userName, ... }:
+{ inputs, config, lib, pkgs, ... }:
 {
   imports = [
     ./fonts
@@ -11,10 +11,6 @@
     git.enable = true;
     zsh.enable = true;
     virt-manager.enable = true;
-    hyprland = {
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      xwayland.enable = true;
-    };
   };
 
   users.defaultUserShell = pkgs.zsh;
@@ -56,12 +52,8 @@
 
   environment.systemPackages = with pkgs; [
     libevdev
+    home-manager
   ];
-
-  users.users.${userName} = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
-  };
 
   nixpkgs.config.allowUnfree = true;
 

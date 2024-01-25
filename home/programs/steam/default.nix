@@ -1,14 +1,28 @@
-{ inputs, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
+with lib;
+let
+  cfg = config.hyprhome;
+in
 {
-  nixpkgs.overlays = [
-    (_: prev: {
-      steam = prev.steam.override {
-        extraProfile = "export STEAM_EXTRA_COMPAT_TOOLS_PATHS='${inputs.nix-gaming.packages.${pkgs.system}.proton-ge}'";
-      };
-    })
-  ];
+  options.hyprhome.steam = {
+    enable = mkOption {
+      default = true;
+      description = "Whether to enable steam.";
+      type = types.bool;
+    };
+  };
 
-  home.packages = (with pkgs; [
-    steam
-  ]);
+  config = mkIf (cfg.gui.enable && cfg.steam.enable) {
+    nixpkgs.overlays = [
+      (_: prev: {
+        steam = prev.steam.override {
+          extraProfile = "export STEAM_EXTRA_COMPAT_TOOLS_PATHS='${inputs.nix-gaming.packages.${pkgs.system}.proton-ge}'";
+        };
+      })
+    ];
+
+    home.packages = (with pkgs; [
+      steam
+    ]);
+  };
 }

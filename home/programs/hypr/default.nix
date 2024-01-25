@@ -1,9 +1,7 @@
 { inputs, config, lib, pkgs, ... }:
-
 with lib;
-
 let
-  cfg = config.hyprhome;
+  cfg = config.hyprhome.hyprland;
   concatStringMapAttrs = f: attrset: lib.concatStringsSep "\n" (lib.attrValues (lib.mapAttrs f attrset));
 in
 {
@@ -11,26 +9,32 @@ in
     ./hyprland-environment.nix
   ];
 
-  options.hyprhome = {
-    enable = mkEnableOption {
+  options.hyprhome.hyprland = {
+    enable = mkOption {
       default = true;
-      description = "Enable hyprland wayland environment";
+      description = "Whether to enable the hyprland desktop.";
+      type = types.bool;
     };
 
-    enableAnimations = mkEnableOption {
+    enableAnimations = mkOption {
       default = true;
       description = "Enable animations";
+      type = types.bool;
+    };
+
+    monitors = mkOption {
+      type = types.attrsOf (types.attrsOf (types.str));
+      default = { };
+    };
+
+    extraConfig = mkOption {
+      type = types.str;
+      default = "";
     };
 
     isVirtualMachine = mkOption {
       type = types.bool;
       default = false;
-      description = "Is this a virtual machine?";
-    };
-
-    monitors = mkOption {
-      type = types.attrsOf (types.attrsOf (types.str));
-      default = {};
     };
   };
 
@@ -46,6 +50,8 @@ in
       grim
       slurp
     ];
+
+    #wayland.windowManager.hyprland.enable = true;
 
     systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 
@@ -74,6 +80,7 @@ in
       $purple = AC78BD
 
       exec-once = waybar
+      exec-once = nm-applet
       exec-once = hyprpaper
       exec-once = hyprctl setcursor PearWhiteCursors 24
       exec-once = wlsunset -l 48.2, -L 16.3 -t 4800
@@ -289,10 +296,12 @@ in
     '';
 
 
-    xdg.configFile."hypr/device.conf".text = concatStringMapAttrs (name: monitor: ''
-      monitor = ${name},${monitor.resolution},${monitor.position},${monitor.scale}
-      workspace = ${name},${monitor.initalWorkspace}
-    '') cfg.monitors + ''
+    xdg.configFile."hypr/device.conf".text = concatStringMapAttrs
+      (name: monitor: ''
+        monitor = ${name},${monitor.resolution},${monitor.position},${monitor.scale}
+        workspace = ${name},${monitor.initalWorkspace}
+      '')
+      cfg.monitors + ''
 
       monitor=,preferred,auto,1
 
@@ -302,11 +311,13 @@ in
           #natural_scroll = 0
           kb_options = caps:swapescape
       }
-    '';
+    '' + cfg.extraConfig;
 
-    xdg.configFile."hypr/hyprpaper.conf".text = concatStringMapAttrs (name: monitor: ''
-      preload = ~/media/picture/wal${name}.png
-      wallpaper = ${name},~/media/picture/wal${name}.png
-    '') cfg.monitors;
+    xdg.configFile."hypr/hyprpaper.conf".text = concatStringMapAttrs
+      (name: monitor: ''
+        preload = ~/media/picture/wal${name}.png
+        wallpaper = ${name},~/media/picture/wal${name}.png
+      '')
+      cfg.monitors;
   };
 }

@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, userName, ... }:
+{ inputs, config, lib, pkgs, username, ... }:
 {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl
@@ -13,8 +13,8 @@
     wslConf.automount.root = "/mnt";
     wslConf.interop.appendWindowsPath = false;
     wslConf.network.generateHosts = false;
-    wslConf.user.default = userName;
-    defaultUser = userName;
+    wslConf.user.default = username;
+    defaultUser = username;
 
     # Enable integration with Docker Desktop (needs to be installed)
     docker-desktop.enable = false;
@@ -64,7 +64,7 @@
     libevdev
   ];
 
-  users.users.${userName} = {
+  users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [

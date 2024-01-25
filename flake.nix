@@ -26,50 +26,60 @@
 
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
     let
-      mkNixos = hardware: host: userName: system:
+      mkNixos = hardware: host: homeVariant: username: system:
         nixpkgs.lib.nixosSystem rec {
           inherit system;
           specialArgs = {
             inherit inputs;
-            inherit hardware;
-            inherit userName;
           };
           modules = [
             ./hardware/${hardware}.nix
             ./hosts/${host}
+            ({ ... }: {
+              users.users.${username} = {
+                isNormalUser = true;
+                extraGroups = [ "wheel" "networkmanager" "audio" "video" "input" ];
+              };
+            })
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${userName} = import ./home/home.nix;
+              home-manager.users.${username} = ({ ... }: {
+                imports = [ ./home/variants/${homeVariant}.nix ];
+                hyprhome.username = username;
+              });
               home-manager.extraSpecialArgs = specialArgs;
             }
           ];
         };
 
-      mkHome = userName: pkgs:
+      mkHome = homeVariant: username: pkgs:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
-            inherit userName;
           };
           modules = [
-            hyprland.homeManagerModules.default
-            ./home/home.nix
+            ({ ... }: {
+              imports = [ ./home/variants/${homeVariant}.nix ];
+              hyprhome.username = username;
+              nixpkgs.config.allowUnfree = true;
+            })
           ];
         };
     in
     {
       nixosConfigurations = {
-        vm = mkNixos "vm1" "default" "max" "x86_64-linux";
+        vm = mkNixos "vm1" "default" "vm" "max" "x86_64-linux";
         # currently it is handier for the username to just be "nixos"
         # https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/3
         wsl = mkNixos "none" "wsl" "nixos" "x86_64-linux";
       };
 
+      # allow home-manager switch --flake .#configuration to work
       homeConfigurations = {
-        max = mkHome "max" nixpkgs.legacyPackages.x86_64-linux;
+        vm = mkHome "vm" "max" nixpkgs.legacyPackages.x86_64-linux;
       };
     };
 }

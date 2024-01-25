@@ -1,16 +1,30 @@
-{ pkgs, lib, ... }:
+{ config, lib, pkgs, ... }:
+with lib;
+let
+  cfg = config.hyprhome;
+in
 {
-  home.packages = with pkgs.libsForQt5; [
-    kdegraphics-thumbnailers
-    dolphin
-  ];
+  options.hyprhome.kdeApplications = {
+    enable = mkOption {
+      default = true;
+      description = "Whether to enable KDE applications.";
+      type = types.bool;
+    };
+  };
 
-  services.kdeconnect.enable = true;
+  config = mkIf (cfg.gui.enable && cfg.kdeApplications.enable) {
+    home.packages = (with pkgs.libsForQt5; [
+      kdegraphics-thumbnailers
+      dolphin
+    ]);
 
-  xdg.configFile."kdeglobals".text = ''
-    [Colors:View]
-    BackgroundNormal=#303338
-  '';
+    services.kdeconnect.enable = true;
+
+    xdg.configFile."kdeglobals".text = ''
+      [Colors:View]
+      BackgroundNormal=#303338
+    '';
+  };
 }
 
 
