@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.hyprhome;
+  colors = config.colors;
 in
 {
   options.hyprhome.kdeApplications = {
@@ -22,7 +23,7 @@ in
 
     xdg.configFile."kdeglobals".text = ''
       [Colors:View]
-      BackgroundNormal=#303338
+      BackgroundNormal=${colors.base.shade}
     '';
   };
 }

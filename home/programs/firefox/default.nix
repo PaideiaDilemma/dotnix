@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.hyprhome;
+  colors = config.colors;
 in
 {
   options.hyprhome.firefox = {
@@ -86,14 +87,14 @@ in
                   margin: 2px 0px 2px !important;
                   padding: 0px !important;
                   /*margin-bottom: 0px !important;*/
-                  /*box-shadow: 0 0 0px 0px #8F8F8F !important;*/
-                  border: 1px solid #8F8F8F !important;
+                  /*box-shadow: 0 0 0px 0px ${colors.base.sky} !important;*/
+                  border: 1px solid ${colors.base.sky} !important;
                   /*border-bottom-width: 0px !important;*/
                   max-height: 26px !important;
               }
 
               .tab-background:is([selected],[multiselected]) {
-                  border: 1px solid #FFF7ED !important;
+                  border: 1px solid ${colors.base.sun} !important;
               }
 
               .tab-content {
@@ -107,7 +108,7 @@ in
               .tabbrowser-tab:first-of-type {padding-inline: 4px 1px !important;}
 
               #TabsToolbar {
-                  border-bottom: 0px solid #FFF7ED !important;
+                  border-bottom: 0px solid ${colors.base.sun} !important;
               }
 
               :root {

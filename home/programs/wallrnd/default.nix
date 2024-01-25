@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.hyprhome;
+  colors = config.colors;
   wallrnd = pkgs.rustPlatform.buildRustPackage rec {
     name = "wallrnd";
     version = "0.1.0";
@@ -58,22 +59,22 @@ in
       color = "shade"
 
       [colors]
-      sun_p = "#FFFDFB"
-      sun = "#FFF7ED"
-      sun_m = "#F2E6D4"
-      sky_p = "#BEBEBE"
-      sky = "#8F8F8F"
-      sky_m = "#636363"
-      shade_p = "#3E4044"
-      shade = "#303338"
-      shade_m = "#24272B"
-      red = "#CA7081"
-      orange = "#C27D40"
-      yellow = "#92963A"
-      green = "#47A477"
-      cyan = "#00A0BA"
-      blue = "#6E8DD5"
-      purple = "#AC78BD"
+      sun_p = "${colors.base.sun}"
+      sun = "${colors.base.sun}"
+      sun_m = "${colors.base.sun_}"
+      sky_p = "${colors.base.sky'}"
+      sky = "${colors.base.sky}"
+      sky_m = "${colors.base.sky_}"
+      shade_p = "${colors.base.shade'}"
+      shade = "${colors.base.shade}"
+      shade_m = "${colors.base.shade_}"
+      red = "${colors.six.red}"
+      orange = "${colors.seven.orange}"
+      yellow = "${colors.seven.yellow}"
+      green = "${colors.seven.green}"
+      cyan = "${colors.seven.cyan}"
+      blue = "${colors.seven.blue}"
+      purple = "${colors.seven.purple}"
 
       [themes]
       [[themes.penumbra_day]]

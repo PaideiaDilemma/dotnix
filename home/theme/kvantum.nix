@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 let
+  colors = config.colors;
+
   arcDarkSource = pkgs.fetchFromGitHub {
     owner = "PapirusDevelopmentTeam";
     repo = "arc-kde";
@@ -24,30 +26,30 @@ let
           --replace "translucent_windows=true" "translucent_windows=false" \
           --replace "blurring=true" "blurring=false" \
           --replace "popup_blurring=true" "popup_blurring=false" \
-          --replace "window.color=#353945" "window.color=#24272B" \
-          --replace "base.color=#404552" "base.color=#303338" \
-          --replace "alt.base.color=#404552" "alt.base.color=#303338" \
-          --replace "button.color=#444a58" "button.color=#3E4044" \
-          --replace "light.color=#404552" "light.color=#636363" \
-          --replace "mid.light.color=#404552" "mid.light.color=#3E4044" \
-          --replace "dark.color=#2F343f" "dark.color=#24272B" \
-          --replace "mid.color=#2F343f" "mid.color=#303338" \
-          --replace "highlight.color=#5294E2" "highlight.color=#7E87D6" \
-          --replace "inactive.highlight.color=#5294E2" "inactive.highlight.color=#7E87D6"ß \
-          --replace "text.color=#d3dae3" "text.color=#FFF7ED" \
-          --replace "window.text.color=#d3dae3" "window.text.color=#FFF7ED" \
-          --replace "button.text.color=#d3dae3" "button.text.color=#F2E6D4" \
-          --replace "disabled.text.color=#898d99" "disabled.text.color=#8F8F8F" \
-          --replace "tooltip.text.color=#d3dae3" "tooltip.text.color=#FFF7ED" \
-          --replace "highlight.text.color=#d3dae3" "highlight.text.color=#FFF7ED" \
-          --replace "link.color=#1d99f3" "link.color=#00A0BE" \
-          --replace "link.visited.color=#9b59b6" "link.visited.color=#7E87D6" \
+          --replace "window.color=#353945" "window.color=${colors.base.shade_}" \
+          --replace "base.color=#404552" "base.color=${colors.base.shade}" \
+          --replace "alt.base.color=#404552" "alt.base.color=${colors.base.shade}" \
+          --replace "button.color=#444a58" "button.color=${colors.base.shade'}" \
+          --replace "light.color=#404552" "light.color=${colors.base.sky_}" \
+          --replace "mid.light.color=#404552" "mid.light.color=${colors.base.shade'}" \
+          --replace "dark.color=#2F343f" "dark.color=${colors.base.shade_}" \
+          --replace "mid.color=#2F343f" "mid.color=${colors.base.shade}" \
+          --replace "highlight.color=#5294E2" "highlight.color=${colors.six.blue}" \
+          --replace "inactive.highlight.color=#5294E2" "inactive.highlight.color=${colors.six.blue}"ß \
+          --replace "text.color=#d3dae3" "text.color=${colors.base.sun}" \
+          --replace "window.text.color=#d3dae3" "window.text.color=${colors.base.sun}" \
+          --replace "button.text.color=#d3dae3" "button.text.color=${colors.base.sun_}" \
+          --replace "disabled.text.color=#898d99" "disabled.text.color=${colors.base.sky}" \
+          --replace "tooltip.text.color=#d3dae3" "tooltip.text.color=${colors.base.sun}" \
+          --replace "highlight.text.color=#d3dae3" "highlight.text.color=${colors.base.sun}" \
+          --replace "link.color=#1d99f3" "link.color=${colors.six.cyan}" \
+          --replace "link.visited.color=#9b59b6" "link.visited.color=${colors.six.blue}" \
 
         sed -i " \
           s/#ffffff/#FFFFFF/g; \
-          s/#d3dae3/#F2E6D4/g; \
-          s/#898d99/#8F8F8F/g; \
-          s/#5294e2/#7E87D6/g;" $out/Penumbra.kvconfig
+          s/#d3dae3/${colors.base.sun_}/g; \
+          s/#898d99/${colors.base.sky}/g; \
+          s/#5294e2/${colors.six.blue}/g;" $out/Penumbra.kvconfig
       '';
     };
 
@@ -64,23 +66,23 @@ let
         cp $src/ArcDark.svg $out/Penumbra.svg
 
         sed -i " \
-          s/#5294e2/#7E87D6/g; \
-          s/#2f343f/#3E4044/g; \
-          s/#444a58/#636363/g; \
-          s/#505666/#636363/g; \
-          s/#272a33/#303338/g; \
-          s/#b3b3b3/#8F8F8F/g; \
-          s/#aaaaaa/#8F8F8F/g; \
-          s/#aaa/#8F8F8F/g; \
-          s/#505766/#303338/g; \
-          s/#383c4a/#303338/g; \
-          s/#2d323d/#636363/g; \
-          s/#2b303b/#636363/g; \
-          s/#262934/#303338/g; \
-          s/#ff4d4d/#CB7459/g; \
+          s/#5294e2/${colors.six.blue}/g; \
+          s/#2f343f/${colors.base.shade'}/g; \
+          s/#444a58/${colors.base.sky_}/g; \
+          s/#505666/${colors.base.sky_}/g; \
+          s/#272a33/${colors.base.shade}/g; \
+          s/#b3b3b3/${colors.base.sky}/g; \
+          s/#aaaaaa/${colors.base.sky}/g; \
+          s/#aaa/${colors.base.sky}/g; \
+          s/#505766/${colors.base.shade}/g; \
+          s/#383c4a/${colors.base.shade}/g; \
+          s/#2d323d/${colors.base.sky_}/g; \
+          s/#2b303b/${colors.base.sky_}/g; \
+          s/#262934/${colors.base.shade}/g; \
+          s/#ff4d4d/${colors.six.red}/g; \
           s/#4877b1/#5794D0/g; \
-          s/#414857/#303338/g; \
-          s/#353945/#303338/g;" $out/Penumbra.svg
+          s/#414857/${colors.base.shade}/g; \
+          s/#353945/${colors.base.shade}/g;" $out/Penumbra.svg
       '';
     };
 in

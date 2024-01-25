@@ -4,6 +4,7 @@
     ./fonts
     ./virtualisation
     ./services
+    ../../colors/penumbra.nix
   ];
 
   programs = {
@@ -32,6 +33,7 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
+    colors = config.colors.console;
     earlySetup = true;
     keyMap = "de";
     #   useXkbConfig = true; # use xkb.options in tty.

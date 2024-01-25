@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.hyprhome;
+  colors = config.colors;
 in
 {
   options.hyprhome.mako = {
@@ -17,14 +18,14 @@ in
       enable = true;
       package = pkgs.mako;
       anchor = "bottom-left";
-      backgroundColor = "#636363";
-      textColor = "#FFF7ED";
+      backgroundColor = "${colors.base.sky_}";
+      textColor = "${colors.base.sun}";
       margin = "2";
       #outerMargin = 5;
-      borderColor = "#FFF7ED";
+      borderColor = "${colors.base.sun}";
       borderSize = 1;
       borderRadius = 6;
-      progressColor = "over #CB7459CC";
+      progressColor = "over ${colors.six.red}CC";
       icons = true;
     };
   };

@@ -45,11 +45,11 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.${username} = ({ ... }: {
-                imports = [ ./home/variants/${homeVariant}.nix ];
+                imports = [ ./home ./home/variants/${homeVariant}.nix ];
                 hyprhome.username = username;
               });
-              home-manager.extraSpecialArgs = specialArgs;
             }
           ];
         };
@@ -62,7 +62,7 @@
           };
           modules = [
             ({ ... }: {
-              imports = [ ./home/variants/${homeVariant}.nix ];
+              imports = [ ./home ./home/variants/${homeVariant}.nix ];
               hyprhome.username = username;
               nixpkgs.config.allowUnfree = true;
             })

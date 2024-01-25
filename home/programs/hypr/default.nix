@@ -1,7 +1,9 @@
 { inputs, config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.hyprhome.hyprland;
+  cfg = config.hyprhome;
+  colors = config.colors;
+  removeHash = str: removePrefix "#" str;
   concatStringMapAttrs = f: attrset: lib.concatStringsSep "\n" (lib.attrValues (lib.mapAttrs f attrset));
 in
 {
@@ -38,7 +40,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.gui.enable && cfg.hyprland.enable) {
     home.packages = with pkgs; [
       inputs.hyprland.packages.${pkgs.system}.hyprland
       waybar
@@ -55,29 +57,29 @@ in
 
     systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 
-    home.sessionVariables = mkIf cfg.isVirtualMachine {
+    home.sessionVariables = mkIf cfg.hyprland.isVirtualMachine {
       WLR_NO_HARDWARE_CURSORS = "1";
       WLR_RENDERER_ALLOW_SOFTWARE = "1";
     };
 
     xdg.configFile."hypr/hyprland.conf".text = ''
       $terminal = foot
-      $sun_p = FFFDFB
-      $sun = FFF7ED
-      $sun_m = F2E6D4
-      $sky_p = BEBEBE
-      $sky = 8F8F8F
-      $sky_m = 636363
-      $shade_p = 3E4044
-      $shafe = 303338
-      $shade_m = 24272B
-      $red = CA7081
-      $orange = C27D40
-      $yellow = 92963A
-      $green = 3EA57B
-      $cyan = 00A0BA
-      $blue = 6E8DD5
-      $purple = AC78BD
+      $sun_p = ${removeHash colors.base.sun'}
+      $sun = ${removeHash colors.base.sun}
+      $sun_m = ${removeHash colors.base.sun_}
+      $sky_p = ${removeHash colors.base.sky'}
+      $sky = ${removeHash colors.base.sky}
+      $sky_m = ${removeHash colors.base.sky_}
+      $shade_p = ${removeHash colors.base.shade'}
+      $shafe = ${removeHash colors.base.shade}
+      $shade_m = ${removeHash colors.base.shade_}
+      $red = ${removeHash colors.seven.red}
+      $orange = ${removeHash colors.seven.orange}
+      $yellow = ${removeHash colors.seven.yellow}
+      $green = ${removeHash colors.seven.green}
+      $cyan = ${removeHash colors.seven.cyan}
+      $blue = ${removeHash colors.seven.blue}
+      $purple = ${removeHash colors.seven.purple}
 
       exec-once = waybar
       exec-once = nm-applet
@@ -118,7 +120,7 @@ in
       }
 
       animations {
-          enabled = ${if cfg.enableAnimations then "1" else "0"};
+          enabled = ${if cfg.hyprland.enableAnimations then "1" else "0"};
           bezier = const,0.25,0.25,0.75,0.75
           bezier = ease2,0.57,0.15,0.40,0.85
           #bezier = ease-out2,0.58,0.45,0.58,1
@@ -301,7 +303,7 @@ in
         monitor = ${name},${monitor.resolution},${monitor.position},${monitor.scale}
         workspace = ${name},${monitor.initalWorkspace}
       '')
-      cfg.monitors + ''
+      cfg.hyprland.monitors + ''
 
       monitor=,preferred,auto,1
 
@@ -311,13 +313,13 @@ in
           #natural_scroll = 0
           kb_options = caps:swapescape
       }
-    '' + cfg.extraConfig;
+    '' + cfg.hyprland.extraConfig;
 
     xdg.configFile."hypr/hyprpaper.conf".text = concatStringMapAttrs
       (name: monitor: ''
         preload = ~/media/picture/wal${name}.png
         wallpaper = ${name},~/media/picture/wal${name}.png
       '')
-      cfg.monitors;
+      cfg.hyprland.monitors;
   };
 }

@@ -2,6 +2,8 @@
 with lib;
 let
   cfg = config.hyprhome;
+  colors = config.colors;
+  removeHash = str: removePrefix "#" str;
 in
 {
   options.hyprhome.foot = {
@@ -78,44 +80,28 @@ in
 
       [colors]
       # alpha=1.0
-      foreground=FFF7ED
-      background=303338
+      foreground=${removeHash colors.base.sun}
+      background=${removeHash colors.base.shade}
 
       ## Normal/regular colors (color palette 0-7)
-      regular0=303338
-      regular1=DF7C8E
-      regular2=44B689
-      regular3=A1A641
-      regular4=7A9BEC
-      regular5=BE85D1
-      regular6=00B1CE
-      regular7=F2E6D4
-      # regular0=222222  # black
-      # regular1=cc9393  # red
-      # regular2=7f9f7f  # green
-      # regular3=d0bf8f  # yellow
-      # regular4=6ca0a3  # blue
-      # regular5=dc8cc3  # magenta
-      # regular6=93e0e3  # cyan
-      # regular7=dcdccc  # white
+      regular0=${removeHash colors.base.shade}
+      regular1=${removeHash colors.six.red}
+      regular2=${removeHash colors.six.green}
+      regular3=${removeHash colors.six.yellow}
+      regular4=${removeHash colors.six.blue}
+      regular5=${removeHash colors.six.magenta}
+      regular6=${removeHash colors.six.cyan}
+      regular7=${removeHash colors.base.sun}
 
       ## Bright colors (color palette 8-15)
-      bright0=636363
-      bright1=F18AA1
-      bright2=58C792
-      bright3=B4B44A
-      bright4=83ADFF
-      bright5=CC94E6
-      bright6=16C3DD
-      bright7=FFFDFB
-      # bright0=666666   # bright black
-      # bright1=dca3a3   # bright red
-      # bright2=bfebbf   # bright green
-      # bright3=f0dfaf   # bright yellow
-      # bright4=8cd0d3   # bright blue
-      # bright5=fcace3   # bright magenta
-      # bright6=b3ffff   # bright cyan
-      # bright7=ffffff   # bright white
+      bright0=${removeHash colors.base.sky_}
+      bright1=${removeHash colors.six'.red}
+      bright2=${removeHash colors.six'.green}
+      bright3=${removeHash colors.six'.yellow}
+      bright4=${removeHash colors.six'.blue}
+      bright5=${removeHash colors.six'.magenta}
+      bright6=${removeHash colors.six'.cyan}
+      bright7=${removeHash colors.base.sun'}
 
       ## dimmed colors (see foot.ini(5) man page)
       #dim0=181a1d

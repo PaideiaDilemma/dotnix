@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.hyprhome;
+  colors = config.colors;
 in
 {
   options.hyprhome.wezterm = {
@@ -19,32 +20,32 @@ in
       enableBashIntegration = false;
       package = inputs.wezterm.packages.${pkgs.system}.default;
       colorSchemes.penumbra = {
-        background = "#303338";
-        foreground = "#FFF7ED";
-        cursor_bg = "#FFF7ED";
-        cursor_border = "#FFF7ED";
-        cursor_fg = "#24272B";
-        selection_bg = "#3E4044";
+        background = colors.base.shade;
+        foreground = colors.base.sun;
+        cursor_bg = colors.base.sun;
+        cursor_border = colors.base.sun;
+        cursor_fg = colors.base.shade_;
+        selection_bg = colors.base.shade';
         ansi = [
-          "#303338"
-          "#DF7C8E"
-          "#44B689"
-          "#A1A641"
-          "#7A9BEC"
-          "#BE85D1"
-          "#00B1CE"
-          "#F2E6D4"
+          colors.base.shade
+          colors.six.red
+          colors.six.green
+          colors.six.yellow
+          colors.six.blue
+          colors.six.magenta
+          colors.six.cyan
+          colors.base.sun
         ];
 
         brights = [
-          "#636363"
-          "#F18AA1"
-          "#58C792"
-          "#B4B44A"
-          "#83ADFF"
-          "#CC94E6"
-          "#16C3DD"
-          "#FFFDFB"
+          colors.base.sky_
+          colors.six'.red
+          colors.six'.green
+          colors.six'.yellow
+          colors.six'.blue
+          colors.six'.magenta
+          colors.six'.cyan
+          colors.base.sun'
         ];
       };
       extraConfig = ''

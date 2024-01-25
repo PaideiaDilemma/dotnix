@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.hyprhome;
+  colors = config.colors;
 in
 {
   options.hyprhome.rofi = {
@@ -33,20 +34,20 @@ in
       }
 
       * {
-          bg:         #636363CC;
-          red:        #CB7459;
-          green:      #46A473;
-          yellow:     #A38F2D;
-          blue:       #7E87D6;
-          purple:     #BD72A8;
-          cyan:       #00A0BE;
-          emphasis:   #00A0BE;
-          text:       #FFF7ED;
-          text-alt:   #F2E6D4;
-          fg:         #FFF7ED;
-          bg-alt:     #636363;
-          gray:       #8F8F8F;
-          lightgray:  #BEBEBE;
+          bg:         ${colors.base.sky_}CC;
+          red:        ${colors.six.red};
+          green:      ${colors.six.green};
+          yellow:     ${colors.six.yellow};
+          blue:       ${colors.six.blue};
+          purple:     ${colors.six.magenta};
+          cyan:       ${colors.six.cyan};
+          emphasis:   ${colors.six.cyan};
+          text:       ${colors.base.sun};
+          text-alt:   ${colors.base.sun_};
+          fg:         ${colors.base.sun};
+          bg-alt:     ${colors.base.sky_};
+          gray:       ${colors.base.sky};
+          lightgray:  ${colors.base.sky'};
 
           spacing: 5;
 

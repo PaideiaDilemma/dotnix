@@ -1,12 +1,11 @@
-{ inputs, config, pkgs, lib, ... }:
-
+{ inputs, config, lib, pkgs, ... }:
 with lib;
-
 let
   cfg = config.hyprhome;
 in
 {
   imports = [
+    ../colors/penumbra.nix
     ./programs
     ./scripts
     ./theme

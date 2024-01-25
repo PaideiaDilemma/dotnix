@@ -1,7 +1,8 @@
-{ config, lib, pkgs, ... }:
-
+{ inputs, config, lib, pkgs, ... }:
+with lib;
 let
-  themes = pkgs.callPackage ./oomox.nix { };
+  cfg = config.hyprhome;
+  themes = pkgs.callPackage ./oomox.nix { colors = config.colors;  };
 in
 {
   imports = [
@@ -9,34 +10,36 @@ in
     #./kvantum.nix
   ];
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    size = 16;
-  };
-
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Penumbra";
-      package = themes.penumbra-oomox-icons;
-    };
-
-    theme = {
-      name = "Penumbra";
-      package = themes.penumbra-oomox-gtk;
-    };
-
-    cursorTheme = {
+  config = mkIf (cfg.gui.enable) {
+    home.pointerCursor = {
+      gtk.enable = true;
       name = "Bibata-Modern-Classic";
       package = pkgs.bibata-cursors;
+      size = 16;
     };
-  };
 
-  qt = {
-    enable = true;
-    platformTheme = "qtct";
-    #style.name = "kvantum";
+    gtk = {
+      enable = true;
+      iconTheme = {
+        name = "Penumbra";
+        package = themes.penumbra-oomox-icons;
+      };
+
+      theme = {
+        name = "Penumbra";
+        package = themes.penumbra-oomox-gtk;
+      };
+
+      cursorTheme = {
+        name = "Bibata-Modern-Classic";
+        package = pkgs.bibata-cursors;
+      };
+    };
+
+    qt = {
+      enable = true;
+      platformTheme = "qtct";
+      #style.name = "kvantum";
+    };
   };
 }

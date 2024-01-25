@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.hyprhome;
+  colors = config.colors;
 in
 {
   options.hyprhome.waybar = {
@@ -25,21 +26,21 @@ in
         target = "graphical-session.target";
       };
       style = ''
-        		@define-color critical #CA7081; /* critical color */
-        		@define-color warning #92963A;  /* warning color */
-        		@define-color fgcolor #FFF7ED;  /* foreground color */
+        		@define-color critical ${colors.six.red}; /* critical color */
+        		@define-color warning ${colors.seven.yellow};  /* warning color */
+        		@define-color fgcolor ${colors.base.sun};  /* foreground color */
         		@define-color bgcolor rgba(99, 99, 99, 0.8);  /* background color */
-        		@define-color alert   #C27D40;
+        		@define-color alert   ${colors.seven.orange};
 
-        		@define-color accent1 #CB7459;
-        		@define-color accent2 #A38F2D;
-        		@define-color accent3 #46A473;
-        		@define-color accent4 #00A0BE;
-        		@define-color accent5 #7E87D6;
-        		@define-color accent6 #BD72A8;
-        		@define-color gray #8F8F8F;
-        		@define-color sky_p #BEBEBE;
-        		@define-color sun_m #F2E6D4;
+        		@define-color accent1 ${colors.six.red};
+        		@define-color accent2 ${colors.six.yellow};
+        		@define-color accent3 ${colors.six.green};
+        		@define-color accent4 ${colors.six.cyan};
+        		@define-color accent5 ${colors.six.blue};
+        		@define-color accent6 ${colors.six.magenta};
+        		@define-color gray ${colors.base.sky};
+        		@define-color sky_p ${colors.base.sky'};
+        		@define-color sun_m ${colors.base.sun_};
         		@define-color bgmodule @bgcolor;
         		@define-color bordermodule @gray;
 
@@ -105,7 +106,7 @@ in
         		#workspaces button.active {
         		  padding: 0px 5px 0px;
         		  min-width: 26px;
-        		  border: 1px solid #FFFDFB;
+        		  border: 1px solid ${colors.base.sun};
         		  /* Use box-shadow instead of border so the text isn't offset */
         		/*    box-shadow: inset 0 -3px transparent;*/
         		  /* border-radius: 0px; */
