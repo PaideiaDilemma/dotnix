@@ -44,40 +44,41 @@ in
     home.packages = (with pkgs; [
 
       # Terminal Applications
-      wlr-randr
-      git
-      rustup
-      gnumake
+      appimage-run
+      btop
       catimg
       curl
-      appimage-run
+      distrobox
+      file
+      git
+      gnumake
+      grim
+      imv
       mako
       pavucontrol
-      sqlite
-      file
-      wget
-      grim
-      slurp
-      btop
       rofi-wayland
-      wl-clipboard
-      imv
+      rustup
       scrcpy
+      slurp
+      sqlite
+      wget
+      wl-clipboard
+      wlr-randr
 
     ]) ++ optionals (cfg.gui.enable) (with pkgs; [
 
       # Graphical Applications
-      webcord
       bottles
-      krita
-      inkscape
-      wdisplays
-      libreoffice
-      thunderbird
-      ghidra
+      burpsuite
       cutter
       cutterPlugins.rz-ghidra
-      burpsuite
+      ghidra
+      inkscape
+      krita
+      libreoffice
+      thunderbird
+      wdisplays
+      webcord
 
     ]) ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
       gnome-tweaks
