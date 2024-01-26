@@ -11,6 +11,12 @@ in
       description = "Whether to enable waybar.";
       type = types.bool;
     };
+
+    terminal = mkOption {
+      default = cfg.terminal;
+      description = "The terminal to use.";
+      type = types.str;
+    };
   };
 
   config = mkIf (cfg.gui.enable && cfg.waybar.enable) {
@@ -361,7 +367,7 @@ in
         };
         "cpu" = {
           "format" = " {usage}%";
-          "on-click" = ''foot btop'';
+          "on-click" = ''${cfg.waybar.terminal} btop'';
         };
         "memory" = {
           "format" = " {}%";

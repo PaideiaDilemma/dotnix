@@ -25,6 +25,12 @@ in
       default = "max";
       description = "The user name";
     };
+
+    terminal = mkOption {
+      type = types.enum [ "foot" "wezterm" ];
+      default = "foot";
+      description = "The terminal emulator";
+    };
   };
 
   config = {

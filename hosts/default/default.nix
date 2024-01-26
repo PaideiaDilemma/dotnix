@@ -12,6 +12,7 @@
     git.enable = true;
     zsh.enable = true;
     virt-manager.enable = true;
+    nix-ld.enable = true;
   };
 
   users.defaultUserShell = pkgs.zsh;

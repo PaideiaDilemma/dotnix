@@ -38,6 +38,11 @@ in
       type = types.bool;
       default = false;
     };
+
+    terminal = mkOption {
+      type = types.str;
+      default = cfg.terminal;
+    };
   };
 
   config = mkIf (cfg.gui.enable && cfg.hyprland.enable) {
@@ -63,7 +68,7 @@ in
     };
 
     xdg.configFile."hypr/hyprland.conf".text = ''
-      $terminal = foot
+      $terminal = ${cfg.hyprland.terminal}
       $sun_p = ${removeHash colors.base.sun'}
       $sun = ${removeHash colors.base.sun}
       $sun_m = ${removeHash colors.base.sun_}
@@ -304,7 +309,7 @@ in
       '')
       cfg.hyprland.monitors + ''
 
-      monitor=,preferred,auto,1
+      monitor=,1920x1080,auto,1
 
       input {
           kb_layout = de
@@ -326,7 +331,7 @@ in
           cfg.hyprland.monitors
       else ''
         preload = ~/media/picture/wal.png
-        wallpaper = ,~/media/picture/wal.png;
+        wallpaper = ,~/media/picture/wal.png
       '';
   };
 }

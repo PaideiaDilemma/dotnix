@@ -86,12 +86,7 @@
 
       # allow home-manager switch --flake .#configuration to work
       homeConfigurations = {
-        vm = mkHome "vm" "max" nixpkgs.legacyPackages.x86_64-linux;
+        vm = mkHome "generic" "max" nixpkgs.legacyPackages.x86_64-linux;
       };
     };
 }
-
-
-
-
-
