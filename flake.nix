@@ -67,14 +67,18 @@
             ({ ... }: {
               imports = [ ./home ./home/variants/${homeVariant}.nix ];
               hyprhome.username = username;
-              nixpkgs.config.allowUnfree = true;
+              nixpkgs = {
+                config.allowUnfree = true;
+                overlays = [ inputs.nur.overlay ];
+              };
             })
           ];
         };
     in
     {
       nixosConfigurations = {
-        vm = mkNixos "vm1" "default" "vm" "max" "x86_64-linux";
+        vm = mkNixos "vm1" "default" "generic" "max" "x86_64-linux";
+        iso = mkNixos "none" "default" "generic" "max" "x86_64-linux";
         # currently it is handier for the username to just be "nixos"
         # https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/3
         wsl = mkNixos "none" "wsl" "nixos" "x86_64-linux";

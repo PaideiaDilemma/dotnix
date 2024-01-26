@@ -297,7 +297,6 @@ in
       source = ~/.config/hypr/device.conf
     '';
 
-
     xdg.configFile."hypr/device.conf".text = concatStringMapAttrs
       (name: monitor: ''
         monitor = ${name},${monitor.resolution},${monitor.position},${monitor.scale}
@@ -315,11 +314,20 @@ in
       }
     '' + cfg.hyprland.extraConfig;
 
-    xdg.configFile."hypr/hyprpaper.conf".text = concatStringMapAttrs
-      (name: monitor: ''
-        preload = ~/media/picture/wal${name}.png
-        wallpaper = ${name},~/media/picture/wal${name}.png
-      '')
-      cfg.hyprland.monitors;
+    home.file."media/picture/wal.png".source = ./wal.png;
+
+    xdg.configFile."hypr/hyprpaper.conf".text =
+      if (lib.attrNames cfg.hyprland.monitors != [ ]) then
+        concatStringMapAttrs
+          (name: monitor: ''
+            preload = ~/media/picture/wal${name}.png
+            wallpaper = ${name},~/media/picture/wal${name}.png
+          '')
+          cfg.hyprland.monitors
+      else ''
+        preload = ~/media/picture/wal.png
+        wallpaper = ,~/media/picture/wal.png;
+      '';
   };
 }
+
