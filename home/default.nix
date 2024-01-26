@@ -9,6 +9,7 @@ in
     ./programs
     ./scripts
     ./theme
+    ./shells
   ];
 
   options.hyprhome = {
