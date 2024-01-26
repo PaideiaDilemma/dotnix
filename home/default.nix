@@ -28,6 +28,10 @@ in
   };
 
   config = {
+    nixpkgs.overlays = [
+      inputs.nur.overlay
+    ];
+
     home = {
       username = cfg.username;
       homeDirectory = "/home/${cfg.username}";

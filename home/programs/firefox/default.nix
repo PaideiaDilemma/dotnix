@@ -17,7 +17,7 @@ in
     programs.firefox = {
       enable = true;
       profiles = {
-        "piracy" = {
+        "asdfnerd" = {
           isDefault = true;
           containers = {
             "Work" = {
@@ -54,9 +54,16 @@ in
             "browser.safebrowsing.phishing.enabled" = false;
             "browser.safebrowsing.malware.enabled" = false;
           };
+          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+            ublock-origin
+            tridactyl
+            localcdn
+            privacy-badger
+          ];
           search = {
             default = "DuckDuckGo";
             privateDefault = "DuckDuckGo";
+            force = true;
             engines = {
               "Nix Packages" = {
                 urls = [{

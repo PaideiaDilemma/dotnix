@@ -21,6 +21,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Community packages; used for Firefox extensions
+    nur.url = "github:nix-community/nur";
+
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
   };
 
