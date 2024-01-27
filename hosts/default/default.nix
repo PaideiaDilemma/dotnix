@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, overlays, ... }:
 {
   imports = [
     ./fonts
@@ -61,10 +61,8 @@
   ];
 
   nixpkgs = {
+    inherit overlays;
     config.allowUnfree = true;
-    overlays = [
-      inputs.nur.overlay
-    ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are

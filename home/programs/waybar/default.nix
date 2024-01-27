@@ -17,6 +17,12 @@ in
       description = "The terminal to use.";
       type = types.str;
     };
+
+    battery.enable = mkOption {
+      default = false;
+      description = "Whether to enable the battery module.";
+      type = types.bool;
+    };
   };
 
   config = mkIf (cfg.gui.enable && cfg.waybar.enable) {
@@ -313,6 +319,7 @@ in
           "temperature#cpu"
           "temperature#gpu"
           "memory"
+          (if cfg.waybar.battery.enable then "battery" else "")
           "pulseaudio"
           "network"
           # "custom/separator"

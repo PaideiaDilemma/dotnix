@@ -29,11 +29,17 @@
 
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
     let
+      overlays = [
+        inputs.nur.overlay
+        (import ./overlays/pear-white-cursors.nix)
+      ];
+
       mkNixos = hardware: host: homeVariant: username: system:
         nixpkgs.lib.nixosSystem rec {
           inherit system;
           specialArgs = {
             inherit inputs;
+            inherit overlays;
           };
           modules = [
             ./hardware/${hardware}.nix
@@ -68,8 +74,8 @@
               imports = [ ./home ./home/variants/${homeVariant}.nix ];
               hyprhome.username = username;
               nixpkgs = {
+                inherit overlays;
                 config.allowUnfree = true;
-                overlays = [ inputs.nur.overlay ];
               };
             })
           ];

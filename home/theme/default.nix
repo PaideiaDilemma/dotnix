@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.hyprhome;
-  themes = pkgs.callPackage ./oomox.nix { colors = config.colors;  };
+  themes = pkgs.callPackage ./oomox.nix { colors = config.colors; };
 in
 {
   imports = [
@@ -31,8 +31,8 @@ in
       };
 
       cursorTheme = {
-        name = "Bibata-Modern-Classic";
-        package = pkgs.bibata-cursors;
+        name = "pearWhiteCursors";
+        package = pkgs.pearWhiteCursors;
       };
     };
 

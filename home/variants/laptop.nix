@@ -2,6 +2,7 @@
 {
   hyprhome = {
     gui.enable = true;
+    waybar.battery.enable = true;
     hyprland = {
       enable = true;
       monitors = {
