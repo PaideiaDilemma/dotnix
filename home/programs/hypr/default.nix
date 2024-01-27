@@ -48,14 +48,15 @@ in
   config = mkIf (cfg.gui.enable && cfg.hyprland.enable) {
     home.packages = with pkgs; [
       inputs.hyprland.packages.${pkgs.system}.hyprland
-      waybar
-      wlsunset
+      grim
       hyprpaper
       hyprpicker
+      nm-applet
+      slurp
       swayidle
       swaylock
-      grim
-      slurp
+      waybar
+      wlsunset
     ];
 
     #wayland.windowManager.hyprland.enable = true;

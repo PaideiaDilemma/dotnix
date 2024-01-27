@@ -47,6 +47,7 @@ in
       appimage-run
       btop
       catimg
+      cryptsetup
       curl
       distrobox
       file

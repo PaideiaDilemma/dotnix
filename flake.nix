@@ -49,6 +49,7 @@
                 isNormalUser = true;
                 extraGroups = [ "wheel" "networkmanager" "audio" "video" "input" ];
               };
+              users.users.root.password = "nixos";
             })
             home-manager.nixosModules.home-manager
             {
