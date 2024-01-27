@@ -15,6 +15,11 @@
     nix-ld.enable = true;
   };
 
+  nh = {
+    enable = true;
+    clean.enable = true;
+  };
+
   users.defaultUserShell = pkgs.zsh;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -53,6 +58,7 @@
   #hardware.pulseaudio.enable = true;
 
   environment.variables = {
+    FLAKE = "\${HOME}/nixos-dotfiles";
     NIXOS_OZONE_WL = "1";
     NIXPKGS_ALLOW_UNFREE = "1";
     PATH = [

@@ -81,6 +81,7 @@ in
       thunderbird
       wdisplays
       webcord
+      chromium
 
     ]) ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
       gnome-tweaks
