@@ -21,6 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nh = {
+      url = "github:viperML/nh";
+      inputs.nixpkgs.follows = "nixpkgs"; # override this repo's nixpkgs snapshot
+    };
+
     # Community packages; used for Firefox extensions
     nur.url = "github:nix-community/nur";
 
@@ -44,14 +49,19 @@
           modules = [
             ./hardware/${hardware}.nix
             ./hosts/${host}
-            ({ ... }: {
+            home-manager.nixosModules.home-manager
+            inputs.nh.nixosModules.default
+              ({ ... }: {
               users.users.${username} = {
                 isNormalUser = true;
                 extraGroups = [ "wheel" "networkmanager" "audio" "video" "input" ];
               };
               users.users.root.password = "nixos";
+              nh = {
+                enable = true;
+                clean.enable = true;
+              };
             })
-            home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
