@@ -12,9 +12,8 @@ in
 
   config = mkIf (cfg.gui.enable) {
     home.pointerCursor = {
-      gtk.enable = true;
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
+      name = "PearWhiteCursors";
+      package = pkgs.pearWhiteCursors;
       size = 16;
     };
 
@@ -31,7 +30,7 @@ in
       };
 
       cursorTheme = {
-        name = "pearWhiteCursors";
+        name = "PearWhiteCursors";
         package = pkgs.pearWhiteCursors;
       };
     };

@@ -3,6 +3,7 @@
   hyprhome = {
     gui.enable = true;
     waybar.battery.enable = true;
+    wezterm.enable = false;
     hyprland = {
       enable = true;
       monitors = {

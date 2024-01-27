@@ -51,7 +51,7 @@ in
       grim
       hyprpaper
       hyprpicker
-      nm-applet
+      networkmanagerapplet
       slurp
       swayidle
       swaylock
