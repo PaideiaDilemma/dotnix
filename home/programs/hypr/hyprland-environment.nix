@@ -24,7 +24,7 @@
       XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_SESSION_DESKTOP = "Hyprland";
       XDG_SESSION_TYPE = "wayland";
-      #PASSWORD_STORE_DIR = "$HOME/.config/pass";
+      PASSWORD_STORE_DIR = "$HOME/.config/pass";
 
       #__GLX_VENDOR_LIBRARY_NAME= "nvidia";
       #LIBVA_DRIVER_NAME= "nvidia"; # hardware acceleration

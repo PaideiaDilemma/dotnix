@@ -6,6 +6,7 @@
     wezterm.enable = false;
     hyprland = {
       enable = true;
+      enableAnimations = true;
       monitors = {
         "eDP-1" = {
           resolution = "1920x1080";

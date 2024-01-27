@@ -126,7 +126,7 @@ in
       }
 
       animations {
-          enabled = ${if cfg.hyprland.enableAnimations then "1" else "0"};
+          enabled = ${if cfg.hyprland.enableAnimations then "1" else "0"}
           bezier = const,0.25,0.25,0.75,0.75
           bezier = ease2,0.57,0.15,0.40,0.85
           #bezier = ease-out2,0.58,0.45,0.58,1

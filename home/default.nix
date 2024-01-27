@@ -56,6 +56,7 @@ in
       grim
       imv
       mako
+      pass-wayland
       pavucontrol
       rofi-wayland
       rustup
@@ -96,6 +97,11 @@ in
       XDG_VIDEOS_DIR="$HOME/media/video"
       XDG_DOWNLOAD_DIR="$HOME/installf"
     '';
+
+    programs.git = {
+      userName = "Maximilian Seidler";
+      userEmail = "maximilian.seidler@soundwork.at";
+    };
 
     programs.home-manager.enable = true;
 
