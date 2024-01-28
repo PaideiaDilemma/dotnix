@@ -26,7 +26,7 @@ in
       # title=foot
       # locked-title=no
 
-      font=Hack Nerd Font Mono:size=11
+      font=Hack Nerd Font Mono:size=8
       # line-height=<font metrics>
       #letter-spacing=1
       # horizontal-letter-offset=0
