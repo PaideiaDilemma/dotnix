@@ -11,6 +11,11 @@ in
       description = "Whether to enable rofi.";
       type = types.bool;
     };
+
+    terminal = mkOption {
+      type = types.str;
+      default = cfg.terminal;
+    };
   };
 
   config = mkIf (cfg.gui.enable && cfg.rofi.enable) {
@@ -18,6 +23,14 @@ in
       enable = true;
       package = pkgs.rofi-wayland;
       configPath = "${config.xdg.configHome}/rofi/config.rasi";
+    };
+
+    home = {
+      packages = [ pkgs.rofi-pass pkgs.wtype ];
+      sessionVariables = {
+        "ROFI_PASS_BACKEND"= "wtype";
+        "ROFI_PASS_CLIPBOARD_BACKEND" = "wl-clipboard";
+      };
     };
 
     xdg.configFile."rofi/config.rasi".text = ''
@@ -29,7 +42,7 @@ in
       configuration {
           font: "Noto Sans 12";
           display-drun: "Apps ";
-          terminal: "wezterm";
+          terminal: "${cfg.rofi.terminal}";
           seperator: false;
       }
 

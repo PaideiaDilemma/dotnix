@@ -188,7 +188,7 @@ in
         		}*/
 
         		#battery {
-        		  color: @accent5;
+        		  color: @accent3;
         		}
 
         		/* #battery.charging {
@@ -309,6 +309,7 @@ in
           "idle_inhibitor"
           "hyprland/workspaces"
           "custom/separator"
+          "hyprland/submap"
           "hyprland/window"
         ];
         # "modules-center" = [];

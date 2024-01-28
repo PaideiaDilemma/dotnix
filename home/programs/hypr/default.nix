@@ -215,16 +215,16 @@ in
 
       bind = SUPER,R,exec,rofi -show run -run-shell-command '{terminal} zsh -ic "{cmd} && read"'
       bind = SUPER,F,exec,rofi -show window -show-icons
-      bind = SUPERSHIFT,P,exec,pass clip --rofi
-      bind = SUPER,C,exec,pass clip --rofi
-      bind = SUPER,V,exec,wlclipmgr restore -i "$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')" &>> ~/.config/scripts/wlclipmgr/log
+      bind = SUPERSHIFT,P,exec,rofi-pass
+      bind = SUPER,C,exec,rofi-pass
+      bind = SUPER,V,exec,wlclipmgr restore -i "$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')"
 
       # tofi menus
       #$tofi_theme = ~/.config/tofi/top_left
       #bind = SUPER,D,exec,tofi-drun --drun-launch=true --include $tofi_theme
       #bind = SUPER,R,exec,tofi-run --include $tofi_theme | xargs sh -c
       #bind = SUPERSHIFT,P,exec,$terminal fish -c "pass clip && sleep 1"
-      #bind = SUPERSHIFT,R,exec,wlclipmgr restore -i "$(wlclipmgr list -l 100 | tofi --include $tofi_theme | awk '{print $1}')" &>> ~/.config/scripts/wlclipmgr/log
+      #bind = SUPERSHIFT,R,exec,wlclipmgr restore -i "$(wlclipmgr list -l 100 | tofi --include $tofi_theme | awk '{print $1}')"
 
       # Window Manager
       bind = SUPERSHIFT,C,killactive,
