@@ -337,6 +337,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1706367331,
+        "narHash": "sha256-AqgkGHRrI6h/8FWuVbnkfFmXr4Bqsr4fV23aISqj/xg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "160b762eda6d139ac10ae081f8f78d640dd523eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "locked": {
         "lastModified": 1706298359,
@@ -361,7 +377,8 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_3",
         "nur": "nur",
-        "wezterm": "wezterm"
+        "wezterm": "wezterm",
+        "wlclipmgr": "wlclipmgr"
       }
     },
     "rust-overlay": {
@@ -460,6 +477,26 @@
         "owner": "wez",
         "repo": "wezterm",
         "type": "github"
+      }
+    },
+    "wlclipmgr": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1706462635,
+        "narHash": "sha256-MkIqtxkxyMbiHh+RLkwbM9mIyM/Af1uHZ0Nqwp0Izjc=",
+        "ref": "refs/heads/main",
+        "rev": "cae4e8171b7f9d2ea97a4eede2a530e93a39242e",
+        "revCount": 14,
+        "submodules": true,
+        "type": "git",
+        "url": "https://www.github.com/PaideiaDilemma/wlclipmgr"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://www.github.com/PaideiaDilemma/wlclipmgr"
       }
     },
     "wlroots": {

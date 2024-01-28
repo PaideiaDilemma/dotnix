@@ -23,8 +23,11 @@
 
     nh = {
       url = "github:viperML/nh";
-      inputs.nixpkgs.follows = "nixpkgs"; # override this repo's nixpkgs snapshot
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
+    wlclipmgr.url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
 
     # Community packages; used for Firefox extensions
     nur.url = "github:nix-community/nur";
