@@ -6,6 +6,8 @@ mkShell {
   NIX_LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [
     stdenv.cc.cc
     openssl
+    openssl_legacy
+    mysql80
     libseccomp
     libelf
     glib
