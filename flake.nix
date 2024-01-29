@@ -112,7 +112,7 @@
       # allow home-manager switch --flake .#configuration to work
       homeConfigurations = {
         vm = mkHome "generic" "max" nixpkgs.legacyPackages.x86_64-linux;
-        laptop = mkHome "laptop" "max" nixpkgs.legacyPackages.x86_64-linux;
+        "max@laptop" = mkHome "laptop" "max" nixpkgs.legacyPackages.x86_64-linux;
       };
     };
 }
