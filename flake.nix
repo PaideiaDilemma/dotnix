@@ -60,6 +60,7 @@
                 extraGroups = [ "wheel" "networkmanager" "audio" "video" "input" ];
               };
               users.users.root.password = "nixos";
+              networking.hostName = "${hardware}";
               nh = {
                 enable = true;
                 clean.enable = true;
