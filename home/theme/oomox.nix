@@ -135,7 +135,11 @@ in
         margin: 0;
         border: none;
         padding: 0;
-      }" >> $out/share/themes/Penumbra/gtk-3.0/gtk.css
+      }
+
+      button:disabled:disabled, button.flat:disabled:disabled {
+        color: ${colors.base.sky};
+      }" | tee -a $out/share/themes/Penumbra/gtk-3.0/gtk.css $out/share/themes/Penumbra/gtk-3.20/gtk.css
       popd
     '';
   };
