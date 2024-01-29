@@ -37,7 +37,7 @@
 
 
   imports = [
-    inputs.nix-gaming.nixosModules.pipewireLowLatency
+    #inputs.nix-gaming.nixosModules.pipewireLowLatency
   ];
 
   services.pipewire = {
@@ -46,7 +46,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
 
-    lowLatency.enable = true;
+    #lowLatency.enable = true;
   };
 
   security.rtkit.enable = true;
