@@ -11,6 +11,7 @@
     ./mako
     ./python
     ./rofi
+    ./swaylock
     ./steam
     ./wallrnd
     ./waybar

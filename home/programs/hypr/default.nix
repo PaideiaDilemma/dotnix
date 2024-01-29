@@ -88,70 +88,73 @@ in
       $purple = ${removeHash colors.seven.purple}
 
       exec-once = waybar
-      exec-once = nm-applet
       exec-once = hyprpaper
       exec-once = hyprctl setcursor PearWhiteCursors 24
       exec-once = wlsunset -l 48.2, -L 16.3 -t 4800
-      exec-once = /usr/lib/kdeconnectd
-      exec-once = kdeconnect-indicator
       exec-once = wlclipmgr watch --block "password store sleep:2"
-      # TODO: Add device specific config
-      #exec-once = swayidle -w timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
-      #before-sleep 'swaylock -f -c 000000'timeout 600 'swaylock -f -c 000000'
+      exec-once = kdeconnect-indicator
+      exec-once = nm-applet
+
+      # Lock screen
+      exec-once = swayidle -w timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' \
+                  before-sleep 'swaylock -f --clock' \
+                  lock 'swaylock -f --clock'
+
+      # Wallpaper generation
       exec-once = swayidle -w timeout 20 'hyprsetwallpaper -g -c'
 
       general {
-          sensitivity = 1.0 # for mouse cursor
+        sensitivity = 1.0 # for mouse cursor
 
-          gaps_in = 4
-          gaps_out = 5
-          border_size = 1
-          col.active_border = 0xff$sun
-          #col.active_border = 0xff$sun 0xff$cyan 0xff$sun
-          col.inactive_border = 0xa0$sky
+        gaps_in = 4
+        gaps_out = 5
+        border_size = 1
+        col.active_border = 0xff$sun
+        #col.active_border = 0xff$sun 0xff$cyan 0xff$sun
+        col.inactive_border = 0xa0$sky
 
-          #resize_on_border = 1
+        #resize_on_border = 1
 
-          apply_sens_to_raw = 0 # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
+        apply_sens_to_raw = 0 # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
       }
 
       decoration {
-          rounding = 6
+        rounding = 6
 
-          drop_shadow = 1
-          shadow_range = 14
-          shadow_render_power = 3
-          shadow_ignore_window = 1
-          col.shadow = 0xa0$shade_m
+        drop_shadow = 1
+        shadow_range = 14
+        shadow_render_power = 3
+        shadow_ignore_window = 1
+        col.shadow = 0xa0$shade_m
       }
 
       animations {
-          enabled = ${if cfg.hyprland.enableAnimations then "1" else "0"}
-          bezier = const,0.25,0.25,0.75,0.75
-          bezier = ease2,0.57,0.15,0.40,0.85
-          #bezier = ease-out2,0.58,0.45,0.58,1
-          bezier = ease-out2,0.75,0.8,0.58,1
-          #bezier = ease-in2,0,0.45,0.58,0.58
-          bezier = ease-in2,0.5,0.75,0.58,0.58
-          bezier = weird,-0.09,0,0.19,1
-          animation = windowsIn,1,2,ease-in2,popin 80%
-          animation = windowsOut,1,2,ease-out2,popin 80%
-          animation = fadeIn,1,2,ease-in2
-          animation = fadeOut,1,2,ease-out2
-          animation = workspaces,1,2,ease2,slidevert
-          bezier = special,0.5,0.9,0,0.72
-          animation = specialWorkspace,1,4,special,slidevert
-          animation = windowsMove,1,2,weird
-          animation = border,1,9,special
-          #animation = borderangle,1,20,const,loop
+        enabled = ${if cfg.hyprland.enableAnimations then "1" else "0"}
+        bezier = const,0.25,0.25,0.75,0.75
+        bezier = ease2,0.57,0.15,0.40,0.85
+        #bezier = ease-out2,0.58,0.45,0.58,1
+        bezier = ease-out2,0.75,0.8,0.58,1
+        #bezier = ease-in2,0,0.45,0.58,0.58
+        bezier = ease-in2,0.5,0.75,0.58,0.58
+        bezier = weird,-0.09,0,0.19,1
+        animation = windowsIn,1,2,ease-in2,popin 80%
+        animation = windowsOut,1,2,ease-out2,popin 80%
+        animation = fadeIn,1,2,ease-in2
+        animation = fadeOut,1,2,ease-out2
+        animation = workspaces,1,2,ease2,slidevert
+        bezier = special,0.5,0.9,0,0.72
+        animation = specialWorkspace,1,4,special,slidevert
+        animation = windowsMove,1,2,weird
+        animation = border,1,9,special
+        #animation = borderangle,1,20,const,loop
       }
 
       dwindle {
-          pseudotile = 0 # enable pseudotiling on dwindle
-          preserve_split = true
-          smart_split = true
-          # special_scale_factor = 0.5
-          # no_gaps_when_only = true
+        pseudotile = 0 # enable pseudotiling on dwindle
+        preserve_split = true
+        smart_split = true
+        # special_scale_factor = 0.5
+        # no_gaps_when_only = true
       }
 
       misc {
@@ -294,6 +297,9 @@ in
       bind = ALT,j,changegroupactive,f
       bind = ALT,k,changegroupactive,b
       bind = ALT,c,togglesplit
+
+      bind = SUPERSHIFT,l,exec,swaylock -f --clock
+
       bind = CTRL , Alt_L, submap, passthrough
         submap = passthrough
       bind = CTRL , Alt_L, submap, reset

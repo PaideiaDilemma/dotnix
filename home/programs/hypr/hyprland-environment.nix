@@ -7,10 +7,10 @@
       BROWSER = "firefox";
       TERMINAL = "wezterm";
 
-      WLR_RENDERER = "vulkan";
+      #WLR_RENDERER = "vulkan";
 
       #XCURSOR_SIZE = "24";
-      #XCURSOR_THEME = "PearWhiteCursors";
+      XCURSOR_THEME = "PearWhiteCursors";
 
       _JAVA_AWT_WM_NONREPARENTING = "1";
 
