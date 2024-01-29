@@ -69,6 +69,7 @@
   environment.systemPackages = with pkgs; [
     libevdev
     home-manager
+    brightnessctl
   ];
 
   nixpkgs = {
@@ -85,6 +86,7 @@
   };
 
   security.polkit.enable = true;
+  security.pam.services.swaylock = {};
 
   # List services that you want to enable:
 
