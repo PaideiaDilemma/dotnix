@@ -315,6 +315,7 @@ in
       input {
           kb_layout = de
           follow_mouse = 1
+          mouse_refocus = 0
           #natural_scroll = 0
           kb_options = caps:swapescape
       }
