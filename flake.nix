@@ -63,10 +63,6 @@
               };
               users.users.root.password = "nixos";
               networking.hostName = "${hardware}";
-              nh = {
-                enable = true;
-                clean.enable = true;
-              };
             })
             {
               home-manager.useGlobalPkgs = true;
@@ -103,7 +99,8 @@
         vm = mkNixos "vm1" "default" "generic" "max" "x86_64-linux";
         iso = mkNixos "none" "default" "generic" "max" "x86_64-linux";
 
-	laptop = mkNixos "laptop" "default" "laptop" "max" "x86_64-linux";
+        laptop = mkNixos "laptop" "default" "laptop" "max" "x86_64-linux";
+        desktop = mkNixos "desktop" "default" "desktop" "max" "x86_64-linux";
         # currently it is handier for the username to just be "nixos"
         # https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/3
         wsl = mkNixos "none" "wsl" "nixos" "x86_64-linux";
@@ -113,6 +110,7 @@
       homeConfigurations = {
         vm = mkHome "generic" "max" nixpkgs.legacyPackages.x86_64-linux;
         "max@laptop" = mkHome "laptop" "max" nixpkgs.legacyPackages.x86_64-linux;
+        "max@desktop" = mkHome "desktop" "max" nixpkgs.legacyPackages.x86_64-linux;
       };
     };
 }

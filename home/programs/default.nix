@@ -12,7 +12,6 @@
     ./python
     ./rofi
     ./swaylock
-    ./steam
     ./wallrnd
     ./waybar
     ./wezterm

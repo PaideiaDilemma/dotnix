@@ -34,7 +34,6 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  # networking.hostName = hostName; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.

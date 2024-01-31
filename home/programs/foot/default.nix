@@ -12,6 +12,12 @@ in
       description = "Whether to enable foot terminal";
       type = types.bool;
     };
+
+    fontSize = mkOption {
+      default = 8;
+      description = "Font size";
+      type = types.int;
+    };
   };
 
   config = mkIf (cfg.gui.enable && cfg.foot.enable) {
@@ -26,7 +32,7 @@ in
       # title=foot
       # locked-title=no
 
-      font=Hack Nerd Font Mono:size=8
+      font=Hack Nerd Font Mono:size=${toString cfg.foot.fontSize}
       # line-height=<font metrics>
       #letter-spacing=1
       # horizontal-letter-offset=0

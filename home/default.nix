@@ -51,7 +51,6 @@ in
       curl
       distrobox
       file
-      git
       gnumake
       grim
       imv
@@ -85,6 +84,7 @@ in
 
     ]) ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
       gnome-tweaks
+      gnome-disk-utility
       eog
     ]);
 
@@ -100,6 +100,7 @@ in
     '';
 
     programs.git = {
+      enable = true;
       userName = "Maximilian Seidler";
       userEmail = "maximilian.seidler@soundwork.at";
     };

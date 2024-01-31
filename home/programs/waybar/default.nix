@@ -18,6 +18,12 @@ in
       type = types.str;
     };
 
+    output = mkOption {
+      default = "*";
+      description = "Waybar output monitors.";
+      type = types.str;
+    };
+
     battery.enable = mkOption {
       default = false;
       description = "Whether to enable the battery module.";
@@ -37,6 +43,175 @@ in
         enable = false;
         target = "graphical-session.target";
       };
+      settings = [{
+        "output" = "${cfg.waybar.output}";
+        "layer" = "top"; # Waybar at top layer
+        # "position" = "left"; # Waybar position (top|bottom|left|right)
+        "height" = 27; # Waybar height (to be removed for auto height)
+        "gtk-layer-shell" = true;
+        "spacing" = 2;
+        "width" = 1910; # Waybar width
+        # Choose the order of the modules
+        "modules-left" = [
+          "idle_inhibitor"
+          "hyprland/workspaces"
+          "custom/separator"
+          "hyprland/submap"
+          "hyprland/window"
+        ];
+        # "modules-center" = [];
+        "modules-right" = [
+          "custom/spotify"
+          "custom/separator"
+          "cpu"
+          "temperature#cpu"
+          "temperature#gpu"
+          "memory"
+          (if cfg.waybar.battery.enable then "battery" else "")
+          "pulseaudio"
+          "network"
+          # "custom/separator"
+          # "custom/waylandvsxorg"
+          "clock"
+          "custom/separator"
+          "tray"
+        ];
+        # Modules configuration
+        "hyprland/window" = {
+          "format" = "{}";
+          "all-outputs" = true;
+        };
+        "hyprland/workspaces" = {
+          "format" = "{name}";
+          "tooltip-format" = "{title}";
+          "all-outputs" = true;
+          "sort-by-name" = false;
+          "on-click" = "activate";
+          "on-click-middle" = "close";
+          "sort-by-coordinates" = true;
+          "active-only" = false;
+          "show-special" = true;
+        };
+        "hyprland/submap" = {
+          "format" = "󰘴 {} ";
+          "tooltip" = false;
+        };
+        "custom/separator" = {
+          "format" = "|";
+          "interval" = "once";
+          "tooltip" = false;
+        };
+        "idle_inhibitor" = {
+          "format" = "{icon}";
+          "format-icons" = {
+            "activated" = "";
+            "deactivated" = "";
+          };
+        };
+        "tray" = {
+          "icon-size" = 24;
+          "spacing" = 6;
+        };
+        "clock" = {
+          # "timezone" = "America/New_York";
+          # "format" = " {time}";
+          "format" = "{:%d.%m.%Y %H:%M}";
+          "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          "format-alt" = "{:%H:%M:%S}";
+          "interval" = 1;
+        };
+        "cpu" = {
+          "format" = " {usage}%";
+          "on-click" = ''${cfg.waybar.terminal} btop'';
+        };
+        "memory" = {
+          "format" = " {}%";
+        };
+        "temperature#cpu" = {
+          # "thermal-zone" = 2;
+          "hwmon-path" = "/sys/class/hwmon/hwmon0/temp1_input";
+          "critical-threshold" = 80;
+          # "format-critical" = "{temperatureC}°C {icon}";
+          "format" = "<small><span style=\"italic\">CPU {icon}</span></small> {temperatureC}°C";
+          "format-icons" = [ "" "" "" "" "" ];
+          "interval" = 3;
+        };
+        "temperature#gpu" = {
+          # "thermal-zone" = 2;
+          "hwmon-path" = "/sys/class/hwmon/hwmon1/temp1_input";
+          "critical-threshold" = 80;
+          # "format-critical" = "{temperatureC}°C {icon}";
+          "format" = "<small><span style=\"italic\">GPU {icon}</span></small> {temperatureC}°C";
+          "format-icons" = [ "" "" "" "" "" ];
+          "interval" = 3;
+        };
+        "backlight" = {
+          # "device" = "acpi_video1";
+          "format" = "{icon} {percent}%";
+          "format-icons" = [ "" "" ];
+        };
+        "battery" = {
+          "bat" = "BAT0";
+          "interval" = 30;
+          "states" = {
+            "full" = 100;
+            "good" = 95;
+            "ok" = 65;
+            "warning" = 40;
+            "critical" = 15;
+          };
+          "tooltip-format" = "{timeTo} [Power draw rn: {power}W]";
+          "format" = "{icon} {capacity}%";
+          "format-charging-full" = "󰂅 {capacity}%";
+          "format-charging-good" = "󰢞 {capacity}%";
+          "format-charging-ok" = "󰢝 {capacity}%";
+          "format-charging-warning" = "󰂆 {capacity}%";
+          "format-charging-critical" = "󰢟 {capacity}%";
+          "format-icons" = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          "format-icons-charge" = [ "󰢟" "󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰢝" "󰂉" "󰢞" "󰂊" "󰂅" ];
+        };
+        "battery#bat2" = {
+          "bat" = "BAT2";
+        };
+        "network" = {
+          # "interface" = "wlp2*"; # (Optional) To force the use of this interface
+          "format-wifi" = "{icon} {essid} ({signalStrength}%)";
+          "format-icons" = [ "󰤟" "󰤢" "󰤥" "󰤨" ];
+          "format-ethernet" = "󰈀 {ipaddr}/{cidr}";
+          "format-linked" = " {ifname} (No IP)";
+          "format-disconnected" = "󰤮 Disconnected";
+          "format-alt" = "{ifname}: {ipaddr}/{cidr}";
+        };
+        "pulseaudio" = {
+          # "scroll-step": 1, // %, can be a float
+          "format" = "{icon} {volume}% {format_source}";
+          "format-bluetooth" = "󰥰 {volume}% {format_source}";
+          "format-bluetooth-muted" = "󰗿 {volume}% {format_source}";
+          "format-muted" = "󰝟 {volume}% {format_source}";
+          "format-source" = " {volume}%";
+          "format-source-muted" = "";
+          "format-icons" = {
+            "headphone" = "󰋋";
+            "hands-free" = "";
+            "headset" = "";
+            "phone" = "";
+            "portable" = "";
+            "car" = "";
+            "default" = [ "󰕿" "󰖀" "󰕾" ];
+          };
+          "on-click" = "pavucontrol";
+        };
+        "custom/spotify" = {
+          "exec" = "playerctl --player=spotify metadata --format '{{ artist }} - {{ title }}' 2> /dev/null || true";
+          "interval" = 1;
+          "format" = "{}   ";
+          "return-type" = "json";
+          "on-click" = "playerctl --player=spotify play-pause";
+          "on-scroll-up" = "playerctl --player=spotify next";
+          "on-scroll-down" = "playerctl --player=spotify previous";
+        };
+      }];
+
       style = ''
         		@define-color critical ${colors.six.red}; /* critical color */
         		@define-color warning ${colors.seven.yellow};  /* warning color */
@@ -297,173 +472,6 @@ in
         		  padding-bottom: 2px;
         		}
       '';
-      settings = [{
-        "layer" = "top"; # Waybar at top layer
-        # "position" = "left"; # Waybar position (top|bottom|left|right)
-        "height" = 27; # Waybar height (to be removed for auto height)
-        "gtk-layer-shell" = true;
-        "spacing" = 2;
-        "width" = 1910; # Waybar width
-        # Choose the order of the modules
-        "modules-left" = [
-          "idle_inhibitor"
-          "hyprland/workspaces"
-          "custom/separator"
-          "hyprland/submap"
-          "hyprland/window"
-        ];
-        # "modules-center" = [];
-        "modules-right" = [
-          "custom/spotify"
-          "custom/separator"
-          "cpu"
-          "temperature#cpu"
-          "temperature#gpu"
-          "memory"
-          (if cfg.waybar.battery.enable then "battery" else "")
-          "pulseaudio"
-          "network"
-          # "custom/separator"
-          # "custom/waylandvsxorg"
-          "clock"
-          "custom/separator"
-          "tray"
-        ];
-        # Modules configuration
-        "hyprland/window" = {
-          "format" = "{}";
-          "all-outputs" = true;
-        };
-        "hyprland/workspaces" = {
-          "format" = "{name}";
-          "tooltip-format" = "{title}";
-          "all-outputs" = true;
-          "sort-by-name" = false;
-          "on-click" = "activate";
-          "on-click-middle" = "close";
-          "sort-by-coordinates" = true;
-          "active-only" = false;
-          "show-special" = true;
-        };
-        "hyprland/submap" = {
-          "format" = "󰘴 {} ";
-          "tooltip" = false;
-        };
-        "custom/separator" = {
-          "format" = "|";
-          "interval" = "once";
-          "tooltip" = false;
-        };
-        "idle_inhibitor" = {
-          "format" = "{icon}";
-          "format-icons" = {
-            "activated" = "";
-            "deactivated" = "";
-          };
-        };
-        "tray" = {
-          "icon-size" = 24;
-          "spacing" = 6;
-        };
-        "clock" = {
-          # "timezone" = "America/New_York";
-          # "format" = " {time}";
-          "format" = "{:%d.%m.%Y %H:%M}";
-          "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          "format-alt" = "{:%H:%M:%S}";
-          "interval" = 1;
-        };
-        "cpu" = {
-          "format" = " {usage}%";
-          "on-click" = ''${cfg.waybar.terminal} btop'';
-        };
-        "memory" = {
-          "format" = " {}%";
-        };
-        "temperature#cpu" = {
-          # "thermal-zone" = 2;
-          "hwmon-path" = "/sys/class/hwmon/hwmon0/temp1_input";
-          "critical-threshold" = 80;
-          # "format-critical" = "{temperatureC}°C {icon}";
-          "format" = "<small><span style=\"italic\">CPU {icon}</span></small> {temperatureC}°C";
-          "format-icons" = [ "" "" "" "" "" ];
-          "interval" = 3;
-        };
-        "temperature#gpu" = {
-          # "thermal-zone" = 2;
-          "hwmon-path" = "/sys/class/hwmon/hwmon1/temp1_input";
-          "critical-threshold" = 80;
-          # "format-critical" = "{temperatureC}°C {icon}";
-          "format" = "<small><span style=\"italic\">GPU {icon}</span></small> {temperatureC}°C";
-          "format-icons" = [ "" "" "" "" "" ];
-          "interval" = 3;
-        };
-        "backlight" = {
-          # "device" = "acpi_video1";
-          "format" = "{icon} {percent}%";
-          "format-icons" = [ "" "" ];
-        };
-        "battery" = {
-          "bat" = "BAT0";
-          "interval" = 30;
-          "states" = {
-            "full" = 100;
-            "good" = 95;
-            "ok" = 65;
-            "warning" = 40;
-            "critical" = 15;
-          };
-          "tooltip-format" = "{timeTo} [Power draw rn: {power}W]";
-          "format" = "{icon} {capacity}%";
-          "format-charging-full" = "󰂅 {capacity}%";
-          "format-charging-good" = "󰢞 {capacity}%";
-          "format-charging-ok" = "󰢝 {capacity}%";
-          "format-charging-warning" = "󰂆 {capacity}%";
-          "format-charging-critical" = "󰢟 {capacity}%";
-          "format-icons" = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
-          "format-icons-charge" = [ "󰢟" "󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰢝" "󰂉" "󰢞" "󰂊" "󰂅" ];
-        };
-        "battery#bat2" = {
-          "bat" = "BAT2";
-        };
-        "network" = {
-          # "interface" = "wlp2*"; # (Optional) To force the use of this interface
-          "format-wifi" = "{icon} {essid} ({signalStrength}%)";
-          "format-icons" = [ "󰤟" "󰤢" "󰤥" "󰤨" ];
-          "format-ethernet" = "󰈀 {ipaddr}/{cidr}";
-          "format-linked" = " {ifname} (No IP)";
-          "format-disconnected" = "󰤮 Disconnected";
-          "format-alt" = "{ifname}: {ipaddr}/{cidr}";
-        };
-        "pulseaudio" = {
-          # "scroll-step": 1, // %, can be a float
-          "format" = "{icon} {volume}% {format_source}";
-          "format-bluetooth" = "󰥰 {volume}% {format_source}";
-          "format-bluetooth-muted" = "󰗿 {volume}% {format_source}";
-          "format-muted" = "󰝟 {volume}% {format_source}";
-          "format-source" = " {volume}%";
-          "format-source-muted" = "";
-          "format-icons" = {
-            "headphone" = "󰋋";
-            "hands-free" = "";
-            "headset" = "";
-            "phone" = "";
-            "portable" = "";
-            "car" = "";
-            "default" = [ "󰕿" "󰖀" "󰕾" ];
-          };
-          "on-click" = "pavucontrol";
-        };
-        "custom/spotify" = {
-          "exec" = "playerctl --player=spotify metadata --format '{{ artist }} - {{ title }}' 2> /dev/null || true";
-          "interval" = 1;
-          "format" = "{}   ";
-          "return-type" = "json";
-          "on-click" = "playerctl --player=spotify play-pause";
-          "on-scroll-up" = "playerctl --player=spotify next";
-          "on-scroll-down" = "playerctl --player=spotify previous";
-        };
-      }];
     };
   };
 }

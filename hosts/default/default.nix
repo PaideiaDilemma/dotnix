@@ -17,12 +17,25 @@
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
+    steam.enable = true;
   };
 
-  services.acpid = {
-    powerEventCommands = ''
-    echo "Power button pressed" > /tmp/pwrbtn
-    '';
+
+  nixpkgs = {
+    overlays = overlays ++ [
+      (_: prev: {
+        steam = prev.steam.override {
+          extraProfile = "export STEAM_EXTRA_COMPAT_TOOLS_PATHS='${inputs.nix-gaming.packages.${pkgs.system}.proton-ge}'";
+        };
+      })
+    ];
+
+    config.allowUnfree = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
 
   nh = {
@@ -80,11 +93,6 @@
     home-manager
     brightnessctl
   ];
-
-  nixpkgs = {
-    inherit overlays;
-    config.allowUnfree = true;
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
