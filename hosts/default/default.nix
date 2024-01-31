@@ -13,6 +13,10 @@
     zsh.enable = true;
     virt-manager.enable = true;
     nix-ld.enable = true;
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    };
   };
 
   nh = {
@@ -28,7 +32,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  #networking.hostName = hostName; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
@@ -107,8 +110,7 @@
   };
 
   system.autoUpgrade = {
-    enable = true;
-    channel = "https://nixos.org/channels/nixos-23.11";
+    enable = false;
   };
 
   system.stateVersion = "23.11";

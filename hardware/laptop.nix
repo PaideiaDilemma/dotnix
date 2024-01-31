@@ -9,9 +9,9 @@
     inputs.nixos-hardware.nixosModules.dell-xps-13-7390
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "cryptd" "iwlwifi" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "cryptd" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "iwlwifi" ];
   boot.extraModulePackages = [ ];
 
   boot.initrd.luks.devices."ROOT".device = "/dev/disk/by-uuid/40ee0571-1559-4139-adfd-460558a12a0f";

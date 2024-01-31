@@ -96,9 +96,9 @@ in
       exec-once = nm-applet
 
       # Lock screen
-      exec-once = swayidle -w timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' \
-                  before-sleep 'swaylock -f --clock' \
-                  lock 'swaylock -f --clock'
+      #exec-once = swayidle -w timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' \
+      #            before-sleep 'swaylock -f --clock' \
+      # lock 'swaylock -f --clock'
 
       # Wallpaper generation
       exec-once = swayidle -w timeout 20 'hyprsetwallpaper -g -c'
