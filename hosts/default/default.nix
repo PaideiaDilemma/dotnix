@@ -19,6 +19,12 @@
     };
   };
 
+  services.acpid = {
+    powerEventCommands = ''
+    echo "Power button pressed" > /tmp/pwrbtn
+    '';
+  };
+
   nh = {
     enable = true;
     clean.enable = true;
