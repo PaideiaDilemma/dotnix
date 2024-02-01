@@ -12,10 +12,14 @@ in
 
   config = mkIf (cfg.gui.enable) {
     home.pointerCursor = {
+      gtk.enable = true;
+      x11.enable = true;
       name = "PearWhiteCursors";
       package = pkgs.pearWhiteCursors;
       size = 16;
     };
+
+    home.packages = [pkgs.pearWhiteCursors];
 
     gtk = {
       enable = true;

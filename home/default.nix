@@ -78,23 +78,24 @@ in
       sqlite
       wget
       wl-clipboard
-      wlr-randr
 
     ]) ++ optionals (cfg.gui.enable) (with pkgs; [
 
       # Graphical Applications
       bottles
       burpsuite
+      chromium
       cutter
       cutterPlugins.rz-ghidra
       ghidra
       inkscape
       krita
       libreoffice
+      nwg-look
       thunderbird
       wdisplays
       webcord
-      chromium
+      wlr-randr
 
     ]) ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
       gnome-tweaks

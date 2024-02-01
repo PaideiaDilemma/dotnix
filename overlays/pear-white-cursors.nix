@@ -3,8 +3,8 @@ _final: prev: {
     name = "PearWhiteCursors";
     src = ./PearWhiteCursors.tar.gz;
     installPhase = ''
-      mkdir -p $out/share/icons/default
-      cp -r . $out/share/icons/default
+      mkdir -p $out/share/icons/PearWhiteCursors
+      cp -r . $out/share/icons/PearWhiteCursors
     '';
   };
 }
