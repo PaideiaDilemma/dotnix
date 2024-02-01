@@ -27,10 +27,22 @@ in
       description = "The user name";
     };
 
+    fullName = mkOption {
+      type = types.str;
+      default = "Maximilian Seidler";
+      description = "Full name";
+    };
+
+    email = mkOption {
+      type = types.str;
+      default = "maximilian.seidler@soundwork.at";
+      description = "Email address";
+    };
+
     terminal = mkOption {
       type = types.enum [ "foot" "wezterm" ];
       default = "foot";
-      description = "The terminal emulator";
+      description = "Default terminal emulator";
     };
   };
 
@@ -101,8 +113,8 @@ in
 
     programs.git = {
       enable = true;
-      userName = "Maximilian Seidler";
-      userEmail = "maximilian.seidler@soundwork.at";
+      userName = cfg.fullName;
+      userEmail = cfg.email;
     };
 
     programs.home-manager.enable = true;
