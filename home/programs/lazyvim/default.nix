@@ -7,8 +7,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "PaideiaDilemma";
       repo = "LazyVim";
-      rev = "1aa4cefc8d1323f72e80a9a33a7efbf44cf13864";
-      hash = "sha256-K29GLb8WDuhSK8fSJTYZpXKCuqrSGFx1IGaH/0EWESk=";
+      rev = "60d3868b95c6830d7670d5d05bc619ec5486fadb";
+      hash = "sha256-3c3KqjzH6EhdCDTEgS9LRLcR27+G0QqfSuTqTSjDrsY=";
     };
     installPhase = ''
       mkdir -p $out/lazyvim
