@@ -67,6 +67,8 @@ in
       grim
       imv
       mako
+      man-pages
+      man-pages-posix
       pass-wayland
       pavucontrol
       rofi-wayland
