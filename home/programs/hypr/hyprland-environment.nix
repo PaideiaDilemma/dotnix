@@ -1,11 +1,14 @@
-{ ... }:
+{ config, ... }:
 
+let
+  cfg = config.hyprhome;
+in
 {
   home = {
     sessionVariables = {
       NVIM_APPNAME = "lazyvim";
       BROWSER = "firefox";
-      TERMINAL = "wezterm";
+      TERMINAL = "${cfg.terminal}";
 
       WLR_RENDERER = "vulkan";
 
