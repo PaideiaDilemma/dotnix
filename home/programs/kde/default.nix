@@ -22,6 +22,9 @@ in
     services.kdeconnect.enable = true;
 
     xdg.configFile."kdeglobals".text = ''
+      [General]
+      TerminalApplication=${cfg.terminal}
+
       [Colors:View]
       BackgroundNormal=${colors.base.shade}
     '';

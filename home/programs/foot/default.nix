@@ -42,8 +42,8 @@ in
         };
 
         search-bindings = {
-          "next" = "Control+g";
-          "previous" = "Control+Shift+g";
+          "find-prev" = "Control+p";
+          "find-next" = "Control+Shift+n";
         };
 
         colors = {

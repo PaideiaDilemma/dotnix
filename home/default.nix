@@ -69,6 +69,7 @@ in
       mako
       man-pages
       man-pages-posix
+      mpv-unwrapped
       pass-wayland
       pavucontrol
       rofi-wayland
@@ -93,15 +94,56 @@ in
       libreoffice
       nwg-look
       thunderbird
+      vlc
       wdisplays
       webcord
       wlr-randr
 
+    ]) ++ optionals (cfg.gui.enable) (with pkgs.libsForQt5; [
+
+      # KDE Applications
+      kdenlive
+
     ]) ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
+
+      # Gnome Applications
       gnome-tweaks
       gnome-disk-utility
       eog
+
     ]);
+
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "image/bmp" = "imv.desktop";
+        "image/gif" = "imv.desktop";
+        "image/jpeg" = "imv.desktop";
+        "image/png" = "imv.desktop";
+        "image/svg+xml" = "imv.desktop";
+        "image/tiff" = "imv.desktop";
+        "image/webp" = "imv.desktop";
+        "video/mp4" = "vlc.desktop";
+        "video/mpeg" = "vlc.desktop";
+        "video/ogg" = "vlc.desktop";
+        "video/webm" = "vlc.desktop";
+        "audio/acc" = "mpv.desktop";
+        "audio/mpeg" = "mpv.desktop";
+        "audio/ogg" = "mpv.desktop";
+        "audio/wav" = "mpv.desktop";
+        "audio/webm" = "mpv.desktop";
+        "text/plain" = "nvim.desktop";
+        "text/xml" = "nvim.desktop";
+        "text/html" = "nvim.desktop";
+        "text/css" = "nvim.desktop";
+        "application/octet-stream" = "re.rizin.cutter.desktop";
+        "application/pdf" = "firefox.desktop";
+        "application/json" = "nvim.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/mailto" = "thunderbird.desktop";
+      };
+    };
 
     xdg.configFile."user-dirs.dirs".text = ''
       XDG_DESKTOP_DIR="$HOME/desk"
