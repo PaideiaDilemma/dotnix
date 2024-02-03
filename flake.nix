@@ -42,6 +42,7 @@
       overlays = [
         inputs.nur.overlay
         (import ./overlays/pear-white-cursors.nix)
+        #(import ./overlays/pwn-overlay.nix)
       ];
 
       mkNixos = hardware: host: homeVariant: username: system:

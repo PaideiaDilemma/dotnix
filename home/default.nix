@@ -156,10 +156,13 @@ in
       XDG_DOWNLOAD_DIR="$HOME/installf"
     '';
 
-    programs.git = {
-      enable = true;
-      userName = cfg.fullName;
-      userEmail = cfg.email;
+    programs = {
+      git = {
+        enable = true;
+        userName = cfg.fullName;
+        userEmail = cfg.email;
+      };
+      nix-index.enable = true;
     };
 
     programs.home-manager.enable = true;

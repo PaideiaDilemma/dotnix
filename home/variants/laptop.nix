@@ -4,6 +4,7 @@
     gui.enable = true;
     waybar.battery.enable = true;
     wezterm.enable = false;
+    waybar.output = "eDP-1";
     hyprland = {
       enable = true;
       enableAnimations = true;

@@ -8,6 +8,8 @@ mkShell {
     openssl
     openssl_legacy
     mysql80
+    libxcrypt
+    libxcrypt-legacy
     libseccomp
     libelf
     glib
