@@ -7,8 +7,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "PaideiaDilemma";
       repo = "LazyVim";
-      rev = "60d3868b95c6830d7670d5d05bc619ec5486fadb";
-      hash = "sha256-3c3KqjzH6EhdCDTEgS9LRLcR27+G0QqfSuTqTSjDrsY=";
+      rev = "5749e22d3ef061f15bcbd18fcde28b873be19da5";
+      hash = "sha256-K29GLb8WDuhSK8fSJTYZpXKCuqrSGFx1IGaH/0EWESk=";
     };
     installPhase = ''
       mkdir -p $out/lazyvim
@@ -41,8 +41,12 @@ in
       fd
     ];
 
-    xdg.configFile."lazyvim" = {
-      source = "${lazyvimConfigSrc}/lazyvim";
+    xdg.configFile."lazyvim/init.lua" = {
+      source = "${lazyvimConfigSrc}/lazyvim/init.lua";
+    };
+
+    xdg.configFile."lazyvim/lua" = {
+      source = "${lazyvimConfigSrc}/lazyvim/lua";
     };
 
     programs.neovim = {
