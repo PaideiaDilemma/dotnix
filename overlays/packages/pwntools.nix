@@ -40,7 +40,7 @@ in
       owner = "Gallopsled";
       repo = "pwntools";
       rev = "dev";
-      hash = "sha256-H0KMZPcR3MHrEJv0hj1ZXL9DSi5LkoW7JR66ayiXPIM=";
+      hash = "sha256-PEMaLe8dXnOdWmqsNaiZVnGlYPbT2sxAdhlJuxNYoSs=";
     };
 
     postPatch = ''
@@ -62,7 +62,7 @@ in
       capstone
       colored-traceback
       paramiko
-      pip
+      #pip
       psutil
       pyelftools
       pyserial

@@ -26,6 +26,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    poetry2nix = {
+      url = "github:nix-community/poetry2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
@@ -41,8 +46,9 @@
     let
       overlays = [
         inputs.nur.overlay
+        inputs.poetry2nix.overlays.default
         (import ./overlays/pear-white-cursors.nix)
-        #(import ./overlays/pwn-overlay.nix)
+        (import ./overlays/pwn-overlay.nix)
       ];
 
       mkNixos = hardware: host: homeVariant: username: system:
