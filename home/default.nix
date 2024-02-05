@@ -44,6 +44,12 @@ in
       default = "foot";
       description = "Default terminal emulator";
     };
+
+    ollama.enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Whether to enable Ollama";
+    };
   };
 
   config = {
@@ -79,6 +85,7 @@ in
       sqlite
       wget
       wl-clipboard
+      (optionals cfg.ollama.enable ollama)
 
     ]) ++ optionals (cfg.gui.enable) (with pkgs; [
 

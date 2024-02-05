@@ -2,6 +2,7 @@
 {
   hyprhome = {
     gui.enable = true;
+    ollama.enable = true;
     foot.fontSize = 13;
     waybar.output = "DP-3";
     hyprland = {
