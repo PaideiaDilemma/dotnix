@@ -93,6 +93,7 @@ in
       krita
       libreoffice
       nwg-look
+      spotify
       thunderbird
       vlc
       wdisplays
