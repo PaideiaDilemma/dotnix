@@ -115,9 +115,7 @@ in
     ]) ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
 
       # Gnome Applications
-      gnome-tweaks
       gnome-disk-utility
-      eog
 
     ]);
 
