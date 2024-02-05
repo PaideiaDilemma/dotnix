@@ -16,17 +16,22 @@ let
       repo = "pwndbg";
       rev = version;
       hash = "sha256-Is/669FMfbOv2uy2AjsopWHgjkG2kcXMU3NnoAQoNZg=";
-      fetchSubmodules = true;
     };
 
     buildPhase = ''
       mkdir -p $out/
       cp -r * $out/
-      # poetry.lock defines setuptools = "69.0.3" to fix capstone ?!?
-      sed -i 's/^setuptools = \"69.0.3\"/setuptools = \"^69.0.2\"/' $out/pyproject.toml
+      # poetry.lock defines setuptools = "69.0.3" to fix capstone
+      # but it is not in nixpkgs yet and the problem does not exist with nix.
+      # https://github.com/pwndbg/pwndbg/pull/1946#issuecomment-1921603947
+      #sed -i 's/^setuptools = \"69.0.3\"/setuptools = \"^69.0.2\"/' $out/pyproject.toml
     '';
   };
 
+  # In the original flake, pwntools was specified here.
+  # But it is already included in the pyEnv derivation.
+  # It could be that pwndbg needs the pwn executable at runtime for some commands?
+  # But I dont't think so.
   binPath = pkgs.lib.makeBinPath ([ ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
     pythonPackages.ropper     # ref: https://github.com/pwndbg/pwndbg/blob/2023.07.17/pwndbg/commands/ropper.py#L30
     pythonPackages.ropgadget  # ref: https://github.com/pwndbg/pwndbg/blob/2023.07.17/pwndbg/commands/rop.py#L34
@@ -39,10 +44,10 @@ let
       pt = prev.pt.overridePythonAttrs (oldAttrs: {
         buildInputs = (oldAttrs.buildInputs or [ ]) ++ [ prev.poetry-core ];
       });
-      # unicorn failes with > error: [Errno 2] No such file or directory: 'cmake'
+      # unicorn has a view problems
       unicorn = pythonPackages.unicorn;
-      pip = pythonPackages.pip;
       # for some reason pwntools has pip in propagatedBuildInputs
+      # maybe it installs packages at runtime?
       pwntools = prev.pwntools.overridePythonAttrs (oldAttrs: {
         propagatedBuildInputs = builtins.filter (x: (builtins.match "^python[0-9.]+-pip-[0-9.]+$" x.name) == null) oldAttrs.propagatedBuildInputs;
       });
