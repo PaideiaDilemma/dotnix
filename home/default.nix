@@ -85,8 +85,9 @@ in
       sqlite
       wget
       wl-clipboard
-      (optionals cfg.ollama.enable ollama)
 
+    ]) ++ optionals (cfg.ollama.enable) (with pkgs; [
+      ollama
     ]) ++ optionals (cfg.gui.enable) (with pkgs; [
 
       # Graphical Applications
