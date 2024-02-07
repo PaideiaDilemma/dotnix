@@ -13,12 +13,10 @@ in
   ];
 
   options.hyprhome = {
-    gui = {
-      enable = mkOption {
-        type = types.bool;
-        default = true;
-        description = "Enable GUI?";
-      };
+    gui.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable GUI?";
     };
 
     username = mkOption {

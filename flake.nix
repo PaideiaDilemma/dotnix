@@ -60,7 +60,7 @@
           };
           modules = [
             ./hardware/${hardware}.nix
-            ./hosts/${host}
+            ./host ./host/variants/${host}.nix
             home-manager.nixosModules.home-manager
             inputs.nh.nixosModules.default
               ({ ... }: {
@@ -107,7 +107,7 @@
         iso = mkNixos "none" "default" "generic" "max" "x86_64-linux";
 
         laptop = mkNixos "laptop" "default" "laptop" "max" "x86_64-linux";
-        desktop = mkNixos "desktop" "default" "desktop" "max" "x86_64-linux";
+        desktop = mkNixos "desktop" "desktop" "desktop" "max" "x86_64-linux";
         # currently it is handier for the username to just be "nixos"
         # https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/3
         wsl = mkNixos "none" "wsl" "nixos" "x86_64-linux";
