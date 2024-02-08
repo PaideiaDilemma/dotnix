@@ -72,6 +72,7 @@ in
       gnumake
       grim
       imv
+      jq
       mako
       man-pages
       man-pages-posix

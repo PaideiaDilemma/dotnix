@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   nixpkgs.overlays = [
-    #(import ../../overlays/ollama-amdgpu-overlay.nix)
+    (import ../../overlays/ollama-overlay.nix)
   ];
 
   users.groups.render.members = [ "max" ];

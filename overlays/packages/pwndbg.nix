@@ -5,6 +5,7 @@
   fetchFromGitHub,
 }:
 let
+# TODO: Just use the flake and make some overrides
   gdb = pkgs.gdb;
   pythonPackages = pkgs.python311Packages;
   version = "bb4af280b0cc576d004bf8dc7b07d32ec54b54d5";
@@ -37,7 +38,7 @@ let
     pythonPackages.ropgadget  # ref: https://github.com/pwndbg/pwndbg/blob/2023.07.17/pwndbg/commands/rop.py#L34
   ]);
 
-  pyEnv = pkgs.poetry2nix.mkPoetryEnv rec {
+  pyEnv = pkgs.poetry2nix.mkPoetryEnv {
     projectDir = pwndbgSrc;
     overrides = pkgs.poetry2nix.overrides.withDefaults (final: prev: {
       # pt failes with > ModuleNotFoundError: No module named 'poetry'
