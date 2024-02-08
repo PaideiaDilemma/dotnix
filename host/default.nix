@@ -12,6 +12,12 @@ in
   ];
 
   options.host = {
+    boot.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable boot services?";
+    };
+
     gui.enable = mkOption {
       type = types.bool;
       default = true;
@@ -51,8 +57,8 @@ in
       gnupg.agent.enable = true;
       virt-manager.enable = cfg.gui.enable;
       dconf.enable = true;
-      hyprland = {
-        enable = (cfg.hyprland.enable && cfg.gui.enable);
+      hyprland = lib.mkIf (cfg.hyprland.enable) {
+        enable = true;
         package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       };
       steam.enable = (cfg.steam.enable && cfg.gui.enable);
@@ -83,11 +89,13 @@ in
 
     users.defaultUserShell = pkgs.zsh;
 
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot = lib.mkIf (cfg.boot.enable) {
+      kernelPackages = pkgs.linuxPackages_latest;
 
-    # Use the systemd-boot EFI boot loader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+      # Use the systemd-boot EFI boot loader.
+      loader.systemd-boot.enable = true;
+      loader.efi.canTouchEfiVariables = true;
+    };
 
     networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 

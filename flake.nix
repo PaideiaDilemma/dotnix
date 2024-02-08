@@ -100,8 +100,8 @@
               imports = [ ./home ./home/variants/${homeVariant}.nix ];
               hyprhome.username = username;
               nixpkgs = {
-                inherit overlays;
                 config.allowUnfree = true;
+                inherit overlays;
               };
             })
           ];
@@ -116,7 +116,7 @@
         desktop = mkNixos "desktop" "desktop" "desktop" "max" "x86_64-linux";
         # currently it is handier for the username to just be "nixos"
         # https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/3
-        wsl = mkNixos "none" "wsl" "nixos" "x86_64-linux";
+        wsl = mkNixos "none" "wsl" "wsl" "nixos" "x86_64-linux";
       };
 
       # allow home-manager switch --flake .#configuration to work
@@ -124,6 +124,7 @@
         vm = mkHome "generic" "max" nixpkgs.legacyPackages.x86_64-linux;
         "max@laptop" = mkHome "laptop" "max" nixpkgs.legacyPackages.x86_64-linux;
         "max@desktop" = mkHome "desktop" "max" nixpkgs.legacyPackages.x86_64-linux;
+        "nixos@wsl" = mkHome "wsl" "nixos" nixpkgs.legacyPackages.x86_64-linux;
       };
     };
 }

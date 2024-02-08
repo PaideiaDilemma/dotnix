@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   hyprhome = {
     gui.enable = false;
@@ -6,4 +6,10 @@
       enable = false;
     };
   };
+
+  home.packages = (with pkgs; [
+    nodejs
+    pinentry
+    libsecret
+  ]);
 }

@@ -30,7 +30,7 @@ in
     };
   };
 
-  config = mkIf (cfg.gui.enable && cfg.lazyvim.enable) {
+  config = mkIf (cfg.lazyvim.enable) {
     home.packages = with pkgs; [
       clang-tools
       fd

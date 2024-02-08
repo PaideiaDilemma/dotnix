@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl
@@ -14,11 +14,13 @@
     defaultUser = "nixos";
 
     # Enable integration with Docker Desktop (needs to be installed)
-    docker-desktop.enable = true;
+    docker-desktop.enable = false;
   };
 
   host = {
+    boot.enable = false;
     gui.enable = false;
-    openssh.enable = false;
+    libvirtd.enable = false;
+    dotfileLocation = "/mnt/c/Users/seidlerm/nixos-dotfiles";
   };
 }

@@ -21,8 +21,9 @@ in
       libvirtd.enable = cfg.libvirtd.enable;
     };
 
-    users.groups.docker.members = [ "max" ];
-    users.groups.libvirtd.members = lib.optionals cfg.libvirtd.enable [ "max" ];
+    # TODO: do this in the user's config
+    users.groups.docker.members = [ "max" "nixos" ];
+    users.groups.libvirtd.members = lib.optionals cfg.libvirtd.enable [ "max" "nixos" ];
 
     environment.systemPackages = with pkgs; [
       podman-compose
