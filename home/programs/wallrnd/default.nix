@@ -3,15 +3,15 @@ with lib;
 let
   cfg = config.hyprhome;
   colors = config.colors;
-  wallrnd = pkgs.rustPlatform.buildRustPackage rec {
+  wallrnd = pkgs.rustPlatform.buildRustPackage {
     name = "wallrnd";
-    version = "0.1.0";
+    version = "latest";
 
     src = pkgs.fetchFromGitHub {
       owner = "PaideiaDilemma";
       repo = "wallrnd";
-      rev = "7fa88343c024978e0b4c4091359cf16b71abfe2a";
-      hash = "sha256-RVnR39zXUBUy0tvOA4Lr5GrTL4czah3Ipu0rqmb/W8Y=";
+      rev = "6a1489323d666f3d2cb72c9a19d8f6637170dc34";
+      sha256 = "sha256-jiW5qQ0l+YMvUPbHITkaNqW3ioPw9rk+1lTv7YcMJJg=";
     };
 
     cargoHash = "sha256-6Rj42QW/FgNX2EOFIlvc2HzuiQ8CmCBH7Xu0IGSudN8=";
@@ -31,32 +31,31 @@ in
   };
 
   config = mkIf (cfg.gui.enable && cfg.wallrnd.enable) {
-    home.packages = with pkgs; [
+    home.packages = [
       wallrnd
     ];
 
     xdg.configFile."wallrnd/wallrnd.toml".text = ''
-      [[entry]]
-      themes = [ "penumbra_night",]
-      span = "0600-1459"
-      shapes = [ "all",]
-      line_color = "sun"
-      weight = 100
-
-      [[entry]]
-      themes = [ "penumbra_night",]
-      span = "1500-0559"
-      shapes = [ "all",]
-      weight = 100
-
       [global]
       deviation = 5
       weight = 5
-      size = 40.0
+
+      [shapes]
+      all = []
 
       [lines]
       width = 0.0
-      color = "shade"
+      color = "sky"
+
+      [[entry]]
+      themes = [ "penumbra_day" ]
+      span = "0600-1759"
+      shapes = ["all"]
+
+      [[entry]]
+      themes = [ "penumbra_night" ]
+      span = "1800-0559"
+      shapes = ["all"]
 
       [colors]
       sun_p = "${colors.base.sun}"
@@ -78,47 +77,14 @@ in
 
       [themes]
       [[themes.penumbra_day]]
-      color = "sky"
-      weight = 10
-      distance = 0
-      variability = 0
-      [[themes.penumbra_day.salt]]
-      color = "sky_m"
-      likeliness = 0.04
-      variability = 0
-
-      [[themes.penumbra_day.salt]]
-      color = "sky_p"
-      likeliness = 0.04
-      variability = 0
-
-
-      [[themes.penumbra_day]]
-      color = "sky_p"
-      weight = 25
-      distance = 0
-      variability = 0
-      [[themes.penumbra_day.salt]]
-      color = "sun_m"
-      likeliness = 0.04
-      variability = 0
-
-      [[themes.penumbra_day.salt]]
-      color = "sky"
-      likeliness = 0.04
-      variability = 0
-
-
-      [[themes.penumbra_day]]
       color = "sun"
-      weight = 25
+      weight = 5
       distance = 0
       variability = 0
       [[themes.penumbra_day.salt]]
       color = "sun_m"
       likeliness = 0.04
       variability = 0
-
       [[themes.penumbra_day.salt]]
       color = "sun_p"
       likeliness = 0.04
@@ -127,16 +93,45 @@ in
 
       [[themes.penumbra_day]]
       color = "sun_m"
-      weight = 20
+      weight = 5
       distance = 0
       variability = 0
       [[themes.penumbra_day.salt]]
       color = "sky_p"
       likeliness = 0.04
       variability = 0
-
       [[themes.penumbra_day.salt]]
       color = "sun"
+      likeliness = 0.04
+      variability = 0
+
+
+      [[themes.penumbra_day]]
+      color = "sky_p"
+      weight = 25
+      distance = 0
+      variability = 0
+      [[themes.penumbra_day.salt]]
+      color = "sun_m"
+      likeliness = 0.04
+      variability = 0
+      [[themes.penumbra_day.salt]]
+      color = "sky"
+      likeliness = 0.04
+      variability = 0
+
+
+      [[themes.penumbra_day]]
+      color = "sky"
+      weight = 25
+      distance = 0
+      variability = 0
+      [[themes.penumbra_day.salt]]
+      color = "sky_m"
+      likeliness = 0.04
+      variability = 0
+      [[themes.penumbra_day.salt]]
+      color = "sky_p"
       likeliness = 0.04
       variability = 0
 
@@ -147,7 +142,7 @@ in
       distance = 0
       variability = 0
       [[themes.penumbra_day.salt]]
-      color = "sun_p"
+      color = "sky"
       likeliness = 0.04
       variability = 0
 
@@ -158,7 +153,7 @@ in
       distance = 0
       variability = 0
       [[themes.penumbra_day.salt]]
-      color = "sun_p"
+      color = "sky"
       likeliness = 0.04
       variability = 0
 
@@ -169,7 +164,7 @@ in
       distance = 0
       variability = 0
       [[themes.penumbra_day.salt]]
-      color = "sun"
+      color = "sky_p"
       likeliness = 0.04
       variability = 0
 
@@ -180,7 +175,7 @@ in
       distance = 0
       variability = 0
       [[themes.penumbra_day.salt]]
-      color = "sun_m"
+      color = "sky_p"
       likeliness = 0.04
       variability = 0
 
@@ -191,7 +186,7 @@ in
       distance = 0
       variability = 0
       [[themes.penumbra_day.salt]]
-      color = "sun_m"
+      color = "sky"
       likeliness = 0.04
       variability = 0
 
@@ -202,7 +197,7 @@ in
       distance = 0
       variability = 0
       [[themes.penumbra_day.salt]]
-      color = "sky_p"
+      color = "sky"
       likeliness = 0.04
       variability = 0
 
@@ -227,7 +222,6 @@ in
       color = "sky_m"
       likeliness = 0.04
       variability = 0
-
       [[themes.penumbra_night.salt]]
       color = "sky_p"
       likeliness = 0.04
@@ -243,7 +237,6 @@ in
       color = "shade_m"
       likeliness = 0.04
       variability = 0
-
       [[themes.penumbra_night.salt]]
       color = "sky"
       likeliness = 0.04
@@ -259,7 +252,6 @@ in
       color = "shade_m"
       likeliness = 0.04
       variability = 0
-
       [[themes.penumbra_night.salt]]
       color = "shade_p"
       likeliness = 0.04
@@ -275,7 +267,6 @@ in
       color = "sky_m"
       likeliness = 0.04
       variability = 0
-
       [[themes.penumbra_night.salt]]
       color = "shade"
       likeliness = 0.04
@@ -358,9 +349,6 @@ in
       likeliness = 0.04
       variability = 0
 
-
-      [shapes]
-      all = []
 
       [data.patterns]
       nb_free_triangles = 15
@@ -380,14 +368,15 @@ in
       width_sawtooth = 0.5
       tightness_spiral = 0.3
 
+
       [data.tilings]
-      size_hex = 10.0
-      size_tri = 10.0
-      size_hex_and_tri = 10.0
-      size_squ_and_tri = 10.0
-      size_rho = 14.0
-      size_pen = 14.0
-      nb_delaunay = 20000
+      size_hex = 14.0
+      size_tri = 14.0
+      size_hex_and_tri = 14.0
+      size_squ_and_tri = 14.0
+      size_rho = 18.0
+      size_pen = 18.0
+      nb_delaunay = 10000
     '';
   };
 }
