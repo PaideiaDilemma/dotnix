@@ -57,8 +57,6 @@ in
       enableDebugInfo = false;
     };
 
-    services.pass-secret-service.enable = true;
-
     home.packages = (with pkgs; [
 
       # Terminal Applications
