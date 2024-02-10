@@ -229,7 +229,6 @@ in
         		@define-color sky_p ${colors.base.sky'};
         		@define-color sun_m ${colors.base.sun_};
         		@define-color bgmodule @bgcolor;
-        		@define-color bordermodule @gray;
 
         		* {
         		    border: none;
@@ -284,7 +283,7 @@ in
         		  padding: 0px;
         		  margin: 0px 1px 0px;
         		  min-width: 26px;
-        		  border: 1px solid @bordermodule;
+        		  border: 1px solid @gray;
         		    /* Use box-shadow instead of border so the text isn't offset */
         		/*    box-shadow: inset 0 -3px transparent;*/
         		    /* border-radius: 0px; */
@@ -346,7 +345,7 @@ in
         		#mpd,
         		#language {
         		  background-color: @bgmodule;
-        		  border: 1px solid @bordermodule;
+        		  border: 1px solid @gray;
         		  color: @fgcolor;
         		  padding: 0px 8px 0px;
         		  margin: 0px 0px 0px;
@@ -379,13 +378,12 @@ in
         		}
 
         		#battery.critical:not(.charging) {
-        		/*    color: @critical;
         		    animation-name: blink;
         		    animation-duration: 0.5s;
         		    animation-timing-function: linear;
         		    animation-iteration-count: infinite;
         		    animation-direction: alternate;
-        		*/  background-color: @critical;
+        		    background-color: @critical;
         		    color: @white;
         		}
 
