@@ -16,8 +16,9 @@ in
   config = mkIf (cfg.gui.enable && cfg.mako.enable) {
     services.mako = {
       enable = true;
+      font = "Noto Sans 10";
       package = pkgs.mako;
-      anchor = "bottom-left";
+      anchor = "top-center";
       backgroundColor = "${colors.base.sky_}";
       textColor = "${colors.base.sun}";
       margin = "2";

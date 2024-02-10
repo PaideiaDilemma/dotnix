@@ -202,7 +202,7 @@ in
       bindm = SUPER,mouse:272,movewindow
       bindm = SUPER,mouse:273,resizewindow
 
-      #Applications
+      # Applications
       bind = SUPER,Return,exec,$terminal
       bind = SUPERSHIFT,Return,exec,$terminal ipython
       bind = SUPER,E,exec,dolphin
@@ -222,6 +222,10 @@ in
       bind = SUPERSHIFT,P,exec,rofi-pass
       bind = SUPER,C,exec,rofi-pass
       bind = SUPER,V,exec,wlclipmgr restore -i "$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')"
+
+      # makoctl
+      binde = CONTROL,Escape,exec,makoctl dismiss
+      bind = CONTROLSHIFT,Escape,exec,makoctl dismiss
 
       # tofi menus
       #$tofi_theme = ~/.config/tofi/top_left
@@ -275,7 +279,7 @@ in
       bind = ALT,8,movetoworkspace,8
       bind = ALT,9,movetoworkspace,9
       bind = ALT,0,movetoworkspace,10
-      bind = ALT,a,movetoworkspace,special # Seems to be broken
+      bind = ALT,a,movetoworkspace,special
 
       bind = SUPERSHIFT,w,movetoworkspacesilent,+1 # Monitor Num
       bind = SUPERSHIFT,q,movetoworkspacesilent,-1 # Monitor Num
@@ -301,9 +305,24 @@ in
 
       bind = SUPERSHIFT,l,exec,swaylock -f
 
-      bind = CTRL , Alt_L, submap, passthrough
+      # SUBMAPS
+      # passthrough
+      bind = CTRL,Alt_L,submap,passthrough
         submap = passthrough
-      bind = CTRL , Alt_L, submap, reset
+      bind = CTRL,Alt_L,submap,reset
+        submap = reset
+
+      # resize
+      bind = ALT,R,submap,resize
+        submap = resize
+
+      binde=,h,resizeactive,40 0
+      binde=,l,resizeactive,-40 0
+      binde=,k,resizeactive,0 -40
+      binde=,j,resizeactive,0 40
+
+      bind = ALT,R,submap,reset
+      bind = ,escape,submap,reset
         submap = reset
 
       # Include device specific config
