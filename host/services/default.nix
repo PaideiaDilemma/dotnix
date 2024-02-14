@@ -5,12 +5,6 @@ let
 in
 {
   options.host = {
-    loginToShell = mkOption {
-      type = types.bool;
-      default = !cfg.gui.enable;
-      description = "Wheather to login to the shell or ";
-    };
-
     openssh.enable = mkOption {
       type = types.bool;
       default = true;
@@ -39,7 +33,7 @@ in
           user = "max";
           command = "$SHELL -l";
         };
-        default_session = if cfg.loginToShell then initial_session else hyprland_session;
+        default_session = if cfg.gui.enable then hyprland_session else initial_session;
       };
     };
 

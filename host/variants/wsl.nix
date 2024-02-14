@@ -17,7 +17,8 @@
     docker-desktop.enable = true;
   };
 
-  config.host = {
+  host = {
     gui.enable = false;
+    openssh.enable = false;
   };
 }
