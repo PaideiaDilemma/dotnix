@@ -7,7 +7,7 @@ in
   options.host = {
     loginToShell = mkOption {
       type = types.bool;
-      default = cfg.gui.enable;
+      default = !cfg.gui.enable;
       description = "Wheather to login to the shell or ";
     };
 
