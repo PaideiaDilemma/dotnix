@@ -99,7 +99,8 @@ in
       $lock = swaylock -f
       $screen_off = hyprctl dispatch dpms off
       $screen_on = hyprctl dispatch dpms on
-      exec-once = swayidle -w timeout 300 '$lock' timeout 300 '$screen_off' resume '$screen_on' before-sleep '$lock' lock '$lock'
+      $notify = notify-send --urgency=critical --expire-time=5000  "Screen is about to lock!"
+      exec-once = swayidle -w timeout 295 '$notify' timeout 300 '$lock' timeout 300 '$screen_off' resume '$screen_on' before-sleep '$lock' lock '$lock'
 
       # Wallpaper generation
       exec-once = swayidle -w timeout 20 'hyprsetwallpaper -g -c'

@@ -99,6 +99,7 @@ in
       inkscape
       krita
       libreoffice
+      libnotify.out
       nwg-look
       spotify
       thunderbird
