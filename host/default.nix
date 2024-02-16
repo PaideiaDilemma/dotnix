@@ -48,10 +48,7 @@ in
       git.enable = true;
       zsh.enable = true;
       nix-ld.enable = true;
-      gnupg.agent = {
-        enable = true;
-        #enableSSHSupport = true;
-      };
+      gnupg.agent.enable = true;
       virt-manager.enable = cfg.gui.enable;
       dconf.enable = true;
       hyprland = {
