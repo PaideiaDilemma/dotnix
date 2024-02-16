@@ -5,9 +5,9 @@ let
 in
 {
   imports = [
-    ./fonts
-    ./virtualisation
-    ./services
+    ./fonts.nix
+    ./virtualisation.nix
+    ./services.nix
     ../colors/penumbra.nix
   ];
 
