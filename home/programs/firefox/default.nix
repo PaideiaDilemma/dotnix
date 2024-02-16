@@ -19,23 +19,6 @@ in
       profiles = {
         "asdfnerd" = {
           isDefault = true;
-          containers = {
-            "Work" = {
-              id = 0;
-              color = "yellow";
-              icon = "briefcase";
-            };
-            "Personal" = {
-              id = 1;
-              color = "blue";
-              icon = "fence";
-            };
-            "Content" = {
-              id = 2;
-              color = "green";
-              icon = "vacation";
-            };
-          };
           settings = {
             # Those should be fine
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
