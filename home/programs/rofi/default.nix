@@ -22,23 +22,15 @@ in
     programs.rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
+      pass = {
+        enable = true;
+        package = pkgs.rofi-pass-wayland;
+        stores = [ "${config.xdg.configHome}/pass" ];
+      };
       configPath = "${config.xdg.configHome}/rofi/config.rasi";
     };
 
-    home = {
-      packages = [ pkgs.rofi-pass pkgs.wtype ];
-      sessionVariables = {
-        "ROFI_PASS_BACKEND"= "wtype";
-        "ROFI_PASS_CLIPBOARD_BACKEND" = "wl-clipboard";
-      };
-    };
-
     xdg.configFile."rofi/config.rasi".text = ''
-      /*
-       * Colors Penumbar Balanced
-       * ~ https://github.com/nealmckee/penumbra/blob/main/penumbra.tsv
-       */
-
       configuration {
           font: "Noto Sans 12";
           display-drun: "Apps ";
@@ -76,6 +68,7 @@ in
           border-color: @fg;
           border-radius: 9;
           padding: 5;
+          command: "hyprctl dispatch focuswindow {window}";
       }
 
       mainbox {
