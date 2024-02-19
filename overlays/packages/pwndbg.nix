@@ -8,25 +8,13 @@ let
 # TODO: Just use the flake and make some overrides
   gdb = pkgs.gdb;
   pythonPackages = pkgs.python311Packages;
-  version = "bb4af280b0cc576d004bf8dc7b07d32ec54b54d5";
+  version = "2024.02.14";
 
-  pwndbgSrc = stdenv.mkDerivation {
-    name = "pwndbg-patched";
-    src = fetchFromGitHub {
-      owner = "pwndbg";
-      repo = "pwndbg";
-      rev = version;
-      hash = "sha256-Is/669FMfbOv2uy2AjsopWHgjkG2kcXMU3NnoAQoNZg=";
-    };
-
-    buildPhase = ''
-      mkdir -p $out/
-      cp -r * $out/
-      # poetry.lock defines setuptools = "69.0.3" to fix capstone
-      # but it is not in nixpkgs yet and the problem does not exist with nix.
-      # https://github.com/pwndbg/pwndbg/pull/1946#issuecomment-1921603947
-      #sed -i 's/^setuptools = \"69.0.3\"/setuptools = \"^69.0.2\"/' $out/pyproject.toml
-    '';
+  pwndbgSrc = fetchFromGitHub {
+    owner = "pwndbg";
+    repo = "pwndbg";
+    rev = version;
+    hash = "sha256-/pDo2J5EtpWWCurD7H34AlTlQi7WziIRRxHxGm3K2yk=";
   };
 
   # In the original flake, pwntools was specified here.

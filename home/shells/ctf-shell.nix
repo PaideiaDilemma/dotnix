@@ -14,6 +14,7 @@ mkShell {
     libelf
     glib
     bzip2
+    xz.out
   ];
   NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
 }
