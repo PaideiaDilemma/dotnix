@@ -196,7 +196,7 @@ in
       windowrule = float,Ultimaker Cura
       windowrule = float,Pinentry-gtk-2
       windowrule = float,title:^(Ghidra:)(.*)$
-      windowrulev2 = nofullscreenrequest,class:firefox,floating:1
+      windowrulev2 = suppressevent fullscreen,class:firefox,floating:1
       windowrulev2 = float,class:re.rizin.cutter,title:^(Open).*$
       windowrulev2 = float,class:re.rizin.cutter,title:^Load Options$
       windowrulev2 = stayfocused,class:^(ghidra-Ghidra)$,floating:1,fullscreen:0,initialTitle:^(CodeBrowser.*)$
@@ -315,7 +315,8 @@ in
         submap = passthrough
       bind = CTRL,Alt_L,submap,reset
         submap = reset
-
+      # ---
+      #
       # resize
       bind = ALT,R,submap,resize
         submap = resize
@@ -326,6 +327,25 @@ in
       binde=,j,resizeactive,0 40
 
       bind = ALT,R,submap,reset
+      bind = ,escape,submap,reset
+        submap = reset
+      # ---
+      #
+      # harpoon
+      bindr = SHIFT,SHIFT_R,exec,notify-send "available buffers: 1 2 3 4"
+      bindr = SHIFT,SHIFT_R,submap,harpoon
+        submap = harpoon
+
+      bind = ,1,exec,notify-send "Harpoon One"
+      bind = ,1,submap,reset
+      bind = ,2,exec,notify-send "Harpoon Two"
+      bind = ,2,submap,reset
+      bind = ,3,exec,notify-send "Harpoon Three"
+      bind = ,3,submap,reset
+      bind = ,4,exec,notify-send "Harpoon Four"
+      bind = ,4,submap,reset
+
+      bindr = SHIFT,SHIFT_R,submap,reset
       bind = ,escape,submap,reset
         submap = reset
 
