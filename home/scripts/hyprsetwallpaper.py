@@ -15,29 +15,14 @@ WALLRND_CONFIG = Path.home() / ".config" / "wallrnd" / "wallrnd.toml"
 
 
 def setwallpaper(config):
-    for path in list(set(config.values())):
-        # keeps crashing without
-        # TODO: check if that is still the case
-        time.sleep(0.2)
-        run(["hyprctl", "hyprpaper", "preload", path])
-
     for monitor_id, wallpaper_path in config.items():
-        time.sleep(0.2)
-        run(["hyprctl", "hyprpaper", "wallpaper", monitor_id + "," + wallpaper_path])
         default_file = f"wal{monitor_id}.png"
         copyfile(wallpaper_path, WAL_SAVE_DIR / default_file)
+        run(['swww', 'img', '-o', monitor_id, WAL_SAVE_DIR / default_file])
 
     filenames = [
         f for f in WAL_CACHE_DIR.iterdir() if (f.is_file() and "wal" in str(f))
     ]
-
-    keep_files = [path.split("/")[-1] for path in list(config.values())]
-    for filename in filenames:
-        if filename not in keep_files:
-            print(f"[Unload + Remove] {filename}")
-            run(["hyprctl", "hyprpaper", "unload", WAL_CACHE_DIR / filename])
-            (WAL_CACHE_DIR / filename).unlink()
-
 
 def crop_png(image_path, monitors_info):
     conf = {}

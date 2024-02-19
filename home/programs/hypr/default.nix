@@ -49,12 +49,12 @@ in
     home.packages = with pkgs; [
       inputs.hyprland.packages.${pkgs.system}.hyprland
       grim
-      hyprpaper
       hyprpicker
       networkmanagerapplet
       slurp
       swayidle
       swaylock
+      swww
       waybar
       wlsunset
     ];
@@ -88,7 +88,7 @@ in
       $purple = ${removeHash colors.seven.purple}
 
       exec-once = waybar
-      exec-once = hyprpaper
+      exec-once = swww init
       exec-once = hyprctl setcursor PearWhiteCursors 24
       exec-once = wlsunset -l 48.2, -L 16.3 -t 4800
       exec-once = wlclipmgr watch --block "password store sleep:2"

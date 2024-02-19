@@ -44,7 +44,7 @@ in
       all = []
 
       [lines]
-      width = 0.0
+      width = 0.1
       color = "sky"
 
       [[entry]]
