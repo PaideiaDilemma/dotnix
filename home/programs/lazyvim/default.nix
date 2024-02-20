@@ -7,8 +7,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "PaideiaDilemma";
       repo = "LazyVim";
-      rev = "5749e22d3ef061f15bcbd18fcde28b873be19da5";
-      hash = "sha256-K29GLb8WDuhSK8fSJTYZpXKCuqrSGFx1IGaH/0EWESk=";
+      rev = "main";
+      hash = "sha256-0wMIl1QlR9OqjiiIS9LLjDUjZLJaDMFyV+xqjAdRcsU=";
     };
     installPhase = ''
       mkdir -p $out/lazyvim
@@ -32,13 +32,15 @@ in
 
   config = mkIf (cfg.gui.enable && cfg.lazyvim.enable) {
     home.packages = with pkgs; [
-      nodejs
-      unzip
-      lazygit
-      git
-      gcc
-      ripgrep
+      clang-tools
       fd
+      gcc
+      git
+      go
+      lazygit
+      nodejs
+      ripgrep
+      unzip
     ];
 
     xdg.configFile."lazyvim/init.lua" = {
