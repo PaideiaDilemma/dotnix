@@ -47,7 +47,6 @@ in
 
   config = mkIf (cfg.gui.enable && cfg.hyprland.enable) {
     home.packages = with pkgs; [
-      inputs.hyprland.packages.${pkgs.system}.hyprland
       grim
       hyprpicker
       networkmanagerapplet
@@ -59,7 +58,13 @@ in
       wlsunset
     ];
 
-    #wayland.windowManager.hyprland.enable = true;
+    wayland.windowManager.hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      plugins = [
+        inputs.hyprharpoon.packages.${pkgs.system}.hyprharpoon
+      ];
+    };
 
     systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 

@@ -31,10 +31,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    hyprharpoon= {
+      url = "github:PaideiaDilemma/hyprharpoon";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
     wlclipmgr.url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # Community packages; used for Firefox extensions
     nur.url = "github:nix-community/nur";
@@ -76,7 +81,7 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.${username} = ({ ... }: {
-                imports = [ ./home ./home/variants/${homeVariant}.nix ];
+                imports = [ hyprland.homeManagerModules.default ./home ./home/variants/${homeVariant}.nix ];
                 hyprhome.username = username;
               });
             }
@@ -90,6 +95,7 @@
             inherit inputs;
           };
           modules = [
+            hyprland.homeManagerModules.default
             ({ ... }: {
               imports = [ ./home ./home/variants/${homeVariant}.nix ];
               hyprhome.username = username;

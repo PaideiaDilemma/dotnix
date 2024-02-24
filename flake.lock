@@ -142,6 +142,26 @@
         "type": "github"
       }
     },
+    "hyprharpoon": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1708765258,
+        "narHash": "sha256-tIwYaKz3Yu2pgwR8hN8zr4ZU1/7AHd1IAeVkAVUQpRY=",
+        "owner": "PaideiaDilemma",
+        "repo": "hyprharpoon",
+        "rev": "e2aa5a001353c6e42b99e63142a3e3d5615a5423",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PaideiaDilemma",
+        "repo": "hyprharpoon",
+        "type": "github"
+      }
+    },
     "hyprland": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
@@ -472,6 +492,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "hyprharpoon": "hyprharpoon",
         "hyprland": "hyprland",
         "nh": "nh",
         "nix-gaming": "nix-gaming",
