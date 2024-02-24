@@ -29,11 +29,12 @@ in
           user = "max";
           command = "$SHELL -l ${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
         };
-        initial_session = {
+        shell_session = {
           user = "max";
           command = "$SHELL -l";
         };
-        default_session = if cfg.gui.enable then hyprland_session else initial_session;
+
+        default_session = if (cfg.hyprland.enable) then hyprland_session else shell_session;
       };
     };
 

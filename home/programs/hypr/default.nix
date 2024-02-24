@@ -165,12 +165,12 @@ in
       }
 
       misc {
-      #    layers_hog_keyboard_focus = 0
-          #cursor_zoom_factor = 1.5
-          #cursor_zoom_rigid = 1
-          disable_splash_rendering = 1
-          disable_hyprland_logo = 1
-          force_default_wallpaper = 0
+        #layers_hog_keyboard_focus = 0
+        #cursor_zoom_factor = 1.5
+        #cursor_zoom_rigid = 1
+        disable_splash_rendering = 1
+        disable_hyprland_logo = 1
+        force_default_wallpaper = 0
       }
 
       # BLUR LAYERS
@@ -356,40 +356,28 @@ in
 
       # Include device specific config
       source = ~/.config/hypr/device.conf
-    '';
+    '' + cfg.hyprland.extraConfig;
 
     xdg.configFile."hypr/device.conf".text = concatStringMapAttrs
       (name: monitor: ''
         monitor = ${name},${monitor.resolution},${monitor.position},${monitor.scale}
         workspace = ${name},${monitor.initalWorkspace}
-      '')
-      cfg.hyprland.monitors + ''
+        exec = sleep 1 && swww img -o ${name} ~/media/picture/wal${name}.png
+      '') cfg.hyprland.monitors +
+      ''
 
       monitor=,1920x1080,auto,1
 
       input {
-          kb_layout = de
-          follow_mouse = 1
-          mouse_refocus = 0
-          #natural_scroll = 0
-          kb_options = caps:swapescape
+        kb_layout = de
+        follow_mouse = 1
+        mouse_refocus = 0
+        #natural_scroll = 0
+        kb_options = caps:swapescape
       }
-    '' + cfg.hyprland.extraConfig;
+    '' + (if (lib.attrNames cfg.hyprland.monitors) == [ ] then "swww img ~/media/picture/wal.png" else "");
 
     home.file."media/picture/wal.png".source = ./wal.png;
-
-    xdg.configFile."hypr/hyprpaper.conf".text =
-      if (lib.attrNames cfg.hyprland.monitors != [ ]) then
-        concatStringMapAttrs
-          (name: monitor: ''
-            preload = ~/media/picture/wal${name}.png
-            wallpaper = ${name},~/media/picture/wal${name}.png
-          '')
-          cfg.hyprland.monitors
-      else ''
-        preload = ~/media/picture/wal.png
-        wallpaper = ,~/media/picture/wal.png
-      '';
   };
 }
 

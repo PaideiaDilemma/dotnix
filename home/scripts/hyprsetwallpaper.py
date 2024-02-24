@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# TODO: Make this more swww agnostic
+# swww supports querying the monitor configuration
 import argparse
 from pathlib import Path
 from shutil import copyfile
@@ -18,11 +20,12 @@ def setwallpaper(config):
     for monitor_id, wallpaper_path in config.items():
         default_file = f"wal{monitor_id}.png"
         copyfile(wallpaper_path, WAL_SAVE_DIR / default_file)
-        run(['swww', 'img', '-o', monitor_id, WAL_SAVE_DIR / default_file])
+        run(["swww", "img", "-o", monitor_id, WAL_SAVE_DIR / default_file])
 
     filenames = [
         f for f in WAL_CACHE_DIR.iterdir() if (f.is_file() and "wal" in str(f))
     ]
+
 
 def crop_png(image_path, monitors_info):
     conf = {}
