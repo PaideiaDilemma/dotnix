@@ -29,7 +29,7 @@
 in
   buildPythonPackage rec {
     pname = "pwntools";
-    version = "4.13.0";
+    version = "4.13.0beta0";
     format = "setuptools";
 
     #src = fetchPypi {
@@ -39,7 +39,7 @@ in
     src = fetchFromGitHub {
       owner = "Gallopsled";
       repo = "pwntools";
-      rev = "dev";
+      rev = version;
       hash = "sha256-iBqKOJl9ATkgsPEsso55GK3kIIH7zAPMt7IEybglLxc=";
     };
 
