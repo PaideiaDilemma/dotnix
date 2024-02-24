@@ -40,7 +40,7 @@ in
       owner = "Gallopsled";
       repo = "pwntools";
       rev = version;
-      hash = "sha256-iBqKOJl9ATkgsPEsso55GK3kIIH7zAPMt7IEybglLxc=";
+      hash = "sha256-SkPms8rlur4Pmq5m7UjYvmJoYJrcrJd81rHpEw45t8o=";
     };
 
     postPatch = ''
