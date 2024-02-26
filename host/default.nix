@@ -169,6 +169,9 @@ in
     system.stateVersion = "23.11";
 
     nix = {
+      nixPath = [
+        "nixpkgs=${inputs.nixpkgs}"
+      ];
       package = pkgs.nixFlakes;
       settings = {
         substituters = [
