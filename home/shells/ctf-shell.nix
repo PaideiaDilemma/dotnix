@@ -2,7 +2,7 @@
 with import <nixpkgs> { };
 
 mkShell {
-  packages = [  ];
+  packages = [ pkgs.clang-tools pkgs.clangStdenv ];
   NIX_LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [
     stdenv.cc.cc
     openssl

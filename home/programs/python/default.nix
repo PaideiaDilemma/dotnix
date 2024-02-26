@@ -2,13 +2,14 @@
 {
   home.packages = [
     (pkgs.python311.withPackages (pip: [
-      pip.numpy
+      pip.colorama
       pip.ipython
-      pip.requests
-      pip.scipy
+      pip.numpy
       pip.pwntools
       pip.pycryptodome
-      pip.colorama
+      pip.requests
+      pip.scipy
+      pip.tqdm
     ]))
   ];
 }
