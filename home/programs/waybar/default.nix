@@ -19,7 +19,7 @@ in
     };
 
     output = mkOption {
-      default = "*";
+      default = cfg.gui.primaryMonitor;
       description = "Waybar output monitors.";
       type = types.str;
     };
@@ -44,7 +44,7 @@ in
         target = "graphical-session.target";
       };
       settings = [{
-        "output" = "${cfg.waybar.output}";
+        "output" = "${if (cfg.waybar.output != "") then cfg.waybar.output else "*"}";
         "layer" = "top"; # Waybar at top layer
         # "position" = "left"; # Waybar position (top|bottom|left|right)
         "height" = 27; # Waybar height (to be removed for auto height)

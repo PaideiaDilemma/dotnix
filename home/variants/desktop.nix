@@ -1,12 +1,9 @@
 { ... }:
 {
   hyprhome = {
-    gui.enable = true;
-    ollama.enable = true;
-    foot.fontSize = 13;
-    waybar.output = "DP-3";
-    hyprland = {
+    gui = {
       enable = true;
+      primaryMonitor = "DP-3";
       monitors = {
         "DP-3" = {
           resolution = "1920x1080@144";
@@ -27,6 +24,12 @@
           initalWorkspace = "100";
         };
       };
+    };
+    ollama.enable = true;
+    foot.fontSize = 13;
+    waybar.output = "DP-3";
+    hyprland = {
+      enable = true;
     };
   };
 }

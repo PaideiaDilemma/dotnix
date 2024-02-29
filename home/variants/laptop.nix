@@ -1,13 +1,9 @@
 { pkgs,... }:
 {
   hyprhome = {
-    gui.enable = true;
-    waybar.battery.enable = true;
-    wezterm.enable = false;
-    waybar.output = "eDP-1";
-    hyprland = {
+    gui = {
       enable = true;
-      enableAnimations = true;
+      primaryMonitor = "eDP-1";
       monitors = {
         "eDP-1" = {
           resolution = "1920x1080";
@@ -16,6 +12,13 @@
           initalWorkspace = "1";
         };
       };
+    };
+    waybar.battery.enable = true;
+    wezterm.enable = false;
+    waybar.output = "eDP-1";
+    hyprland = {
+      enable = true;
+      enableAnimations = true;
       extraConfig = ''
         gestures {
           workspace_swipe=1

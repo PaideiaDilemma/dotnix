@@ -7,46 +7,58 @@ in
   imports = [
     ../colors/penumbra.nix
     ./programs
-    ./scripts
     ./theme
     ./shells
   ];
 
   options.hyprhome = {
-    gui.enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable GUI?";
+    gui = {
+      enable = mkOption {
+        default = true;
+        description = "Enable GUI?";
+        type = types.bool;
+      };
+
+      monitors = mkOption {
+        type = types.attrsOf (types.attrsOf (types.str));
+        default = { };
+      };
+
+      primaryMonitor = mkOption {
+        default = "";
+        description = "The primary monitor";
+        type = types.str;
+      };
     };
 
     username = mkOption {
-      type = types.str;
       default = "max";
       description = "The user name";
+      type = types.str;
     };
 
     fullName = mkOption {
-      type = types.str;
       default = "Maximilian Seidler";
       description = "Full name";
+      type = types.str;
     };
 
     email = mkOption {
-      type = types.str;
       default = "maximilian.seidler@soundwork.at";
       description = "Email address";
+      type = types.str;
     };
 
     terminal = mkOption {
-      type = types.enum [ "foot" "wezterm" ];
       default = "foot";
       description = "Default terminal emulator";
+      type = types.enum [ "foot" "wezterm" ];
     };
 
     ollama.enable = mkOption {
-      type = types.bool;
       default = false;
       description = "Whether to enable Ollama";
+      type = types.bool;
     };
   };
 
@@ -93,8 +105,8 @@ in
       bottles
       burpsuite
       chromium
-      cutter
-      cutterPlugins.rz-ghidra
+      #cutter
+      #cutterPlugins.rz-ghidra
       ghidra
       inkscape
       krita

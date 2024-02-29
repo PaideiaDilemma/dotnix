@@ -5,6 +5,19 @@ let
   colors = config.colors;
   removeHash = str: removePrefix "#" str;
   concatStringMapAttrs = f: attrset: lib.concatStringsSep "\n" (lib.attrValues (lib.mapAttrs f attrset));
+
+  hyprsetwallpaper = pkgs.stdenv.mkDerivation {
+    name = "hyprsetwallpaper";
+    dontUnpack = true;
+    buildInputs = [
+      (pkgs.python3.withPackages (ps: with ps; [
+        pillow
+      ]))
+    ];
+    installPhase = ''
+      install -Dm755 ${./hyprsetwallpaper.py} $out/bin/hyprsetwallpaper
+    '';
+  };
 in
 {
   imports = [
@@ -22,11 +35,6 @@ in
       default = true;
       description = "Enable animations";
       type = types.bool;
-    };
-
-    monitors = mkOption {
-      type = types.attrsOf (types.attrsOf (types.str));
-      default = { };
     };
 
     extraConfig = mkOption {
@@ -47,12 +55,14 @@ in
 
   config = mkIf (cfg.gui.enable && cfg.hyprland.enable) {
     home.packages = with pkgs; [
+      chayang
       grim
       hyprpicker
+      hyprsetwallpaper
+      inputs.hypridle.packages.${pkgs.system}.hypridle
+      inputs.hyprlock.packages.${pkgs.system}.hyprlock
       networkmanagerapplet
       slurp
-      swayidle
-      swaylock
       swww
       waybar
       wlsunset
@@ -73,7 +83,8 @@ in
       WLR_RENDERER_ALLOW_SOFTWARE = "1";
     };
 
-    xdg.configFile."hypr/hyprland.conf".text = ''
+    xdg.configFile."hypr/hyprland.conf".text =
+    ''
       $terminal = ${cfg.hyprland.terminal}
       $sun_p = ${removeHash colors.base.sun'}
       $sun = ${removeHash colors.base.sun}
@@ -92,6 +103,27 @@ in
       $blue = ${removeHash colors.seven.blue}
       $purple = ${removeHash colors.seven.purple}
 
+      monitor=,1920x1080,auto,1
+
+      input {
+        kb_layout = de
+        follow_mouse = 1
+        mouse_refocus = 0
+        #natural_scroll = 0
+        kb_options = caps:swapescape
+      }
+    ''+
+    concatStringMapAttrs
+      (name: monitor: ''
+        monitor = ${name},${monitor.resolution},${monitor.position},${monitor.scale}
+        workspace = ${name},${monitor.initalWorkspace}
+        exec = sleep 1 && swww img -o ${name} ~/media/picture/wal${name}.png
+      '') cfg.gui.monitors +
+
+    (if lib.attrNames cfg.gui.monitors == [ ] then
+      "exec = swww img ~/media/picture/wal.png\n"
+    else "") +
+    ''
       exec-once = waybar
       exec-once = swww init
       exec-once = hyprctl setcursor PearWhiteCursors 24
@@ -99,16 +131,6 @@ in
       exec-once = wlclipmgr watch --block "password store sleep:2"
       exec-once = kdeconnect-indicator
       exec-once = nm-applet
-
-      # Lock screen
-      $lock = swaylock -f
-      $screen_off = hyprctl dispatch dpms off
-      $screen_on = hyprctl dispatch dpms on
-      $notify = notify-send --urgency=critical --expire-time=5000  "Screen is about to lock!"
-      exec-once = swayidle -w timeout 295 '$notify' timeout 300 '$lock' timeout 300 '$screen_off' resume '$screen_on' before-sleep '$lock' lock '$lock'
-
-      # Wallpaper generation
-      exec-once = swayidle -w timeout 20 'hyprsetwallpaper -g -c'
 
       general {
         sensitivity = 1.0 # for mouse cursor
@@ -312,7 +334,7 @@ in
       bind = ALT,k,changegroupactive,b
       bind = ALT,c,togglesplit
 
-      bind = SUPERSHIFT,l,exec,swaylock -f
+      bind = SUPERSHIFT,l,exec,hyprlock
 
       # SUBMAPS
       # passthrough
@@ -334,48 +356,93 @@ in
       bind = ALT,R,submap,reset
       bind = ,escape,submap,reset
         submap = reset
-      # ---
-      #
-      # harpoon
-      bindr = SHIFT,SHIFT_R,exec,notify-send "available buffers: 1 2 3 4"
-      bindr = SHIFT,SHIFT_R,submap,harpoon
-        submap = harpoon
 
-      bind = ,1,exec,notify-send "Harpoon One"
-      bind = ,1,submap,reset
-      bind = ,2,exec,notify-send "Harpoon Two"
-      bind = ,2,submap,reset
-      bind = ,3,exec,notify-send "Harpoon Three"
-      bind = ,3,submap,reset
-      bind = ,4,exec,notify-send "Harpoon Four"
-      bind = ,4,submap,reset
-
-      bindr = SHIFT,SHIFT_R,submap,reset
-      bind = ,escape,submap,reset
-        submap = reset
-
-      # Include device specific config
-      source = ~/.config/hypr/device.conf
+      plugin {
+        harpoon {
+          select_trigger = SHIFT,escape
+          add_trigger = SHIFT,tab
+        }
+      }
     '' + cfg.hyprland.extraConfig;
 
-    xdg.configFile."hypr/device.conf".text = concatStringMapAttrs
-      (name: monitor: ''
-        monitor = ${name},${monitor.resolution},${monitor.position},${monitor.scale}
-        workspace = ${name},${monitor.initalWorkspace}
-        exec = sleep 1 && swww img -o ${name} ~/media/picture/wal${name}.png
-      '') cfg.hyprland.monitors +
-      ''
+    services.hypridle = {
+      enable = true;
 
-      monitor=,1920x1080,auto,1
+      lockCmd = "hyprlock";
+      #unlock_cmd = notify-send "Unlock cmd"
+      beforeSleepCmd = "chayang -g 7 && hyprlock";
+      #after_resume_cmd = notify-send "After resume cmd"
+      ignoreDbusInhibit = false;
 
-      input {
-        kb_layout = de
-        follow_mouse = 1
-        mouse_refocus = 0
-        #natural_scroll = 0
-        kb_options = caps:swapescape
-      }
-    '' + (if (lib.attrNames cfg.hyprland.monitors) == [ ] then "swww img ~/media/picture/wal.png" else "");
+      listeners = [
+        {
+          timeout = 300;
+          onTimeout = "chayang -g 7 && hyprlock";
+        }
+        {
+          timeout = 800;
+          onTimeout = "systemctl suspend";
+        }
+        {
+          timeout = 20;
+          onTimeout = "hyprsetwallpaper -g -c";
+        }
+      ];
+    };
+
+    programs.hyprlock = {
+      enable = true;
+      input-fields = [{
+        monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+        position = {
+          x = 0;
+          y = -50;
+        };
+        size = {
+          width = 200;
+          height = 50;
+        };
+        outline_thickness = 2;
+        outer_color = "0x0a${removeHash colors.base.sun}";
+        inner_color = "0xff${removeHash colors.base.sky}";
+        font_color = "0xff${removeHash colors.base.sun}";
+        placeholder_text = "Enter password";
+
+        halign = "center";
+        valign = "center";
+      }];
+
+      labels = [{
+        monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+        position = {
+          x = 0;
+          y = 100;
+        };
+
+        text = "$TIME";
+        color = "0xff${removeHash colors.base.sun}";
+        font_size = 25;
+        font_family = "Noto Sans";
+
+        halign = "center";
+        valign = "center";
+      }];
+
+      backgrounds = if (lib.attrNames cfg.gui.monitors == [ ]) then [{
+        monitor = "";
+        path = "/home/max/media/picture/wal.png";
+        color = "0xff${removeHash colors.base.shade}";
+        blur_passes = 2;
+        blur_size = 10;
+        }] else (mapAttrsToList (name: monitor: {
+          monitor = name;
+          path = "/home/max/media/picture/wal${name}.png";
+          color = "0xff${removeHash colors.base.shade}";
+          blur_passes = 2;
+          blur_size = 10;
+      }) cfg.gui.monitors);
+    };
+
 
     home.file."media/picture/wal.png".source = ./wal.png;
   };

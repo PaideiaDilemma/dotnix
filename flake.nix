@@ -9,8 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,9 +29,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
+
     hyprharpoon= {
       url = "github:PaideiaDilemma/hyprharpoon";
       inputs.hyprland.follows = "hyprland";
+    };
+
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
@@ -81,7 +91,13 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.${username} = ({ ... }: {
-                imports = [ hyprland.homeManagerModules.default ./home ./home/variants/${homeVariant}.nix ];
+                imports = [
+                  hyprland.homeManagerModules.default
+                  inputs.hypridle.homeManagerModules.default
+                  inputs.hyprlock.homeManagerModules.default
+                  ./home
+                  ./home/variants/${homeVariant}.nix
+                ];
                 hyprhome.username = username;
               });
             }
@@ -96,6 +112,8 @@
           };
           modules = [
             hyprland.homeManagerModules.default
+            inputs.hypridle.homeManagerModules.default
+            inputs.hyprlock.homeManagerModules.default
             ({ ... }: {
               imports = [ ./home ./home/variants/${homeVariant}.nix ];
               hyprhome.username = username;
@@ -121,7 +139,7 @@
 
       # allow home-manager switch --flake .#configuration to work
       homeConfigurations = {
-        vm = mkHome "generic" "max" nixpkgs.legacyPackages.x86_64-linux;
+        "max@vm" = mkHome "generic" "max" nixpkgs.legacyPackages.x86_64-linux;
         "max@laptop" = mkHome "laptop" "max" nixpkgs.legacyPackages.x86_64-linux;
         "max@desktop" = mkHome "desktop" "max" nixpkgs.legacyPackages.x86_64-linux;
         "nixos@wsl" = mkHome "wsl" "nixos" nixpkgs.legacyPackages.x86_64-linux;
