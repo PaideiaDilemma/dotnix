@@ -360,7 +360,7 @@ in
       plugin {
         harpoon {
           select_trigger = SHIFT,escape
-          add_trigger = SHIFT,tab
+          add_trigger = SUPER,space
         }
       }
     '' + cfg.hyprland.extraConfig;
