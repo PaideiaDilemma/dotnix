@@ -27,7 +27,8 @@
           workspace_swipe_create_new=1
         }
 
-        device:AT Translated Set 2 keyboard {
+        device {
+          name = AT Translated Set 2 keyboard
           sensitivity=0.8
           kb_layout=de
         }
