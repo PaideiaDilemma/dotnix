@@ -143,6 +143,7 @@ in
 
     security.polkit.enable = true;
     security.pam.services.swaylock = {};
+    security.pam.services.hyprlock = {};
 
     # List services that you want to enable:
 
