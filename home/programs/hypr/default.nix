@@ -244,7 +244,6 @@ in
 
             # Rofi menus
             "SUPER,D,exec,rofi -show drun -show-icons"
-            ",Menu,exec,rofi -show drun -show-icons"
             "SUPER,R,exec,rofi -show run -run-shell-command '{terminal} zsh -ic \"{cmd} && read\"'"
             "SUPER,F,exec,rofi -show window -show-icons"
             "SUPERSHIFT,P,exec,rofi-pass"
@@ -338,8 +337,8 @@ in
 
         plugin = {
           harpoon = {
-            select_trigger = "SHIFT,escape";
-            add_trigger = "SUPER,space";
+            select_trigger = ",Menu";
+            add_trigger = "SHIFT,Menu";
           };
         };
       };
