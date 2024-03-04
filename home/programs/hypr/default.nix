@@ -68,13 +68,7 @@ in
       wlsunset
     ];
 
-    wayland.windowManager.hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      plugins = [
-        inputs.hyprharpoon.packages.${pkgs.system}.hyprharpoon
-      ];
-    };
+    home.file."media/picture/wal.png".source = ./wal.png;
 
     systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 
@@ -83,287 +77,296 @@ in
       WLR_RENDERER_ALLOW_SOFTWARE = "1";
     };
 
-    xdg.configFile."hypr/hyprland.conf".text =
-    ''
-      $terminal = ${cfg.hyprland.terminal}
-      $sun_p = ${removeHash colors.base.sun'}
-      $sun = ${removeHash colors.base.sun}
-      $sun_m = ${removeHash colors.base.sun_}
-      $sky_p = ${removeHash colors.base.sky'}
-      $sky = ${removeHash colors.base.sky}
-      $sky_m = ${removeHash colors.base.sky_}
-      $shade_p = ${removeHash colors.base.shade'}
-      $shafe = ${removeHash colors.base.shade}
-      $shade_m = ${removeHash colors.base.shade_}
-      $red = ${removeHash colors.seven.red}
-      $orange = ${removeHash colors.seven.orange}
-      $yellow = ${removeHash colors.seven.yellow}
-      $green = ${removeHash colors.seven.green}
-      $cyan = ${removeHash colors.seven.cyan}
-      $blue = ${removeHash colors.seven.blue}
-      $purple = ${removeHash colors.seven.purple}
+    wayland.windowManager.hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      plugins = [
+        inputs.hyprharpoon.packages.${pkgs.system}.hyprharpoon
+      ];
+      systemd.enable = true;
 
-      monitor=,1920x1080,auto,1
+      settings = {
+        "$terminal" = cfg.hyprland.terminal;
+        "$sun_p" = removeHash colors.base.sun';
+        "$sun" = removeHash colors.base.sun;
+        "$sun_m" = removeHash colors.base.sun_;
+        "$sky_p" = removeHash colors.base.sky';
+        "$sky" = removeHash colors.base.sky;
+        "$sky_m" = removeHash colors.base.sky_;
+        "$shade_p" = removeHash colors.base.shade';
+        "$shafe" = removeHash colors.base.shade;
+        "$shade_m" = removeHash colors.base.shade_;
+        "$red" = removeHash colors.seven.red;
+        "$orange" = removeHash colors.seven.orange;
+        "$yellow" = removeHash colors.seven.yellow;
+        "$green" = removeHash colors.seven.green;
+        "$cyan" = removeHash colors.seven.cyan;
+        "$blue" = removeHash colors.seven.blue;
+        "$purple" = removeHash colors.seven.purple;
 
-      input {
-        kb_layout = de
-        follow_mouse = 1
-        mouse_refocus = 0
-        #natural_scroll = 0
-        kb_options = caps:swapescape
-      }
-    ''+
-    concatStringMapAttrs
-      (name: monitor: ''
-        monitor = ${name},${monitor.resolution},${monitor.position},${monitor.scale}
-        workspace = ${name},${monitor.initalWorkspace}
-        exec = sleep 1 && swww img -o ${name} ~/media/picture/wal${name}.png
-      '') cfg.gui.monitors +
+        input = {
+          "kb_layout"= "de";
+          "follow_mouse"= 1;
+          "mouse_refocus"= 0;
+          #natural_scroll = 0;
+          "kb_options "= "caps:swapescape";
+        };
 
-    (if lib.attrNames cfg.gui.monitors == [ ] then
-      "exec = swww img ~/media/picture/wal.png\n"
-    else "") +
-    ''
-      exec-once = waybar
-      exec-once = swww init
-      exec-once = hyprctl setcursor PearWhiteCursors 24
-      exec-once = wlsunset -l 48.2, -L 16.3 -t 4800
-      exec-once = wlclipmgr watch --block "password store sleep:2"
-      exec-once = kdeconnect-indicator
-      exec-once = nm-applet
+        exec-once = [
+          "waybar"
+          "swww init"
+          "hyprctl setcursor PearWhiteCursors 24"
+          "wlsunset -l 48.2, -L 16.3 -t 4800"
+          "wlclipmgr watch --block \"password store sleep:2\""
+          "kdeconnect-indicator"
+          "nm-applet"
+          "hypridle"
+        ];
 
-      general {
-        sensitivity = 1.0 # for mouse cursor
+        #monitor=",1920x1080,auto,1";
+        monitor = (mapAttrsToList (name: monitor:
+          "${name},${monitor.resolution},${monitor.position},${monitor.scale}"
+        ) cfg.gui.monitors) ++ [",preferred,auto,1"];
 
-        gaps_in = 4
-        gaps_out = 5
-        border_size = 1
-        col.active_border = 0xff$sun
-        #col.active_border = 0xff$sun 0xff$cyan 0xff$sun
-        col.inactive_border = 0xa0$sky
+        workspace = (mapAttrsToList (name: monitor:
+          "${name},${monitor.initalWorkspace}"
+        ) cfg.gui.monitors);
 
-        #resize_on_border = 1
+        exec = (mapAttrsToList (name: monitor:
+          "sleep 1 && swww img -o ${name} ~/media/picture/wal${name}.png"
+        ) cfg.gui.monitors) ++ (if (lib.attrNames cfg.gui.monitors == [ ]) then ["swww img ~/media/picture/wal.png"] else []);
 
-        apply_sens_to_raw = 0 # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
-      }
+        general = {
+          sensitivity = 1.0; # for mouse cursor
+          gaps_in = 4;
+          gaps_out = 5;
+          border_size = 1;
+          "col.active_border" = "0xff$sun";
+          "col.inactive_border" = "0xa0$sky";
+          apply_sens_to_raw = 0; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
+        };
 
-      decoration {
-        rounding = 6
+        decoration = {
+          rounding = 6;
+          drop_shadow = 1;
+          shadow_range = 14;
+          shadow_render_power = 3;
+          shadow_ignore_window = 1;
+          "col.shadow" = "0xa0$shade_m";
+        };
+          
+        animations = {
+          enabled = if cfg.hyprland.enableAnimations then "1" else "0";
+          bezier = [
+            "const,0.25,0.25,0.75,0.75"
+            "ease2,0.57,0.15,0.40,0.85"
+            #"ease-out2,0.58,0.45,0.58,1"
+            "ease-out2,0.75,0.8,0.58,1"
+            #bezier = "ease-in2,0,0.45,0.58,0.58"
+            "ease-in2,0.5,0.75,0.58,0.58"
+            "weird,-0.09,0,0.19,1"
+            "special,0.5,0.9,0,0.72"
+          ];
 
-        drop_shadow = 1
-        shadow_range = 14
-        shadow_render_power = 3
-        shadow_ignore_window = 1
-        col.shadow = 0xa0$shade_m
-      }
+          animation = [
+            "windowsIn,1,2,ease-in2,popin 80%"
+            "windowsOut,1,2,ease-out2,popin 80%"
+            "fadeIn,1,2,ease-in2"
+            "fadeOut,1,2,ease-out2"
+            "workspaces,1,2,ease2,slidevert"
+            "specialWorkspace,1,4,special,slidevert"
+            "windowsMove,1,2,weird"
+            "border,1,9,special"
+            #"borderangle,1,20,const,loop";
+          ];
+        };
 
-      animations {
-        enabled = ${if cfg.hyprland.enableAnimations then "1" else "0"}
-        bezier = const,0.25,0.25,0.75,0.75
-        bezier = ease2,0.57,0.15,0.40,0.85
-        #bezier = ease-out2,0.58,0.45,0.58,1
-        bezier = ease-out2,0.75,0.8,0.58,1
-        #bezier = ease-in2,0,0.45,0.58,0.58
-        bezier = ease-in2,0.5,0.75,0.58,0.58
-        bezier = weird,-0.09,0,0.19,1
-        animation = windowsIn,1,2,ease-in2,popin 80%
-        animation = windowsOut,1,2,ease-out2,popin 80%
-        animation = fadeIn,1,2,ease-in2
-        animation = fadeOut,1,2,ease-out2
-        animation = workspaces,1,2,ease2,slidevert
-        bezier = special,0.5,0.9,0,0.72
-        animation = specialWorkspace,1,4,special,slidevert
-        animation = windowsMove,1,2,weird
-        animation = border,1,9,special
-        #animation = borderangle,1,20,const,loop
-      }
+        dwindle = {
+          pseudotile = 0;
+          preserve_split = true;
+          smart_split = true;
+          # special_scale_factor = 0.5
+          # no_gaps_when_only = true
+        };
 
-      dwindle {
-        pseudotile = 0 # enable pseudotiling on dwindle
-        preserve_split = true
-        smart_split = true
-        # special_scale_factor = 0.5
-        # no_gaps_when_only = true
-      }
+        misc = {
+          #layers_hog_keyboard_focus = 0
+          #cursor_zoom_factor = 1.5
+          #cursor_zoom_rigid = 1
+          disable_splash_rendering = 1;
+          disable_hyprland_logo = 1;
+          force_default_wallpaper = 0;
+        };
 
-      misc {
-        #layers_hog_keyboard_focus = 0
-        #cursor_zoom_factor = 1.5
-        #cursor_zoom_rigid = 1
-        disable_splash_rendering = 1
-        disable_hyprland_logo = 1
-        force_default_wallpaper = 0
-      }
+        blurls = [
+          "rofi"
+          "launcher"
+          "waybar"
+        ];
 
-      # BLUR LAYERS
-      blurls = rofi
-      blurls = launcher
-      blurls = waybar
+        windowrule = [
+          "float,kvantummanager"
+          "float,org.gnome.Settings"
+          "float,Lxappearance"
+          "float,obs"
+          "float,zathura"
+          "float,feh"
+          "float,qemu"
+          #"float,DesktopEditors"
+          "float,biz.ntinfo.die"
+          "float,Ultimaker Cura"
+          "float,Pinentry-gtk-2"
+          "float,title:^(Ghidra:)(.*)$"
+        ];
 
-      # WINDOW RULES
-      # example window rules
-      # for windows named/classed as abc and xyz
-      #windowrule = move 69 420,abc
-      #windowrule = size 420 69,abc
-      #windowrule = tile,xyz
-      #windowrule = float,^(qjack)(.*)$
-      #windowrule = pseudo,abc
-      #windowrule = monitor 0,xyz
-      #windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
+        windowrulev2 = [
+          "suppressevent fullscreen,class:firefox,floating:1"
+          "float,class:re.rizin.cutter,title:^(Open).*$"
+          "float,class:re.rizin.cutter,title:^Load Options$"
+          "stayfocused,class:^(ghidra-Ghidra)$,floating:1,fullscreen:0,initialTitle:^(CodeBrowser.*)$"
+        ];
 
-      windowrule = float,kvantummanager
-      windowrule = float,org.gnome.Settings
-      windowrule = float,Lxappearance
-      windowrule = float,obs
-      windowrule = float,zathura
-      windowrule = float,feh
-      windowrule = float,qemu
-      #windowrule = float,DesktopEditors
-      windowrule = float,biz.ntinfo.die
-      windowrule = float,Ultimaker Cura
-      windowrule = float,Pinentry-gtk-2
-      windowrule = float,title:^(Ghidra:)(.*)$
-      windowrulev2 = suppressevent fullscreen,class:firefox,floating:1
-      windowrulev2 = float,class:re.rizin.cutter,title:^(Open).*$
-      windowrulev2 = float,class:re.rizin.cutter,title:^Load Options$
-      windowrulev2 = stayfocused,class:^(ghidra-Ghidra)$,floating:1,fullscreen:0,initialTitle:^(CodeBrowser.*)$
+        bindm = [
+          "SUPER,mouse:272,movewindow"
+          "SUPER,mouse:273,resizewindow"
+        ];
+        
+        bind = let
+          screenshot_dir = "$HOME/media/picture/screenshots/";
+          screenshot_cmd = select: "filename=$(date +'%H%M%S_%a%d%h%y_${if select then "sel" else "full"}') && grim ${if select then "-g \"$(slurp)\"" else ""} \"${screenshot_dir}$filename.png\" && wl-copy < \"$screenshot_dir$filename.png\" && notify-send \"Screenshot taken $filename.png\"";
+          in [
+            # Launchers
+            "SUPER,Return,exec,$terminal"
+            "SUPERSHIFT,Return,exec,$terminal ipython"
+            "SUPER,E,exec,dolphin"
+            "SUPER,B,exec,chromium"
+            "SUPERSHIFT,l,exec,hyprlock"
 
-      # KEY BINDINGS
-      # Drag & resize windows with mouse
-      bindm = SUPER,mouse:272,movewindow
-      bindm = SUPER,mouse:273,resizewindow
+            # Rofi menus
+            "SUPER,D,exec,rofi -show drun -show-icons"
+            ",Menu,exec,rofi -show drun -show-icons"
+            "SUPER,R,exec,rofi -show run -run-shell-command '{terminal} zsh -ic \"{cmd} && read\"'"
+            "SUPER,F,exec,rofi -show window -show-icons"
+            "SUPERSHIFT,P,exec,rofi-pass"
+            "SUPER,V,exec,wlclipmgr restore -i \"$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')\""
 
-      # Applications
-      bind = SUPER,Return,exec,$terminal
-      bind = SUPERSHIFT,Return,exec,$terminal ipython
-      bind = SUPER,E,exec,dolphin
-      bind = SUPER,B,exec,chromium
+            # Screenshots
+            "SUPERSHIFT,S,exec,${screenshot_cmd true}"
+            "SUPERCTRL,S,exec,${screenshot_cmd false}"
 
-      # Screenshots
-      $screenshot_dir = $HOME/media/picture/screenshots/
-      bind = SUPERSHIFT,S,exec,filename=$(date +'%H%M%S_%a%d%h%y_sel') && grim -g "$(slurp)" "$screenshot_dir$filename.png" && wl-copy < "$screenshot_dir$filename.png" && notify-send "Screenshot takenm $filename.png"
-      bind = SUPERCTRL,S,exec,filename=$(date +"%H%M%S_%a%d%h%y_full") && grim "$screenshot_dir$filename.png" && wl-copy < "$screenshot_dir$filename.png" && notify-send "Screenshot taken: $filename.png"
+            # Notification Control
+            "CONTROL,Escape,exec,makoctl dismiss"
+            "CONTROLSHIFT,Escape,exec,makoctl dismiss"
 
-      # rofi menus
-      bind = SUPER,D,exec,rofi -show drun -show-icons
-      bind = ,Menu,exec,rofi -show drun -show-icons
+            # tofi menus
+            #$tofi_theme = ~/.config/tofi/top_left
+            #"SUPER,D,exec,tofi-drun --drun-launch=true --include $tofi_theme"
+            #"SUPER,R,exec,tofi-run --include $tofi_theme | xargs sh -c"
+            #"SUPERSHIFT,P,exec,$terminal fish -c \"pass clip && sleep 1\""
+            #"SUPERSHIFT,R,exec,wlclipmgr restore -i \"$(wlclipmgr list -l 100 | tofi --include $tofi_theme | awk '{print $1}')\""
 
-      bind = SUPER,R,exec,rofi -show run -run-shell-command '{terminal} zsh -ic "{cmd} && read"'
-      bind = SUPER,F,exec,rofi -show window -show-icons
-      bind = SUPERSHIFT,P,exec,rofi-pass
-      bind = SUPER,C,exec,rofi-pass
-      bind = SUPER,V,exec,wlclipmgr restore -i "$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')"
+            # Window Manager
+            "SUPERSHIFT,C,killactive"
+            "SUPERSHIFT,C,killactive,"
+            "SUPERSHIFT,Space,togglefloating,"
+            "SUPER,P,pseudo,"
+            "SUPER,M,fullscreen,"
+            "ALT,P,pin"
 
-      # makoctl
-      binde = CONTROL,Escape,exec,makoctl dismiss
-      bind = CONTROLSHIFT,Escape,exec,makoctl dismiss
+            "SUPERSHIFT,E,exit,"
 
-      # tofi menus
-      #$tofi_theme = ~/.config/tofi/top_left
-      #bind = SUPER,D,exec,tofi-drun --drun-launch=true --include $tofi_theme
-      #bind = SUPER,R,exec,tofi-run --include $tofi_theme | xargs sh -c
-      #bind = SUPERSHIFT,P,exec,$terminal fish -c "pass clip && sleep 1"
-      #bind = SUPERSHIFT,R,exec,wlclipmgr restore -i "$(wlclipmgr list -l 100 | tofi --include $tofi_theme | awk '{print $1}')"
+            "SUPER,left,movefocus,l"
+            "SUPER,right,movefocus,r"
+            "SUPER,up,movefocus,u"
+            "SUPER,down,movefocus,d"
 
-      # Window Manager
-      bind = SUPERSHIFT,C,killactive,
-      bind = SUPERSHIFT,Space,togglefloating,
-      bind = SUPER,P,pseudo,
-      bind = SUPER,M,fullscreen,
-      bind = ALT,P,pin
+            "SUPER,h,movefocus,l"
+            "SUPER,l,movefocus,r"
+            "SUPER,k,movefocus,u"
+            "SUPER,j,movefocus,d"
 
-      bind = SUPERSHIFT,E,exit,
+            "SUPER,w,workspace,+1"
+            "SUPER,q,workspace,-1"
+            "SUPER,1,workspace,1"
+            "SUPER,2,workspace,2"
+            "SUPER,3,workspace,3"
+            "SUPER,4,workspace,4"
+            "SUPER,5,workspace,5"
+            "SUPER,6,workspace,6"
+            "SUPER,7,workspace,7"
+            "SUPER,8,workspace,8"
+            "SUPER,9,workspace,9"
+            "SUPER,0,workspace,10"
+            "SUPER,a,togglespecialworkspace"
 
-      bind = SUPER,left,movefocus,l
-      bind = SUPER,right,movefocus,r
-      bind = SUPER,up,movefocus,u
-      bind = SUPER,down,movefocus,d
+            "ALT,w,movetoworkspace,+1 # Monitor Num"
+            "ALT,q,movetoworkspace,-1 # Monitor Num"
+            "ALT,1,movetoworkspace,1"
+            "ALT,2,movetoworkspace,2"
+            "ALT,3,movetoworkspace,3"
+            "ALT,4,movetoworkspace,4"
+            "ALT,5,movetoworkspace,5"
+            "ALT,6,movetoworkspace,6"
+            "ALT,7,movetoworkspace,7"
+            "ALT,8,movetoworkspace,8"
+            "ALT,9,movetoworkspace,9"
+            "ALT,0,movetoworkspace,10"
+            "ALT,a,movetoworkspace,special"
 
-      bind = SUPER,h,movefocus,l
-      bind = SUPER,l,movefocus,r
-      bind = SUPER,k,movefocus,u
-      bind = SUPER,j,movefocus,d
+            "SUPERSHIFT,w,movetoworkspacesilent,+1 # Monitor Num"
+            "SUPERSHIFT,q,movetoworkspacesilent,-1 # Monitor Num"
+            "SUPERSHIFT,1,movetoworkspacesilent,1"
+            "SUPERSHIFT,2,movetoworkspacesilent,2"
+            "SUPERSHIFT,3,movetoworkspacesilent,3"
+            "SUPERSHIFT,4,movetoworkspacesilent,4"
+            "SUPERSHIFT,5,movetoworkspacesilent,5"
+            "SUPERSHIFT,6,movetoworkspacesilent,6"
+            "SUPERSHIFT,7,movetoworkspacesilent,7"
+            "SUPERSHIFT,8,movetoworkspacesilent,8"
+            "SUPERSHIFT,9,movetoworkspacesilent,9"
+            "SUPERSHIFT,0,movetoworkspacesilent,10"
+            "SUPERSHIFT,a,movetoworkspacesilent,special"
 
-      bind = SUPER,w,workspace,+1
-      bind = SUPER,q,workspace,-1
-      bind = SUPER,1,workspace,1
-      bind = SUPER,2,workspace,2
-      bind = SUPER,3,workspace,3
-      bind = SUPER,4,workspace,4
-      bind = SUPER,5,workspace,5
-      bind = SUPER,6,workspace,6
-      bind = SUPER,7,workspace,7
-      bind = SUPER,8,workspace,8
-      bind = SUPER,9,workspace,9
-      bind = SUPER,0,workspace,10
-      bind = SUPER,a,togglespecialworkspace
+            "SUPER,adiaeresis,swapnext"
+            "SUPER,odiaeresis,togglesplit"
 
-      bind = ALT,w,movetoworkspace,+1 # Monitor Num
-      bind = ALT,q,movetoworkspace,-1 # Monitor Num
-      bind = ALT,1,movetoworkspace,1
-      bind = ALT,2,movetoworkspace,2
-      bind = ALT,3,movetoworkspace,3
-      bind = ALT,4,movetoworkspace,4
-      bind = ALT,5,movetoworkspace,5
-      bind = ALT,6,movetoworkspace,6
-      bind = ALT,7,movetoworkspace,7
-      bind = ALT,8,movetoworkspace,8
-      bind = ALT,9,movetoworkspace,9
-      bind = ALT,0,movetoworkspace,10
-      bind = ALT,a,movetoworkspace,special
+            "ALT,Space,togglegroup"
+            "ALT,j,changegroupactive,f"
+            "ALT,k,changegroupactive,b"
+            "ALT,c,togglesplit"
+          ];
 
-      bind = SUPERSHIFT,w,movetoworkspacesilent,+1 # Monitor Num
-      bind = SUPERSHIFT,q,movetoworkspacesilent,-1 # Monitor Num
-      bind = SUPERSHIFT,1,movetoworkspacesilent,1
-      bind = SUPERSHIFT,2,movetoworkspacesilent,2
-      bind = SUPERSHIFT,3,movetoworkspacesilent,3
-      bind = SUPERSHIFT,4,movetoworkspacesilent,4
-      bind = SUPERSHIFT,5,movetoworkspacesilent,5
-      bind = SUPERSHIFT,6,movetoworkspacesilent,6
-      bind = SUPERSHIFT,7,movetoworkspacesilent,7
-      bind = SUPERSHIFT,8,movetoworkspacesilent,8
-      bind = SUPERSHIFT,9,movetoworkspacesilent,9
-      bind = SUPERSHIFT,0,movetoworkspacesilent,10
-      bind = SUPERSHIFT,a,movetoworkspacesilent,special
+        plugin = {
+          harpoon = {
+            select_trigger = "SHIFT,escape";
+            add_trigger = "SUPER,space";
+          };
+        };
+      };
 
-      bind = SUPER,adiaeresis,swapnext
-      bind = SUPER,odiaeresis,togglesplit
-
-      bind = ALT,Space,togglegroup
-      bind = ALT,j,changegroupactive,f
-      bind = ALT,k,changegroupactive,b
-      bind = ALT,c,togglesplit
-
-      bind = SUPERSHIFT,l,exec,hyprlock
-
-      # SUBMAPS
-      # passthrough
-      bind = CTRL,Alt_L,submap,passthrough
+      extraConfig = ''
+        # SUBMAPS
+        bind = CTRL,Alt_L,submap,passthrough
         submap = passthrough
-      bind = CTRL,Alt_L,submap,reset
+        # passthrough
+        bind = CTRL,Alt_L,submap,reset
+        # ~passthrough
         submap = reset
-      # ---
-      #
-      # resize
-      bind = ALT,R,submap,resize
+
+        bind = ALT,R,submap,resize
         submap = resize
+        # resize
+        binde=,h,resizeactive,40 0
+        binde=,l,resizeactive,-40 0
+        binde=,k,resizeactive,0 -40
+        binde=,j,resizeactive,0 40
 
-      binde=,h,resizeactive,40 0
-      binde=,l,resizeactive,-40 0
-      binde=,k,resizeactive,0 -40
-      binde=,j,resizeactive,0 40
-
-      bind = ALT,R,submap,reset
-      bind = ,escape,submap,reset
+        bind = ALT,R,submap,reset
+        bind = ,escape,submap,reset
+        # ~resize
         submap = reset
-
-      plugin {
-        harpoon {
-          select_trigger = SHIFT,escape
-          add_trigger = SUPER,space
-        }
-      }
-    '' + cfg.hyprland.extraConfig;
+      '' + cfg.hyprland.extraConfig;
+    };
 
     services.hypridle = {
       enable = true;
@@ -442,9 +445,6 @@ in
           blur_size = 10;
       }) cfg.gui.monitors);
     };
-
-
-    home.file."media/picture/wal.png".source = ./wal.png;
   };
 }
 

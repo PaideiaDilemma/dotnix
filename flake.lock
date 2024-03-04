@@ -149,11 +149,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708765258,
-        "narHash": "sha256-tIwYaKz3Yu2pgwR8hN8zr4ZU1/7AHd1IAeVkAVUQpRY=",
+        "lastModified": 1709499029,
+        "narHash": "sha256-33XXUL7GxEH290BUKDNpsl0rc7IW9xfZhbnmb8CxUr4=",
         "owner": "PaideiaDilemma",
         "repo": "hyprharpoon",
-        "rev": "e2aa5a001353c6e42b99e63142a3e3d5615a5423",
+        "rev": "8fb1659825852dd84b8836f46ee7c8734a1caa3e",
         "type": "github"
       },
       "original": {
@@ -193,11 +193,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1709132440,
-        "narHash": "sha256-FJB10xJc7tlwhQJ0DA0XRdKuiMxbcBleqoEH+VHmdgU=",
+        "lastModified": 1709491298,
+        "narHash": "sha256-GO98QYKyURXyxxps4RlXoLXaankHWfg7sVL4xItkYt4=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "4bc669f9331bb66ab30bd705d09f1239bc3e83ed",
+        "rev": "063708df26e8b930f492200e1907eb47950f50e6",
         "type": "github"
       },
       "original": {
@@ -307,11 +307,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1709217267,
-        "narHash": "sha256-vnRuNnl3wShw8niURflAPjpmQ2KQ1a1Ft/yg8uPmPiU=",
+        "lastModified": 1709432852,
+        "narHash": "sha256-wqsfM53Lpx0+uFg5M66OWKkNtDIV3kKYkpymgw4r6U0=",
         "owner": "hyprwm",
         "repo": "hyprlock",
-        "rev": "ac757cf7aba53870da09bcc280ad5e32d355587b",
+        "rev": "f9fe60c7eb66c3a5e6ef56b66697de569a8479f4",
         "type": "github"
       },
       "original": {
