@@ -105,7 +105,7 @@ in
         "$purple" = removeHash colors.seven.purple;
 
         input = {
-          "kb_layout"= "de";
+          "kb_layout" = "eu";
           "follow_mouse"= 1;
           "mouse_refocus"= 0;
           #natural_scroll = 0;

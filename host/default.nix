@@ -38,7 +38,7 @@ in
 
     keyMap = mkOption {
       type = types.str;
-      default = "de";
+      default = "us";
       description = "Console keymap";
     };
 

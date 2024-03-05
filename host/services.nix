@@ -46,7 +46,7 @@ in
     # Enable the X11 windowing system.
     services.xserver = {
       enable = cfg.gui.enable;
-      xkb.layout = "de";
+      xkb.layout = "us";
       libinput.enable = true;
     };
 

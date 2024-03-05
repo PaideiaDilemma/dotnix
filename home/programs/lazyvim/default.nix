@@ -8,7 +8,7 @@ let
       owner = "PaideiaDilemma";
       repo = "LazyVim";
       rev = "main";
-      hash = "sha256-0wMIl1QlR9OqjiiIS9LLjDUjZLJaDMFyV+xqjAdRcsU=";
+      hash = "sha256-M00g1iCctFOt1ABSOkhriXtiPLEnMWPR9v+PWVVN7Og=";
     };
     installPhase = ''
       mkdir -p $out/lazyvim
@@ -41,6 +41,7 @@ in
       nodejs
       ripgrep
       unzip
+      jdk17
     ];
 
     xdg.configFile."lazyvim/init.lua" = {
