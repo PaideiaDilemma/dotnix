@@ -52,7 +52,7 @@ in
     terminal = mkOption {
       default = "foot";
       description = "Default terminal emulator";
-      type = types.enum [ "foot" "wezterm" ];
+      type = types.enum [ "foot" ];
     };
 
     ollama.enable = mkOption {

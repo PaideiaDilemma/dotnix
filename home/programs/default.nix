@@ -14,7 +14,6 @@
     ./swaylock
     ./wallrnd
     ./waybar
-    ./wezterm
     ./wlclipmgr
     ./shell
   ];
