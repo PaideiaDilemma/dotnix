@@ -10,8 +10,8 @@ in
 
   services.gpg-agent = {
     enable = cfg.gui.enable;
-    defaultCacheTtl = 600;
-    maxCacheTtl = 10000;
+    defaultCacheTtl = 4800;
+    maxCacheTtl = 20000;
   };
 }
 

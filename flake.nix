@@ -57,7 +57,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       overlays = [
         inputs.nur.overlay
@@ -78,7 +78,7 @@
             ./host ./host/variants/${host}.nix
             home-manager.nixosModules.home-manager
             inputs.nh.nixosModules.default
-              ({ ... }: {
+            ({ ... }: {
               users.users.${username} = {
                 isNormalUser = true;
                 extraGroups = [ "wheel" "networkmanager" "audio" "video" "input" ];
@@ -92,7 +92,7 @@
               home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.${username} = ({ ... }: {
                 imports = [
-                  hyprland.homeManagerModules.default
+                  inputs.hyprland.homeManagerModules.default
                   inputs.hypridle.homeManagerModules.default
                   inputs.hyprlock.homeManagerModules.default
                   ./home
@@ -111,7 +111,7 @@
             inherit inputs;
           };
           modules = [
-            hyprland.homeManagerModules.default
+            inputs.hyprland.homeManagerModules.default
             inputs.hypridle.homeManagerModules.default
             inputs.hyprlock.homeManagerModules.default
             ({ ... }: {
