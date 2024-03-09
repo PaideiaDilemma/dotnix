@@ -326,8 +326,8 @@ in
             "SUPERSHIFT,0,movetoworkspacesilent,10"
             "SUPERSHIFT,a,movetoworkspacesilent,special"
 
-            "SUPER,adiaeresis,swapnext"
-            "SUPER,odiaeresis,togglesplit"
+            "SUPER,semicolon,swapnext"
+            "SUPER,apostrophe,togglesplit"
 
             "ALT,Space,togglegroup"
             "ALT,j,changegroupactive,f"
