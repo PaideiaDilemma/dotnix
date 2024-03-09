@@ -411,13 +411,18 @@ in
           height = 50;
         };
 
+        fail_color = rgbColor colors.six.red;
+        fail_transition = 400;
+
+        fade_timeout = 1500;
+
         rounding = 15;
 
         outline_thickness = 2;
 
-        outer_color = rgbaColor colors.base.sun "0a";
-        inner_color = rgbColor colors.base.sky;
-        font_color = rgbColor colors.base.sun;
+        outer_color = rgbaColor colors.base.sun "a0";
+        inner_color = rgbColor colors.base.sun;
+        font_color = rgbColor colors.base.sky;
 
         dots_size = 0.4;
         dots_spacing = 0.10;
@@ -465,12 +470,12 @@ in
       backgrounds = if (lib.attrNames cfg.gui.monitors == [ ]) then [{
         monitor = "";
         path = "~/media/picture/wal.png";
-        color = "rgba(0,0,0,0.5)";
+        color = rgbColor colors.base.shade;
         blur_passes = 2;
         blur_size = 10;
         }] else (mapAttrsToList (name: monitor: {
           monitor = name;
-          path = "~/media/picture/wal${name}.png";
+          path = "~/media//picture/wal${name}.png";
           color = rgbColor colors.base.shade;
           blur_passes = 2;
           blur_size = 10;
