@@ -141,8 +141,8 @@ in
           gaps_in = 4;
           gaps_out = 5;
           border_size = 1;
-          "col.active_border" = "0xff$sun";
-          "col.inactive_border" = "0xa0$sky";
+          "col.active_border" = rgbColor colors.base.sun;
+          "col.inactive_border" = rgbaColor colors.base.sky "a0";
           apply_sens_to_raw = 0; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
         };
 
