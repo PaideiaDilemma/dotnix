@@ -94,7 +94,7 @@ in
         "$sky" = rgbColor colors.base.sky;
         "$sky_m" = rgbColor colors.base.sky_;
         "$shade_p" = rgbColor colors.base.shade';
-        "$shafe" = rgbColor colors.base.shade;
+        "$shade" = rgbColor colors.base.shade;
         "$shade_m" = rgbColor colors.base.shade_;
         "$red" = rgbColor colors.seven.red;
         "$orange" = rgbColor colors.seven.orange;
