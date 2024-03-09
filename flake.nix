@@ -123,7 +123,7 @@
     {
       nixosConfigurations = {
         vm = mkNixos "vm1" "default" "generic" "max" "x86_64-linux";
-        iso = mkNixos "none" "default" "generic" "max" "x86_64-linux";
+        #iso = mkNixos "none" "default" "generic" "max" "x86_64-linux";
 
         laptop = mkNixos "laptop" "default" "laptop" "max" "x86_64-linux";
         desktop = mkNixos "desktop" "desktop" "desktop" "max" "x86_64-linux";

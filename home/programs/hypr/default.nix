@@ -3,8 +3,8 @@ with lib;
 let
   cfg = config.hyprhome;
   colors = config.colors;
-  removeHash = str: removePrefix "#" str;
-  concatStringMapAttrs = f: attrset: lib.concatStringsSep "\n" (lib.attrValues (lib.mapAttrs f attrset));
+  rgbColor = hexcolor: "rgb(${removePrefix "#" hexcolor})";
+  rgbaColor = hexcolor: alpha: "rgba(${removePrefix "#" hexcolor}${alpha})";
 
   hyprsetwallpaper = pkgs.stdenv.mkDerivation {
     name = "hyprsetwallpaper";
@@ -87,22 +87,22 @@ in
 
       settings = {
         "$terminal" = cfg.hyprland.terminal;
-        "$sun_p" = removeHash colors.base.sun';
-        "$sun" = removeHash colors.base.sun;
-        "$sun_m" = removeHash colors.base.sun_;
-        "$sky_p" = removeHash colors.base.sky';
-        "$sky" = removeHash colors.base.sky;
-        "$sky_m" = removeHash colors.base.sky_;
-        "$shade_p" = removeHash colors.base.shade';
-        "$shafe" = removeHash colors.base.shade;
-        "$shade_m" = removeHash colors.base.shade_;
-        "$red" = removeHash colors.seven.red;
-        "$orange" = removeHash colors.seven.orange;
-        "$yellow" = removeHash colors.seven.yellow;
-        "$green" = removeHash colors.seven.green;
-        "$cyan" = removeHash colors.seven.cyan;
-        "$blue" = removeHash colors.seven.blue;
-        "$purple" = removeHash colors.seven.purple;
+        "$sun_p" = rgbColor colors.base.sun';
+        "$sun" = rgbColor colors.base.sun;
+        "$sun_m" = rgbColor colors.base.sun_;
+        "$sky_p" = rgbColor colors.base.sky';
+        "$sky" = rgbColor colors.base.sky;
+        "$sky_m" = rgbColor colors.base.sky_;
+        "$shade_p" = rgbColor colors.base.shade';
+        "$shafe" = rgbColor colors.base.shade;
+        "$shade_m" = rgbColor colors.base.shade_;
+        "$red" = rgbColor colors.seven.red;
+        "$orange" = rgbColor colors.seven.orange;
+        "$yellow" = rgbColor colors.seven.yellow;
+        "$green" = rgbColor colors.seven.green;
+        "$cyan" = rgbColor colors.seven.cyan;
+        "$blue" = rgbColor colors.seven.blue;
+        "$purple" = rgbColor colors.seven.purple;
 
         input = {
           "kb_layout" = "eu";
@@ -265,8 +265,8 @@ in
             #"SUPERSHIFT,R,exec,wlclipmgr restore -i \"$(wlclipmgr list -l 100 | tofi --include $tofi_theme | awk '{print $1}')\""
 
             # Window Manager
+            "SUPER,C,killactive,"
             "SUPERSHIFT,C,killactive"
-            "SUPERSHIFT,C,killactive,"
             "SUPERSHIFT,Space,togglefloating,"
             "SUPER,P,pseudo,"
             "SUPER,M,fullscreen,"
@@ -394,20 +394,35 @@ in
 
     programs.hyprlock = {
       enable = true;
+      general = {
+        grace = 5;
+        hide_cursor = true;
+        no_fade_in = true;
+      };
+
       input-fields = [{
         monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         position = {
           x = 0;
-          y = -50;
+          y = -20;
         };
         size = {
           width = 200;
           height = 50;
         };
+
+        rounding = 15;
+
         outline_thickness = 2;
-        outer_color = "0x0a${removeHash colors.base.sun}";
-        inner_color = "0xff${removeHash colors.base.sky}";
-        font_color = "0xff${removeHash colors.base.sun}";
+
+        outer_color = rgbaColor colors.base.sun "0a";
+        inner_color = rgbColor colors.base.sky;
+        font_color = rgbColor colors.base.sun;
+
+        dots_size = 0.4;
+        dots_spacing = 0.10;
+        dots_rounding = -2;
+
         placeholder_text = "Enter password";
 
         halign = "center";
@@ -418,28 +433,45 @@ in
         monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         position = {
           x = 0;
-          y = 100;
+          y = 80;
         };
 
         text = "$TIME";
-        color = "0xff${removeHash colors.base.sun}";
+        color = rgbColor colors.base.sun;
         font_size = 25;
         font_family = "Noto Sans";
 
         halign = "center";
         valign = "center";
-      }];
+      } {
+        monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+        text = "cmd[update:4000] date '+%A %d %B %Y'";
+        color = rgbColor colors.base.sky';
+        position = {
+          x = 0;
+          y = 120;
+        };
+      } {
+        monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+        text = "cmd[update:4000] date '+%A %d %B %Y'";
+        color = rgbColor colors.base.sky';
+        position = {
+          x = 0;
+          y = 120;
+        };
+      }
+      ];
 
       backgrounds = if (lib.attrNames cfg.gui.monitors == [ ]) then [{
         monitor = "";
-        path = "/home/max/media/picture/wal.png";
-        color = "0xff${removeHash colors.base.shade}";
+        path = "~/media/picture/wal.png";
+        color = "rgba(0,0,0,0.5)";
         blur_passes = 2;
         blur_size = 10;
         }] else (mapAttrsToList (name: monitor: {
           monitor = name;
-          path = "/home/max/media/picture/wal${name}.png";
-          color = "0xff${removeHash colors.base.shade}";
+          path = "~/media/picture/wal${name}.png";
+          color = rgbColor colors.base.shade;
           blur_passes = 2;
           blur_size = 10;
       }) cfg.gui.monitors);

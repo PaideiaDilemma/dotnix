@@ -57,10 +57,10 @@ in
       gnupg.agent.enable = true;
       virt-manager.enable = cfg.gui.enable;
       dconf.enable = true;
-      hyprland = lib.mkIf (cfg.hyprland.enable) {
+      /*hyprland = lib.mkIf (cfg.hyprland.enable) {
         enable = true;
         package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      };
+      };*/
       steam.enable = (cfg.steam.enable && cfg.gui.enable);
     };
 
@@ -79,6 +79,7 @@ in
 
     xdg.portal = {
       enable = cfg.gui.enable;
+      xdgOpenUsePortal = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
 
