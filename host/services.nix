@@ -18,7 +18,7 @@ in
       settings = rec {
         hyprland_session = {
           user = "max";
-          command = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
+          command = "$SHELL -l -c ${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
         };
         shell_session = {
           user = "max";
