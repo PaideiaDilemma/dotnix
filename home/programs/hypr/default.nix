@@ -120,7 +120,6 @@ in
           "wlclipmgr watch --block \"password store sleep:2\""
           "kdeconnect-indicator"
           "nm-applet"
-          "hypridle"
         ];
 
         #monitor=",1920x1080,auto,1";
@@ -370,16 +369,16 @@ in
     services.hypridle = {
       enable = true;
 
-      lockCmd = "hyprlock";
+      lockCmd = "pidof hyprlock || ${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/hyprlock";
       #unlock_cmd = notify-send "Unlock cmd"
-      beforeSleepCmd = "chayang -g 7 && hyprlock";
+      beforeSleepCmd = "loginctl lock-session";
       #after_resume_cmd = notify-send "After resume cmd"
-      ignoreDbusInhibit = false;
+      ignoreDbusInhibit = true;
 
       listeners = [
         {
           timeout = 300;
-          onTimeout = "chayang -g 7 && hyprlock";
+          onTimeout = "pidof hyprlock || ${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/hyprlock";
         }
         {
           timeout = 800;
@@ -414,7 +413,7 @@ in
         fail_color = rgbColor colors.six.red;
         fail_transition = 400;
 
-        fade_timeout = 1500;
+        fade_timeout = 2500;
 
         rounding = 15;
 
@@ -441,7 +440,8 @@ in
           y = 80;
         };
 
-        text = "$TIME";
+        #text = "$TIME";
+        text = "cmd[update:1000] ${pkgs.coreutils}/bin/date '+%H:%M:%S'";
         color = rgbColor colors.base.sun;
         font_size = 25;
         font_family = "Noto Sans";
@@ -450,15 +450,7 @@ in
         valign = "center";
       } {
         monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
-        text = "cmd[update:4000] date '+%A %d %B %Y'";
-        color = rgbColor colors.base.sky';
-        position = {
-          x = 0;
-          y = 120;
-        };
-      } {
-        monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
-        text = "cmd[update:4000] date '+%A %d %B %Y'";
+        text = "cmd[update:10000] ${pkgs.coreutils}/bin/date '+%A %d %B %Y'";
         color = rgbColor colors.base.sky';
         position = {
           x = 0;
@@ -475,7 +467,7 @@ in
         blur_size = 10;
         }] else (mapAttrsToList (name: monitor: {
           monitor = name;
-          path = "~/media//picture/wal${name}.png";
+          path = "~/media/picture/wal${name}.png";
           color = rgbColor colors.base.shade;
           blur_passes = 2;
           blur_size = 10;
