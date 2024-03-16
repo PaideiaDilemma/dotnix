@@ -385,8 +385,8 @@ in
           onTimeout = "systemctl suspend";
         }
         {
-          timeout = 20;
-          onTimeout = "hyprsetwallpaper -g -c";
+          timeout = 100;
+          onTimeout = "PATH=$PATH:/etc/profiles/per-user/max/bin ${hyprsetwallpaper}/bin/hyprsetwallpaper -g -c";
         }
       ];
     };
@@ -397,6 +397,7 @@ in
         grace = 5;
         hide_cursor = true;
         no_fade_in = true;
+        no_fade_out = true;
       };
 
       input-fields = [{
@@ -437,13 +438,13 @@ in
         monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         position = {
           x = 0;
-          y = 80;
+          y = 100;
         };
 
-        #text = "$TIME";
-        text = "cmd[update:1000] ${pkgs.coreutils}/bin/date '+%H:%M:%S'";
+        text = "$TIME";
+        #text = "<b>$TIME_HH</b><span foreground=\"#${colors.base.sky}\">:</span><b>$TIME_MM</b><span style=\"smallest\" foreground=\"#${colors.base.sky}\">:</span><b>$TIME_SS</b>";
         color = rgbColor colors.base.sun;
-        font_size = 25;
+        font_size = 40;
         font_family = "Noto Sans";
 
         halign = "center";
@@ -451,10 +452,12 @@ in
       } {
         monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         text = "cmd[update:10000] ${pkgs.coreutils}/bin/date '+%A %d %B %Y'";
-        color = rgbColor colors.base.sky';
+        color = rgbaColor colors.base.sky' "A0";
+        font_size = 24;
+        font_family = "Noto Sans";
         position = {
           x = 0;
-          y = 120;
+          y = 140;
         };
       }
       ];
