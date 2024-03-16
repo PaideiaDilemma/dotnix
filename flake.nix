@@ -59,6 +59,7 @@
         inputs.poetry2nix.overlays.default
         (import ./overlays/pear-white-cursors.nix)
         (import ./overlays/pwn-overlay.nix)
+        (import ./overlays/qtimageformats-overlay.nix)
       ];
 
       mkNixos = hardware: host: homeVariant: username: system:
