@@ -14,9 +14,24 @@ in
   };
 
   config = mkIf (cfg.gui.enable && cfg.kdeApplications.enable) {
-    home.packages = (with pkgs.libsForQt5; [
-      kdegraphics-thumbnailers
+    home.packages = (with pkgs.kdePackages; [
+      qtsvg
+      breeze-icons
       dolphin
+      dolphin-plugins
+      ffmpegthumbs
+      gwenview
+      kdegraphics-thumbnailers
+      kiconthemes
+      kimageformats
+      kio-extras
+      kwayland
+      layer-shell-qt
+      qtimageformats
+      qtpbfimageplugin
+      qtwayland
+      wayland
+      wayland-protocols
     ]);
 
     services.kdeconnect.enable = true;
@@ -27,6 +42,9 @@ in
 
       [Colors:View]
       BackgroundNormal=${colors.base.shade}
+
+      [Icons]
+      Theme=Penumbra
     '';
   };
 }

@@ -8,8 +8,8 @@ let
     src = fetchFromGitHub {
       owner = "themix-project";
       repo = "themix-gui";
-      rev = "1.15.1";
-      hash = "sha256-xFtwNx1c7Atb+9yorZhs/uVkkoxbZiELJ0SZ88L7KMs=";
+      rev = "b93f737d8c3ec126b9d5fab399b1c96c25b9d6d3";
+      hash = "sha256-xu/5UuBbaqhwX3wNvx2H7O+HLYtLlnB/D0sQ+28AbA4=";
       fetchSubmodules = true;
     };
 
@@ -97,7 +97,7 @@ let
     '';
 
     nativeBuildInputs = [ glib libxml2 bc ];
-    buildInputs = [ gnome3.gnome-themes-extra gdk-pixbuf librsvg pkgs.sassc pkgs.inkscape pkgs.optipng ];
+    buildInputs = [ gnome3.gnome-themes-extra gdk-pixbuf librsvg pkgs.sassc pkgs.inkscape pkgs.optipng fontconfig ];
     propagatedUserEnvPkgs = [ gtk-engine-murrine ];
     inherit installPhase;
   };

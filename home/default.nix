@@ -120,7 +120,7 @@ in
       webcord
       wlr-randr
 
-    ]) ++ optionals (cfg.gui.enable) (with pkgs.libsForQt5; [
+    ]) ++ optionals (cfg.gui.enable) (with pkgs.kdePackages; [
 
       # KDE Applications
       kdenlive
