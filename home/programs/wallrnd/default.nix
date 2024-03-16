@@ -10,8 +10,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "PaideiaDilemma";
       repo = "wallrnd";
-      rev = "6a1489323d666f3d2cb72c9a19d8f6637170dc34";
-      sha256 = "sha256-jiW5qQ0l+YMvUPbHITkaNqW3ioPw9rk+1lTv7YcMJJg=";
+      rev = "master";
+      sha256 = "sha256-SBShTQzals9nEXgBXBpc1dOtWuVbOAXS9xBD+3VSSOU=";
     };
 
     cargoHash = "sha256-6Rj42QW/FgNX2EOFIlvc2HzuiQ8CmCBH7Xu0IGSudN8=";
