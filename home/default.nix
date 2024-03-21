@@ -102,17 +102,18 @@ in
     ]) ++ optionals (cfg.gui.enable) (with pkgs; [
 
       # Graphical Applications
+      #cutter
+      #cutterPlugins.rz-ghidra
       bottles
       burpsuite
       chromium
-      #cutter
-      #cutterPlugins.rz-ghidra
       ghidra
       inkscape
       krita
-      libreoffice
       libnotify.out
+      libreoffice
       nwg-look
+      obs-studio
       spotify
       thunderbird
       vlc

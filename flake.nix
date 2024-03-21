@@ -60,6 +60,7 @@
         (import ./overlays/pear-white-cursors.nix)
         (import ./overlays/pwn-overlay.nix)
         (import ./overlays/qtimageformats-overlay.nix)
+        (import ./overlays/waybar-overlay.nix)
       ];
 
       mkNixos = hardware: host: homeVariant: username: system:
