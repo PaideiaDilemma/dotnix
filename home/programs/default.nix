@@ -9,6 +9,7 @@
     ./kde
     ./lazyvim
     ./mako
+    ./obs
     ./python
     ./rofi
     ./swaylock

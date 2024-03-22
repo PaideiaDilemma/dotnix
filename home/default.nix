@@ -113,7 +113,6 @@ in
       libnotify.out
       libreoffice
       nwg-look
-      obs-studio
       spotify
       thunderbird
       vlc
