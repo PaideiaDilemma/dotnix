@@ -14,6 +14,7 @@
     ./rofi
     ./swaylock
     ./wallrnd
+    ./way-displays
     ./waybar
     ./wlclipmgr
     ./shell
