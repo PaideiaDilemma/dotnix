@@ -409,14 +409,14 @@ in
         };
         size = {
           width = 250;
-          height = 70;
+          height = 50;
         };
 
         fade_timeout = 2500;
 
         rounding = 15;
 
-        outline_thickness = 2;
+        outline_thickness = 4;
 
         fail_color = rgbColor colors.six.red;
         fail_transition = 400;

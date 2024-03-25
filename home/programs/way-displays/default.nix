@@ -28,6 +28,7 @@ MODE:
     Unit = {
       Description = "Way Displays daemon";
       PartOf = ["graphical-session.target"];
+      Requires = ["graphical-session.target"];
     };
     Service = {
       ExecStart = "${pkgs.way-displays}/bin/way-displays -c '${config.xdg.configHome}/hypr/way-displays.cfg.yaml' > '/tmp/way-displays.hmmm.log'";
