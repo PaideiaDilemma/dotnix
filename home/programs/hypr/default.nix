@@ -69,6 +69,7 @@ in
     ];
 
     home.file."media/picture/wal.png".source = ./wal.png;
+    home.file."media/picture/avatar.png".source = ./avatar.png;
 
     systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 
@@ -394,7 +395,7 @@ in
     programs.hyprlock = {
       enable = true;
       general = {
-        grace = 5;
+        grace = 0;
         hide_cursor = true;
         no_fade_in = true;
         no_fade_out = true;
@@ -404,15 +405,12 @@ in
         monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         position = {
           x = 0;
-          y = -20;
+          y = -50;
         };
         size = {
-          width = 200;
-          height = 50;
+          width = 250;
+          height = 70;
         };
-
-        fail_color = rgbColor colors.six.red;
-        fail_transition = 400;
 
         fade_timeout = 2500;
 
@@ -420,9 +418,13 @@ in
 
         outline_thickness = 2;
 
+        fail_color = rgbColor colors.six.red;
+        fail_transition = 400;
+
         outer_color = rgbaColor colors.base.sun "a0";
         inner_color = rgbColor colors.base.sun;
         font_color = rgbColor colors.base.sky;
+        capslock_color = rgbColor colors.six.red;
 
         dots_size = 0.4;
         dots_spacing = 0.10;
@@ -438,7 +440,7 @@ in
         monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         position = {
           x = 0;
-          y = 100;
+          y = 60;
         };
 
         text = "$TIME";
@@ -457,24 +459,32 @@ in
         font_family = "Noto Sans";
         position = {
           x = 0;
-          y = 140;
+          y = 85;
         };
-      }
-      ];
+      }];
 
-      backgrounds = if (lib.attrNames cfg.gui.monitors == [ ]) then [{
+      images = [{
+        monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+        path = "~/media/picture/avatar.png";
+        size = 150;
+        rounding = 20;
+
+        position = {
+          x = 0;
+          y = 250;
+        };
+
+        halign = "center";
+        valign = "center";
+      }];
+
+      backgrounds = [{
         monitor = "";
-        path = "~/media/picture/wal.png";
+        path = "screenshot";
         color = rgbColor colors.base.shade;
         blur_passes = 2;
         blur_size = 10;
-        }] else (mapAttrsToList (name: monitor: {
-          monitor = name;
-          path = "~/media/picture/wal${name}.png";
-          color = rgbColor colors.base.shade;
-          blur_passes = 2;
-          blur_size = 10;
-      }) cfg.gui.monitors);
+      }];
     };
   };
 }
