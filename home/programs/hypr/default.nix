@@ -129,7 +129,7 @@ in
         ) cfg.gui.monitors) ++ [",preferred,auto,1"];
 
         workspace = (mapAttrsToList (name: monitor:
-          "${name},${monitor.initalWorkspace}"
+          "${name},m[${monitor.initalWorkspace}]"
         ) cfg.gui.monitors);
 
         exec = (mapAttrsToList (name: monitor:
