@@ -23,6 +23,7 @@ in
     - Samsung Electric Company U28D590
     - 'Philips Consumer Electronics Company PHL 275V8 UK\d+'
     - '!.*$'
+    - 'HDMI-A-1'
     - 'eDP-1'
   SCALE:
     - NAME_DESC: Najing CEC Panda FPD Technology CO. ltd 0x0050
