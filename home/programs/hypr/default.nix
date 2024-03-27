@@ -116,7 +116,6 @@ in
         exec-once = [
           "waybar"
           "swww init"
-          "hyprctl setcursor PearWhiteCursors 24"
           "wlsunset -l 48.2, -L 16.3 -t 4800"
           "wlclipmgr watch --block \"password store sleep:2\""
           "kdeconnect-indicator"
@@ -129,7 +128,7 @@ in
         ) cfg.gui.monitors) ++ [",preferred,auto,1"];
 
         workspace = (mapAttrsToList (name: monitor:
-          "${name},m[${monitor.initalWorkspace}]"
+          "${monitor.initalWorkspace},monitor:${name},default:true,persistent:true"
         ) cfg.gui.monitors);
 
         exec = (mapAttrsToList (name: monitor:
@@ -399,13 +398,14 @@ in
         hide_cursor = true;
         no_fade_in = true;
         no_fade_out = true;
+        #ignore_empty_input = true;
       };
 
       input-fields = [{
         monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         position = {
           x = 0;
-          y = -50;
+          y = -20;
         };
         size = {
           width = 250;
@@ -440,7 +440,7 @@ in
         monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         position = {
           x = 0;
-          y = 60;
+          y = 100;
         };
 
         text = "$TIME";
@@ -459,24 +459,24 @@ in
         font_family = "Noto Sans";
         position = {
           x = 0;
-          y = 85;
+          y = 125;
         };
       }];
 
-      images = [{
+      /*images = [{
         monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         path = "~/media/picture/avatar.png";
-        size = 150;
+        size = 50;
         rounding = 20;
 
         position = {
           x = 0;
-          y = 250;
+          y = 10;
         };
 
         halign = "center";
-        valign = "center";
-      }];
+        valign = "bottom";
+      }];*/
 
       backgrounds = [{
         monitor = "";
