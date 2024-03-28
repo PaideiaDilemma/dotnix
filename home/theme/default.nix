@@ -14,12 +14,12 @@ in
     home.pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
-      name = "PearWhiteCursors";
-      package = pkgs.pearWhiteCursors;
+      name = "DeepinV20XCursors";
+      package = pkgs.deepinV20XCursors;
       size = 16;
     };
 
-    home.packages = [pkgs.pearWhiteCursors];
+    home.packages = [pkgs.deepinV20XCursors];
 
     gtk = {
       enable = true;
@@ -34,8 +34,8 @@ in
       };
 
       cursorTheme = {
-        name = "PearWhiteCursors";
-        package = pkgs.pearWhiteCursors;
+        name = "DeepinV20XCursors";
+        package = pkgs.deepinV20XCursors;
       };
     };
 

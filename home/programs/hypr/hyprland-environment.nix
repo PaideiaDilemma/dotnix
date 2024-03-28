@@ -26,6 +26,8 @@ in
       XDG_SESSION_TYPE = "wayland";
       PASSWORD_STORE_DIR = "$HOME/.config/pass";
 
+      HYPRCURSOR_THEME = "DeepinV20HyprCursors";
+      HYPRCURSOR_SIZE = "32";
       #__GLX_VENDOR_LIBRARY_NAME= "nvidia";
       #LIBVA_DRIVER_NAME= "nvidia"; # hardware acceleration
       #__GL_VRR_ALLOWED="1";

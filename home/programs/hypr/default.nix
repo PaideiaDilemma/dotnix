@@ -56,6 +56,7 @@ in
   config = mkIf (cfg.gui.enable && cfg.hyprland.enable) {
     home.packages = with pkgs; [
       chayang
+      deepinV20HyprCursors
       grim
       hyprpicker
       hyprsetwallpaper
@@ -70,6 +71,7 @@ in
 
     home.file."media/picture/wal.png".source = ./wal.png;
     home.file."media/picture/avatar.png".source = ./avatar.png;
+    home.file.".icons/DeepinV20HyprCursors".source = "${pkgs.deepinV20HyprCursors}/share/icons/DeepinV20HyprCursors";
 
     systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 

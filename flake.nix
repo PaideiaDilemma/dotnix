@@ -37,7 +37,7 @@
     };
 
     hyprlock = {
-      url = "github:hyprwm/hyprlock";
+      url = "github:PaideiaDilemma/hyprlock/remove-stray-keyevent-checks";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -57,7 +57,7 @@
       overlays = [
         inputs.nur.overlay
         inputs.poetry2nix.overlays.default
-        (import ./overlays/pear-white-cursors.nix)
+        (import ./overlays/deepin-cursors.nix)
         (import ./overlays/pwn-overlay.nix)
         (import ./overlays/qtimageformats-overlay.nix)
         (import ./overlays/waybar-overlay.nix)
