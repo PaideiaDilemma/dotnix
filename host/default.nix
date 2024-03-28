@@ -7,6 +7,7 @@ in
   imports = [
     ./fonts.nix
     ./virtualisation.nix
+    ./network.nix
     ./services.nix
     ../colors/penumbra.nix
   ];
@@ -52,6 +53,7 @@ in
   config = {
     programs = {
       git.enable = true;
+      adb.enable = true;
       zsh.enable = true;
       nix-ld.enable = true;
       gnupg.agent.enable = true;
@@ -98,8 +100,6 @@ in
       loader.efi.canTouchEfiVariables = true;
     };
 
-    networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-
     # Set your time zone.
     time.timeZone = "Europe/Vienna";
 
@@ -108,11 +108,6 @@ in
       memoryPercent = 100;
     };
 
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
     console = {
       colors = config.colors.console;
@@ -145,18 +140,6 @@ in
     security.polkit.enable = true;
     security.pam.services.swaylock = {};
     security.pam.services.hyprlock = {};
-
-    # List services that you want to enable:
-
-    networking.firewall = {
-      enable = true;
-      allowedTCPPortRanges = [
-        { from = 1714; to = 1764; } # KDE Connect
-      ];
-      allowedUDPPortRanges = [
-        { from = 1714; to = 1764; } # KDE Connect
-      ];
-    };
 
     nix.gc = {
       automatic = true;
