@@ -10,8 +10,6 @@ in
       BROWSER = "firefox";
       TERMINAL = "${cfg.terminal}";
 
-      WLR_RENDERER = "vulkan";
-
       _JAVA_AWT_WM_NONREPARENTING = "1";
 
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
