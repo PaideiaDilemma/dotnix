@@ -37,7 +37,7 @@
     };
 
     hyprlock = {
-      url = "github:PaideiaDilemma/hyprlock/remove-stray-keyevent-checks";
+      url = "github:PaideiaDilemma/hyprlock/full-pam-conversation";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -60,7 +60,6 @@
         (import ./overlays/deepin-cursors.nix)
         (import ./overlays/pwn-overlay.nix)
         (import ./overlays/qtimageformats-overlay.nix)
-        (import ./overlays/waybar-overlay.nix)
       ];
 
       mkNixos = hardware: host: homeVariant: username: system:

@@ -68,7 +68,7 @@ in
       pyserial
       python-dateutil
       requests
-      rpyc
+      #rpyc
       tox
       unicorn
       intervaltree

@@ -34,7 +34,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "libtiff";
     repo = "libtiff";
     rev = "master";
-    hash = "sha256-xM9sNZibXGxK0Zp1k7VP2+gatx2qojlUN13oziyFbPM=";
+    hash = "sha256-KdEPcoUi6fCq8gNcdQhHiDWVxhW24kz2FkXglt2OQ3k=";
   };
 
   patches = [
