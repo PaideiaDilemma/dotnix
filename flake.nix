@@ -60,6 +60,7 @@
         (import ./overlays/deepin-cursors.nix)
         (import ./overlays/pwn-overlay.nix)
         (import ./overlays/qtimageformats-overlay.nix)
+        (import ./overlays/scripts-overlay.nix)
       ];
 
       mkNixos = hardware: host: homeVariant: username: system:

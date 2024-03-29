@@ -5,19 +5,6 @@ let
   colors = config.colors;
   rgbColor = hexcolor: "rgb(${removePrefix "#" hexcolor})";
   rgbaColor = hexcolor: alpha: "rgba(${removePrefix "#" hexcolor}${alpha})";
-
-  hyprsetwallpaper = pkgs.stdenv.mkDerivation {
-    name = "hyprsetwallpaper";
-    dontUnpack = true;
-    buildInputs = [
-      (pkgs.python3.withPackages (ps: with ps; [
-        pillow
-      ]))
-    ];
-    installPhase = ''
-      install -Dm755 ${./hyprsetwallpaper.py} $out/bin/hyprsetwallpaper
-    '';
-  };
 in
 {
   imports = [
@@ -388,7 +375,7 @@ in
         }
         {
           timeout = 100;
-          onTimeout = "PATH=$PATH:/etc/profiles/per-user/max/bin ${hyprsetwallpaper}/bin/hyprsetwallpaper -g -c";
+          onTimeout = "PATH=$PATH:/etc/profiles/per-user/max/bin ${pkgs.hyprsetwallpaper}/bin/hyprsetwallpaper -g -c";
         }
       ];
     };
