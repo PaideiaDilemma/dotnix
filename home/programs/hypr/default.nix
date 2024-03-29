@@ -391,7 +391,7 @@ in
       };
 
       input-fields = [{
-        monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+        monitor = "";#if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         position = {
           x = 0;
           y = -20;
@@ -426,7 +426,7 @@ in
       }];
 
       labels = [{
-        monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+        monitor = "";#if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         position = {
           x = 0;
           y = 100;
@@ -441,7 +441,7 @@ in
         halign = "center";
         valign = "center";
       } {
-        monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+        monitor = "";#if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
         text = "cmd[update:10000] ${pkgs.coreutils}/bin/date '+%A %d %B %Y'";
         color = rgbaColor colors.base.sky' "A0";
         font_size = 24;
