@@ -1,5 +1,9 @@
-{ pkgs, lib, inputs, ... }:
 {
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   home.packages = [
     (pkgs.python311.withPackages (pip: [
       inputs.los-nixpkgs.packages.${pkgs.system}.pwntools

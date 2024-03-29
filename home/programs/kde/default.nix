@@ -1,10 +1,13 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.hyprhome;
   colors = config.colors;
-in
-{
+in {
   options.hyprhome.kdeApplications = {
     enable = mkOption {
       default = true;
@@ -14,7 +17,7 @@ in
   };
 
   config = mkIf (cfg.gui.enable && cfg.kdeApplications.enable) {
-    home.packages = (with pkgs.kdePackages; [
+    home.packages = with pkgs.kdePackages; [
       qtsvg
       breeze-icons
       dolphin
@@ -32,7 +35,7 @@ in
       qtwayland
       wayland
       wayland-protocols
-    ]);
+    ];
 
     services.kdeconnect.enable = true;
 
@@ -48,6 +51,3 @@ in
     '';
   };
 }
-
-
-

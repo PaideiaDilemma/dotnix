@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.hyprhome;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.hyprhome;
+in {
   options.hyprhome.way-displays = {
     enable = mkOption {
       default = true;
@@ -13,30 +16,32 @@ in
   };
   config = mkIf (cfg.way-displays.enable) {
     xdg.configFile."hypr/way-displays.cfg.yaml".text = ''
-  ARRANGE: COLUMN
-  ALIGN: MIDDLE
-  SCALING: TRUE
-  AUTO_SCALE: FALSE
-  ORDER:
-    - Samsung Electric Company S22D300 0x30333635
-    - LG Electronics LG ULTRAGEAR 110MASXPXJ78
-    - Samsung Electric Company U28D590
-    - 'Philips Consumer Electronics Company PHL 275V8 UK\d+'
-    - '!.*$'
-    - 'HDMI-A-1'
-    - 'eDP-1'
-  SCALE:
-    - NAME_DESC: Najing CEC Panda FPD Technology CO. ltd 0x0050
-      SCALE: 1.25
-    - NAME_DESC: InfoVision Optoelectronics (Kunshan) Co.,Ltd China 0x34D1
-      SCALE: 1.25
-    - NAME_DESC: 'Iiyama North America PL2783Q 1142965003433'
-      SCALE: 1.25
-  MODE:
-    - NAME_DESC: 'Philips Consumer Electronics Company PHL 275V8 UK\d+'
-      MAX: TRUE
-  VRR_OFF:
-    - 'eDP-1'
+      ARRANGE: COLUMN
+      ALIGN: MIDDLE
+      SCALING: TRUE
+      AUTO_SCALE: FALSE
+      ORDER:
+        - Samsung Electric Company S22D300 0x30333635
+        - LG Electronics LG ULTRAGEAR 110MASXPXJ78
+        - Samsung Electric Company U28D590
+        - 'Philips Consumer Electronics Company PHL 275V8 UK\d+'
+        - '!.*$'
+        - 'HDMI-A-1'
+        - 'eDP-1'
+      SCALE:
+        - NAME_DESC: Najing CEC Panda FPD Technology CO. ltd 0x0050
+          SCALE: 1.25
+        - NAME_DESC: InfoVision Optoelectronics (Kunshan) Co.,Ltd China 0x34D1
+          SCALE: 1.25
+        - NAME_DESC: 'Iiyama North America PL2783Q 1142965003433'
+          SCALE: 1.25
+      MODE:
+        - NAME_DESC: 'Philips Consumer Electronics Company PHL 275V8 UK\d+'
+          MAX: TRUE
+      VRR_OFF:
+        - 'eDP-1'
+      ON_CHANGE_CMD: 'PATH=$PATH:/etc/profiles/per-user/max/bin ${pkgs.libnotify}/bin/notify-send "Monitors changed" && ${pkgs.procps}/bin/pgrep -f hyprsetwallpaper ||  ${pkgs.hyprsetwallpaper}/bin/hyprsetwallpaper -g -c'
+      #ON_CHANGE_CMD: ${pkgs.libnotify}/bin/notify-send 'Monitors changed'
     '';
 
     home.packages = with pkgs; [

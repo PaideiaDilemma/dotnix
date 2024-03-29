@@ -1,9 +1,13 @@
-{ inputs, config, lib,  pkgs, ... }:
-with lib;
-let
-  cfg = config.host;
-in
 {
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.host;
+in {
   options.host = {
     openssh.enable = mkOption {
       type = types.bool;
@@ -25,7 +29,10 @@ in
           command = "$SHELL -l";
         };
 
-        default_session = if (cfg.hyprland.enable) then hyprland_session else shell_session;
+        default_session =
+          if (cfg.hyprland.enable)
+          then hyprland_session
+          else shell_session;
       };
     };
 

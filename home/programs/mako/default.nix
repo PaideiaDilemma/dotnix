@@ -1,10 +1,13 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.hyprhome;
   colors = config.colors;
-in
-{
+in {
   options.hyprhome.mako = {
     enable = mkOption {
       default = true;

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   hyprhome = {
     gui = {
       enable = true;

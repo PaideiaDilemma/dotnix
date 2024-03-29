@@ -1,9 +1,13 @@
-{ inputs, config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.hyprhome;
-in
 {
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.hyprhome;
+in {
   imports = [
     ../colors/penumbra.nix
     ./programs
@@ -21,7 +25,7 @@ in
 
       monitors = mkOption {
         type = types.attrsOf (types.attrsOf (types.str));
-        default = { };
+        default = {};
       };
 
       primaryMonitor = mkOption {
@@ -52,7 +56,7 @@ in
     terminal = mkOption {
       default = "foot";
       description = "Default terminal emulator";
-      type = types.enum [ "foot" ];
+      type = types.enum ["foot"];
     };
 
     ollama.enable = mkOption {
@@ -69,67 +73,64 @@ in
       enableDebugInfo = false;
     };
 
-    home.packages = (with pkgs; [
-
-      # Terminal Applications
-      appimage-run
-      btop
-      catimg
-      cryptsetup
-      curl
-      distrobox
-      file
-      gnumake
-      grim
-      imv
-      jq
-      mako
-      man-pages
-      man-pages-posix
-      mpv-unwrapped
-      pass-wayland
-      pavucontrol
-      rofi-wayland
-      rustup
-      scrcpy
-      slurp
-      sqlite
-      wget
-      wl-clipboard
-
-    ]) ++ optionals (cfg.ollama.enable) (with pkgs; [
-      ollama
-    ]) ++ optionals (cfg.gui.enable) (with pkgs; [
-
-      # Graphical Applications
-      #cutter
-      #cutterPlugins.rz-ghidra
-      bottles
-      burpsuite
-      chromium
-      ghidra
-      inkscape
-      krita
-      libnotify.out
-      libreoffice
-      nwg-look
-      spotify
-      thunderbird
-      vlc
-      webcord
-      wlr-randr
-
-    ]) ++ optionals (cfg.gui.enable) (with pkgs.kdePackages; [
-
-      # KDE Applications
-      kdenlive
-
-    ]) ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
-
-      # Gnome Applications
-      gnome-disk-utility
-
-    ]);
+    home.packages =
+      (with pkgs; [
+        # Terminal Applications
+        appimage-run
+        btop
+        catimg
+        cryptsetup
+        curl
+        distrobox
+        file
+        gnumake
+        grim
+        imv
+        jq
+        mako
+        man-pages
+        man-pages-posix
+        mpv-unwrapped
+        pass-wayland
+        pavucontrol
+        rofi-wayland
+        rustup
+        scrcpy
+        slurp
+        sqlite
+        wget
+        wl-clipboard
+      ])
+      ++ optionals (cfg.ollama.enable) (with pkgs; [
+        ollama
+      ])
+      ++ optionals (cfg.gui.enable) (with pkgs; [
+        # Graphical Applications
+        #cutter
+        #cutterPlugins.rz-ghidra
+        bottles
+        burpsuite
+        chromium
+        ghidra
+        inkscape
+        krita
+        libnotify.out
+        libreoffice
+        nwg-look
+        spotify
+        thunderbird
+        vlc
+        webcord
+        wlr-randr
+      ])
+      ++ optionals (cfg.gui.enable) (with pkgs.kdePackages; [
+        # KDE Applications
+        kdenlive
+      ])
+      ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
+        # Gnome Applications
+        gnome-disk-utility
+      ]);
 
     xdg.mimeApps = {
       enable = true;

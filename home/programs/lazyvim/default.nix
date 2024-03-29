@@ -1,6 +1,10 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.hyprhome;
   lazyvimConfigSrc = pkgs.stdenv.mkDerivation {
     name = "lazyvim-config";
@@ -19,9 +23,7 @@ let
       rm $out/lazyvim/lazy-lock.json
     '';
   };
-
-in
-{
+in {
   options.hyprhome.lazyvim = {
     enable = mkOption {
       default = true;

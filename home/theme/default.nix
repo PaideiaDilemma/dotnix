@@ -1,10 +1,14 @@
-{ inputs, config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.hyprhome;
-  themes = pkgs.callPackage ./oomox.nix { colors = config.colors; };
-in
 {
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.hyprhome;
+  themes = pkgs.callPackage ./oomox.nix {colors = config.colors;};
+in {
   imports = [
     ./qtct.nix
     #./kvantum.nix

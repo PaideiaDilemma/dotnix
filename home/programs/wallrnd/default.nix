@@ -1,6 +1,10 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.hyprhome;
   colors = config.colors;
   wallrnd = pkgs.rustPlatform.buildRustPackage {
@@ -20,8 +24,7 @@ let
       "--features=nice"
     ];
   };
-in
-{
+in {
   options.hyprhome.wallrnd = {
     enable = mkOption {
       default = true;

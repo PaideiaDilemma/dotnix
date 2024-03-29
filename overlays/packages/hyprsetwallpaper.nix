@@ -8,9 +8,10 @@ stdenv.mkDerivation {
   name = "hyprsetwallpaper";
   dontUnpack = true;
   buildInputs = [
-    (python311.withPackages (ps: with ps; [
-      pillow
-    ]))
+    (python311.withPackages (ps:
+      with ps; [
+        pillow
+      ]))
   ];
   propagatedBuildInputs = [
     swww

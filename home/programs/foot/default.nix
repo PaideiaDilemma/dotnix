@@ -1,11 +1,14 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.hyprhome;
   colors = config.colors;
   removeHash = str: removePrefix "#" str;
-in
-{
+in {
   options.hyprhome.foot = {
     enable = mkOption {
       default = true;

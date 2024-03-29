@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
-let
-  colors = config.colors;
-in
 {
+  config,
+  pkgs,
+  ...
+}: let
+  colors = config.colors;
+in {
   xdg.configFile."qt5ct/colors/Penumbra.conf".text = ''
       #               FG              BTN_BG bright less brdark        less da     txt fg               br text              btn fg           txt bg     bg     shadow   sel bg     sel fg     link       visited           alt bg default          tooltip bg  tooltip_fg
     [ColorScheme]

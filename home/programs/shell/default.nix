@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-
 {
-  home.packages = (with pkgs; [
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [
     zsh-fzf-tab
-  ]);
+  ];
 
   programs.fzf = {
     enable = true;

@@ -1,28 +1,25 @@
-{ lib
-, stdenv
-, fetchFromGitLab
-, nix-update-script
-
-, autoreconfHook
-, pkg-config
-, sphinx
-
-, libdeflate
-, libjpeg
-, xz
-, zlib
-
+{
+  lib,
+  stdenv,
+  fetchFromGitLab,
+  nix-update-script,
+  autoreconfHook,
+  pkg-config,
+  sphinx,
+  libdeflate,
+  libjpeg,
+  xz,
+  zlib,
   # for passthru.tests
-, libgeotiff
-, python3Packages
-, imagemagick
-, graphicsmagick
-, gdal
-, openimageio
-, freeimage
-, testers
+  libgeotiff,
+  python3Packages,
+  imagemagick,
+  graphicsmagick,
+  gdal,
+  openimageio,
+  freeimage,
+  testers,
 }:
-
 stdenv.mkDerivation (finalAttrs: {
   pname = "libtiff";
   version = "4.6.0~dev";
@@ -49,7 +46,7 @@ stdenv.mkDerivation (finalAttrs: {
     mv VERSION VERSION.txt
   '';
 
-  outputs = [ "bin" "dev" "dev_private" "out" "man" "doc" ];
+  outputs = ["bin" "dev" "dev_private" "out" "man" "doc"];
 
   postFixup = ''
     moveToOutput include/tif_config.h $dev_private
@@ -60,7 +57,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   # If you want to change to a different build system, please make
   # sure cross-compilation works first!
-  nativeBuildInputs = [ autoreconfHook pkg-config sphinx ];
+  nativeBuildInputs = [autoreconfHook pkg-config sphinx];
 
   # TODO: opengl support (bogus configure detection)
   propagatedBuildInputs = [
@@ -82,7 +79,7 @@ stdenv.mkDerivation (finalAttrs: {
         package = finalAttrs.finalPackage;
       };
     };
-    updateScript = nix-update-script { };
+    updateScript = nix-update-script {};
   };
 
   meta = with lib; {
@@ -91,6 +88,6 @@ stdenv.mkDerivation (finalAttrs: {
     changelog = "https://libtiff.gitlab.io/libtiff/v${finalAttrs.version}.html";
     license = licenses.libtiff;
     platforms = platforms.unix;
-    pkgConfigModules = [ "libtiff-4" ];
+    pkgConfigModules = ["libtiff-4"];
   };
 })

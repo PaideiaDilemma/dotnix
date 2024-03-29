@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   colors = config.colors;
 
   arcDarkSource = pkgs.fetchFromGitHub {
@@ -10,7 +13,8 @@ let
     hash = "sha256-dxk8YpJB4XaZHD/O+WvQUFKJD2TE38VZyC5orn4N7BA=";
   };
 
-  modifiedKvconfig = pkgs.stdenv.mkDerivation
+  modifiedKvconfig =
+    pkgs.stdenv.mkDerivation
     {
       name = "penumbra-kvconfig";
       src = arcDarkSource + "/Kvantum/ArcDark/";
@@ -53,7 +57,8 @@ let
       '';
     };
 
-  modifiedSvg = pkgs.stdenv.mkDerivation
+  modifiedSvg =
+    pkgs.stdenv.mkDerivation
     {
       name = "penumbra-kvsvg";
       src = arcDarkSource + "/Kvantum/ArcDark/";
@@ -85,8 +90,7 @@ let
           s/#353945/${colors.base.shade}/g;" $out/Penumbra.svg
       '';
     };
-in
-{
+in {
   xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
     [General]
     theme=Penumbra

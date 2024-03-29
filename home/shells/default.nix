@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
-  cfg = config.hyprhome;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.hyprhome;
+in {
   options.hyprhome.direnvs = {
     enable = mkOption {
       type = lib.types.bool;

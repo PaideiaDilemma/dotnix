@@ -1,9 +1,13 @@
-{ inputs, config, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.hyprhome;
-in
 {
+  inputs,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.hyprhome;
+in {
   options.hyprhome.wlclipmgr = {
     enable = mkOption {
       default = true;

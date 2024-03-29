@@ -1,6 +1,9 @@
-{ config, lib, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.penumbra;
   penumbra = {
     balanced = {
@@ -126,13 +129,12 @@ let
   };
 
   removeHash = str: (removePrefix "#" str);
-in
-{
-  imports = [ ./default.nix ];
+in {
+  imports = [./default.nix];
 
   options.penumbra = {
     set = mkOption {
-      type = types.enum [ "balanced" "contrast'" "contrast''" ];
+      type = types.enum ["balanced" "contrast'" "contrast''"];
       default = "balanced";
     };
   };

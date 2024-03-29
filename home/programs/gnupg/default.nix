@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.hyprhome;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.hyprhome;
+in {
   programs.gpg = {
     enable = true;
     homedir = "${config.xdg.configHome}/gnupg";
@@ -14,4 +17,3 @@ in
     maxCacheTtl = 20000;
   };
 }
-

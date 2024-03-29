@@ -1,9 +1,14 @@
-{ inputs, config, lib, pkgs, overlays, ... }:
-with lib;
-let
-  cfg = config.host;
-in
 {
+  inputs,
+  config,
+  lib,
+  pkgs,
+  overlays,
+  ...
+}:
+with lib; let
+  cfg = config.host;
+in {
   imports = [
     ./fonts.nix
     ./virtualisation.nix
@@ -59,22 +64,25 @@ in
       gnupg.agent.enable = true;
       virt-manager.enable = cfg.gui.enable;
       dconf.enable = true;
-      /*hyprland = lib.mkIf (cfg.hyprland.enable) {
+      /*
+        hyprland = lib.mkIf (cfg.hyprland.enable) {
         enable = true;
         package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      };*/
-      steam.enable = (cfg.steam.enable && cfg.gui.enable);
+      };
+      */
+      steam.enable = cfg.steam.enable && cfg.gui.enable;
     };
 
-
     nixpkgs = {
-      overlays = overlays ++ optionals (cfg.steam.enable && cfg.gui.enable) [
-        (_: prev: {
-          steam = prev.steam.override {
-            extraProfile = "export STEAM_EXTRA_COMPAT_TOOLS_PATHS='${inputs.nix-gaming.packages.${pkgs.system}.proton-ge}'";
-          };
-        })
-      ];
+      overlays =
+        overlays
+        ++ optionals (cfg.steam.enable && cfg.gui.enable) [
+          (_: prev: {
+            steam = prev.steam.override {
+              extraProfile = "export STEAM_EXTRA_COMPAT_TOOLS_PATHS='${inputs.nix-gaming.packages.${pkgs.system}.proton-ge}'";
+            };
+          })
+        ];
 
       config.allowUnfree = true;
     };
@@ -82,7 +90,7 @@ in
     xdg.portal = {
       enable = cfg.gui.enable;
       xdgOpenUsePortal = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
     };
 
     nh = {
@@ -130,12 +138,14 @@ in
       ];
     };
 
-    environment.systemPackages = with pkgs; [
-      libevdev
-      home-manager
-    ] ++ optionals cfg.gui.enable [
-      brightnessctl
-    ];
+    environment.systemPackages = with pkgs;
+      [
+        libevdev
+        home-manager
+      ]
+      ++ optionals cfg.gui.enable [
+        brightnessctl
+      ];
 
     security.polkit.enable = true;
     security.pam.services.swaylock = {};
@@ -181,7 +191,6 @@ in
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
           "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         ];
-
       };
       extraOptions = "experimental-features = nix-command flakes";
     };

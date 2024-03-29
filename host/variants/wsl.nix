@@ -1,5 +1,8 @@
-{ inputs, config, ... }:
 {
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     inputs.nixos-wsl.nixosModules.wsl
   ];

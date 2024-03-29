@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   hyprhome = {
     gui.enable = false;
     hyprland = {
@@ -7,9 +6,9 @@
     };
   };
 
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
     nodejs
     pinentry
     libsecret
-  ]);
+  ];
 }

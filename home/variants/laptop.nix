@@ -1,5 +1,4 @@
-{ pkgs,... }:
-{
+{pkgs, ...}: {
   hyprhome = {
     gui = {
       enable = true;

@@ -1,9 +1,6 @@
-{ config, ... }:
-
-let
+{config, ...}: let
   cfg = config.hyprhome;
-in
-{
+in {
   home = {
     sessionVariables = {
       NVIM_APPNAME = "lazyvim";

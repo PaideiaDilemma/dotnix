@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Hack" "FiraCode" ]; })
+      (nerdfonts.override {fonts = ["Hack" "FiraCode"];})
       font-awesome
       noto-fonts
       noto-fonts-cjk
@@ -12,8 +15,8 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Noto Sans" ];
+        serif = ["Noto Serif"];
+        sansSerif = ["Noto Sans"];
       };
     };
   };

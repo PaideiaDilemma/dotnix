@@ -1,10 +1,13 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.hyprhome;
   colors = config.colors;
-in
-{
+in {
   options.hyprhome.rofi = {
     enable = mkOption {
       default = true;
@@ -25,7 +28,7 @@ in
       pass = {
         enable = true;
         package = pkgs.rofi-pass-wayland;
-        stores = [ "${config.xdg.configHome}/pass" ];
+        stores = ["${config.xdg.configHome}/pass"];
       };
       configPath = "${config.xdg.configHome}/rofi/config.rasi";
     };
