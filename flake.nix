@@ -41,6 +41,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    los-nixpkgs = {
+      url = "git+ssh://git@github.com/LosFuzzys/los-nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
     wlclipmgr.url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
 
@@ -61,6 +66,7 @@
         (import ./overlays/pwn-overlay.nix)
         (import ./overlays/qtimageformats-overlay.nix)
         (import ./overlays/scripts-overlay.nix)
+        (import ./overlays/way-displays-overlay.nix)
       ];
 
       mkNixos = hardware: host: homeVariant: username: system:

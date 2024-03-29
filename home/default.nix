@@ -116,7 +116,6 @@ in
       spotify
       thunderbird
       vlc
-      wdisplays
       webcord
       wlr-randr
 
