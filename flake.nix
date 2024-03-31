@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    poetry2nix = {
-      url = "github:nix-community/poetry2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprland.url = "github:hyprwm/Hyprland";
 
     hyprharpoon = {
@@ -67,7 +62,6 @@
   } @ inputs: let
     overlays = [
       inputs.nur.overlay
-      inputs.poetry2nix.overlays.default
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/pwn-overlay.nix inputs)
       (import ./overlays/qtimageformats-overlay.nix)
