@@ -1,3 +1,4 @@
-final: prev: rec {
-  pwndbg = prev.callPackage ./packages/pwndbg.nix {};
+inputs: final: prev: {
+  pwndbg = inputs.los-nixpkgs.packages.${prev.system}.pwndbg;
+  pwntools = inputs.los-nixpkgs.packages.${prev.system}.pwntools;
 }

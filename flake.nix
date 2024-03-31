@@ -41,8 +41,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Collection of nix stuff we use at LosFuzzys.
+    # I will try to convince them to make it public.
     los-nixpkgs = {
-      url = "git+ssh://git@github.com/LosFuzzys/los-nixpkgs";
+      url = "git+file:///home/max/desk/los-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -67,7 +69,7 @@
       inputs.nur.overlay
       inputs.poetry2nix.overlays.default
       (import ./overlays/deepin-cursors.nix)
-      (import ./overlays/pwn-overlay.nix)
+      (import ./overlays/pwn-overlay.nix inputs)
       (import ./overlays/qtimageformats-overlay.nix)
       (import ./overlays/scripts-overlay.nix)
       (import ./overlays/way-displays-overlay.nix)
