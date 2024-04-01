@@ -117,11 +117,10 @@ in {
 
         #monitor=",1920x1080,auto,1";
         monitor =
-          (mapAttrsToList (
-              name: monitor: "${name},${monitor.resolution},${monitor.position},${monitor.scale}"
-            )
-            cfg.gui.staticMonitors)
-          ++ [",preferred,auto,1"];
+          mapAttrsToList (
+            name: monitor: "${name},${monitor.resolution},${monitor.position},${monitor.scale}"
+          )
+          cfg.gui.staticMonitors;
 
         workspace =
           mapAttrsToList (
