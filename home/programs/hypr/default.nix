@@ -360,10 +360,10 @@ in {
       extraConfig =
         ''
           # SUBMAPS
-          bind = CTRL,Alt_L,submap,passthrough
+          bind = ALT,p,submap,passthrough
           submap = passthrough
           # passthrough
-          bind = CTRL,Alt_L,submap,reset
+          bind = ALT,p,submap,reset
           # ~passthrough
           submap = reset
 
