@@ -120,22 +120,22 @@ in {
           (mapAttrsToList (
               name: monitor: "${name},${monitor.resolution},${monitor.position},${monitor.scale}"
             )
-            cfg.gui.monitors)
+            cfg.gui.staticMonitors)
           ++ [",preferred,auto,1"];
 
         workspace =
           mapAttrsToList (
             name: monitor: "${monitor.initalWorkspace},monitor:${name},default:true,persistent:true"
           )
-          cfg.gui.monitors;
+          cfg.gui.staticMonitors;
 
         exec =
           (mapAttrsToList (
               name: monitor: "sleep 1 && swww img -o ${name} ~/media/picture/wal${name}.png"
             )
-            cfg.gui.monitors)
+            cfg.gui.staticMonitors)
           ++ (
-            if (lib.attrNames cfg.gui.monitors == [])
+            if (lib.attrNames cfg.gui.staticMonitors == [])
             then ["swww img ~/media/picture/wal.png"]
             else []
           );

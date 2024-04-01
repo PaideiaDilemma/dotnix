@@ -3,14 +3,7 @@
     gui = {
       enable = true;
       primaryMonitor = "eDP-1";
-      monitors = {
-        "eDP-1" = {
-          resolution = "1920x1080";
-          position = "auto";
-          scale = "1";
-          initalWorkspace = "1";
-        };
-      };
+      staticMonitors = {}; # handled by way-displays
     };
     waybar.battery.enable = true;
     waybar.output = "eDP-1";

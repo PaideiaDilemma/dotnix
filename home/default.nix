@@ -23,7 +23,7 @@ in {
         type = types.bool;
       };
 
-      monitors = mkOption {
+      staticMonitors = mkOption {
         type = types.attrsOf (types.attrsOf (types.str));
         default = {};
       };
