@@ -39,7 +39,7 @@
     # Collection of nix stuff we use at LosFuzzys.
     # I will try to convince them to make it public.
     los-nixpkgs = {
-      url = "git+file:///home/max/desk/los-nixpkgs";
+      url = "git+ssh://git@github.com/LosFuzzys/los-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -85,7 +85,7 @@
           ({...}: {
             users.users.${username} = {
               isNormalUser = true;
-              extraGroups = ["wheel" "networkmanager" "audio" "video" "input"];
+              extraGroups = ["wheel" "networkmanager" "audio" "video" "input" "dialout"];
             };
             users.users.root.password = "nixos";
             networking.hostName = "${hardware}";
