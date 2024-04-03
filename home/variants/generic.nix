@@ -4,7 +4,7 @@
     # be the same on every boot.
     gui = {
       enable = true;
-      monitors = {};
+      staticMonitors = {};
     };
 
     hyprland = {

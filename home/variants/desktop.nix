@@ -3,7 +3,7 @@
     gui = {
       enable = true;
       primaryMonitor = "DP-3";
-      monitors = {
+      staticMonitors = {
         "DP-3" = {
           resolution = "1920x1080@144";
           position = "1920x597";
