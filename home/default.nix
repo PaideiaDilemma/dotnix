@@ -92,6 +92,7 @@ in {
         man-pages-posix
         mpv-unwrapped
         pass-wayland
+        patchelfdd
         pavucontrol
         rofi-wayland
         rustup

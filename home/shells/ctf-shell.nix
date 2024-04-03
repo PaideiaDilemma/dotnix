@@ -4,16 +4,16 @@ with import <nixpkgs> {};
     packages = [pkgs.clang-tools pkgs.clangStdenv];
     NIX_LD_LIBRARY_PATH = with pkgs;
       lib.makeLibraryPath [
-        stdenv.cc.cc
-        openssl
-        openssl_legacy
-        mysql80
+        bzip2
+        glib
+        libelf
+        libseccomp
         libxcrypt
         libxcrypt-legacy
-        libseccomp
-        libelf
-        glib
-        bzip2
+        mysql80
+        openssl
+        openssl_legacy
+        stdenv.cc.cc
         xz.out
       ];
     NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
