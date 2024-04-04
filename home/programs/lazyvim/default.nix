@@ -12,7 +12,7 @@ with lib; let
       owner = "PaideiaDilemma";
       repo = "LazyVim";
       rev = "main";
-      hash = "sha256-xNaB5LfWlKptzWG4gA9iTgj3jeTDJiEQj0De70hhtcI=";
+      hash = "sha256-4BdJU9RRcsCQUTvS5kAuA5X4PlEkSCw1dF3MrF68DDU=";
     };
     installPhase = ''
       mkdir -p $out/lazyvim
