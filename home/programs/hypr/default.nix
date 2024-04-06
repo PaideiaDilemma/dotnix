@@ -108,7 +108,7 @@ in {
 
         exec-once = [
           "waybar"
-          "swww init"
+          "swww-daemon"
           "wlsunset -l 48.2, -L 16.3 -t 4800"
           "wlclipmgr watch --block \"password store sleep:2\""
           "kdeconnect-indicator"
@@ -340,6 +340,9 @@ in {
           "SUPERSHIFT,0,movetoworkspacesilent,10"
           "SUPERSHIFT,a,movetoworkspacesilent,special"
 
+          "SUPERALT,1,movecurrentworkspacetomonitor,eDP-1"
+          "SUPERALT,2,movecurrentworkspacetomonitor,HDMI-A-1"
+
           "SUPER,semicolon,swapnext"
           "SUPER,apostrophe,togglesplit"
 
@@ -411,7 +414,7 @@ in {
     programs.hyprlock = {
       enable = true;
       general = {
-        grace = 0;
+        grace = 4;
         hide_cursor = true;
         no_fade_in = true;
         no_fade_out = true;
