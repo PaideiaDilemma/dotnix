@@ -394,7 +394,7 @@ in {
     services.hypridle = {
       enable = true;
 
-      lockCmd = "pidof hyprlock || ${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/hyprlock";
+      lockCmd = "pidof hyprlock || hyprlock";
       #unlock_cmd = notify-send "Unlock cmd"
       beforeSleepCmd = "loginctl lock-session";
       #after_resume_cmd = notify-send "After resume cmd"
@@ -403,7 +403,7 @@ in {
       listeners = [
         {
           timeout = 300;
-          onTimeout = "pidof hyprlock || ${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/hyprlock";
+          onTimeout = "pidof hyprlock || hyprlock";
         }
         {
           timeout = 800;
