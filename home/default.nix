@@ -154,13 +154,15 @@ in {
         "audio/webm" = "mpv.desktop";
         "text/plain" = "nvim.desktop";
         "text/xml" = "nvim.desktop";
-        "text/html" = "nvim.desktop";
+        "text/html" = "firefox.desktop";
         "text/css" = "nvim.desktop";
         "application/octet-stream" = "re.rizin.cutter.desktop";
         "application/pdf" = "firefox.desktop";
         "application/json" = "nvim.desktop";
         "x-scheme-handler/http" = "firefox.desktop";
         "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
         "x-scheme-handler/mailto" = "thunderbird.desktop";
       };
     };
