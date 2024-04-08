@@ -77,7 +77,11 @@ in {
       plugins = [
         inputs.hyprharpoon.packages.${pkgs.system}.hyprharpoon
       ];
-      systemd.enable = true;
+
+      systemd = {
+        enable = true;
+        variables = ["--all"];
+      };
 
       settings = {
         "$terminal" = cfg.hyprland.terminal;
@@ -107,6 +111,7 @@ in {
         };
 
         exec-once = [
+          "dbus-update-activation-environment --systemd --all"
           "waybar"
           "swww-daemon"
           "wlsunset -l 48.2, -L 16.3 -t 4800"
@@ -406,7 +411,7 @@ in {
         }
         {
           timeout = 100;
-          onTimeout = "PATH=$PATH:/etc/profiles/per-user/max/bin ${pkgs.hyprsetwallpaper}/bin/hyprsetwallpaper -g -c";
+          onTimeout = "hyprsetwallpaper -g -c";
         }
       ];
     };
@@ -451,7 +456,7 @@ in {
           dots_spacing = 0.10;
           dots_rounding = -2;
 
-          placeholder_text = "Enter password";
+          placeholder_text = "<i>$PROMPT</i>";
 
           halign = "center";
           valign = "center";
