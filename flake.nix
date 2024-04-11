@@ -29,11 +29,13 @@
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland";
     };
 
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland";
     };
 
     # Collection of nix stuff we use at LosFuzzys.
