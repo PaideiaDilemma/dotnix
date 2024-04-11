@@ -40,8 +40,9 @@ in {
           MAX: TRUE
       VRR_OFF:
         - 'eDP-1'
-      ON_CHANGE_CMD: 'PATH=$PATH:/etc/profiles/per-user/max/bin ${pkgs.libnotify}/bin/notify-send "Monitors changed" && ${pkgs.procps}/bin/pgrep -f hyprsetwallpaper ||  ${pkgs.hyprsetwallpaper}/bin/hyprsetwallpaper -g -c'
-      #ON_CHANGE_CMD: ${pkgs.libnotify}/bin/notify-send 'Monitors changed'
+      CHANGE_SUCCESS_CMD: '${pkgs.procps}/bin/pgrep python3 | grep hyprsetwallpaper || hyprsetwallpaper -g -c'
+      #CHANGE_SUCCESS_CMD: ${pkgs.libnotify}/bin/notify-send 'Monitors changed'
+      #CHANGE_SUCCESS_CMD: 'echo "Monitors changed"'
     '';
 
     home.packages = with pkgs; [

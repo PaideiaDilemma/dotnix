@@ -32,7 +32,7 @@
     };
 
     hyprlock = {
-      url = "github:PaideiaDilemma/hyprlock/full-pam-conversation";
+      url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
