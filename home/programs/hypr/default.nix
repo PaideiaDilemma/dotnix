@@ -228,6 +228,7 @@ in {
           "float,Ultimaker Cura"
           "float,Pinentry-gtk-2"
           "float,title:^(Ghidra:)(.*)$"
+          "float,title:^(wlroots)(.*)$"
         ];
 
         windowrulev2 = [
