@@ -66,7 +66,6 @@
       inputs.nur.overlay
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/pwn-overlay.nix inputs)
-      (import ./overlays/qtimageformats-overlay.nix)
       (import ./overlays/scripts-overlay.nix)
       (import ./overlays/way-displays-overlay.nix)
     ];
