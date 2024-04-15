@@ -40,8 +40,8 @@ in {
           MAX: TRUE
       VRR_OFF:
         - 'eDP-1'
-      CHANGE_SUCCESS_CMD: '${pkgs.procps}/bin/pgrep python3 | grep hyprsetwallpaper || hyprsetwallpaper -g -c'
-      #CHANGE_SUCCESS_CMD: ${pkgs.libnotify}/bin/notify-send 'Monitors changed'
+      CHANGE_SUCCESS_CMD: 'pgrep python3 | grep hyprsetwallpaper || hyprsetwallpaper -g -c'
+      #CHANGE_SUCCESS_CMD: notify-send 'Monitors changed'
       #CHANGE_SUCCESS_CMD: 'echo "Monitors changed"'
     '';
 
