@@ -75,7 +75,7 @@ in {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       plugins = [
-        inputs.hyprharpoon.packages.${pkgs.system}.hyprharpoon
+        #inputs.hyprharpoon.packages.${pkgs.system}.hyprharpoon
       ];
 
       systemd = {

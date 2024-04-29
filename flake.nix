@@ -14,17 +14,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nh = {
-      url = "github:viperML/nh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprland.url = "github:hyprwm/Hyprland";
 
-    hyprharpoon = {
+    /*hyprharpoon = {
       url = "github:PaideiaDilemma/hyprharpoon";
       inputs.hyprland.follows = "hyprland";
-    };
+    };*/
 
     hypridle = {
       url = "github:hyprwm/hypridle";
@@ -82,7 +77,6 @@
           ./host
           ./host/variants/${host}.nix
           home-manager.nixosModules.home-manager
-          inputs.nh.nixosModules.default
           ({...}: {
             users.users.${username} = {
               isNormalUser = true;

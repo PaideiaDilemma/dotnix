@@ -93,7 +93,7 @@ in {
       extraPortals = with pkgs; [xdg-desktop-portal-gtk];
     };
 
-    nh = {
+    programs.nh = {
       enable = true;
       clean.enable = true;
     };

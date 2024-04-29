@@ -4,7 +4,7 @@ final: prev: {
       owner = "PaideiaDilemma";
       repo = "way-displays";
       rev = "master";
-      hash = "sha256-v0c1Mi8zhBO6gnY/fAKzoU/e+DjroEWNA0LgPSDNS9w=";
+      hash = "sha256-J2mLDisErTjxkf7RDk+uwe36gZAffXEyMHshc7+Flko=";
     };
   });
 }
