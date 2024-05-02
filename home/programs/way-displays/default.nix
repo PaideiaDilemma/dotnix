@@ -35,6 +35,8 @@ in {
           SCALE: 1.25
         - NAME_DESC: 'Iiyama North America PL2783Q 1142965003433'
           SCALE: 1.25
+        - NAME_DESC: 'Samsung Electric Company U28E850 HTPK600065'
+          SCALE: 2.0
       MODE:
         - NAME_DESC: 'Philips Consumer Electronics Company PHL 275V8 UK\d+'
           MAX: TRUE
