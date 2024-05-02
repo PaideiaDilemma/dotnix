@@ -54,9 +54,9 @@ in {
     };
 
     terminal = mkOption {
-      default = "foot";
+      default = "footclient";
       description = "Default terminal emulator";
-      type = types.enum ["foot"];
+      type = types.enum ["foot" "footclient"];
     };
 
     ollama.enable = mkOption {
