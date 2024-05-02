@@ -20,7 +20,6 @@
       url = "github:PaideiaDilemma/hyprharpoon";
       inputs.hyprland.follows = "hyprland";
     };*/
-
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,6 +48,12 @@
     nur.url = "github:nix-community/nur";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
+
+    waybar = {
+      url = "github:Alexays/Waybar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = {
@@ -63,6 +68,9 @@
       (import ./overlays/pwn-overlay.nix inputs)
       (import ./overlays/scripts-overlay.nix)
       (import ./overlays/way-displays-overlay.nix)
+      (final: prev: {
+        waybar = inputs.waybar.packages.${prev.system}.default;
+      })
     ];
 
     mkNixos = hardware: host: homeVariant: username: system:
