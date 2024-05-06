@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     /*hyprharpoon = {
       url = "github:PaideiaDilemma/hyprharpoon";
@@ -100,7 +100,6 @@
             home-manager.users.${username} = {...}: {
               imports = [
                 inputs.hyprland.homeManagerModules.default
-                inputs.hypridle.homeManagerModules.default
                 inputs.hyprlock.homeManagerModules.default
                 ./home
                 ./home/variants/${homeVariant}.nix
@@ -119,7 +118,6 @@
         };
         modules = [
           inputs.hyprland.homeManagerModules.default
-          inputs.hypridle.homeManagerModules.default
           inputs.hyprlock.homeManagerModules.default
           ({...}: {
             imports = [./home ./home/variants/${homeVariant}.nix];

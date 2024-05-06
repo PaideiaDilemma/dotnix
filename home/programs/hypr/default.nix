@@ -395,30 +395,37 @@ in {
     services.hypridle = {
       enable = true;
 
-      lockCmd = "pidof hyprlock || hyprlock";
-      #unlock_cmd = notify-send "Unlock cmd"
-      beforeSleepCmd = "loginctl lock-session";
-      #after_resume_cmd = notify-send "After resume cmd"
-      ignoreDbusInhibit = true;
+      #package = inputs.hypridle.packages.${pkgs.system}.hypridle;
 
-      listeners = [
-        {
-          timeout = 300;
-          onTimeout = "pidof hyprlock || hyprlock";
-        }
-        {
-          timeout = 800;
-          onTimeout = "systemctl suspend";
-        }
-        {
-          timeout = 100;
-          onTimeout = "hyprsetwallpaper -g -c";
-        }
-      ];
+      settings = {
+        general = {
+          lockCmd = "pidof hyprlock || hyprlock";
+          #unlock_cmd = notify-send "Unlock cmd"
+          beforeSleepCmd = "loginctl lock-session";
+          #after_resume_cmd = notify-send "After resume cmd"
+          ignoreDbusInhibit = true;
+        };
+
+        listeners = [
+          {
+            timeout = 300;
+            onTimeout = "pidof hyprlock || hyprlock";
+          }
+          {
+            timeout = 800;
+            onTimeout = "systemctl suspend";
+          }
+          {
+            timeout = 100;
+            onTimeout = "hyprsetwallpaper -g -c";
+          }
+        ];
+      };
     };
 
     programs.hyprlock = {
       enable = true;
+
       general = {
         grace = 4;
         hide_cursor = true;
