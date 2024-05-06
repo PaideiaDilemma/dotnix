@@ -31,15 +31,20 @@ in {
       SCALE:
         - NAME_DESC: Najing CEC Panda FPD Technology CO. ltd 0x0050
           SCALE: 1.25
+          MODE: 10
         - NAME_DESC: InfoVision Optoelectronics (Kunshan) Co.,Ltd China 0x34D1
           SCALE: 1.25
         - NAME_DESC: 'Iiyama North America PL2783Q 1142965003433'
           SCALE: 1.25
         - NAME_DESC: 'Samsung Electric Company U28E850 HTPK600065'
-          SCALE: 2.0
+          SCALE: 1.0
       MODE:
         - NAME_DESC: 'Philips Consumer Electronics Company PHL 275V8 UK\d+'
           MAX: TRUE
+        - NAME_DESC: HDMI-A-1
+          WIDTH: 1920
+          HEIGHT: 1080
+
       VRR_OFF:
         - 'eDP-1'
       CHANGE_SUCCESS_CMD: 'pgrep python3 | grep hyprsetwallpaper || hyprsetwallpaper -g -c'

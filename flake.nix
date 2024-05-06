@@ -16,10 +16,12 @@
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
-    /*hyprharpoon = {
+    /*
+      hyprharpoon = {
       url = "github:PaideiaDilemma/hyprharpoon";
       inputs.hyprland.follows = "hyprland";
-    };*/
+    };
+    */
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,7 +55,6 @@
       url = "github:Alexays/Waybar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs = {
