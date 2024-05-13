@@ -101,7 +101,6 @@
             home-manager.users.${username} = {...}: {
               imports = [
                 inputs.hyprland.homeManagerModules.default
-                inputs.hyprlock.homeManagerModules.default
                 ./home
                 ./home/variants/${homeVariant}.nix
               ];
@@ -119,7 +118,6 @@
         };
         modules = [
           inputs.hyprland.homeManagerModules.default
-          inputs.hyprlock.homeManagerModules.default
           ({...}: {
             imports = [./home ./home/variants/${homeVariant}.nix];
             hyprhome.username = username;

@@ -51,8 +51,7 @@ in {
       grim
       hyprpicker
       hyprsetwallpaper
-      inputs.hypridle.packages.${pkgs.system}.hypridle
-      inputs.hyprlock.packages.${pkgs.system}.hyprlock
+      hyprlock
       networkmanagerapplet
       slurp
       swww
@@ -426,107 +425,109 @@ in {
     programs.hyprlock = {
       enable = true;
 
-      general = {
-        grace = 4;
-        hide_cursor = true;
-        no_fade_in = true;
-        no_fade_out = true;
-        #ignore_empty_input = true;
-      };
-
-      input-fields = [
-        {
-          monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
-          position = {
-            x = 0;
-            y = -20;
-          };
-          size = {
-            width = 250;
-            height = 50;
-          };
-
-          fade_timeout = 2500;
-
-          rounding = 15;
-
-          outline_thickness = 4;
-
-          fail_color = rgbColor colors.six.red;
-          fail_transition = 400;
-
-          outer_color = rgbaColor colors.base.sun "a0";
-          inner_color = rgbColor colors.base.sun;
-          font_color = rgbColor colors.base.sky;
-          capslock_color = rgbColor colors.six.red;
-
-          dots_size = 0.4;
-          dots_spacing = 0.10;
-          dots_rounding = -2;
-
-          placeholder_text = "<i>$PROMPT</i>";
-
-          halign = "center";
-          valign = "center";
-        }
-      ];
-
-      labels = [
-        {
-          monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
-          position = {
-            x = 0;
-            y = 100;
-          };
-
-          text = "$TIME";
-          #text = "<b>$TIME_HH</b><span foreground=\"#${colors.base.sky}\">:</span><b>$TIME_MM</b><span style=\"smallest\" foreground=\"#${colors.base.sky}\">:</span><b>$TIME_SS</b>";
-          color = rgbColor colors.base.sun;
-          font_size = 40;
-          font_family = "Noto Sans";
-
-          halign = "center";
-          valign = "center";
-        }
-        {
-          monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
-          text = "cmd[update:10000] ${pkgs.coreutils}/bin/date '+%A %d %B %Y'";
-          color = rgbaColor colors.base.sky' "A0";
-          font_size = 24;
-          font_family = "Noto Sans";
-          position = {
-            x = 0;
-            y = 125;
-          };
-        }
-      ];
-
-      /*
-        images = [{
-        monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
-        path = "~/media/picture/avatar.png";
-        size = 50;
-        rounding = 20;
-
-        position = {
-          x = 0;
-          y = 10;
+      settings = {
+        general = {
+          grace = 4;
+          hide_cursor = true;
+          no_fade_in = true;
+          no_fade_out = true;
+          #ignore_empty_input = true;
         };
 
-        halign = "center";
-        valign = "bottom";
-      }];
-      */
+        input-fields = [
+          {
+            monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+            position = {
+              x = 0;
+              y = -20;
+            };
+            size = {
+              width = 250;
+              height = 50;
+            };
 
-      backgrounds = [
-        {
-          monitor = "";
-          path = "screenshot";
-          color = rgbColor colors.base.shade;
-          blur_passes = 2;
-          blur_size = 10;
-        }
-      ];
+            fade_timeout = 2500;
+
+            rounding = 15;
+
+            outline_thickness = 4;
+
+            fail_color = rgbColor colors.six.red;
+            fail_transition = 400;
+
+            outer_color = rgbaColor colors.base.sun "a0";
+            inner_color = rgbColor colors.base.sun;
+            font_color = rgbColor colors.base.sky;
+            capslock_color = rgbColor colors.six.red;
+
+            dots_size = 0.4;
+            dots_spacing = 0.10;
+            dots_rounding = -2;
+
+            placeholder_text = "<i>$PROMPT</i>";
+
+            halign = "center";
+            valign = "center";
+          }
+        ];
+
+        labels = [
+          {
+            monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+            position = {
+              x = 0;
+              y = 100;
+            };
+
+            text = "$TIME";
+            #text = "<b>$TIME_HH</b><span foreground=\"#${colors.base.sky}\">:</span><b>$TIME_MM</b><span style=\"smallest\" foreground=\"#${colors.base.sky}\">:</span><b>$TIME_SS</b>";
+            color = rgbColor colors.base.sun;
+            font_size = 40;
+            font_family = "Noto Sans";
+
+            halign = "center";
+            valign = "center";
+          }
+          {
+            monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+            text = "cmd[update:10000] ${pkgs.coreutils}/bin/date '+%A %d %B %Y'";
+            color = rgbaColor colors.base.sky' "A0";
+            font_size = 24;
+            font_family = "Noto Sans";
+            position = {
+              x = 0;
+              y = 125;
+            };
+          }
+        ];
+
+        /*
+          images = [{
+          monitor = if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+          path = "~/media/picture/avatar.png";
+          size = 50;
+          rounding = 20;
+
+          position = {
+            x = 0;
+            y = 10;
+          };
+
+          halign = "center";
+          valign = "bottom";
+        }];
+        */
+
+        backgrounds = [
+          {
+            monitor = "";
+            path = "screenshot";
+            color = rgbColor colors.base.shade;
+            blur_passes = 2;
+            blur_size = 10;
+          }
+        ];
+      };
     };
   };
 }

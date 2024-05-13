@@ -41,7 +41,7 @@ in {
       MODE:
         - NAME_DESC: 'Philips Consumer Electronics Company PHL 275V8 UK\d+'
           MAX: TRUE
-        - NAME_DESC: HDMI-A-1
+        - NAME_DESC: 'Samsung Electric Company U28E850 HTPK600065'
           WIDTH: 1920
           HEIGHT: 1080
 
