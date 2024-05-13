@@ -434,17 +434,11 @@ in {
           #ignore_empty_input = true;
         };
 
-        input-fields = [
+        input-field = [
           {
             monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
-            position = {
-              x = 0;
-              y = -20;
-            };
-            size = {
-              width = 250;
-              height = 50;
-            };
+            position = "0, -20";
+            size = "250, 50";
 
             fade_timeout = 2500;
 
@@ -471,13 +465,10 @@ in {
           }
         ];
 
-        labels = [
+        label = [
           {
             monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
-            position = {
-              x = 0;
-              y = 100;
-            };
+            position = "0, 100";
 
             text = "$TIME";
             #text = "<b>$TIME_HH</b><span foreground=\"#${colors.base.sky}\">:</span><b>$TIME_MM</b><span style=\"smallest\" foreground=\"#${colors.base.sky}\">:</span><b>$TIME_SS</b>";
@@ -490,14 +481,14 @@ in {
           }
           {
             monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
+            position = "0, 125";
             text = "cmd[update:10000] ${pkgs.coreutils}/bin/date '+%A %d %B %Y'";
             color = rgbaColor colors.base.sky' "A0";
             font_size = 24;
             font_family = "Noto Sans";
-            position = {
-              x = 0;
-              y = 125;
-            };
+
+            halign = "center";
+            valign = "center";
           }
         ];
 
@@ -518,7 +509,7 @@ in {
         }];
         */
 
-        backgrounds = [
+        background = [
           {
             monitor = "";
             path = "screenshot";
