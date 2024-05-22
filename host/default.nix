@@ -106,6 +106,10 @@ in {
       # Use the systemd-boot EFI boot loader.
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;
+
+      kernel.sysctl = {
+        "kernel.sysrq" = 1;
+      };
     };
 
     # Set your time zone.
