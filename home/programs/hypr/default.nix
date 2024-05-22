@@ -234,7 +234,7 @@ in {
           "suppressevent fullscreen,class:firefox,floating:1"
           "float,class:re.rizin.cutter,title:^(Open).*$"
           "float,class:re.rizin.cutter,title:^Load Options$"
-          "stayfocused,class:^(ghidra-Ghidra)$,floating:1,fullscreen:0,initialTitle:^(CodeBrowser.*)$"
+          #"stayfocused,class:^(ghidra-Ghidra)$,floating:1,fullscreen:0,initialTitle:^(CodeBrowser.*)$"
         ];
 
         bindm = [
