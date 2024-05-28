@@ -156,12 +156,6 @@ in {
     security.pam.services.swaylock = {};
     security.pam.services.hyprlock = {};
 
-    nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-
     system.autoUpgrade = {
       enable = false;
     };
