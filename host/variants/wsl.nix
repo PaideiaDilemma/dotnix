@@ -26,4 +26,6 @@
     libvirtd.enable = false;
     dotfileLocation = "/mnt/c/Users/seidlerm/nixos-dotfiles";
   };
+
+  myhost.networking.enable = false;
 }
