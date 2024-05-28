@@ -26,8 +26,9 @@ in {
     services.xserver = {
       enable = cfg.gui.enable;
       xkb.layout = "us";
-      libinput.enable = true;
     };
+
+    services.libinput.enable = true;
 
     # Enable CUPS to print documents.
     services.printing.enable = cfg.gui.enable;
