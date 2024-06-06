@@ -34,6 +34,11 @@
       inputs.hyprlang.follows = "hyprland";
     };
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Collection of nix stuff we use at LosFuzzys.
     # I will try to convince them to make it public.
     los-nixpkgs = {
@@ -64,6 +69,7 @@
     ...
   } @ inputs: let
     overlays = [
+      inputs.niri.overlays.niri
       inputs.nur.overlay
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/pwn-overlay.nix inputs)
@@ -101,6 +107,7 @@
             home-manager.users.${username} = {...}: {
               imports = [
                 inputs.hyprland.homeManagerModules.default
+                inputs.niri.homeModules.niri
                 ./home
                 ./home/variants/${homeVariant}.nix
               ];
@@ -118,6 +125,7 @@
         };
         modules = [
           inputs.hyprland.homeManagerModules.default
+          inputs.niri.homeModules.niri
           ({...}: {
             imports = [./home ./home/variants/${homeVariant}.nix];
             hyprhome.username = username;

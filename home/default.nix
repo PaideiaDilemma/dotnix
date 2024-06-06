@@ -9,6 +9,7 @@ with lib; let
   cfg = config.hyprhome;
 in {
   imports = [
+    ./environment.nix
     ../colors/penumbra.nix
     ./programs
     ./theme
@@ -83,7 +84,6 @@ in {
         curl
         distrobox
         file
-        gnumake
         grim
         imv
         jq

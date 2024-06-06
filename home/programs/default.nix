@@ -9,6 +9,7 @@
     ./kde
     ./lazyvim
     ./mako
+    ./niri
     ./obs
     ./python
     ./rofi

@@ -17,25 +17,6 @@ in {
   };
 
   config = {
-    services.greetd = {
-      enable = true;
-      settings = rec {
-        hyprland_session = {
-          user = "max";
-          command = "$SHELL -l -c ${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
-        };
-        shell_session = {
-          user = "max";
-          command = "$SHELL -l";
-        };
-
-        default_session =
-          if (cfg.hyprland.enable)
-          then hyprland_session
-          else shell_session;
-      };
-    };
-
     # Enable the OpenSSH daemon.
     services.openssh.enable = cfg.openssh.enable;
 

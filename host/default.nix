@@ -14,6 +14,7 @@ in {
     ./virtualisation.nix
     ./network.nix
     ./services.nix
+    ./sessions.nix
     ../colors/penumbra.nix
   ];
 

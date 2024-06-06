@@ -11,10 +11,6 @@ with lib; let
   rgbColor = hexcolor: "rgb(${removePrefix "#" hexcolor})";
   rgbaColor = hexcolor: alpha: "rgba(${removePrefix "#" hexcolor}${alpha})";
 in {
-  imports = [
-    ./hyprland-environment.nix
-  ];
-
   options.hyprhome.hyprland = {
     enable = mkOption {
       default = true;
