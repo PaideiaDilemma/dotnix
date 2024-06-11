@@ -47,7 +47,10 @@
     };
 
     # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
-    wlclipmgr.url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
+    wlclipmgr = {
+      url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 

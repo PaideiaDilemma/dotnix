@@ -11,7 +11,7 @@ in {
   options.hyprhome.wlclipmgr = {
     enable = mkOption {
       default = true;
-      description = "Whether to enable the wlclipmgr.";
+      description = "Whether to enable wlclipmgr";
       type = types.bool;
     };
   };
