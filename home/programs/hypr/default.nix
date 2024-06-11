@@ -113,6 +113,7 @@ in {
           "wlclipmgr watch --block \"password store sleep:2\""
           "kdeconnect-indicator"
           "nm-applet"
+          "hyprctl setcursor DeepinV20HyprCursors 32"
         ];
 
         #monitor=",1920x1080,auto,1";
