@@ -20,6 +20,13 @@ in {
     programs.firefox = {
       enable = true;
       profiles = {
+        "netflix" = {
+          isDefault = false;
+          id = 1;
+          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+            ublock-origin
+          ];
+        };
         "asdfnerd" = {
           isDefault = true;
           settings = {
