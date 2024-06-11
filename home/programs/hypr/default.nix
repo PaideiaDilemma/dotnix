@@ -46,8 +46,8 @@ in {
       deepinV20HyprCursors
       grim
       hyprpicker
+      inputs.hyprlock.packages.${pkgs.system}.hyprlock
       hyprsetwallpaper
-      hyprlock
       networkmanagerapplet
       slurp
       swww
@@ -422,6 +422,8 @@ in {
     programs.hyprlock = {
       enable = true;
 
+      package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+
       settings = {
         general = {
           grace = 4;
@@ -435,7 +437,7 @@ in {
           {
             monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
             position = "0, -20";
-            size = "250, 50";
+            size = "250, 40";
 
             fade_timeout = 2500;
 
@@ -478,7 +480,7 @@ in {
           }
           {
             monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
-            position = "0, 125";
+            position = "0, 145";
             text = "cmd[update:10000] ${pkgs.coreutils}/bin/date '+%A %d %B %Y'";
             color = rgbaColor colors.base.sky' "A0";
             font_size = 24;
