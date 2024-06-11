@@ -55,7 +55,7 @@ in {
     };
 
     terminal = mkOption {
-      default = "footclient";
+      default = "foot";
       description = "Default terminal emulator";
       type = types.enum ["foot" "footclient"];
     };
