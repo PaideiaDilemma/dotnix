@@ -42,12 +42,11 @@ in {
 
   config = mkIf (cfg.gui.enable && cfg.hyprland.enable) {
     home.packages = with pkgs; [
-      chayang
       deepinV20HyprCursors
       grim
       hyprpicker
-      inputs.hyprlock.packages.${pkgs.system}.hyprlock
       hyprsetwallpaper
+      inputs.hyprlock.packages.${pkgs.system}.hyprlock
       networkmanagerapplet
       slurp
       swww
@@ -219,19 +218,34 @@ in {
           "float,zathura"
           "float,feh"
           "float,qemu"
+          "float,flameshot"
           #"float,DesktopEditors"
           "float,biz.ntinfo.die"
           "float,Ultimaker Cura"
           "float,Pinentry-gtk-2"
-          "float,title:^(Ghidra:)(.*)$"
+          #"float,title:^(Ghidra:)(.*)$"
           "float,title:^(wlroots)(.*)$"
         ];
 
         windowrulev2 = [
           "suppressevent fullscreen,class:firefox,floating:1"
+          "stayfocused, class:^(pinentry-)"
           "float,class:re.rizin.cutter,title:^(Open).*$"
           "float,class:re.rizin.cutter,title:^Load Options$"
-          #"stayfocused,class:^(ghidra-Ghidra)$,floating:1,fullscreen:0,initialTitle:^(CodeBrowser.*)$"
+          "nomaxsize,class:^(flameshot)$"
+          "fakefullscreen,class:^(flameshot)$"
+          "suppressevent fullscreen,class:^(flameshot)$"
+          "float,class:^(flameshot)$"
+          "monitor 0,class:^(flameshot)$"
+          "noanim,class:^(flameshot)$"
+          "noborder,class:^(flameshot)$"
+          "nodim,class:^(flameshot)$"
+          "noshadow,class:^(flameshot)$"
+          "rounding 0,class:^(flameshot)$"
+          (if (cfg.gui.staticMonitors == {})
+          then "move -640 0,class:^(flameshot)$"
+          else "move 0 0,class:^(flameshot)$")
+          "move -640 0,class:^(flameshot)$"
         ];
 
         bindm = [
@@ -266,7 +280,7 @@ in {
           "SUPER,V,exec,wlclipmgr restore -i \"$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')\""
 
           # Screenshots
-          "SUPERSHIFT,S,exec,${screenshot_cmd true}"
+          "SUPERSHIFT,S,exec,XDG_CURRENT_DESKTOP=sway flameshot gui -p ~/media/picture/screenshots -c"
           "SUPERCTRL,S,exec,${screenshot_cmd false}"
 
           # Notification Control
@@ -387,6 +401,8 @@ in {
         ''
         + cfg.hyprland.extraConfig;
     };
+
+    services.flameshot.enable = true;
 
     services.hypridle = {
       enable = true;
