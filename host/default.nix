@@ -31,12 +31,6 @@ in {
       description = "Enable GUI?";
     };
 
-    hyprland.enable = mkOption {
-      type = types.bool;
-      default = config.host.gui.enable;
-      description = "Whether to enable Hyprland";
-    };
-
     steam.enable = mkOption {
       type = types.bool;
       default = config.host.gui.enable;
@@ -65,12 +59,6 @@ in {
       gnupg.agent.enable = true;
       virt-manager.enable = cfg.gui.enable;
       dconf.enable = true;
-      /*
-        hyprland = lib.mkIf (cfg.hyprland.enable) {
-        enable = true;
-        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      };
-      */
       steam.enable = cfg.steam.enable && cfg.gui.enable;
     };
 

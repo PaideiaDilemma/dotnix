@@ -9,6 +9,18 @@ with lib; let
   cfg = config.host;
 in {
   options.host = {
+    hyprland.enable = mkOption {
+      type = types.bool;
+      default = config.host.gui.enable;
+      description = "Whether to enable Hyprland";
+    };
+
+    niri.enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Whether to enable Niri";
+    };
+
     default_session = mkOption {
       type = types.enum ["hyprland" "niri" "tuigreet" "shell"];
       default = "tuigreet";
@@ -17,15 +29,20 @@ in {
   };
 
   config = {
+    programs.hyprland = {
+      enable = cfg.hyprland.enable;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    };
+
     services.greetd = {
       enable = true;
       vt = 2;
       settings = rec {
-        hyprland_session = {
+        hyprland_session = lib.mkIf (cfg.hyprland.enable) {
           user = "max";
           command = "$SHELL -l -c ${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
         };
-        niri_session = {
+        niri_session = lib.mkIf (cfg.niri.enable) {
           user = "max";
           command = "$SHELL -l -c ${inputs.niri.packages.${pkgs.system}.niri-unstable}/bin/niri-session";
         };
@@ -40,7 +57,6 @@ in {
               --sessions ${inputs.niri.packages.${pkgs.system}.niri-unstable}/share/wayland-sessions:${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions \
               --remember \
               --remember-user-session \
-              --user-menu \
               --power-shutdown /run/current-system/systemd/bin/systemctl poweroff \
               --power-reboot /run/current-system/systemd/bin/systemctl reboot"
           '';
