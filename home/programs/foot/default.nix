@@ -26,7 +26,7 @@ in {
   config = mkIf (cfg.gui.enable && cfg.foot.enable) {
     programs.foot = {
       enable = true;
-      server.enable = true;
+      server.enable = false;
 
       settings = {
         main = {
