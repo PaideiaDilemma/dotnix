@@ -23,6 +23,7 @@ in {
 
       HYPRCURSOR_THEME = "DeepinV20HyprCursors";
       HYPRCURSOR_SIZE = "32";
+      GNUPGHOME = "${config.xdg.configHome}/gnupg";
       #__GLX_VENDOR_LIBRARY_NAME= "nvidia";
       #LIBVA_DRIVER_NAME= "nvidia"; # hardware acceleration
       #__GL_VRR_ALLOWED="1";

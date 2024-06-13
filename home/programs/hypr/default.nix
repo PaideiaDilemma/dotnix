@@ -109,7 +109,7 @@ in {
           "waybar"
           "swww-daemon"
           "wlsunset -l 48.2, -L 16.3 -t 4800"
-          "wlclipmgr watch --block \"password store sleep:2\""
+          "GNUPGHOME=${config.xdg.configHome}/gnupg wlclipmgr watch --block \"password store sleep:2\""
           "kdeconnect-indicator"
           "nm-applet"
           "hyprctl setcursor DeepinV20HyprCursors 32"
@@ -385,6 +385,8 @@ in {
           bind = ,escape,submap,reset
           # ~resize
           submap = reset
+
+          env = GNUPGHOME,${config.xdg.configHome}/gnupg
         ''
         + cfg.hyprland.extraConfig;
     };
