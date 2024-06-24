@@ -84,6 +84,7 @@ in {
         curl
         distrobox
         file
+        gamescope
         grim
         imv
         jq
