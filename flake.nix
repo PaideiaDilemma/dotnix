@@ -29,7 +29,7 @@
     };
 
     hyprlock = {
-      url = "github:hyprwm/hyprlock";
+      url = "github:PaideiaDilemma/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
     };
