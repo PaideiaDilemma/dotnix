@@ -400,25 +400,25 @@ in {
 
       settings = {
         general = {
-          lockCmd = "pidof hyprlock || hyprlock";
+          lock_cmd = "pidof hyprlock || hyprlock";
           #unlock_cmd = notify-send "Unlock cmd"
-          beforeSleepCmd = "loginctl lock-session";
+          before_sleep_cmd = "loginctl lock-session";
           #after_resume_cmd = notify-send "After resume cmd"
-          ignoreDbusInhibit = true;
+          #ignore_dbus_inhibit = true;
         };
 
-        listeners = [
+        listener = [
           {
             timeout = 300;
-            onTimeout = "pidof hyprlock || hyprlock";
+            on-timeout = "hyprlock";
           }
           {
             timeout = 800;
-            onTimeout = "systemctl suspend";
+            on-timeout = "systemctl suspend";
           }
           {
             timeout = 100;
-            onTimeout = "hyprsetwallpaper -g -c";
+            on-timeout = "hyprsetwallpaper -g -c";
           }
         ];
       };
