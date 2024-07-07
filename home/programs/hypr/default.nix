@@ -199,6 +199,8 @@ in {
           #layers_hog_keyboard_focus = 0
           #cursor_zoom_factor = 1.5
           #cursor_zoom_rigid = 1
+          key_press_enables_dpms = 1;
+          #mouse_move_enables_dpms = 1;
           disable_splash_rendering = 1;
           disable_hyprland_logo = 1;
           force_default_wallpaper = 0;
