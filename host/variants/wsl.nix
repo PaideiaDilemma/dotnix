@@ -24,7 +24,7 @@
     boot.enable = false;
     gui.enable = false;
     libvirtd.enable = false;
-    dotfileLocation = "/mnt/c/Users/seidlerm/nixos-dotfiles";
+    default_session = "shell";
   };
 
   myhost.networking.enable = false;

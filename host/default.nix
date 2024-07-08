@@ -136,9 +136,7 @@ in {
     security.pam.services.swaylock = {};
     security.pam.services.hyprlock = {};
 
-    system.autoUpgrade = {
-      enable = false;
-    };
+    system.autoUpgrade.enable = false;
 
     system.stateVersion = "23.11";
 
