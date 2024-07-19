@@ -258,7 +258,7 @@ in {
           # Launchers
           "SUPER,Return,exec,$terminal"
           "SUPERSHIFT,Return,exec,$terminal ipython"
-          "SUPER,E,exec,dolphin"
+          "SUPER,E,exec,pcmanfm"
           "SUPER,B,exec,chromium"
           "SUPERSHIFT,l,exec,hyprlock"
 

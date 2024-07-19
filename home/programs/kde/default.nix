@@ -20,8 +20,6 @@ in {
     home.packages = with pkgs.kdePackages; [
       qtsvg
       breeze-icons
-      dolphin
-      dolphin-plugins
       ffmpegthumbs
       gwenview
       kdegraphics-thumbnailers

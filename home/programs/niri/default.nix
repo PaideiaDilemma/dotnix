@@ -86,7 +86,7 @@ in {
           # Launchers
           "Mod+Return".action = spawn "${cfg.terminal}";
           "Mod+Shift+Return".action = spawn "${cfg.terminal}" "ipython";
-          "Mod+E".action = spawn "dolphin";
+          "Mod+E".action = spawn "pcmanfm";
           "Mod+B".action = spawn "chromium";
           "Mod+Shift+L".action = spawn "hyprlock";
 

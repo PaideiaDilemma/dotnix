@@ -119,6 +119,7 @@ in {
         libnotify.out
         libreoffice
         nwg-look
+        pcmanfm
         spotify
         thunderbird
         vlc
