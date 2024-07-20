@@ -150,18 +150,7 @@ in {
       nixPath = [
         "nixpkgs=${inputs.nixpkgs}"
       ];
-      buildMachines = lib.filter (x: x.hostName != config.networking.hostName) [
-        {
-          system = "x86_64-linux";
-          sshUser = "nixremote";
-          sshKey = "/root/.ssh/builder";
-          maxJobs = 4;
-          hostName = "desktop.local";
-          speedFactor = 2;
-          protocol = "ssh-ng";
-          supportedFeatures = ["nixos-test" "benchmark" "kvm" "big-parallel"];
-        }
-      ];
+      buildMachines = lib.filter (x: x.hostName != config.networking.hostName) [];
       distributedBuilds = true;
       package = pkgs.nixFlakes;
       settings = {
