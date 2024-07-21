@@ -96,6 +96,7 @@
           ./host/variants/${host}.nix
           home-manager.nixosModules.home-manager
           ({...}: {
+            nix.registry.nixpkgs.flake = nixpkgs;
             users.users.${username} = {
               isNormalUser = true;
               extraGroups = ["wheel" "networkmanager" "audio" "video" "input" "dialout"];
