@@ -118,10 +118,6 @@ in {
       #   font = "Lat2-Terminus16";
     };
 
-    # Enable sound.
-    sound.enable = true;
-    #hardware.pulseaudio.enable = true;
-
     environment.variables = {
       FLAKE = cfg.dotfileLocation;
       NIXOS_OZONE_WL = "1";
