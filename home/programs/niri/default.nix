@@ -10,7 +10,7 @@ with lib; let
 in {
   options.hyprhome.niri = {
     enable = mkOption {
-      default = true;
+      default = false;
       description = "Whether to enable the niri compositor.";
       type = types.bool;
     };
