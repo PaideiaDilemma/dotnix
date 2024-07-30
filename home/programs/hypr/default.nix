@@ -240,7 +240,7 @@ in {
           "SUPER,mouse:273,resizewindow"
         ];
 
-        bind = let
+        bindl = let
           screenshot_dir = "$HOME/media/picture/screenshots/";
           screenshot_cmd = select: "filename=$(date +'%H%M%S_%a%d%h%y_${
             if select
@@ -252,6 +252,12 @@ in {
             else ""
           } \"${screenshot_dir}$filename.png\" && wl-copy < \"$screenshot_dir$filename.png\" && notify-send \"Screenshot taken $filename.png\"";
         in [
+          # Screenshots
+          "SUPERSHIFT,S,exec,${screenshot_cmd true}"
+          "SUPERCTRL,S,exec,${screenshot_cmd false}"
+        ];
+
+        bind = [
           # Launchers
           "SUPER,Return,exec,$terminal"
           "SUPERSHIFT,Return,exec,$terminal ipython"
@@ -265,10 +271,6 @@ in {
           "SUPER,F,exec,rofi -show window -show-icons"
           "SUPERSHIFT,P,exec,rofi-pass"
           "SUPER,V,exec,wlclipmgr restore -i \"$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')\""
-
-          # Screenshots
-          "SUPERSHIFT,S,exec,${screenshot_cmd true}"
-          "SUPERCTRL,S,exec,${screenshot_cmd false}"
 
           # Notification Control
           "CONTROL,Escape,exec,makoctl dismiss"
