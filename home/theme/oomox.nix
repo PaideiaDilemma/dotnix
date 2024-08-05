@@ -107,7 +107,7 @@ with lib; let
         '';
 
         nativeBuildInputs = [glib libxml2 bc];
-        buildInputs = [gnome3.gnome-themes-extra gdk-pixbuf librsvg pkgs.sassc pkgs.inkscape pkgs.optipng fontconfig];
+        buildInputs = [gnome-themes-extra gdk-pixbuf librsvg pkgs.sassc pkgs.inkscape pkgs.optipng fontconfig];
         propagatedUserEnvPkgs = [gtk-engine-murrine];
         inherit installPhase;
       };

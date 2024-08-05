@@ -114,6 +114,7 @@ in {
         burpsuite
         chromium
         ghidra
+        gnome-disk-utility
         inkscape
         krita
         libnotify.out
@@ -132,7 +133,6 @@ in {
       ])
       ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
         # Gnome Applications
-        gnome-disk-utility
       ]);
 
     xdg.mimeApps = {
