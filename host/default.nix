@@ -59,20 +59,16 @@ in {
       gnupg.agent.enable = true;
       virt-manager.enable = cfg.gui.enable;
       dconf.enable = true;
-      steam.enable = cfg.steam.enable && cfg.gui.enable;
+      steam = {
+        enable = cfg.steam.enable && cfg.gui.enable;
+        extraCompatPackages = with pkgs; [
+          proton-ge-bin
+        ];
+      };
     };
 
     nixpkgs = {
-      overlays =
-        overlays
-        ++ optionals (cfg.steam.enable && cfg.gui.enable) [
-          (_: prev: {
-            steam = prev.steam.override {
-              extraProfile = "export STEAM_EXTRA_COMPAT_TOOLS_PATHS='${inputs.nix-gaming.packages.${pkgs.system}.proton-ge}'";
-            };
-          })
-        ];
-
+      overlays = overlays;
       config.allowUnfree = true;
     };
 
@@ -157,11 +153,9 @@ in {
         substituters = [
           "https://cache.nixos.org/"
           "https://hyprland.cachix.org"
-          "https://nix-gaming.cachix.org"
         ];
         trusted-public-keys = [
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-          "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         ];
       };
       extraOptions = "experimental-features = nix-command flakes";
