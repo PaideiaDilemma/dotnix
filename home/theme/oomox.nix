@@ -19,7 +19,7 @@ with lib; let
           owner = "themix-project";
           repo = "themix-gui";
           rev = "abd21644a34c389346c6253aa8770fe415416c6b";
-          hash = "sha256-/ICU/bBM06jRJd2It51gW9LZm4qN2YuYhgU2jC2uUjI=";
+          hash = "sha256-NrBfiB2qbCxd6z2ZAYIgAbuMxv56Pp+AGQ5vipR8dik=";
           fetchSubmodules = true;
         };
 
