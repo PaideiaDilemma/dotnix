@@ -1,14 +1,14 @@
 {
   lib,
   stdenv,
-  python311,
+  python312,
   swww,
 }:
 stdenv.mkDerivation {
   name = "hyprsetwallpaper";
   dontUnpack = true;
   buildInputs = [
-    (python311.withPackages (ps:
+    (python312.withPackages (ps:
       with ps; [
         pillow
       ]))

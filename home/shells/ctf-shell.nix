@@ -17,4 +17,5 @@ with import <nixpkgs> {};
         xz.out
       ];
     NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+    hardeningDisable = ["all"];
   }

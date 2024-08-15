@@ -5,8 +5,9 @@
   ...
 }: {
   home.packages = [
-    (pkgs.python311.withPackages (pip: [
-      inputs.los-nixpkgs.packages.${pkgs.system}.pwntools
+    (pkgs.python312.withPackages (pip: [
+      pip.pwntools
+      #inputs.los-nixpkgs.packages.${pkgs.system}.pwntools
       pip.colorama
       pip.ipython
       pip.numpy
