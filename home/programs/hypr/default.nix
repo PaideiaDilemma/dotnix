@@ -140,13 +140,11 @@ in {
           );
 
         general = {
-          sensitivity = 1.0; # for mouse cursor
           gaps_in = 4;
           gaps_out = 5;
           border_size = 1;
           "col.active_border" = rgbColor colors.base.sun;
           "col.inactive_border" = rgbaColor colors.base.sky "a0";
-          apply_sens_to_raw = 0; # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
         };
 
         decoration = {
@@ -350,6 +348,9 @@ in {
 
           "SUPER,semicolon,swapnext"
           "SUPER,apostrophe,togglesplit"
+
+          ",code:276,swapnext"
+          ",code:276,togglesplit"
 
           "ALT,Space,togglegroup"
           "ALT,j,changegroupactive,f"
