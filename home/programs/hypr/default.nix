@@ -434,8 +434,8 @@ in {
         general = {
           grace = 4;
           hide_cursor = true;
-          no_fade_in = true;
-          no_fade_out = true;
+          no_fade_in = false;
+          no_fade_out = false;
           #ignore_empty_input = true;
         };
 
