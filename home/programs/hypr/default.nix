@@ -153,7 +153,7 @@ in {
           shadow_range = 14;
           shadow_render_power = 3;
           shadow_ignore_window = 1;
-          "col.shadow" = "0xa0$shade_m";
+          "col.shadow" = rgbaColor colors.base.shade "a0";
         };
 
         animations = {
