@@ -301,6 +301,11 @@ in {
           "SUPER,k,movefocus,u"
           "SUPER,j,movefocus,d"
 
+          "SUPERSHIFT,h,movewindow,l"
+          "SUPERSHIFT,l,movewindow,r"
+          "SUPERSHIFT,k,movewindow,u"
+          "SUPERSHIFT,j,movewindow,d"
+
           "SUPER,w,workspace,+1"
           "SUPER,q,workspace,-1"
           "SUPER,1,workspace,1"
