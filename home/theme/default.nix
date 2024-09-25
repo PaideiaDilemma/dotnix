@@ -7,7 +7,6 @@
 }:
 with lib; let
   cfg = config.hyprhome;
-  themes = pkgs.callPackage ./oomox.nix {colors = config.colors;};
 in {
   imports = [
     ./qtct.nix
@@ -25,7 +24,9 @@ in {
 
     home.packages = [pkgs.deepinV20XCursors];
 
-    gtk = {
+    gtk = let
+      themes = pkgs.callPackage ./oomox.nix {colors = config.colors;};
+    in {
       enable = true;
       iconTheme = {
         name = "Penumbra";
