@@ -37,13 +37,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Collection of nix stuff we use at LosFuzzys.
-    # I will try to convince them to make it public.
-    los-nixpkgs = {
-      url = "git+ssh://git@github.com/LosFuzzys/los-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
     wlclipmgr = {
       url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
@@ -73,7 +66,8 @@
       inputs.niri.overlays.niri
       inputs.nur.overlay
       (import ./overlays/deepin-cursors.nix)
-      (import ./overlays/pwn-overlay.nix inputs)
+      (import ./overlays/patchelfdd-overlay.nix)
+      (import ./overlays/python-packages-overlay.nix)
       (import ./overlays/scripts-overlay.nix)
       (import ./overlays/way-displays-overlay.nix)
       (final: prev: {
