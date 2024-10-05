@@ -10,26 +10,22 @@
     };
 
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    /*
-      hyprharpoon = {
-      url = "github:PaideiaDilemma/hyprharpoon";
-      inputs.hyprland.follows = "hyprland";
-    };
-    */
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
+      inputs.hyprutils.follows = "hyprland";
     };
 
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
+      inputs.hyprutils.follows = "hyprland";
     };
 
     niri = {
