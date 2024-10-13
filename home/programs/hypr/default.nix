@@ -248,7 +248,7 @@ in {
             if select
             then "-g \"$(slurp)\""
             else ""
-          } \"${screenshot_dir}$filename.png\" && wl-copy < \"$screenshot_dir$filename.png\" && notify-send \"Screenshot taken $filename.png\"";
+          } \"${screenshot_dir}$filename.png\" && wl-copy < \"${screenshot_dir}$filename.png\" && notify-send \"Screenshot taken $filename.png\"";
         in [
           # Screenshots
           "SUPERSHIFT,S,exec,${screenshot_cmd true}"
