@@ -11,7 +11,7 @@ final: prev: {
               owner = "Gallopsled";
               repo = "pwntools";
               rev = "dev";
-              hash = "sha256-AEw6I3B/5bxNGf3VoiOttHBJuNWaqc5xwLW0OmVO7I8=";
+              hash = "sha256-r9tNSrmGqqLRaHvzyXrXf9vtVk5xYhhDBiYjH1+edHE=";
             };
           });
       })
