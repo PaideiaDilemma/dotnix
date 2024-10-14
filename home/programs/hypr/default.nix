@@ -467,6 +467,7 @@ in {
             dots_size = 0.4;
             dots_spacing = 0.10;
             dots_rounding = -2;
+            dots_text_format = "*";
 
             placeholder_text = "<i>$PROMPT</i>";
 
