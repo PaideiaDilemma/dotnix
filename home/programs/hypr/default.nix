@@ -44,9 +44,9 @@ in {
     home.packages = with pkgs; [
       deepinV20HyprCursors
       grim
+      hyprlock
       hyprpicker
       hyprsetwallpaper
-      inputs.hyprlock.packages.${pkgs.system}.hyprlock
       networkmanagerapplet
       slurp
       swww
@@ -67,7 +67,6 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       plugins = [
         #inputs.hyprharpoon.packages.${pkgs.system}.hyprharpoon
       ];
@@ -402,8 +401,6 @@ in {
     services.hypridle = {
       enable = true;
 
-      package = inputs.hypridle.packages.${pkgs.system}.hypridle;
-
       settings = {
         general = {
           lock_cmd = "pidof hyprlock || hyprlock";
@@ -432,8 +429,6 @@ in {
 
     programs.hyprlock = {
       enable = true;
-
-      package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
 
       settings = {
         general = {

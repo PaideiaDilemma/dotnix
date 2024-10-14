@@ -61,6 +61,9 @@
     overlays = [
       inputs.niri.overlays.niri
       inputs.nur.overlay
+      inputs.hyprland.overlays.default
+      inputs.hyprlock.overlays.default
+      inputs.hypridle.overlays.default
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/patchelfdd-overlay.nix)
       (import ./overlays/python-packages-overlay.nix)
