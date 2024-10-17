@@ -6,6 +6,7 @@ in {
       NVIM_APPNAME = "lazyvim";
       BROWSER = "firefox";
       TERMINAL = "${cfg.terminal}";
+      TERM_PROGRAM = "${cfg.terminal}";
 
       _JAVA_AWT_WM_NONREPARENTING = "1";
 
