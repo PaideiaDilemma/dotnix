@@ -18,8 +18,8 @@ with lib; let
         src = fetchFromGitHub {
           owner = "themix-project";
           repo = "themix-gui";
-          rev = "7dfd50eb257786d0b44e9e6548b3c3b14e8d7a1c";
-          hash = "sha256-Z9W6S3jwoNGzoBIYcgSc/EZi7DFT9EJMSAsAFLaYHGE=";
+          rev = "ddec4ff4f66a41ed45fa93aab7b60c28772c93b3";
+          hash = "sha256-Y6ATYl57+jBWQRUJxuxppOM0YsUEFos5SvxDdAryTq8=";
           fetchSubmodules = true;
         };
 
