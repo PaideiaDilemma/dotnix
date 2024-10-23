@@ -5,12 +5,14 @@ with import <nixpkgs> {};
     NIX_LD_LIBRARY_PATH = with pkgs;
       lib.makeLibraryPath [
         bzip2
+        gcc
         glib
         libelf
         libseccomp
         libxcrypt
         libxcrypt-legacy
         mysql80
+        ncurses
         openssl
         openssl_legacy
         stdenv.cc.cc
