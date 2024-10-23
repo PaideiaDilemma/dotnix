@@ -146,7 +146,7 @@ in {
       ];
       buildMachines = lib.filter (x: x.hostName != config.networking.hostName) [];
       distributedBuilds = true;
-      package = pkgs.nixFlakes;
+      package = pkgs.nixVersions.latest;
       settings = {
         substituters = [
           "https://cache.nixos.org/"

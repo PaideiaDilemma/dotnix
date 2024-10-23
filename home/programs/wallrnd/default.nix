@@ -20,7 +20,6 @@ with lib; let
 
     cargoHash = "sha256-6Rj42QW/FgNX2EOFIlvc2HzuiQ8CmCBH7Xu0IGSudN8=";
     cargoBuildFlags = [
-      "--release"
       "--features=nice"
     ];
   };

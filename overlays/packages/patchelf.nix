@@ -11,9 +11,6 @@ pkgs.rustPlatform.buildRustPackage {
   };
 
   cargoHash = "sha256-LQ9PYW36fA2pLO8DJ/0gio9Rcq5wK03Ubvzmy5nxg8U=";
-  cargoBuildFlags = [
-    "--release"
-  ];
 
   doCheck = false; # I need to fix the static paths in the tests...
 }

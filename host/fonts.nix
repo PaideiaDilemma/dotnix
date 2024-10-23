@@ -9,7 +9,7 @@
       (nerdfonts.override {fonts = ["Hack" "FiraCode"];})
       font-awesome
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
     ];
     fontconfig = {
