@@ -6,6 +6,7 @@ import argparse
 from pathlib import Path
 from shutil import copyfile
 import uuid
+import fcntl
 import os
 from subprocess import check_output, run, STDOUT
 from PIL import Image
@@ -13,6 +14,7 @@ from PIL import Image
 WAL_CACHE_DIR = Path.home() / ".cache" / "wallpaper"
 WAL_SAVE_DIR = Path.home() / "media" / "picture"
 WALLRND_CONFIG = Path.home() / ".config" / "wallrnd" / "wallrnd.toml"
+LOCKFILE = Path.home() / ".cache" / "wallpaper.lock"
 
 
 def setwallpaper(config):
@@ -138,6 +140,34 @@ def set_hyprland_instance_signature():
     os.putenv(KEY, instance_signature)
 
 
+class LockFile:
+    path: Path
+
+    def __init__(self, path: Path):
+        self.path = path
+        self.file = open(path, "w")
+        try:
+            fcntl.flock(self.file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except IOError or BlockingIOError:
+            print("Another instance is already running")
+            exit(1)
+
+        fcntl.flock(self.file, fcntl.LOCK_EX)
+
+    def __enter__(self):
+        return self.file
+
+    def __exit__(self, exc_type=None, _=None, __=None):
+        fcntl.flock(self.file, fcntl.LOCK_UN)
+        self.file.close()
+        self.path.unlink()
+
+        if exc_type:
+            return False
+
+        return True
+
+
 def main():
     parser = argparse.ArgumentParser(description="Set wallpaper with hyprland")
     parser.add_argument("-f", "--file", help="Wallpaper file name")
@@ -177,4 +207,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with LockFile(LOCKFILE) as _:
+        main()

@@ -47,7 +47,7 @@ in {
 
       VRR_OFF:
         - 'eDP-1'
-      CHANGE_SUCCESS_CMD: 'pgrep python3 | grep hyprsetwallpaper || hyprsetwallpaper -g -c'
+      CHANGE_SUCCESS_CMD: 'hyprsetwallpaper -g -c'
       #CHANGE_SUCCESS_CMD: notify-send 'Monitors changed'
       #CHANGE_SUCCESS_CMD: 'echo "Monitors changed"'
     '';
