@@ -76,7 +76,6 @@
       (import ./overlays/patchelfdd-overlay.nix)
       (import ./overlays/python-packages-overlay.nix)
       (import ./overlays/scripts-overlay.nix)
-      (import ./overlays/way-displays-overlay.nix)
       (final: prev: {
         waybar = inputs.waybar.packages.${prev.system}.default;
       })
