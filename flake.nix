@@ -9,9 +9,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Don't yoink this. You should use xdhp from the hyprland flake
+    # It is just broken currently.
+    xdph = {
+      url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.xdph.follows = "xdph";
     };
 
     hypridle = {
