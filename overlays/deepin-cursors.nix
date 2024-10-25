@@ -3,7 +3,7 @@ _final: prev: let
     owner = "PaideiaDilemma";
     repo = "DeepinV20-white-cursors";
     rev = "master";
-    hash = "sha256-8mCMCghcChJza50JEORk/pS9VcH1bjNfArnK6HoVsNs=";
+    hash = "sha256-/8+Bkw2gpwlMwnrv0v2L9olpNbZ2HutiILjW8Xko1XA=";
   };
 in {
   deepinV20XCursors = prev.callPackage prev.pkgs.stdenv.mkDerivation {
