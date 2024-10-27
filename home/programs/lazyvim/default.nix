@@ -12,7 +12,7 @@ with lib; let
       owner = "PaideiaDilemma";
       repo = "LazyVim";
       rev = "main";
-      hash = "sha256-9ioJp9QCODtNwXVfwNcRSMknTsknXkHRBIsgbBceTI4=";
+      hash = "sha256-PB2jsbhUX3SlSTQH4E78YPiLFixx1fg813cg6Q5qe04=";
     };
     installPhase = ''
       mkdir -p $out/lazyvim
@@ -56,7 +56,6 @@ in {
 
     programs.neovim = {
       enable = true;
-      viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
       defaultEditor = true;
