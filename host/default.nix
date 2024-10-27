@@ -75,7 +75,11 @@ in {
     xdg.portal = {
       enable = cfg.gui.enable;
       xdgOpenUsePortal = true;
-      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      config = {
+        common.default = ["gtk"];
+        hyprland.default = ["gtk" "hyprland"];
+      };
     };
 
     programs.nh = {
