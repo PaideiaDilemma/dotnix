@@ -22,8 +22,6 @@ in {
       size = 16;
     };
 
-    home.packages = [pkgs.deepinV20XCursors];
-
     gtk = let
       themes = pkgs.callPackage ./oomox.nix {colors = config.colors;};
     in {
@@ -46,8 +44,12 @@ in {
 
     qt = {
       enable = true;
-      platformTheme.name = "qtct";
+      # instead handled below
+      platformTheme.name = null;
       #style.name = "kvantum";
     };
+
+    home.packages = [pkgs.deepinV20XCursors pkgs.libsForQt5.qt5ct pkgs.qt6ct];
+    home.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";
   };
 }
