@@ -43,12 +43,11 @@ in {
   config = mkIf (cfg.gui.enable && cfg.hyprland.enable) {
     home.packages = with pkgs; [
       deepinV20HyprCursors
-      grim
       hyprlock
       hyprpicker
       hyprsetwallpaper
+      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       networkmanagerapplet
-      slurp
       swww
       waybar
       wlsunset
@@ -57,8 +56,6 @@ in {
     home.file."media/picture/wal.png".source = ./wal.png;
     home.file."media/picture/avatar.png".source = ./avatar.png;
     home.file.".icons/DeepinV20HyprCursors".source = "${pkgs.deepinV20HyprCursors}/share/icons/DeepinV20HyprCursors";
-
-    systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
 
     home.sessionVariables = mkIf cfg.hyprland.isVirtualMachine {
       WLR_NO_HARDWARE_CURSORS = "1";
@@ -74,6 +71,10 @@ in {
       systemd = {
         enable = true;
         variables = ["--all"];
+        extraCommands = [
+          "systemctl --user stop graphical-session.target"
+          "systemctl --user start hyprland-session.target"
+        ];
       };
 
       settings = {
@@ -239,19 +240,11 @@ in {
 
         bindl = let
           screenshot_dir = "$HOME/media/picture/screenshots/";
-          screenshot_cmd = select: "filename=$(date +'%H%M%S_%a%d%h%y_${
-            if select
-            then "sel"
-            else "full"
-          }') && grim ${
-            if select
-            then "-g \"$(slurp)\""
-            else ""
-          } \"${screenshot_dir}$filename.png\" && wl-copy < \"${screenshot_dir}$filename.png\" && notify-send \"Screenshot taken $filename.png\"";
+          screenshot_cmd = target: "grimblast --notify copysave ${target} \"${screenshot_dir}$(date +'%H%M%S_%a%d%h%y_${target}').png\"";
         in [
           # Screenshots
-          "SUPERSHIFT,S,exec,${screenshot_cmd true}"
-          "SUPERCTRL,S,exec,${screenshot_cmd false}"
+          "SUPERSHIFT,S,exec,${screenshot_cmd "area"}"
+          "SUPERCTRL,S,exec,${screenshot_cmd "output"}"
         ];
 
         bind = [
