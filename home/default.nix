@@ -100,6 +100,8 @@ in {
         scrcpy
         slurp
         sqlite
+        tinymist
+        typst
         wget
         wl-clipboard
       ])
