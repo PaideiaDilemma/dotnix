@@ -149,11 +149,13 @@ in {
 
         decoration = {
           rounding = 6;
-          drop_shadow = 1;
-          shadow_range = 14;
-          shadow_render_power = 3;
-          shadow_ignore_window = 1;
-          "col.shadow" = rgbaColor colors.base.shade "a0";
+          shadow = {
+            enabled = 1;
+            range = 14;
+            render_power = 3;
+            ignore_window = 1;
+            color = rgbaColor colors.base.shade "a0";
+          };
         };
 
         animations = {
