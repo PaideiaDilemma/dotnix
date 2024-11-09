@@ -143,6 +143,7 @@ in {
           gaps_in = 4;
           gaps_out = 5;
           border_size = 1;
+          snap.enabled = 1;
           "col.active_border" = rgbColor colors.base.sun;
           "col.inactive_border" = rgbaColor colors.base.sky "a0";
         };
