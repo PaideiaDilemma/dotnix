@@ -213,11 +213,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1731880680,
-        "narHash": "sha256-0i1n/gHX3p2ZFnpR3DEnOZUgniKOWXGLLYMllcZcPCw=",
+        "lastModified": 1731938554,
+        "narHash": "sha256-gf+kbHkclBD3Cysfl96aoRjIEK1Ed7Ew52pDX8l7uLo=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "1ba050d603dca644aca48872f62388d794c030b9",
+        "rev": "6744bb57c639d5359a414eea2566328bb05c7065",
         "type": "github"
       },
       "original": {
@@ -375,6 +375,22 @@
       "original": {
         "owner": "hyprwm",
         "repo": "hyprwayland-scanner",
+        "type": "github"
+      }
+    },
+    "lazyvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731934892,
+        "narHash": "sha256-J7qkuJxv8j6TMNQEScxdg64x2DAO9n5xTQLUDST6hJk=",
+        "owner": "PaideiaDilemma",
+        "repo": "LazyVim",
+        "rev": "a54cfb3b37fec6ca6cb209efb935c0a1da97c9fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PaideiaDilemma",
+        "repo": "LazyVim",
         "type": "github"
       }
     },
@@ -554,11 +570,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1731930207,
-        "narHash": "sha256-Tjnsu6V5uyFhq6/gf5leBi2x1MHlcZ3OaZMWHgDHm3A=",
+        "lastModified": 1731935357,
+        "narHash": "sha256-5+Q84V0hfMnwu67U/uWsw8cA62ppFBIKbwxjz0pIKRc=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "5c00c003b3d0c84db5ec3b863a5da6fff60d6d5f",
+        "rev": "b2bfcd53e1ad7e3864788aa80a15a4004292a2c2",
         "type": "github"
       },
       "original": {
@@ -598,6 +614,7 @@
         "hyprland": "hyprland",
         "hyprland-contrib": "hyprland-contrib",
         "hyprlock": "hyprlock",
+        "lazyvim": "lazyvim",
         "niri": "niri",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",

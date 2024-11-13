@@ -1,28 +1,12 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 with lib; let
   cfg = config.hyprhome;
-  lazyvimConfigSrc = pkgs.stdenv.mkDerivation {
-    name = "lazyvim-config";
-    src = pkgs.fetchFromGitHub {
-      owner = "PaideiaDilemma";
-      repo = "LazyVim";
-      rev = "main";
-      hash = "sha256-I2tRByjbfbS7cZWjZ8QfS6E4RBNtR56X9aDgzBHeq0s=";
-    };
-    installPhase = ''
-      mkdir -p $out/lazyvim
-      cp -r $src/* $out/lazyvim
-      # I have the lazy lockfile in the data directory.
-      # I would like to write this into a user-writable file initially,
-      # but I don't know how to do that yet.
-      rm $out/lazyvim/lazy-lock.json
-    '';
-  };
 in {
   options.hyprhome.lazyvim = {
     enable = mkOption {
@@ -47,11 +31,11 @@ in {
     ];
 
     xdg.configFile."lazyvim/init.lua" = {
-      source = "${lazyvimConfigSrc}/lazyvim/init.lua";
+      source = "${inputs.lazyvim}/init.lua";
     };
 
     xdg.configFile."lazyvim/lua" = {
-      source = "${lazyvimConfigSrc}/lazyvim/lua";
+      source = "${inputs.lazyvim}/lua";
     };
 
     programs.neovim = {

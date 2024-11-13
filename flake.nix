@@ -38,6 +38,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lazyvim = {
+      url = "github:PaideiaDilemma/LazyVim";
+      flake = false;
+    };
+
     # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
     wlclipmgr = {
       url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
