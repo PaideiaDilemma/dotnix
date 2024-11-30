@@ -7,7 +7,8 @@
   fonts = {
     packages = with pkgs; [
       nerd-fonts.hack
-      nerd-fonts.fira
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
       font-awesome
       noto-fonts
       noto-fonts-cjk-sans
