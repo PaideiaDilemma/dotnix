@@ -457,8 +457,9 @@ in {
 
             dots_size = 0.4;
             dots_spacing = 0.10;
-            dots_rounding = -2;
-            dots_text_format = "*";
+            dots_rounding = 0;
+            dots_text_format = "";
+            font_family = "FiraMono Nerd Font Propo";
 
             placeholder_text = "<i>$PROMPT</i>";
 
