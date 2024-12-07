@@ -14,6 +14,7 @@
     ./python
     ./rofi
     ./swaylock
+    ./syncthing
     ./wallrnd
     ./way-displays
     ./waybar

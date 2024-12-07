@@ -88,11 +88,11 @@ in {
         grim
         imv
         jq
+        keepassxc
         mako
         man-pages
         man-pages-posix
         mpv-unwrapped
-        pass-wayland
         patchelfdd
         pavucontrol
         rofi-wayland

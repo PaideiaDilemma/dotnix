@@ -70,7 +70,7 @@
   } @ inputs: let
     overlays = [
       inputs.niri.overlays.niri
-      inputs.nur.overlay
+      inputs.nur.overlays.default
       inputs.hyprland.overlays.default
       inputs.hyprlock.overlays.default
       inputs.hypridle.overlays.default

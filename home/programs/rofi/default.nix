@@ -25,11 +25,6 @@ in {
     programs.rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
-      pass = {
-        enable = true;
-        package = pkgs.rofi-pass-wayland;
-        stores = ["${config.xdg.configHome}/pass"];
-      };
       configPath = "${config.xdg.configHome}/rofi/config.rasi";
     };
 
