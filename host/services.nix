@@ -45,5 +45,7 @@ in {
     services.blueman.enable = true;
 
     security.rtkit.enable = true;
+
+    programs.wireshark.enable = true;
   };
 }
