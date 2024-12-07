@@ -22,7 +22,7 @@
   boot.initrd.luks.devices."ROOT".device = "/dev/disk/by-uuid/40ee0571-1559-4139-adfd-460558a12a0f";
 
   fileSystems."/" = {
-    device = "/dev/mapper/ROOT";
+    device = lib.mkForce "/dev/mapper/ROOT";
     fsType = "btrfs";
     options = [
       "defaults"
@@ -37,7 +37,7 @@
   };
 
   fileSystems."/home" = {
-    device = "/dev/mapper/ROOT";
+    device = lib.mkForce "/dev/mapper/ROOT";
     fsType = "btrfs";
     options = [
       "defaults"
@@ -52,7 +52,7 @@
   };
 
   fileSystems."/nix" = {
-    device = "/dev/mapper/ROOT";
+    device = lib.mkForce "/dev/mapper/ROOT";
     fsType = "btrfs";
     options = [
       "defaults"
@@ -67,7 +67,7 @@
   };
 
   fileSystems."/btrfs" = {
-    device = "/dev/mapper/ROOT";
+    device = lib.mkForce "/dev/mapper/ROOT";
     fsType = "btrfs";
     options = [
       "defaults"
@@ -82,7 +82,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/BC2A-4F76";
+    device = lib.mkForce "/dev/disk/by-uuid/BC2A-4F76";
     fsType = "vfat";
     options = ["fmask=0077" "dmask=0077"];
     label = "BOOT";
