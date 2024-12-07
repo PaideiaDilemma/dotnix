@@ -232,6 +232,11 @@ in {
         windowrulev2 = [
           "suppressevent fullscreen,class:firefox,floating:1"
           "stayfocused, class:^(pinentry-)"
+          "float,class:vlc"
+          "float,title:Bluetooth Devices"
+          "float,class:org.pulseaudio.pavucontrol"
+          "float,class:org.kde.kdeconnect.app"
+          "float,class:org.kde.kdeconnect-settings"
           "float,class:re.rizin.cutter,title:^(Open).*$"
           "float,class:re.rizin.cutter,title:^Load Options$"
         ];
