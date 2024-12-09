@@ -19,7 +19,6 @@ in {
   config = mkIf (cfg.syncthing.enable) {
     services.syncthing = {
       enable = true;
-      tray.enable = true;
     };
   };
 }
