@@ -22,7 +22,7 @@
   boot.initrd.luks.devices."ROOT".device = "/dev/disk/by-uuid/40ee0571-1559-4139-adfd-460558a12a0f";
 
   fileSystems."/" = {
-    device = lib.mkForce "/dev/mapper/ROOT";
+    device = "/dev/mapper/ROOT";
     fsType = "btrfs";
     options = [
       "defaults"
@@ -33,11 +33,10 @@
       "space_cache=v2"
       "subvol=@"
     ];
-    label = "NIXOS";
   };
 
   fileSystems."/home" = {
-    device = lib.mkForce "/dev/mapper/ROOT";
+    device = "/dev/mapper/ROOT";
     fsType = "btrfs";
     options = [
       "defaults"
@@ -48,11 +47,10 @@
       "space_cache=v2"
       "subvol=@home"
     ];
-    label = "HOME";
   };
 
   fileSystems."/nix" = {
-    device = lib.mkForce "/dev/mapper/ROOT";
+    device = "/dev/mapper/ROOT";
     fsType = "btrfs";
     options = [
       "defaults"
@@ -63,11 +61,10 @@
       "space_cache=v2"
       "subvol=@nix"
     ];
-    label = "NIX";
   };
 
   fileSystems."/btrfs" = {
-    device = lib.mkForce "/dev/mapper/ROOT";
+    device = "/dev/mapper/ROOT";
     fsType = "btrfs";
     options = [
       "defaults"
@@ -78,14 +75,12 @@
       "space_cache=v2"
       "subvol=/"
     ];
-    label = "BTRFS";
   };
 
   fileSystems."/boot" = {
-    device = lib.mkForce "/dev/disk/by-uuid/BC2A-4F76";
+    device = "/dev/disk/by-uuid/BC2A-4F76";
     fsType = "vfat";
     options = ["fmask=0077" "dmask=0077"];
-    label = "BOOT";
   };
 
   swapDevices = [];
