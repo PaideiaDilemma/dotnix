@@ -120,6 +120,26 @@
         "type": "github"
       }
     },
+    "git-moduletree": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734092680,
+        "narHash": "sha256-rZKdgWNsW3wEczEoDxmgvez8p7jbnot2FnVcdjx8Coc=",
+        "owner": "PaideiaDilemma",
+        "repo": "git-moduletree",
+        "rev": "4e417215686851d4e4df5dba8a0564ab4b63c459",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PaideiaDilemma",
+        "repo": "git-moduletree",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -741,6 +761,7 @@
     },
     "root": {
       "inputs": {
+        "git-moduletree": "git-moduletree",
         "home-manager": "home-manager",
         "hypridle": "hypridle",
         "hyprland": "hyprland",

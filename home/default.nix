@@ -86,6 +86,7 @@ in {
         file
         gamescope
         grim
+        git-moduletree
         imv
         jq
         keepassxc

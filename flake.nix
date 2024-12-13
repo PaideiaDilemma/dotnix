@@ -43,6 +43,11 @@
       flake = false;
     };
 
+    git-moduletree = {
+      url = "github:PaideiaDilemma/git-moduletree";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
     wlclipmgr = {
       url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
@@ -78,6 +83,9 @@
       (import ./overlays/patchelfdd-overlay.nix)
       (import ./overlays/python-packages-overlay.nix)
       (import ./overlays/scripts-overlay.nix)
+      (final: prev: {
+        git-moduletree = inputs.git-moduletree.packages.${prev.system}.default;
+      })
       (final: prev: {
         waybar = inputs.waybar.packages.${prev.system}.default;
       })
