@@ -78,24 +78,21 @@ in {
         curl
         distrobox
         file
-        gamescope
-        grim
-        imv
-        jq
-        keepassxc
         linuxPackages_latest.perf
+        jq
+        mako
         man-pages
         man-pages-posix
         mpv-unwrapped
         #patchelfdd
         pavucontrol
-        rofi-wayland
         rustup
         scrcpy
         slurp
         sqlite
         tinymist
         typst
+        usbutils
         wget
         wl-clipboard
       ])
@@ -106,9 +103,13 @@ in {
         #bottles - i need to look into nix-flatpak
         burpsuite
         chromium
+        gamescope
         ghidra
         gnome-disk-utility
+        grim
+        imv
         inkscape
+        keepassxc
         krita
         libnotify.out
         libreoffice
