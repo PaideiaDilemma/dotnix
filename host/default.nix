@@ -52,13 +52,14 @@ in {
 
   config = {
     programs = {
-      git.enable = true;
       adb.enable = true;
-      zsh.enable = true;
-      nix-ld.enable = true;
-      gnupg.agent.enable = true;
-      virt-manager.enable = cfg.gui.enable;
+      command-not-found.enable = false;
       dconf.enable = true;
+      git.enable = true;
+      gnupg.agent.enable = true;
+      nix-ld.enable = true;
+      virt-manager.enable = cfg.gui.enable;
+      zsh.enable = true;
       steam = {
         enable = cfg.steam.enable && cfg.gui.enable;
         extraCompatPackages = with pkgs; [
