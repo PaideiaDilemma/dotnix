@@ -14,13 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprland";
-      inputs.hyprutils.follows = "hyprland";
-    };
-
+    # hyprlock is part of the hyprland overlay, but i want it up to date for testing
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,7 +66,6 @@
       inputs.nur.overlays.default
       inputs.hyprland.overlays.default
       inputs.hyprlock.overlays.default
-      inputs.hypridle.overlays.default
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/patchelfdd-overlay.nix)
       (import ./overlays/python-packages-overlay.nix)

@@ -44,7 +44,7 @@ in {
     home.packages = with pkgs; [
       deepinV20HyprCursors
       hyprlock
-      hyprpicker
+      #hyprpicker - currently broken in the hyprland overlay
       hyprsetwallpaper
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       networkmanagerapplet

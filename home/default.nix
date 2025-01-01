@@ -115,7 +115,7 @@ in {
         # Graphical Applications
         #cutter
         #cutterPlugins.rz-ghidra
-        bottles
+        #bottles - i need to look into nix-flatpak
         burpsuite
         chromium
         ghidra

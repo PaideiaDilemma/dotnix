@@ -39,11 +39,11 @@ in {
       settings = rec {
         hyprland_session = lib.mkIf (cfg.hyprland.enable) {
           user = "max";
-          command = "$SHELL -l -c ${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
+          command = "$SHELL -l -c ${pkgs.hyprland}/bin/Hyprland";
         };
         niri_session = lib.mkIf (cfg.niri.enable) {
           user = "max";
-          command = "$SHELL -l -c ${inputs.niri.packages.${pkgs.system}.niri-unstable}/bin/niri-session";
+          command = "$SHELL -l -c ${pkgs.niri}/bin/niri-session";
         };
         shell_session = {
           user = "max";
@@ -53,7 +53,7 @@ in {
           user = "max";
           command = ''
             $SHELL -l -c "${pkgs.greetd.tuigreet}/bin/tuigreet \
-              --sessions ${inputs.niri.packages.${pkgs.system}.niri-unstable}/share/wayland-sessions:${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions \
+              --sessions ${pkgs.niri}/share/wayland-sessions:${pkgs.hyprland}/share/wayland-sessions \
               --remember \
               --remember-user-session \
               --power-shutdown /run/current-system/systemd/bin/systemctl poweroff \
