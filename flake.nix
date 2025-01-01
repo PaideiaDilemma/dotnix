@@ -33,11 +33,6 @@
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     lazyvim = {
       url = "github:PaideiaDilemma/LazyVim";
       flake = false;
@@ -74,7 +69,6 @@
     ...
   } @ inputs: let
     overlays = [
-      inputs.niri.overlays.niri
       inputs.nur.overlays.default
       inputs.hyprland.overlays.default
       inputs.hyprlock.overlays.default
@@ -119,7 +113,6 @@
             home-manager.users.${username} = {...}: {
               imports = [
                 inputs.hyprland.homeManagerModules.default
-                inputs.niri.homeModules.niri
                 ./home
                 ./home/variants/${homeVariant}.nix
               ];
@@ -137,7 +130,6 @@
         };
         modules = [
           inputs.hyprland.homeManagerModules.default
-          inputs.niri.homeModules.niri
           ({...}: {
             imports = [./home ./home/variants/${homeVariant}.nix];
             hyprhome.username = username;
