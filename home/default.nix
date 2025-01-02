@@ -89,7 +89,6 @@ in {
         grim
         imv
         jq
-        jujutsu
         keepassxc
         lazyjj
         mako

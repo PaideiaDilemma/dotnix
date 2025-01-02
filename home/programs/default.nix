@@ -6,18 +6,19 @@
     ./gdb
     ./gnupg
     ./hypr
+    ./jj
     ./kde
     ./lazyvim
     ./mako
     ./obs
     ./python
     ./rofi
+    ./shell
     ./swaylock
     ./syncthing
     ./wallrnd
     ./way-displays
     ./waybar
     ./wlclipmgr
-    ./shell
   ];
 }
