@@ -14,6 +14,9 @@
         # compared to the `main` bookmark
         l = ["log" "-r" "(main..@):: | (main..@)-"];
       };
+      ui = {
+        diff-editor =  ["nvim" "-c" "DiffEditor $left $right $output"];
+      };
     };
   };
 }
