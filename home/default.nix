@@ -90,7 +90,6 @@ in {
         imv
         jq
         keepassxc
-        lazyjj
         mako
         man-pages
         man-pages-posix
