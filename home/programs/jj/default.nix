@@ -13,9 +13,8 @@
         "diff token" = {underline = false;};
       };
       aliases = {
-        # `jj l` shows commits on the working-copy commit's (anonymous) bookmark
-        # compared to the `main` bookmark
         l = ["log" "--no-pager" "-r" "(main..@):: | (main..@)-"];
+        s = ["status" "--no-pager"];
       };
       ui = {
         diff-editor = "meld";
