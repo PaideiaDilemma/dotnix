@@ -85,11 +85,11 @@ in {
         distrobox
         file
         gamescope
-        git-moduletree
         grim
         imv
         jq
         keepassxc
+        linuxPackages_latest
         mako
         man-pages
         man-pages-posix
