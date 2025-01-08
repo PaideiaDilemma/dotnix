@@ -89,7 +89,7 @@ in {
         imv
         jq
         keepassxc
-        linuxPackages_latest
+        linuxPackages_latest.perf
         mako
         man-pages
         man-pages-posix

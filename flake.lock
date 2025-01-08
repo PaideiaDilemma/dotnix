@@ -102,26 +102,6 @@
         "type": "github"
       }
     },
-    "git-moduletree": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1734100145,
-        "narHash": "sha256-bGO7ED+UWkAWdCYx9YXTWHgYvMzLgvD5esrZZNxbj2Q=",
-        "owner": "PaideiaDilemma",
-        "repo": "git-moduletree",
-        "rev": "55556477be8580c3d719290035fe9a38cf895622",
-        "type": "github"
-      },
-      "original": {
-        "owner": "PaideiaDilemma",
-        "repo": "git-moduletree",
-        "type": "github"
-      }
-    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -151,11 +131,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736204492,
-        "narHash": "sha256-CoBPRgkUex9Iz6qGSzi/BFVUQjndB0PmME2B6eEyeCs=",
+        "lastModified": 1736277415,
+        "narHash": "sha256-kPDXF6cIPsVqSK08XF5EC6KM7BdMnM9vtJDzsnf+lLU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "20665c6efa83d71020c8730f26706258ba5c6b2a",
+        "rev": "5c4302313d9207f7ec0886d68f8ff4a3c71209a1",
         "type": "github"
       },
       "original": {
@@ -269,11 +249,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1736272514,
-        "narHash": "sha256-NOnp1K1M0dLH8o4MW/9n1j3iaH7VK09aLHT8BiLdP14=",
+        "lastModified": 1736279929,
+        "narHash": "sha256-F7e1z0rbCmvDLhbBuQ6Y/zzFYRBZXuSP1GrsterrdwU=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "5642ed331df56375c55cd8d56a14054af8bdf8f2",
+        "rev": "67e1e46f9b6285ea260bc88844f85dec6b7d7d02",
         "type": "github"
       },
       "original": {
@@ -532,11 +512,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1736237814,
-        "narHash": "sha256-uTdscVaKjnRnBIMuu/oWwdiGhYd/JOQ4YZGHeCoroqs=",
+        "lastModified": 1736283893,
+        "narHash": "sha256-BG1FfTexFwNty5VhYjaQLMR6CMPfI3QRcaZrFQYu2EM=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "ca30f8501ab452ca687a7fdcb2d43e1fb1732317",
+        "rev": "4f339f6be2b61662f957c2ee9eda0fa597d8a6d6",
         "type": "github"
       },
       "original": {
@@ -636,11 +616,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1736268958,
-        "narHash": "sha256-O3cfbKgDb8A5VsUN0fPVpNf2EEFO5itnbkTYP+Vsuto=",
+        "lastModified": 1736321941,
+        "narHash": "sha256-0Lek73m4nYRpxVoH4/IrFU+PFyPUpC9QAqja9TlcQxk=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "706045eb80f347d5418e81c5aa80d6c410394991",
+        "rev": "4cbf26a208dab2142f5c4be0806415c6ab669b83",
         "type": "github"
       },
       "original": {
@@ -674,7 +654,6 @@
     },
     "root": {
       "inputs": {
-        "git-moduletree": "git-moduletree",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprland-contrib": "hyprland-contrib",

@@ -1,4 +1,7 @@
-{...}: {
+{pkgs, ...}: {
+  home.packages = [
+    pkgs.meld
+  ];
   programs.jujutsu = {
     enable = true;
     settings = {
@@ -12,11 +15,12 @@
       aliases = {
         # `jj l` shows commits on the working-copy commit's (anonymous) bookmark
         # compared to the `main` bookmark
-        l = ["log" "-r" "(main..@):: | (main..@)-"];
+        l = ["log" "--no-pager" "-r" "(main..@):: | (main..@)-"];
       };
       ui = {
-        diff-editor =  ["nvim" "-c" "DiffEditor $left $right $output"];
+        diff-editor = "meld";
       };
+      merge-tools.diffconflicts.program = "meld";
     };
   };
 }
