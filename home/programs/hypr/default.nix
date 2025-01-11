@@ -164,26 +164,27 @@ in {
             if cfg.hyprland.enableAnimations
             then "1"
             else "0";
+
           bezier = [
-            "const,0.25,0.25,0.75,0.75"
-            "ease2,0.57,0.15,0.40,0.85"
-            #"ease-out2,0.58,0.45,0.58,1"
-            "ease-out2,0.75,0.8,0.58,1"
-            #bezier = "ease-in2,0,0.45,0.58,0.58"
-            "ease-in2,0.5,0.75,0.58,0.58"
-            "weird,-0.09,0,0.19,1"
-            "special,0.5,0.9,0,0.72"
+            "linear, 1, 1, 0, 0"
+            "equal, 1, 0.5, 0, 0.5"
+            "outCirc, 0.075, 0.82, 0.165, 1"
+            "inCirc, 0.6, 0.04, 0.98, 0.335"
+            "inOutCirc, 0.785, 0.135, 0.15, 0.86"
           ];
 
           animation = [
-            "windowsIn,1,2,ease-in2,popin 80%"
-            "windowsOut,1,2,ease-out2,popin 80%"
-            "fadeIn,1,2,ease-in2"
-            "fadeOut,1,2,ease-out2"
-            "workspaces,1,2,ease2,slidevert"
-            "specialWorkspace,1,4,special,slidevert"
-            "windowsMove,1,2,weird"
-            "border,1,9,special"
+            "windows,1,2,inOutCirc,slide"
+            "windowsOut,1,2,linear,popin 80%"
+            "windowsIn,1,2,inOutCirc,slide"
+            "windowsMove,1,2,inOutCirc"
+            "fadeOut,1,1,linear"
+            "fadeIn,1,2,inOutCirc"
+            "fadeLayersIn,1,2,inOutCirc"
+            "fadeLayersOut,1,1,linear"
+            "workspaces,1,2,inOutCirc,slidevert"
+            "specialWorkspace,1,3,inCirc"
+            "border,1,3,linear"
             #"borderangle,1,20,const,loop";
           ];
         };
