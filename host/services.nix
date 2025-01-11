@@ -14,15 +14,20 @@ in {
       default = true;
       description = "Wheather to enable the openssh service";
     };
+    flatpak.enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Wheather to enable the flatpak service";
+    };
   };
 
   config = {
-    # Enable the OpenSSH daemon.
     services.openssh.enable = cfg.openssh.enable;
+
+    services.flatpak.enable = cfg.flatpak.enable;
 
     services.dbus.enable = true;
 
-    # Enable the X11 windowing system.
     services.xserver = {
       enable = cfg.gui.enable;
       xkb.layout = "us";
@@ -30,7 +35,6 @@ in {
 
     services.libinput.enable = true;
 
-    # Enable CUPS to print documents.
     services.printing.enable = cfg.gui.enable;
 
     services.pipewire = {
