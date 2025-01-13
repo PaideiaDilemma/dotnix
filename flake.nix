@@ -19,7 +19,7 @@
       url = "github:PaideiaDilemma/hyprlock?ref=greetdLogin";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
-      #inputs.hyprutils.follows = "hyprland";
+      inputs.hyprutils.follows = "hyprland";
     };
 
     hyprland-contrib = {
@@ -130,19 +130,19 @@
       };
   in {
     nixosConfigurations = {
-      vm = mkNixos "vm1" "default" "generic" "max" "x86_64-linux";
-      #iso = mkNixos "none" "default" "generic" "max" "x86_64-linux";
+      iso = mkNixos "minimal" "minimal" "minimal" "max" "x86_64-linux";
+      vm = mkNixos "vm1" "minimal" "minimal" "max" "x86_64-linux";
 
       laptop = mkNixos "laptop" "default" "laptop" "max" "x86_64-linux";
       desktop = mkNixos "desktop" "desktop" "desktop" "max" "x86_64-linux";
       # currently it is handier for the username to just be "nixos"
       # https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/3
-      wsl = mkNixos "none" "wsl" "wsl" "nixos" "x86_64-linux";
+      wsl = mkNixos "minimal" "wsl" "wsl" "nixos" "x86_64-linux";
     };
 
     # allow home-manager switch --flake .#configuration to work
     homeConfigurations = {
-      "max@vm" = mkHome "generic" "max" nixpkgs.legacyPackages.x86_64-linux;
+      "max@vm" = mkHome "minimal" "max" nixpkgs.legacyPackages.x86_64-linux;
       "max@laptop" = mkHome "laptop" "max" nixpkgs.legacyPackages.x86_64-linux;
       "max@desktop" = mkHome "desktop" "max" nixpkgs.legacyPackages.x86_64-linux;
       "nixos@wsl" = mkHome "wsl" "nixos" nixpkgs.legacyPackages.x86_64-linux;
