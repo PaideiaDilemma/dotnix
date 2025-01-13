@@ -14,12 +14,6 @@ in {
       description = "Whether to enable Hyprland";
     };
 
-    niri.enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Whether to enable Niri";
-    };
-
     default_session = mkOption {
       type = types.enum ["hyprlock_login" "shell"];
       default = "hyprlock_login";
@@ -45,6 +39,19 @@ in {
             path=screenshot
           }
 
+          login {
+            user = max
+          }
+
+          login-session {
+            name = Hyprland
+            exec = Hyprland
+          }
+
+          login-session {
+            name = Hyprland (Debug)
+            exec = Hyprlandd
+          }
 
           session-picker {
             monitor=
@@ -75,7 +82,6 @@ in {
             dots_spacing=0.1
             dots_text_format=*
             fade_on_empty=false
-            fail_transition=200
             font_color=rgb(8F8F8F)
             font_family=Noto Sans
             inner_color=rgba(00000000)
@@ -139,16 +145,17 @@ in {
             key_press_enables_dpms=1
           }
 
-          exec-once=${pkgs.hyprlock}/bin/hyprlock --config ${hyprlock_config} --greetd
-          bind=SUPER,Return,exec,${pkgs.foot}/bin/foot
+          bind=SUPER,Return,exec,foot
           bind=SUPERSHIFT,E,exit,
+          exec-once=${pkgs.hyprlock}/bin/hyprlock --config ${hyprlock_config} --greetd&
         '';
       in rec {
         shell_session = {
           command = "$SHELL -l";
         };
         hyprlock_login = {
-          command = "${pkgs.hyprland}/bin/Hyprland --config ${hyprland_config}";
+          user = "max";
+          command = ''$SHELL -l -c "${pkgs.hyprland}/bin/Hyprland --config ${hyprland_config}"'';
         };
 
         default_session =
