@@ -257,6 +257,12 @@ in {
           "SUPERCTRL,S,exec,${screenshot_cmd "output"}"
         ];
 
+        binde = [
+          # Zooming
+          "SUPER, I, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 + 0.2}')"
+          "SUPER, O, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 - 0.2}')"
+        ];
+
         bind = [
           # Launchers
           "SUPER,Return,exec,$terminal"
@@ -442,6 +448,22 @@ in {
           #ignore_empty_input = true;
         };
 
+        bezier = [
+          "linear, 1, 1, 0, 0"
+          "equal, 1, 0.5, 0, 0.5"
+          "outCirc, 0.075, 0.82, 0.165, 1"
+          "inCirc, 0.6, 0.04, 0.98, 0.335"
+          "inOutCirc, 0.785, 0.135, 0.15, 0.86"
+        ];
+
+        animations = [
+          "fade,1,4,inOutCirc"
+          "inputFieldDots,1,2,inCirc"
+          "inputFieldFade,1,4,inOutCirc"
+          "inputFieldWidth,1,4,inOutCirc"
+          "inputFieldColors,1,10,linear"
+        ];
+
         input-field = [
           {
             monitor = ""; #if (cfg.gui.primaryMonitor != "") then cfg.gui.primaryMonitor else "";
@@ -468,7 +490,7 @@ in {
             dots_text_format = "";
             font_family = "FiraMono Nerd Font Propo";
 
-            placeholder_text = "<i>$PROMPT</i>";
+            placeholder_text = "<i>$PAMPROMPT</i>";
 
             halign = "center";
             valign = "center";
