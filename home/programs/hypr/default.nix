@@ -439,6 +439,7 @@ in {
     programs.hyprlock = {
       enable = true;
 
+      importantPrefixes = [ "bezier" "source" ];
       settings = {
         general = {
           grace = 4;
@@ -456,12 +457,12 @@ in {
           "inOutCirc, 0.785, 0.135, 0.15, 0.86"
         ];
 
-        animations = [
-          "fade,1,4,inOutCirc"
-          "inputFieldDots,1,2,inCirc"
-          "inputFieldFade,1,4,inOutCirc"
-          "inputFieldWidth,1,4,inOutCirc"
-          "inputFieldColors,1,10,linear"
+        animation = [
+          "fade,1,4,inCirc"
+          "inputFieldDots,1,2,linear"
+          "inputFieldFade,1,4,outCirc"
+          "inputFieldWidth,1,3,inOutCirc"
+          "inputFieldColors,1,6,linear"
         ];
 
         input-field = [
@@ -470,7 +471,7 @@ in {
             position = "0, -20";
             size = "250, 40";
 
-            fade_timeout = 2500;
+            fade_timeout = 4000;
 
             rounding = 15;
 
@@ -480,7 +481,8 @@ in {
             fail_transition = 400;
 
             outer_color = rgbaColor colors.base.sun "a0";
-            inner_color = rgbColor colors.base.sun;
+            inner_color = rgbaColor colors.base.sun "00";
+            check_color  = rgbColor colors.six.green;
             font_color = rgbColor colors.base.sky;
             capslock_color = rgbColor colors.six.red;
 
