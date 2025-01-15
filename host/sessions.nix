@@ -31,12 +31,73 @@ in {
       vt = 2;
       settings = let
         hyprlock_config = pkgs.writeText "hyprlock_greet.conf" ''
+          bezier=linear, 1, 1, 0, 0
+          bezier=equal, 1, 0.5, 0, 0.5
+          bezier=outCirc, 0.075, 0.82, 0.165, 1
+          bezier=inCirc, 0.6, 0.04, 0.98, 0.335
+          bezier=inOutCirc, 0.785, 0.135, 0.15, 0.86
+          animation=fade, 1, 4, inCirc
+          animation=inputFieldDots, 1, 2, linear
+          animation=inputFieldFade, 1, 4, outCirc
+          animation=inputFieldWidth, 1, 3, inOutCirc
+          animation=inputFieldColors, 1, 6, linear
+
+          general {
+            grace=0
+            hide_cursor=true
+          }
+
           background {
             monitor=
             blur_passes=2
             blur_size=10
             color=rgb(303338)
-            path=screenshot
+          }
+
+          input-field {
+            capslock_color=rgb(CB7459)
+            check_color=rgb(46A473)
+            dots_rounding=0
+            dots_size=0.400000
+            dots_spacing=0.100000
+            dots_text_format=
+            fade_timeout=4000
+            fail_color=rgb(CB7459)
+            fail_transition=400
+            font_color=rgb(8F8F8F)
+            font_family=FiraMono Nerd Font Propo
+            halign=center
+            inner_color=rgba(FFF7ED00)
+            monitor=
+            outer_color=rgba(FFF7EDa0)
+            outline_thickness=4
+            placeholder_text=<i>$PAMPROMPT</i>
+            position=0, -20
+            rounding=15
+            size=250, 40
+            valign=center
+          }
+
+          label {
+            color=rgb(FFF7ED)
+            font_family=Noto Sans
+            font_size=40
+            halign=center
+            monitor=
+            position=0, 100
+            text=$TIME
+            valign=center
+          }
+
+          label {
+            color=rgba(BEBEBEA0)
+            font_family=Noto Sans
+            font_size=24
+            halign=center
+            monitor=
+            position=0, 145
+            text=cmd[update:10000] date '+%A %d %B %Y'
+            valign=center
           }
 
           login {
@@ -60,63 +121,6 @@ in {
             rounding = 10
             halign=center
             valign=bottom
-          }
-
-          animations {
-              enabled=true
-              bezier=linear,1,1,0,0
-              animation=global,1,6,"linear"
-          }
-
-          general {
-            grace=10
-            hide_cursor=true
-          }
-
-          input-field {
-            monitor=
-            size=50, 50
-            capslock_color=rgb(CB7459)
-            dots_rounding=0
-            dots_size=0.35
-            dots_spacing=0.1
-            dots_text_format=*
-            fade_on_empty=false
-            font_color=rgb(8F8F8F)
-            font_family=Noto Sans
-            inner_color=rgba(00000000)
-            outer_color=rgba(33ccff88) rgba(00ff9988) 45deg
-            check_color=rgba(33ccffee) rgba(00ff99ee) 405deg
-            fail_color=rgba(ff6633ee) rgba(ff0066ee) 45deg
-            outline_thickness=4
-            placeholder_text=<span font_family="Noto Sans">$PROMPT</span>
-            fail_text=<span font_family="Noto Sans">$FAIL <b>($ATTEMPTS)</b></span>
-            position=0, -5%
-            rounding=-1
-            halign=center
-            valign=center
-          }
-
-          label {
-            monitor=
-            color=rgb(FFF7ED)
-            font_family=Noto Sans
-            font_size=40
-            position=0, 10%
-            text=Current user: $USER
-            halign=center
-            valign=center
-          }
-
-          label {
-            monitor=
-            color=rgba(BEBEBEA0)
-            font_family=Noto Sans
-            font_size=24
-            position=0, 15%
-            text=cmd[update:10000] date '+%A %d %B %Y'
-            halign=center
-            valign=center
           }
         '';
         hyprland_config = pkgs.writeText "hyprland_greet.conf" ''
@@ -154,8 +158,7 @@ in {
           command = "$SHELL -l";
         };
         hyprlock_login = {
-          user = "max";
-          command = ''$SHELL -l -c "${pkgs.hyprland}/bin/Hyprland --config ${hyprland_config}"'';
+          command = "${pkgs.hyprland}/bin/Hyprland --config ${hyprland_config}";
         };
 
         default_session =
