@@ -1,8 +1,8 @@
 {
-  inputs,
-  config,
-  lib,
-  pkgs,
+  inputs, 
+  config, 
+  lib, 
+  pkgs, 
   ...
 }:
 with lib; let
@@ -115,16 +115,16 @@ in {
           "hyprctl setcursor DeepinV20HyprCursors 32"
         ];
 
-        #monitor=",1920x1080,auto,1";
+        #monitor=", 1920x1080, auto, 1";
         monitor =
           mapAttrsToList (
-            name: monitor: "${name},${monitor.resolution},${monitor.position},${monitor.scale}"
+            name: monitor: "${name}, ${monitor.resolution}, ${monitor.position}, ${monitor.scale}"
           )
           cfg.gui.staticMonitors;
 
         workspace =
           mapAttrsToList (
-            name: monitor: "${monitor.initalWorkspace},monitor:${name},default:true,persistent:true"
+            name: monitor: "${monitor.initalWorkspace}, monitor:${name}, default:true, persistent:true"
           )
           cfg.gui.staticMonitors;
 
@@ -174,18 +174,18 @@ in {
           ];
 
           animation = [
-            "windows,1,2,inOutCirc,slide"
-            "windowsOut,1,2,linear,popin 80%"
-            "windowsIn,1,2,inOutCirc,slide"
-            "windowsMove,1,2,inOutCirc"
-            "fadeOut,1,1,linear"
-            "fadeIn,1,2,inOutCirc"
-            "fadeLayersIn,1,2,inOutCirc"
-            "fadeLayersOut,1,1,linear"
-            "workspaces,1,2,inOutCirc,slidevert"
-            "specialWorkspace,1,3,inCirc"
-            "border,1,3,linear"
-            #"borderangle,1,20,const,loop";
+            "windows, 1, 2, inOutCirc, slide"
+            "windowsOut, 1, 2, linear, popin 80%"
+            "windowsIn, 1, 2, inOutCirc, slide"
+            "windowsMove, 1, 2, inOutCirc"
+            "fadeOut, 1, 1, linear"
+            "fadeIn, 1, 2, inOutCirc"
+            "fadeLayersIn, 1, 2, inOutCirc"
+            "fadeLayersOut, 1, 1, linear"
+            "workspaces, 1, 2, inOutCirc, slidevert"
+            "specialWorkspace, 1, 3, inCirc"
+            "border, 1, 3, linear"
+            #"borderangle, 1, 20, const, loop";
           ];
         };
 
@@ -215,37 +215,37 @@ in {
         ];
 
         windowrule = [
-          "float,kvantummanager"
-          "float,org.gnome.Settings"
-          "float,Lxappearance"
-          "float,obs"
-          "float,zathura"
-          "float,feh"
-          "float,qemu"
-          #"float,DesktopEditors"
-          "float,biz.ntinfo.die"
-          "float,Ultimaker Cura"
-          "float,Pinentry-gtk-2"
-          #"float,title:^(Ghidra:)(.*)$"
-          "float,title:^(wlroots)(.*)$"
+          "float, kvantummanager"
+          "float, org.gnome.Settings"
+          "float, Lxappearance"
+          "float, obs"
+          "float, zathura"
+          "float, feh"
+          "float, qemu"
+          #"float, DesktopEditors"
+          "float, biz.ntinfo.die"
+          "float, Ultimaker Cura"
+          "float, Pinentry-gtk-2"
+          #"float, title:^(Ghidra:)(.*)$"
+          "float, title:^(wlroots)(.*)$"
         ];
 
         windowrulev2 = [
-          "suppressevent fullscreen,class:firefox,floating:1"
+          "suppressevent fullscreen, class:firefox, floating:1"
           "stayfocused, class:^(pinentry-)"
-          "float,class:nm-connection-editor"
-          "float,class:org.kde.kdeconnect-settings"
-          "float,class:org.kde.kdeconnect.app"
-          "float,class:org.pulseaudio.pavucontrol"
-          "float,class:re.rizin.cutter,title:^(Open).*$"
-          "float,class:re.rizin.cutter,title:^Load Options$"
-          "float,class:vlc"
-          "float,title:Bluetooth Devices"
+          "float, class:nm-connection-editor"
+          "float, class:org.kde.kdeconnect-settings"
+          "float, class:org.kde.kdeconnect.app"
+          "float, class:org.pulseaudio.pavucontrol"
+          "float, class:re.rizin.cutter, title:^(Open).*$"
+          "float, class:re.rizin.cutter, title:^Load Options$"
+          "float, class:vlc"
+          "float, title:Bluetooth Devices"
         ];
 
         bindm = [
-          "SUPER,mouse:272,movewindow"
-          "SUPER,mouse:273,resizewindow"
+          "SUPER, mouse:272, movewindow"
+          "SUPER, mouse:273, resizewindow"
         ];
 
         bindl = let
@@ -253,128 +253,129 @@ in {
           screenshot_cmd = target: "grimblast --notify copysave ${target} \"${screenshot_dir}$(date +'%H%M%S_%a%d%h%y_${target}').png\"";
         in [
           # Screenshots
-          "SUPERSHIFT,S,exec,${screenshot_cmd "area"}"
-          "SUPERCTRL,S,exec,${screenshot_cmd "output"}"
+          "SUPERSHIFT, S, exec, ${screenshot_cmd "area"}"
+          "SUPERCTRL, S, exec, ${screenshot_cmd "output"}"
         ];
 
         binde = [
           # Zooming
           "SUPER, I, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 + 0.2}')"
           "SUPER, O, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 - 0.2}')"
+          "CONTROL, Escape, exec, makoctl dismiss"
         ];
 
         bind = [
           # Launchers
-          "SUPER,Return,exec,$terminal"
-          "SUPERSHIFT,Return,exec,$terminal ipython"
-          "SUPER,E,exec,pcmanfm"
-          "SUPER,B,exec,chromium"
-          "SUPERSHIFT,l,exec,hyprlock"
+          "SUPER, Return, exec, $terminal"
+          "SUPERSHIFT, Return, exec, $terminal ipython"
+          "SUPER, E, exec, pcmanfm"
+          "SUPER, B, exec, chromium"
+          "SUPERSHIFT, l, exec, hyprlock"
 
           # Rofi menus
-          "SUPER,D,exec,rofi -show drun -show-icons"
-          "SUPER,R,exec,rofi -show run -run-shell-command '{terminal} zsh -ic \"{cmd} && read\"'"
-          "SUPER,F,exec,rofi -show window -show-icons"
-          "SUPERSHIFT,P,exec,rofi-pass"
-          "SUPER,V,exec,wlclipmgr restore -i \"$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')\""
+          "SUPER, D, exec, rofi -show drun -show-icons"
+          "SUPER, R, exec, rofi -show run -run-shell-command '{terminal} zsh -ic \"{cmd} && read\"'"
+          "SUPER, F, exec, rofi -show window -show-icons"
+          "SUPERSHIFT, P, exec, rofi-pass"
+          "SUPER, V, exec, wlclipmgr restore -i \"$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')\""
 
           # Notification Control
-          "CONTROL,Escape,exec,makoctl dismiss"
-          "CONTROLSHIFT,Escape,exec,makoctl dismiss"
+          "CONTROLSHIFT, Escape, exec, makoctl dismiss --all"
+          "SUPERSHIFT, Escape, exec, makoctl invoke"
 
           # tofi menus
           #$tofi_theme = ~/.config/tofi/top_left
-          #"SUPER,D,exec,tofi-drun --drun-launch=true --include $tofi_theme"
-          #"SUPER,R,exec,tofi-run --include $tofi_theme | xargs sh -c"
-          #"SUPERSHIFT,P,exec,$terminal fish -c \"pass clip && sleep 1\""
-          #"SUPERSHIFT,R,exec,wlclipmgr restore -i \"$(wlclipmgr list -l 100 | tofi --include $tofi_theme | awk '{print $1}')\""
+          #"SUPER, D, exec, tofi-drun --drun-launch=true --include $tofi_theme"
+          #"SUPER, R, exec, tofi-run --include $tofi_theme | xargs sh -c"
+          #"SUPERSHIFT, P, exec, $terminal fish -c \"pass clip && sleep 1\""
+          #"SUPERSHIFT, R, exec, wlclipmgr restore -i \"$(wlclipmgr list -l 100 | tofi --include $tofi_theme | awk '{print $1}')\""
 
           # Window Manager
-          "SUPER,C,killactive,"
-          "SUPERSHIFT,C,killactive"
-          "SUPERSHIFT,Space,togglefloating,"
-          "SUPER,P,pseudo,"
-          "SUPER,M,fullscreen,"
-          "ALT,P,pin"
+          "SUPER, C, killactive, "
+          "SUPERSHIFT, C, killactive"
+          "SUPERSHIFT, Space, togglefloating, "
+          "SUPER, P, pseudo, "
+          "SUPER, M, fullscreen, "
+          "ALT, P, pin"
 
-          "SUPERSHIFT,E,exit,"
+          "SUPERSHIFT, E, exit, "
 
-          "SUPER,left,movefocus,l"
-          "SUPER,right,movefocus,r"
-          "SUPER,up,movefocus,u"
-          "SUPER,down,movefocus,d"
+          "SUPER, left, movefocus, l"
+          "SUPER, right, movefocus, r"
+          "SUPER, up, movefocus, u"
+          "SUPER, down, movefocus, d"
 
-          "SUPER,h,movefocus,l"
-          "SUPER,l,movefocus,r"
-          "SUPER,k,movefocus,u"
-          "SUPER,j,movefocus,d"
+          "SUPER, h, movefocus, l"
+          "SUPER, l, movefocus, r"
+          "SUPER, k, movefocus, u"
+          "SUPER, j, movefocus, d"
 
-          "SUPERSHIFT,h,movewindow,l"
-          "SUPERSHIFT,l,movewindow,r"
-          "SUPERSHIFT,k,movewindow,u"
-          "SUPERSHIFT,j,movewindow,d"
+          "SUPERSHIFT, h, movewindow, l"
+          "SUPERSHIFT, l, movewindow, r"
+          "SUPERSHIFT, k, movewindow, u"
+          "SUPERSHIFT, j, movewindow, d"
 
-          "SUPER,w,workspace,+1"
-          "SUPER,q,workspace,-1"
-          "SUPER,1,workspace,1"
-          "SUPER,2,workspace,2"
-          "SUPER,3,workspace,3"
-          "SUPER,4,workspace,4"
-          "SUPER,5,workspace,5"
-          "SUPER,6,workspace,6"
-          "SUPER,7,workspace,7"
-          "SUPER,8,workspace,8"
-          "SUPER,9,workspace,9"
-          "SUPER,0,workspace,10"
-          "SUPER,a,togglespecialworkspace"
+          "SUPER, w, workspace, +1"
+          "SUPER, q, workspace, -1"
+          "SUPER, 1, workspace, 1"
+          "SUPER, 2, workspace, 2"
+          "SUPER, 3, workspace, 3"
+          "SUPER, 4, workspace, 4"
+          "SUPER, 5, workspace, 5"
+          "SUPER, 6, workspace, 6"
+          "SUPER, 7, workspace, 7"
+          "SUPER, 8, workspace, 8"
+          "SUPER, 9, workspace, 9"
+          "SUPER, 0, workspace, 10"
+          "SUPER, a, togglespecialworkspace"
 
-          "ALT,w,movetoworkspace,+1 # Monitor Num"
-          "ALT,q,movetoworkspace,-1 # Monitor Num"
-          "ALT,1,movetoworkspace,1"
-          "ALT,2,movetoworkspace,2"
-          "ALT,3,movetoworkspace,3"
-          "ALT,4,movetoworkspace,4"
-          "ALT,5,movetoworkspace,5"
-          "ALT,6,movetoworkspace,6"
-          "ALT,7,movetoworkspace,7"
-          "ALT,8,movetoworkspace,8"
-          "ALT,9,movetoworkspace,9"
-          "ALT,0,movetoworkspace,10"
-          "ALT,a,movetoworkspace,special"
+          "ALT, w, movetoworkspace, +1 # Monitor Num"
+          "ALT, q, movetoworkspace, -1 # Monitor Num"
+          "ALT, 1, movetoworkspace, 1"
+          "ALT, 2, movetoworkspace, 2"
+          "ALT, 3, movetoworkspace, 3"
+          "ALT, 4, movetoworkspace, 4"
+          "ALT, 5, movetoworkspace, 5"
+          "ALT, 6, movetoworkspace, 6"
+          "ALT, 7, movetoworkspace, 7"
+          "ALT, 8, movetoworkspace, 8"
+          "ALT, 9, movetoworkspace, 9"
+          "ALT, 0, movetoworkspace, 10"
+          "ALT, a, movetoworkspace, special"
 
-          "SUPERSHIFT,w,movetoworkspacesilent,+1 # Monitor Num"
-          "SUPERSHIFT,q,movetoworkspacesilent,-1 # Monitor Num"
-          "SUPERSHIFT,1,movetoworkspacesilent,1"
-          "SUPERSHIFT,2,movetoworkspacesilent,2"
-          "SUPERSHIFT,3,movetoworkspacesilent,3"
-          "SUPERSHIFT,4,movetoworkspacesilent,4"
-          "SUPERSHIFT,5,movetoworkspacesilent,5"
-          "SUPERSHIFT,6,movetoworkspacesilent,6"
-          "SUPERSHIFT,7,movetoworkspacesilent,7"
-          "SUPERSHIFT,8,movetoworkspacesilent,8"
-          "SUPERSHIFT,9,movetoworkspacesilent,9"
-          "SUPERSHIFT,0,movetoworkspacesilent,10"
-          "SUPERSHIFT,a,movetoworkspacesilent,special"
+          "SUPERSHIFT, w, movetoworkspacesilent, +1 # Monitor Num"
+          "SUPERSHIFT, q, movetoworkspacesilent, -1 # Monitor Num"
+          "SUPERSHIFT, 1, movetoworkspacesilent, 1"
+          "SUPERSHIFT, 2, movetoworkspacesilent, 2"
+          "SUPERSHIFT, 3, movetoworkspacesilent, 3"
+          "SUPERSHIFT, 4, movetoworkspacesilent, 4"
+          "SUPERSHIFT, 5, movetoworkspacesilent, 5"
+          "SUPERSHIFT, 6, movetoworkspacesilent, 6"
+          "SUPERSHIFT, 7, movetoworkspacesilent, 7"
+          "SUPERSHIFT, 8, movetoworkspacesilent, 8"
+          "SUPERSHIFT, 9, movetoworkspacesilent, 9"
+          "SUPERSHIFT, 0, movetoworkspacesilent, 10"
+          "SUPERSHIFT, a, movetoworkspacesilent, special"
 
-          "SUPERALT,1,movecurrentworkspacetomonitor,eDP-1"
-          "SUPERALT,2,movecurrentworkspacetomonitor,HDMI-A-1"
+          "SUPERALT, 1, movecurrentworkspacetomonitor, eDP-1"
+          "SUPERALT, 2, movecurrentworkspacetomonitor, HDMI-A-1"
 
-          "SUPER,semicolon,swapnext"
-          "SUPER,apostrophe,togglesplit"
+          "SUPER, semicolon, swapnext"
+          "SUPER, apostrophe, togglesplit"
 
-          ",code:276,swapnext"
-          ",code:276,togglesplit"
+          ", code:276, swapnext"
+          ", code:276, togglesplit"
 
-          "ALT,Space,togglegroup"
-          "ALT,j,changegroupactive,f"
-          "ALT,k,changegroupactive,b"
-          "ALT,c,togglesplit"
+          "ALT, Space, togglegroup"
+          "ALT, j, changegroupactive, f"
+          "ALT, k, changegroupactive, b"
+          "ALT, c, togglesplit"
         ];
 
         plugin = {
           harpoon = {
-            select_trigger = ",Menu";
-            add_trigger = "SHIFT,Menu";
+            select_trigger = ", Menu";
+            add_trigger = "SHIFT, Menu";
           };
         };
       };
@@ -382,27 +383,27 @@ in {
       extraConfig =
         ''
           # SUBMAPS
-          bind = ALT,p,submap,passthrough
+          bind = ALT, p, submap, passthrough
           submap = passthrough
           # passthrough
-          bind = ALT,p,submap,reset
+          bind = ALT, p, submap, reset
           # ~passthrough
           submap = reset
 
-          bind = ALT,R,submap,resize
+          bind = ALT, R, submap, resize
           submap = resize
           # resize
-          binde=,h,resizeactive,40 0
-          binde=,l,resizeactive,-40 0
-          binde=,k,resizeactive,0 -40
-          binde=,j,resizeactive,0 40
+          binde=, h, resizeactive, 40 0
+          binde=, l, resizeactive, -40 0
+          binde=, k, resizeactive, 0 -40
+          binde=, j, resizeactive, 0 40
 
-          bind = ALT,R,submap,reset
-          bind = ,escape,submap,reset
+          bind = ALT, R, submap, reset
+          bind = , escape, submap, reset
           # ~resize
           submap = reset
 
-          env = GNUPGHOME,${config.xdg.configHome}/gnupg
+          env = GNUPGHOME, ${config.xdg.configHome}/gnupg
         ''
         + cfg.hyprland.extraConfig;
     };
@@ -444,8 +445,6 @@ in {
         general = {
           grace = 4;
           hide_cursor = true;
-          no_fade_in = false;
-          no_fade_out = false;
           #ignore_empty_input = true;
         };
 
@@ -458,11 +457,11 @@ in {
         ];
 
         animation = [
-          "fade,1,4,inCirc"
-          "inputFieldDots,1,2,linear"
-          "inputFieldFade,1,4,outCirc"
-          "inputFieldWidth,1,3,inOutCirc"
-          "inputFieldColors,1,6,linear"
+          "fade, 1, 4, inCirc"
+          "inputFieldDots, 1, 2, linear"
+          "inputFieldFade, 1, 4, outCirc"
+          "inputFieldWidth, 1, 3, inOutCirc"
+          "inputFieldColors, 1, 6, linear"
         ];
 
         input-field = [

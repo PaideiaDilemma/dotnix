@@ -21,7 +21,7 @@ in {
       enable = true;
       font = "Noto Sans 10";
       package = pkgs.mako;
-      anchor = "top-center";
+      anchor = "bottom-center";
       backgroundColor = "${colors.base.sky_}";
       textColor = "${colors.base.sun}";
       margin = "2";
