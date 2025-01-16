@@ -477,7 +477,6 @@ in {
             outline_thickness = 4;
 
             fail_color = rgbColor colors.six.red;
-            fail_transition = 400;
 
             outer_color = rgbaColor colors.base.sun "a0";
             inner_color = rgbaColor colors.base.sun "00";

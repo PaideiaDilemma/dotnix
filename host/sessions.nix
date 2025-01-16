@@ -118,9 +118,12 @@ in {
             monitor=
             position=0, 1%
             size = 10%, 10%
-            rounding = 10
+            rounding=15
             halign=center
             valign=bottom
+            inner_color = rgba(00000000)
+            selected_color = rgba(00000000)
+            selected_border_color=rgba(FFF7EDa0)
           }
         '';
         hyprland_config = pkgs.writeText "hyprland_greet.conf" ''
@@ -138,7 +141,7 @@ in {
           input {
             follow_mouse=1
             kb_layout=eu
-            kb_options =caps:swapescape
+            kb_options=caps:swapescape
             mouse_refocus=0
           }
 
