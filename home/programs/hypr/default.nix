@@ -440,7 +440,6 @@ in {
     programs.hyprlock = {
       enable = true;
 
-      importantPrefixes = [ "bezier" "source" ];
       settings = {
         general = {
           grace = 4;
