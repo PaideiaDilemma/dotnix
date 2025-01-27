@@ -74,7 +74,7 @@ in {
     };
 
     xdg.portal = {
-      enable = cfg.gui.enable;
+      enable = true;
       xdgOpenUsePortal = true;
       extraPortals = [pkgs.xdg-desktop-portal-gtk];
       config = {

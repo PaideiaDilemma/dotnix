@@ -5,9 +5,9 @@
 }:
 # networking configuration
 with lib; let
-  cfg = config.myhost;
+  cfg = config.host;
 in {
-  options.myhost.networking = {
+  options.host.resolved = {
     # Mainly used to disable this config for wsl
     enable = mkOption {
       default = true;
@@ -16,7 +16,7 @@ in {
     };
   };
 
-  config = mkIf cfg.networking.enable {
+  config = {
     networking = {
       firewall = {
         allowedUDPPorts = [
@@ -68,8 +68,8 @@ in {
       };
 
       # DNS resolver
-      resolved = {
-        enable = true;
+      resolved = mkIf cfg.resolved.enable {
+        enable = mkDefault true;
         dnssec = "true";
         domains = ["~."]; # This deactivates the DNS that comes via DHCP apparently
         fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];

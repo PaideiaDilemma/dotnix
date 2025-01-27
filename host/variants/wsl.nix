@@ -24,8 +24,11 @@
     boot.enable = false;
     gui.enable = false;
     libvirtd.enable = false;
+    openssh.enable = false;
+    resolved.enable = false;
     default_session = "shell";
   };
 
-  myhost.networking.enable = false;
+  services.nfs.server.enable = true;
+  services.cloudflared.enable = true;
 }
