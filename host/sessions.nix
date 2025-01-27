@@ -24,6 +24,7 @@ in {
   config = {
     programs.hyprland = {
       enable = cfg.hyprland.enable;
+      withUWSM = true;
     };
 
     services.greetd = {
@@ -154,7 +155,7 @@ in {
 
           bind=SUPER,Return,exec,foot
           bind=SUPERSHIFT,E,exit,
-          exec-once=${pkgs.hyprlock}/bin/hyprlock --config ${hyprlock_config} --greetd&
+          exec-once=${pkgs.hyprlock}/bin/hyprlock --config ${hyprlock_config} --greetd --session-dirs ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions/&
         '';
       in rec {
         shell_session = {

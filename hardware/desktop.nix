@@ -91,13 +91,7 @@
   # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
-  hardware.opengl.extraPackages = [
-    # NOTE: at some point GPUs in the R600-family and newer
-    # may need to replace this with the "rusticl" ICD;
-    # and GPUs in the R500-family and older may need to
-    # pin the package version or backport/patch this back in
-    # - https://www.phoronix.com/news/Mesa-Delete-Clover-Discussion
-    # - https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/19385
+  hardware.graphics.extraPackages = [
     pkgs.mesa.opencl
   ];
 

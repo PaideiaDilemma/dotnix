@@ -44,7 +44,7 @@ in {
     home.packages = with pkgs; [
       deepinV20HyprCursors
       hyprlock
-      #hyprpicker - currently broken in the hyprland overlay
+      hyprpicker
       hyprsetwallpaper
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       networkmanagerapplet
@@ -64,18 +64,7 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      plugins = [
-        #inputs.hyprharpoon.packages.${pkgs.system}.hyprharpoon
-      ];
-
-      systemd = {
-        enable = true;
-        variables = ["--all"];
-        extraCommands = [
-          "systemctl --user stop graphical-session.target"
-          "systemctl --user start hyprland-session.target"
-        ];
-      };
+      systemd.enable = false; # USWM instead
 
       settings = {
         "$terminal" = cfg.hyprland.terminal;
