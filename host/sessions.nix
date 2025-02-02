@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib; let
@@ -106,13 +107,8 @@ in {
           }
 
           login-session {
-            name = Hyprland
-            exec = Hyprland
-          }
-
-          login-session {
             name = Hyprland (Debug)
-            exec = Hyprlandd
+            exec = ${inputs.hyprland.packages.${pkgs.system}.hyprland-debug}/bin/Hyprlandd
           }
 
           session-picker {
