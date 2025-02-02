@@ -50,6 +50,6 @@ in {
     };
 
     home.packages = [pkgs.deepinV20XCursors pkgs.libsForQt5.qt5ct pkgs.qt6ct];
-    home.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";
+    systemd.user.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";
   };
 }

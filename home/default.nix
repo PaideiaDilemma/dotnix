@@ -163,6 +163,7 @@ in {
         "application/octet-stream" = "re.rizin.cutter.desktop";
         "application/pdf" = "firefox.desktop";
         "application/json" = "nvim.desktop";
+        "inode/directory" = "pcmanfm.desktop";
         "x-scheme-handler/http" = "firefox.desktop";
         "x-scheme-handler/https" = "firefox.desktop";
         "x-scheme-handler/about" = "firefox.desktop";

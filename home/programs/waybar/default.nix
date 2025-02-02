@@ -43,7 +43,7 @@ in {
     programs.waybar = {
       enable = true;
       systemd = {
-        enable = false;
+        enable = true;
         target = "graphical-session.target";
       };
       settings = [
@@ -56,7 +56,7 @@ in {
           "layer" = "top"; # Waybar at top layer
           # "position" = "left"; # Waybar position (top|bottom|left|right)
           "height" = 27; # Waybar height (to be removed for auto height)
-          "gtk-layer-shell" = true;
+          #"gtk-layer-shell" = true;
           "spacing" = 2;
           "width" = 1910; # Waybar width
           # Choose the order of the modules

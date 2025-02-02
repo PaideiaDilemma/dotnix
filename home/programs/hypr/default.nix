@@ -8,6 +8,7 @@
 with lib; let
   cfg = config.hyprhome;
   colors = config.colors;
+  uwsm_exec = exec: "uwsm app -- ${exec}";
   rgbColor = hexcolor: "rgb(${removePrefix "#" hexcolor})";
   rgbaColor = hexcolor: alpha: "rgba(${removePrefix "#" hexcolor}${alpha})";
 in {
@@ -49,6 +50,7 @@ in {
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       networkmanagerapplet
       swww
+      uwsm
       waybar
       wlsunset
     ];
@@ -94,14 +96,12 @@ in {
         };
 
         exec-once = [
-          "dbus-update-activation-environment --systemd --all"
-          "waybar"
-          "swww-daemon"
-          "wlsunset -l 48.2, -L 16.3 -t 4800"
-          "GNUPGHOME=${config.xdg.configHome}/gnupg wlclipmgr watch --block \"password store sleep:2\""
-          "kdeconnect-indicator"
-          "nm-applet"
+          (uwsm_exec "swww-daemon")
+          (uwsm_exec "kdeconnect-indicator")
+          (uwsm_exec "nm-applet")
+          # TODO: use hyprsunset (uwsm_exec "wlsunset -l 48.2, -L 16.3 -t 4800")
           "hyprctl setcursor DeepinV20HyprCursors 32"
+          "GNUPGHOME=${config.xdg.configHome}/gnupg wlclipmgr watch --block \"password store sleep:2\""
         ];
 
         #monitor=", 1920x1080, auto, 1";
@@ -246,6 +246,7 @@ in {
           "SUPERCTRL, S, exec, ${screenshot_cmd "output"}"
         ];
 
+        # Repeating
         binde = [
           # Zooming
           "SUPER, I, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 + 0.2}')"
@@ -253,19 +254,21 @@ in {
           "CONTROL, Escape, exec, makoctl dismiss"
         ];
 
+        # Long press
+        bindo = [
+          "SHIFT, l, exec, hyprlock"
+        ];
+
         bind = [
           # Launchers
           "SUPER, Return, exec, $terminal"
           "SUPERSHIFT, Return, exec, $terminal ipython"
-          "SUPER, E, exec, pcmanfm"
-          "SUPER, B, exec, chromium"
-          "SUPERSHIFT, l, exec, hyprlock"
+          "SUPER, E, exec, uwsm app -- pcmanfm"
 
           # Rofi menus
-          "SUPER, D, exec, rofi -show drun -show-icons"
+          "SUPER, D, exec, rofi -show drun -show-icons -run-command \"uwsm app -- {cmd}\""
           "SUPER, R, exec, rofi -show run -run-shell-command '{terminal} zsh -ic \"{cmd} && read\"'"
           "SUPER, F, exec, rofi -show window -show-icons"
-          "SUPERSHIFT, P, exec, rofi-pass"
           "SUPER, V, exec, wlclipmgr restore -i \"$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')\""
 
           # Notification Control

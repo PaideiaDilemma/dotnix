@@ -1,33 +1,27 @@
 {config, ...}: let
   cfg = config.hyprhome;
 in {
-  home = {
-    sessionVariables = {
-      NVIM_APPNAME = "lazyvim";
-      BROWSER = "firefox";
-      TERMINAL = "${cfg.terminal}";
-      TERM_PROGRAM = "${cfg.terminal}";
+  systemd.user.sessionVariables = {
+    NVIM_APPNAME = "lazyvim";
+    BROWSER = "firefox";
+    TERMINAL = "${cfg.terminal}";
+    TERM_PROGRAM = "${cfg.terminal}";
 
-      _JAVA_AWT_WM_NONREPARENTING = "1";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
 
-      QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      QT_QPA_PLATFORM = "wayland;xcb";
-      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 
-      MOZ_ENABLE_WAYLAND = "1";
-      CLUTTER_BACKEND = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    CLUTTER_BACKEND = "wayland";
 
-      XDG_CURRENT_DESKTOP = "Hyprland";
-      XDG_SESSION_DESKTOP = "Hyprland";
-      XDG_SESSION_TYPE = "wayland";
-      PASSWORD_STORE_DIR = "$HOME/.config/pass";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
 
-      HYPRCURSOR_THEME = "DeepinV20HyprCursors";
-      HYPRCURSOR_SIZE = "32";
-      GNUPGHOME = "${config.xdg.configHome}/gnupg";
-      #__GLX_VENDOR_LIBRARY_NAME= "nvidia";
-      #LIBVA_DRIVER_NAME= "nvidia"; # hardware acceleration
-      #__GL_VRR_ALLOWED="1";
-    };
+    HYPRCURSOR_THEME = "DeepinV20HyprCursors";
+    HYPRCURSOR_SIZE = "32";
+    GNUPGHOME = "${config.xdg.configHome}/gnupg";
   };
 }
