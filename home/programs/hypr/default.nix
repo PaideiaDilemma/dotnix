@@ -52,7 +52,7 @@ in {
       swww
       uwsm
       waybar
-      wlsunset
+      hyprsunset
     ];
 
     home.file."media/picture/wal.png".source = ./wal.png;
@@ -97,9 +97,10 @@ in {
 
         exec-once = [
           (uwsm_exec "swww-daemon")
+          (uwsm_exec "waybar")
           (uwsm_exec "kdeconnect-indicator")
           (uwsm_exec "nm-applet")
-          # TODO: use hyprsunset (uwsm_exec "wlsunset -l 48.2, -L 16.3 -t 4800")
+          (uwsm_exec "hyprsunset")
           "hyprctl setcursor DeepinV20HyprCursors 32"
           "GNUPGHOME=${config.xdg.configHome}/gnupg wlclipmgr watch --block \"password store sleep:2\""
         ];
