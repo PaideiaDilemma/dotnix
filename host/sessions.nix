@@ -107,8 +107,13 @@ in {
           }
 
           login-session {
-            name = Hyprland (Debug)
-            exec = ${inputs.hyprland.packages.${pkgs.system}.hyprland-debug}/bin/Hyprlandd
+            name = Hyprland (debug)
+            exec = ${pkgs.uwsm}/bin/uwsm start -N "Hyprland (debug)"  -- ${pkgs.hyprland-debug}/bin/Hyprlandd
+          }
+
+          login-session {
+            name = Hyprland (debug TRACE)
+            exec = ${pkgs.uwsm}/bin/uwsm start -N "Hyprland (debug TRACE)"  -- HYPRLAND_TRACE=1 AQ_TRACE=1 ${pkgs.hyprland-debug}/bin/Hyprlandd
           }
 
           session-picker {
@@ -158,7 +163,7 @@ in {
           command = "$SHELL -l";
         };
         hyprlock_login = {
-          command = "${pkgs.hyprland}/bin/Hyprland --config ${hyprland_config}";
+          command = "${pkgs.hyprland}/bin/Hyprland --config ${hyprland_config} > /dev/null 2>&1";
         };
 
         default_session =
