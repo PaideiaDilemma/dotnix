@@ -18,7 +18,7 @@ with lib; let
       sha256 = "sha256-SBShTQzals9nEXgBXBpc1dOtWuVbOAXS9xBD+3VSSOU=";
     };
 
-    cargoHash = "sha256-6Rj42QW/FgNX2EOFIlvc2HzuiQ8CmCBH7Xu0IGSudN8=";
+    cargoHash = "sha256-tir517xQZV81tMd4xQY884N8t9s4L4LsLcupqJq+je8=";
     cargoBuildFlags = [
       "--features=nice"
     ];

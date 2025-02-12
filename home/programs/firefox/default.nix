@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -23,7 +24,7 @@ in {
         "netflix" = {
           isDefault = false;
           id = 1;
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          extensions = with inputs.nur.legacyPackages.${pkgs.system}.repos.rycee.firefox-addons; [
             ublock-origin
           ];
         };
@@ -47,7 +48,7 @@ in {
             "browser.safebrowsing.phishing.enabled" = false;
             "browser.safebrowsing.malware.enabled" = false;
           };
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          extensions = with inputs.nur.legacyPackages.${pkgs.system}.repos.rycee.firefox-addons; [
             ublock-origin
             tridactyl
             localcdn

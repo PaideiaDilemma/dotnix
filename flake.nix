@@ -58,16 +58,12 @@
     ...
   } @ inputs: let
     overlays = [
-      inputs.nur.overlays.default
       inputs.hyprland.overlays.default
       inputs.hyprlock.overlays.default
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/patchelfdd-overlay.nix)
       (import ./overlays/python-packages-overlay.nix)
       (import ./overlays/scripts-overlay.nix)
-      (final: prev: {
-        git-moduletree = inputs.git-moduletree.packages.${prev.system}.default;
-      })
       (final: prev: {
         waybar = inputs.waybar.packages.${prev.system}.default;
       })

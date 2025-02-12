@@ -15,7 +15,7 @@ in {
 
   config = {
     virtualisation = {
-      docker.enable = true;
+      docker.enable = false;
       podman = {
         enable = true;
         #dockerCompat = true;
@@ -37,7 +37,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       podman-compose
-      docker-compose
+      #docker-compose
     ];
   };
 }

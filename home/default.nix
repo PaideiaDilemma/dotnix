@@ -59,12 +59,6 @@ in {
       description = "Default terminal emulator";
       type = types.enum ["foot" "footclient"];
     };
-
-    ollama.enable = mkOption {
-      default = false;
-      description = "Whether to enable Ollama";
-      type = types.bool;
-    };
   };
 
   config = {
@@ -93,7 +87,7 @@ in {
         man-pages
         man-pages-posix
         mpv-unwrapped
-        patchelfdd
+        #patchelfdd
         pavucontrol
         rofi-wayland
         rustup
@@ -104,11 +98,7 @@ in {
         typst
         wget
         wl-clipboard
-      ])
-      ++ optionals (cfg.ollama.enable) (with pkgs; [
-        ollama
-      ])
-      ++ optionals (cfg.gui.enable) (with pkgs; [
+      ]) ++ optionals (cfg.gui.enable) (with pkgs; [
         # Graphical Applications
         #cutter
         #cutterPlugins.rz-ghidra

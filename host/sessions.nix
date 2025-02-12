@@ -108,12 +108,12 @@ in {
 
           login-session {
             name = Hyprland (debug)
-            exec = ${pkgs.uwsm}/bin/uwsm start -N "Hyprland (debug)"  -- ${pkgs.hyprland-debug}/bin/Hyprlandd
+            exec = ${pkgs.uwsm}/bin/uwsm start -N "Hyprland (debug)"  -- ${pkgs.hyprland-debug}/bin/Hyprland
           }
 
           login-session {
             name = Hyprland (debug TRACE)
-            exec = ${pkgs.uwsm}/bin/uwsm start -N "Hyprland (debug TRACE)"  -- HYPRLAND_TRACE=1 AQ_TRACE=1 ${pkgs.hyprland-debug}/bin/Hyprlandd
+            exec = ${pkgs.uwsm}/bin/uwsm start -N "Hyprland (debug TRACE)"  -- HYPRLAND_TRACE=1 AQ_TRACE=1 ${pkgs.hyprland-debug}/bin/Hyprland
           }
 
           session-picker {
