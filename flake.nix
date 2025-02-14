@@ -45,6 +45,11 @@
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
+    pwndbg = {
+      url = "github:pwndbg/pwndbg";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     waybar = {
       url = "github:Alexays/Waybar";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,6 +71,9 @@
       (import ./overlays/scripts-overlay.nix)
       (final: prev: {
         waybar = inputs.waybar.packages.${prev.system}.default;
+      })
+      (final: prev: {
+        pwndbg = inputs.pwndbg.packages.${prev.system}.default;
       })
     ];
 
