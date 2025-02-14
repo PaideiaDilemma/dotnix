@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = [
-    pkgs.meld
+    pkgs.kdiff3
   ];
   programs.jujutsu = {
     enable = true;
@@ -17,9 +17,9 @@
         s = ["status" "--no-pager"];
       };
       ui = {
-        diff-editor = "meld";
+        diff-editor = "kdiff3";
       };
-      merge-tools.diffconflicts.program = "meld";
+      merge-tools.diffconflicts.program = "vimdiff";
     };
   };
 }
