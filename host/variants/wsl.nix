@@ -30,5 +30,4 @@
   };
 
   services.nfs.server.enable = true;
-  services.cloudflared.enable = true;
 }
