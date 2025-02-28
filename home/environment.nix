@@ -2,6 +2,7 @@
   cfg = config.hyprhome;
 in {
   systemd.user.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
     NVIM_APPNAME = "lazyvim";
     BROWSER = "firefox";
     TERMINAL = "${cfg.terminal}";

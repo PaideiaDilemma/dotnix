@@ -9,24 +9,22 @@ with lib; let
   cfg = config.hyprhome;
   colors = config.colors;
 in {
-  options.hyprhome.firefox = {
-    enable = mkOption {
-      default = true;
-      description = "Whether to enable firefox";
-      type = types.bool;
+  config = mkIf (cfg.gui.enable) {
+    programs.chromium = {
+      enable = true;
+      extensions = [
+        {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
+        {id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp";} # privacy badger
+        {id = "njdfdhgcmkocbgbhcioffdbicglldapd";} # local cdn
+      ];
     };
-  };
 
-  config = mkIf (cfg.gui.enable && cfg.firefox.enable) {
     programs.firefox = {
       enable = true;
       profiles = {
         "netflix" = {
           isDefault = false;
           id = 1;
-          extensions = with inputs.nur.legacyPackages.${pkgs.system}.repos.rycee.firefox-addons; [
-            ublock-origin
-          ];
         };
         "asdfnerd" = {
           isDefault = true;
@@ -48,12 +46,6 @@ in {
             "browser.safebrowsing.phishing.enabled" = false;
             "browser.safebrowsing.malware.enabled" = false;
           };
-          extensions = with inputs.nur.legacyPackages.${pkgs.system}.repos.rycee.firefox-addons; [
-            ublock-origin
-            tridactyl
-            localcdn
-            privacy-badger
-          ];
           search = {
             default = "DuckDuckGo";
             privateDefault = "DuckDuckGo";

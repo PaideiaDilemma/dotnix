@@ -1,8 +1,8 @@
 {
-  inputs, 
-  config, 
-  lib, 
-  pkgs, 
+  inputs,
+  config,
+  lib,
+  pkgs,
   ...
 }:
 with lib; let
@@ -268,7 +268,7 @@ in {
 
           # Rofi menus
           "SUPER, D, exec, rofi -show drun -show-icons -run-command \"uwsm app -- {cmd}\""
-          "SUPER, R, exec, rofi -show run -run-shell-command '{terminal} zsh -ic \"{cmd} && read\"'"
+          "SUPER, R, exec, rofi -show run -run-shell-command '{terminal} fish -ic \"{cmd} && read\"'"
           "SUPER, F, exec, rofi -show window -show-icons"
           "SUPER, V, exec, wlclipmgr restore -i \"$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')\""
 
@@ -472,7 +472,7 @@ in {
 
             outer_color = rgbaColor colors.base.sun "a0";
             inner_color = rgbaColor colors.base.sun "00";
-            check_color  = rgbColor colors.six.green;
+            check_color = rgbColor colors.six.green;
             font_color = rgbColor colors.base.sky;
             capslock_color = rgbColor colors.six.red;
 

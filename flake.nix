@@ -16,6 +16,14 @@
 
     # hyprlock is part of the hyprland overlay, but i want it up to date for testing
     hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland";
+      inputs.hyprutils.follows = "hyprland";
+    };
+
+    # greetd login via hyprlock
+    hyprlock-greetd = {
       url = "github:PaideiaDilemma/hyprlock?ref=greetdLogin";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
@@ -40,18 +48,10 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # Community packages; used for Firefox extensions
-    nur.url = "github:nix-community/nur";
-
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
     pwndbg = {
       url = "github:pwndbg/pwndbg";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    waybar = {
-      url = "github:Alexays/Waybar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -63,15 +63,43 @@
     ...
   } @ inputs: let
     overlays = [
-      inputs.hyprland.overlays.default
-      inputs.hyprlock.overlays.default
+      # override wayland-protocols locally instead of overlaying for all of nixpkgs
+      # Temporary bump until https://nixpk.gs/pr-tracker.html?pr=382812 is merged.
+      #inputs.hyprland.overlays.default
+      inputs.hyprland.inputs.hyprcursor.overlays.default
+      inputs.hyprland.inputs.aquamarine.overlays.default
+      inputs.hyprland.inputs.hyprutils.overlays.default
+      inputs.hyprland.inputs.hyprlang.overlays.default
+      inputs.hyprland.inputs.hyprgraphics.overlays.default
+      inputs.hyprland.inputs.hyprwayland-scanner.overlays.default
+      inputs.hyprland.inputs.xdph.overlays.default
+      inputs.hyprland.overlays.udis86
+      (final: prev: {
+        wayland-protocols-bump = prev.wayland-protocols.overrideAttrs (self: super: {
+          version = "1.41";
+
+          src = prev.fetchurl {
+            url = "https://gitlab.freedesktop.org/wayland/${super.pname}/-/releases/${self.version}/downloads/${super.pname}-${self.version}.tar.xz";
+            hash = "sha256-J4a2sbeZZeMT8sKJwSB1ue1wDUGESBDFGv2hDuMpV2s=";
+          };
+        });
+        hyprland = inputs.hyprland.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
+          buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
+        });
+        hyprland-debug = inputs.hyprland.packages.${prev.system}.hyprland-debug.overrideAttrs (oldAttrs: {
+          buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
+        });
+        xdph = inputs.hyprland.packages.${prev.system}.xdph;
+      })
+
+      (final: prev: {
+        hyprlock = inputs.hyprlock.packages.${prev.system}.default;
+        hyprlock-greetd = inputs.hyprlock-greetd.packages.${prev.system}.default;
+      })
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/patchelfdd-overlay.nix)
       (import ./overlays/python-packages-overlay.nix)
       (import ./overlays/scripts-overlay.nix)
-      (final: prev: {
-        waybar = inputs.waybar.packages.${prev.system}.default;
-      })
       (final: prev: {
         pwndbg = inputs.pwndbg.packages.${prev.system}.default;
       })
@@ -104,7 +132,6 @@
             home-manager.extraSpecialArgs = specialArgs;
             home-manager.users.${username} = {...}: {
               imports = [
-                inputs.hyprland.homeManagerModules.default
                 ./home
                 ./home/variants/${homeVariant}.nix
               ];
@@ -121,7 +148,6 @@
           inherit inputs;
         };
         modules = [
-          inputs.hyprland.homeManagerModules.default
           ({...}: {
             imports = [./home ./home/variants/${homeVariant}.nix];
             hyprhome.username = username;

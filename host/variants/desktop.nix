@@ -5,5 +5,4 @@
   services.ollama.rocmOverrideGfx = "10.3.0";
   #services.ollama.acceleration = "rocm";
   host.localllm.enable = true;
-
 }

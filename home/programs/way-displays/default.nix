@@ -47,9 +47,8 @@ in {
 
       VRR_OFF:
         - 'eDP-1'
-      CHANGE_SUCCESS_CMD: 'hyprsetwallpaper -g -c'
-      #CHANGE_SUCCESS_CMD: notify-send 'Monitors changed'
-      #CHANGE_SUCCESS_CMD: 'echo "Monitors changed"'
+
+      CALLBACK_CMD: 'notify-send "way-displays ${CALLBACK_LEVEL}" "${CALLBACK_MSG}" && hyprsetwallpaper -g -c'
     '';
 
     home.packages = with pkgs; [

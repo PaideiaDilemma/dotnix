@@ -18,6 +18,6 @@ in {
 
   config = {
     services.ollama.enable = true;
-  # services.open-webui.enable = true;
+    # services.open-webui.enable = true;
   };
 }

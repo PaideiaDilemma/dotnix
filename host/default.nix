@@ -60,7 +60,7 @@ in {
       gnupg.agent.enable = true;
       nix-ld.enable = true;
       virt-manager.enable = cfg.gui.enable;
-      zsh.enable = true;
+      fish.enable = true;
       steam = {
         enable = cfg.steam.enable && cfg.gui.enable;
         extraCompatPackages = with pkgs; [
@@ -89,7 +89,7 @@ in {
       clean.enable = true;
     };
 
-    users.defaultUserShell = pkgs.zsh;
+    users.defaultUserShell = pkgs.fish;
 
     boot = lib.mkIf (cfg.boot.enable) {
       kernelPackages = pkgs.linuxPackages_latest;
@@ -156,7 +156,6 @@ in {
         substituters = [
           "https://cache.nixos.org/"
           "https://hyprland.cachix.org"
-
         ];
         trusted-public-keys = [
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="

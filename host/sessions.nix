@@ -156,7 +156,7 @@ in {
 
           bind=SUPER,Return,exec,foot
           bind=SUPERSHIFT,E,exit,
-          exec-once=${pkgs.hyprlock}/bin/hyprlock --config ${hyprlock_config} --greetd --session-dirs ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions/&
+          exec-once=${pkgs.hyprlock-greetd}/bin/hyprlock --config ${hyprlock_config} --greetd --session-dirs ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions/&
         '';
       in rec {
         shell_session = {

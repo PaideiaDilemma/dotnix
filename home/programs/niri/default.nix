@@ -93,7 +93,7 @@ in {
 
           # Rofi menus
           "Mod+D".action = spawn "rofi" "-show" "drun" "-show-icons";
-          "Mod+R".action = spawn "rofi" "-show" "run" "-run-shell-command" "'{terminal} zsh -ic \"{cmd} && read\"'";
+          "Mod+R".action = spawn "rofi" "-show" "run" "-run-shell-command" "'{terminal} fish -ic \"{cmd} && read\"'";
           "Mod+F".action = spawn "rofi" "-show" "window" "-show-icons";
           "Mod+Shift+P".action = spawn "rofi-pass";
           "Mod+V".action = spawn "wlclipmgr" "restore" "-i" "\"$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')\"";
