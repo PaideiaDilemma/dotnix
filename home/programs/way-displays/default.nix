@@ -48,7 +48,7 @@ in {
       VRR_OFF:
         - 'eDP-1'
 
-      CALLBACK_CMD: 'notify-send "way-displays ${CALLBACK_LEVEL}" "${CALLBACK_MSG}" && hyprsetwallpaper -g -c'
+      CALLBACK_CMD: 'notify-send "way-displays ''${CALLBACK_LEVEL}" "''${CALLBACK_MSG}" && hyprsetwallpaper -g -c'
     '';
 
     home.packages = with pkgs; [
