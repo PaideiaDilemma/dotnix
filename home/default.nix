@@ -84,7 +84,7 @@ in {
         man-pages
         man-pages-posix
         mpv-unwrapped
-        #patchelfdd
+        patchelfdd
         pavucontrol
         rustup
         scrcpy

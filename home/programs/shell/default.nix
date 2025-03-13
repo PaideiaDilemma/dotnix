@@ -101,7 +101,20 @@ in {
           hash = "sha256-RyGjJ8NxTqEr9MW7hnrTlry6fW+IF4el1IPUh7WIwxU=";
         };
       }
+      {
+        name = "fzf.fish";
+        src = pkgs.fetchFromGitHub {
+          owner = "PatrickF1";
+          repo = "fzf.fish";
+          rev = "8920367cf85eee5218cc25a11e209d46e2591e7a";
+          hash = "sha256-T8KYLA/r/gOKvAivKRoeqIwE2pINlxFQtZJHpOy9GMM=";
+        };
+      }
     ];
+
+    shellAliases = {
+      "my-ip" = "curl ipinfo.io/ip 2>/dev/null && echo";
+    };
 
     shellInit = ''
       export NVIM_APPNAME=lazyvim

@@ -16,6 +16,7 @@ in {
   config = {
     virtualisation = {
       docker.enable = false;
+
       podman = {
         enable = true;
         #dockerCompat = true;
