@@ -3,7 +3,7 @@
     gui = {
       enable = true;
       primaryMonitor = "eDP-1";
-      staticMonitors = {}; # handled by way-displays
+      staticMonitors = {};
     };
     waybar.battery.enable = true;
     waybar.output = "eDP-1";

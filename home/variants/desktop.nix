@@ -24,7 +24,6 @@
         };
       };
     };
-    way-displays.enable = false; # Static displays, see above
     foot.fontSize = 13;
     waybar.output = "DP-3";
     hyprland = {

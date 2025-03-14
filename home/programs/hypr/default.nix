@@ -105,7 +105,7 @@ in {
           "GNUPGHOME=${config.xdg.configHome}/gnupg wlclipmgr watch --block \"password store sleep:2\""
         ];
 
-        #monitor=", 1920x1080, auto, 1";
+        monitor=",auto,preferred,1";
         monitor =
           mapAttrsToList (
             name: monitor: "${name}, ${monitor.resolution}, ${monitor.position}, ${monitor.scale}"

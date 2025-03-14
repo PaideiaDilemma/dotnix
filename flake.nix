@@ -62,35 +62,7 @@
     ...
   } @ inputs: let
     overlays = [
-      # override wayland-protocols locally instead of overlaying for all of nixpkgs
-      # Temporary bump until https://nixpk.gs/pr-tracker.html?pr=382812 is merged.
-      #inputs.hyprland.overlays.default
-      inputs.hyprland.inputs.hyprcursor.overlays.default
-      inputs.hyprland.inputs.aquamarine.overlays.default
-      inputs.hyprland.inputs.hyprutils.overlays.default
-      inputs.hyprland.inputs.hyprlang.overlays.default
-      inputs.hyprland.inputs.hyprgraphics.overlays.default
-      inputs.hyprland.inputs.hyprwayland-scanner.overlays.default
-      inputs.hyprland.inputs.xdph.overlays.default
-      inputs.hyprland.overlays.udis86
-      (final: prev: {
-        wayland-protocols-bump = prev.wayland-protocols.overrideAttrs (self: super: {
-          version = "1.41";
-
-          src = prev.fetchurl {
-            url = "https://gitlab.freedesktop.org/wayland/${super.pname}/-/releases/${self.version}/downloads/${super.pname}-${self.version}.tar.xz";
-            hash = "sha256-J4a2sbeZZeMT8sKJwSB1ue1wDUGESBDFGv2hDuMpV2s=";
-          };
-        });
-        hyprland = inputs.hyprland.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
-          buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
-        });
-        hyprland-debug = inputs.hyprland.packages.${prev.system}.hyprland-debug.overrideAttrs (oldAttrs: {
-          buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
-        });
-        xdph = inputs.hyprland.packages.${prev.system}.xdph;
-      })
-
+      inputs.hyprland.overlays.default
       (final: prev: {
         hyprlock = inputs.hyprlock.packages.${prev.system}.default;
         hyprlock-greetd = inputs.hyprlock-greetd.packages.${prev.system}.default;

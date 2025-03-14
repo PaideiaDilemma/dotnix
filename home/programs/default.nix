@@ -17,7 +17,6 @@
     ./swaylock
     ./syncthing
     ./wallrnd
-    ./way-displays
     ./waybar
     ./wlclipmgr
   ];

@@ -10,7 +10,7 @@
 in {
   programs.fzf = {
     enable = true;
-    enableFishIntegration = true;
+    #enableFishIntegration = true;
   };
 
   programs.fish = {
