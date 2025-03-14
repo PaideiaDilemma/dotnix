@@ -72,6 +72,7 @@
       (import ./overlays/python-packages-overlay.nix)
       (import ./overlays/scripts-overlay.nix)
       (import ./overlays/patchelfdd-overlay.nix)
+      (import ./overlays/ctfd-downloader-overlay.nix)
       (final: prev: {
         pwndbg = inputs.pwndbg.packages.${prev.system}.default;
       })

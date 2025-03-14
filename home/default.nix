@@ -76,11 +76,12 @@ in {
         btop
         catimg
         cryptsetup
+        ctfd-downloader
         curl
         distrobox
         file
-        linuxPackages_latest.perf
         jq
+        linuxPackages_latest.perf
         mako
         man-pages
         man-pages-posix
