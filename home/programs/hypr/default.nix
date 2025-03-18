@@ -205,22 +205,19 @@ in {
         ];
 
         windowrule = [
-          "float, kvantummanager"
-          "float, org.gnome.Settings"
-          "float, Lxappearance"
-          "float, obs"
-          "float, zathura"
-          "float, feh"
-          "float, qemu"
+          "float, class:kvantummanager"
+          "float, class:org.gnome.Settings"
+          "float, class:Lxappearance"
+          "float, class:obs"
+          "float, class:zathura"
+          "float, class:feh"
+          "float, class:qemu"
           #"float, DesktopEditors"
-          "float, biz.ntinfo.die"
-          "float, Ultimaker Cura"
-          "float, Pinentry-gtk-2"
+          "float, class:biz.ntinfo.die"
+          "float, class:Ultimaker Cura"
+          "float, class:Pinentry-gtk-2"
           #"float, title:^(Ghidra:)(.*)$"
           "float, title:^(wlroots)(.*)$"
-        ];
-
-        windowrulev2 = [
           "suppressevent fullscreen, class:firefox, floating:1"
           "stayfocused, class:^(pinentry-)"
           "float, class:nm-connection-editor"
