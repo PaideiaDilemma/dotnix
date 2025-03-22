@@ -29,11 +29,11 @@
         }
 
         # KEY BINDINGS
-        binde=,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+        bindle=,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
         bindl=,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
         bindl=,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-        bindr=,XF86MonBrightnessDown, exec, brightnessctl set 5%-
-        bindr=,XF86MonBrightnessUp, exec, brightnessctl set 5%+
+        bindl=,XF86MonBrightnessDown, exec, brightnessctl set 5%-
+        bindl=,XF86MonBrightnessUp, exec, brightnessctl set 5%+
       '';
     };
   };

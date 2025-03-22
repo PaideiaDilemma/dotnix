@@ -89,7 +89,7 @@ in {
       clean.enable = true;
     };
 
-    users.defaultUserShell = pkgs.fish;
+    users.defaultUserShell = pkgs.bash;
 
     boot = lib.mkIf (cfg.boot.enable) {
       kernelPackages = pkgs.linuxPackages_latest;

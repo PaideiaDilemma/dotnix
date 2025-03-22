@@ -13,6 +13,17 @@ in {
     #enableFishIntegration = true;
   };
 
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      fi
+    '';
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -120,19 +131,6 @@ in {
       export NVIM_APPNAME=lazyvim
     '';
   };
-
-  xdg.configFile."fish/themes/penumbra.theme".text = ''
-    # name: 'Penumbra'
-    # preffered_background: black
-
-    fish_color_autosuggestion ${removeHash colors.base.sky}
-    fish_color_cancel -r
-    fish_color_command ${removeHash colors.base.sun}
-    fish_color_comment ${removeHash colors.base.sky}  '--italics'
-    fish_color_cwd ${removeHash colors.six.cyan}
-    fish_color_cwd_root ${removeHash colors.six.red}
-    fish_color_end ${removeHash colors.six.green}
-  '';
 
   programs.direnv = {
     enable = true;
