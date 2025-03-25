@@ -73,7 +73,7 @@ in {
             monitor=
             outer_color=rgba(FFF7EDa0)
             outline_thickness=4
-            placeholder_text=<i>$PAMPROMPT</i>
+            placeholder_text=<i>$GREETDPROMPT</i>
             position=0, -20
             rounding=15
             size=250, 40
@@ -156,7 +156,7 @@ in {
 
           bind=SUPER,Return,exec,foot
           bind=SUPERSHIFT,E,exit,
-          exec-once=${pkgs.hyprlock-greetd}/bin/hyprlock --config ${hyprlock_config} --greetd --session-dirs ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions/ > /tmp/hyprlock_greetd 2>&1 &
+          exec-once=${pkgs.hyprlock-greetd}/bin/hyprlock --config ${hyprlock_config} --greetd --session-dirs ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions/ >> /tmp/hyprlock_greetd 2>&1 &
         '';
       in rec {
         shell_session = {

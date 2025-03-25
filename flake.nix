@@ -22,6 +22,13 @@
       inputs.hyprutils.follows = "hyprland";
     };
 
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland";
+      inputs.hyprutils.follows = "hyprland";
+    };
+
     # greetd login via hyprlock
     hyprlock-greetd = {
       url = "github:PaideiaDilemma/hyprlock?ref=greetdLogin";
@@ -66,6 +73,7 @@
       (final: prev: {
         hyprlock = inputs.hyprlock.packages.${prev.system}.default;
         hyprlock-greetd = inputs.hyprlock-greetd.packages.${prev.system}.default;
+        hypridle = inputs.hypridle.packages.${prev.system}.default;
       })
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/patchelfdd-overlay.nix)
