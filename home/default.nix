@@ -82,7 +82,6 @@ in {
         file
         jq
         linuxPackages_latest.perf
-        mako
         man-pages
         man-pages-posix
         mpv-unwrapped
@@ -90,11 +89,11 @@ in {
         pavucontrol
         rustup
         scrcpy
-        slurp
         sqlite
         tinymist
         typst
         usbutils
+        uv
         wget
         wl-clipboard
       ])
@@ -115,11 +114,14 @@ in {
         krita
         libnotify.out
         libreoffice
+        mako
         nwg-look
         pcmanfm
+        slurp
         spotify
         thunderbird
         vlc
+        wdisplays
         webcord
         wlr-randr
       ])

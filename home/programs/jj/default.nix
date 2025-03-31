@@ -6,8 +6,8 @@
     enable = true;
     settings = {
       user = {
-        name = "Maximilian Seidler";
-        email = "paideia_dilemma@losfuzzys.net";
+        name = config.hyprhome.fullName;
+        email = config.hyprhome.email;
       };
       colors = {
         "diff token" = {underline = false;};
