@@ -98,6 +98,11 @@ in {
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;
 
+      plymouth = {
+        enable = true;
+        theme = "breeze";
+      };
+
       kernel.sysctl = {
         "kernel.sysrq" = 1;
       };
