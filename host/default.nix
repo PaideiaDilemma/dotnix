@@ -103,6 +103,8 @@ in {
         theme = "breeze";
       };
 
+      initrd.systemd.enable = true;
+
       kernel.sysctl = {
         "kernel.sysrq" = 1;
       };
