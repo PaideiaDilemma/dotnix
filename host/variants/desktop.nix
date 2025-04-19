@@ -6,6 +6,11 @@
   #services.ollama.acceleration = "rocm";
   host.localllm.enable = true;
 
+  services.nix-serve = {
+    enable = true;
+    secretKeyFile = "/var/nix/desktop-cache-priv-key.pem";
+  };
+
   services.pipewire.wireplumber.extraConfig = {
     "51-scarlet-solo" = {
       "monitor.alsa.rules" = [ {
