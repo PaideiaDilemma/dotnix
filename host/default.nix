@@ -157,18 +157,29 @@ in {
       nixPath = [
         "nixpkgs=${inputs.nixpkgs}"
       ];
-      distributedBuilds = true;
       package = pkgs.nixVersions.latest;
       settings = {
         substituters = [
           "https://cache.nixos.org/"
           "https://hyprland.cachix.org"
+          "http://desktop.local:9777"
         ];
         trusted-public-keys = [
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+          "desktop.local:iDrkQHINmrrOfgGULyQTi7tUPLp6npaKvOGcpES+zaA="
         ];
       };
       extraOptions = "experimental-features = nix-command flakes";
+      distributedBuilds = true;
+      buildMachines = [
+        {
+          system = "x86_64-linux";
+          hostName = "desktop.local";
+          sshUser = "max";
+          maxJobs = 4;
+          speedFactor = 10;
+        }
+      ];
     };
   };
 }
