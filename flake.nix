@@ -69,7 +69,36 @@
     ...
   } @ inputs: let
     overlays = [
-      inputs.hyprland.overlays.default
+      # TODO: renable
+      #inputs.hyprland.overlays.default
+      # TODO: remove
+      inputs.hyprland.inputs.hyprcursor.overlays.default
+      inputs.hyprland.inputs.aquamarine.overlays.default
+      inputs.hyprland.inputs.hyprutils.overlays.default
+      inputs.hyprland.inputs.hyprlang.overlays.default
+      inputs.hyprland.inputs.hyprgraphics.overlays.default
+      inputs.hyprland.inputs.hyprwayland-scanner.overlays.default
+      inputs.hyprland.inputs.xdph.overlays.default
+      inputs.hyprland.overlays.udis86
+      (final: prev: {
+        wayland-protocols-bump = prev.wayland-protocols.overrideAttrs (self: super: {
+          version = "1.43";
+
+          src = final.fetchurl {
+            url = "https://gitlab.freedesktop.org/wayland/${self.pname}/-/releases/${self.version}/downloads/${self.pname}-${self.version}.tar.xz";
+            hash = "sha256-ujw0Jd0nxXtSkek9upe+EkeWAeALyrJNJkcZSMtkNlM=";
+          };
+        });
+        hyprland = inputs.hyprland.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
+          buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
+        });
+        hyprland-debug = inputs.hyprland.packages.${prev.system}.hyprland-debug.overrideAttrs (oldAttrs: {
+          buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
+        });
+        xdph = inputs.hyprland.packages.${prev.system}.xdph;
+      })
+      # remove end
+
       (final: prev: {
         hyprlock = inputs.hyprlock.packages.${prev.system}.default;
         hyprlock-greetd = inputs.hyprlock-greetd.packages.${prev.system}.default;

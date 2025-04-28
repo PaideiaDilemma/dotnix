@@ -20,16 +20,15 @@ in {
     home.packages = with pkgs.kdePackages; [
       qtsvg
       breeze-icons
-      ffmpegthumbs
-      gwenview
-      kdegraphics-thumbnailers
-      kiconthemes
-      kimageformats
-      kio-extras
+      #ffmpegthumbs
+      #kdegraphics-thumbnailers
+      #kiconthemes
+      #kimageformats
+      #kio-extras
       kwayland
       layer-shell-qt
-      qtimageformats
-      qtpbfimageplugin
+      #qtimageformats
+      #qtpbfimageplugin
       qtwayland
       wayland
       wayland-protocols
@@ -40,9 +39,6 @@ in {
     xdg.configFile."kdeglobals".text = ''
       [General]
       TerminalApplication=${cfg.terminal}
-
-      [Colors:View]
-      BackgroundNormal=${colors.base.shade}
 
       [Icons]
       Theme=Penumbra

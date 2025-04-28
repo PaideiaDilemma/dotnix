@@ -48,8 +48,8 @@ in {
             "browser.safebrowsing.malware.enabled" = false;
           };
           search = {
-            default = "DuckDuckGo";
-            privateDefault = "DuckDuckGo";
+            default = "ddg";
+            privateDefault = "ddg";
             force = true;
             engines = {
               "Nix Packages" = {
