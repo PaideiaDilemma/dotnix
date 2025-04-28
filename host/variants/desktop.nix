@@ -8,7 +8,8 @@
 
   services.nix-serve = {
     enable = true;
-    secretKeyFile = "/var/nix/desktop-cache-priv-key.pem";
+    secretKeyFile = "/var/desktop-cache-local-priv-key.pem";
+    port = 9777;
   };
 
   services.pipewire.wireplumber.extraConfig = {

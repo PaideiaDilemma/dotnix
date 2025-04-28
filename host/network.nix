@@ -29,6 +29,7 @@ in {
           57621 # spotify
           22000 # syncthing
           8384 # syncthing gui
+          9777 # nix-serve
         ];
 
         allowedTCPPortRanges = [
