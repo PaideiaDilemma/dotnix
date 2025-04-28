@@ -21,6 +21,7 @@ in {
 
     programs.firefox = {
       enable = true;
+      package = pkgs.firefox-esr;
       profiles = {
         "netflix" = {
           isDefault = false;
