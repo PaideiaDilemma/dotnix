@@ -128,7 +128,7 @@ in {
     };
 
     environment.variables = {
-      FLAKE = cfg.dotfileLocation;
+      NH_FLAKE = cfg.dotfileLocation;
       NIXOS_OZONE_WL = "1";
       NIXPKGS_ALLOW_UNFREE = "1";
       PATH = [
