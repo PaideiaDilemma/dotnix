@@ -19,18 +19,19 @@ in {
   config = mkIf (cfg.gui.enable && cfg.mako.enable) {
     services.mako = {
       enable = true;
-      font = "Noto Sans 10";
-      package = pkgs.mako;
-      anchor = "bottom-center";
-      backgroundColor = "${colors.base.sky_}";
-      textColor = "${colors.base.sun}";
-      margin = "2";
-      #outerMargin = 5;
-      borderColor = "${colors.base.sun}";
-      borderSize = 1;
-      borderRadius = 6;
-      progressColor = "over ${colors.six.red}CC";
-      icons = true;
+      settings = {
+        font = "Noto Sans 10";
+        anchor = "bottom-center";
+        backgroundColor = "${colors.base.sky_}";
+        textColor = "${colors.base.sun}";
+        margin = "2";
+        #outerMargin = 5;
+        borderColor = "${colors.base.sun}";
+        borderSize = 1;
+        borderRadius = 6;
+        progressColor = "over ${colors.six.red}CC";
+        icons = true;
+      };
     };
   };
 }

@@ -46,12 +46,11 @@ in {
 
           general {
             grace=0
-            hide_cursor=true
           }
 
           background {
             monitor=
-            blur_passes=2
+            blur_passes=0
             blur_size=10
             color=rgb(303338)
           }
@@ -65,7 +64,6 @@ in {
             dots_text_format=
             fade_timeout=4000
             fail_color=rgb(CB7459)
-            fail_transition=400
             font_color=rgb(8F8F8F)
             font_family=FiraMono Nerd Font Propo
             halign=center
@@ -104,6 +102,7 @@ in {
 
           login {
             user = max
+            default_session = Hyprland (debug)
           }
 
           login-session {
@@ -154,9 +153,8 @@ in {
             key_press_enables_dpms=1
           }
 
-          bind=SUPER,Return,exec,foot
-          bind=SUPERSHIFT,E,exit,
-          exec-once=${pkgs.hyprlock-greetd}/bin/hyprlock --config ${hyprlock_config} --greetd --session-dirs ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions/ >> /tmp/hyprlock_greetd 2>&1 &
+          bind=SUPERSHIFT, E, exit
+          exec-once=${pkgs.hyprlock-greetd}/bin/hyprlock --config ${hyprlock_config} --greetd --session-dirs ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions/ > /tmp/hyprlock_greetd 2>&1
         '';
       in rec {
         shell_session = {
