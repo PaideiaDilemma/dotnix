@@ -182,6 +182,7 @@ in {
     programs = {
       git = {
         enable = true;
+        lfs.enable = true;
         userName = cfg.fullName;
         userEmail = cfg.email;
       };
