@@ -91,6 +91,7 @@ in {
         scrcpy
         sqlite
         tinymist
+        tree
         typst
         usbutils
         uv
