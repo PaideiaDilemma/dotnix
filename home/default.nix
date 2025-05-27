@@ -80,6 +80,7 @@ in {
         curl
         distrobox
         file
+        jjui
         jq
         linuxPackages_latest.perf
         man-pages
