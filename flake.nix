@@ -9,15 +9,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprutils = {
-      url = "github:PaideiaDilemma/hyprutils?ref=atomic-control-block";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:PaideiaDilemma/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprutils.follows = "hyprutils";
     };
 
     # hyprlock is part of the hyprland overlay, but i want it up to date for testing
