@@ -15,7 +15,6 @@
 
   home.file.".gdbinit".text = ''
     source ${config.xdg.configHome}/gdb/find_libc_start.py
-    source ${pkgs.pwndbg}/share/pwndbg/gdbinit.py
     set debug-file-directory /tmp/gdb-symbols
   '';
 
