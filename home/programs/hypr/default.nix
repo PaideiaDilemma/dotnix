@@ -417,7 +417,7 @@ in {
           }
           {
             timeout = 800;
-            on-timeout = "systemctl suspend";
+            on-timeout = "hyprctl dispatch dpms off";
           }
           {
             timeout = 100;

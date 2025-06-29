@@ -17,7 +17,7 @@ in {
   };
 
   config = {
-    services.ollama.enable = true;
+    services.ollama.enable = cfg.localllm.enable;
     # services.open-webui.enable = true;
   };
 }
