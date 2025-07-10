@@ -286,7 +286,7 @@ in {
           "SUPERSHIFT, Space, togglefloating, "
           "SUPER, P, pseudo, "
           "SUPER, M, fullscreen, "
-          "ALT, P, pin"
+          #"ALT, P, pin"
 
           "SUPERSHIFT, E, exit, "
 
@@ -305,61 +305,44 @@ in {
           "SUPERSHIFT, k, movewindow, u"
           "SUPERSHIFT, j, movewindow, d"
 
-          "SUPER, w, workspace, +1"
-          "SUPER, q, workspace, -1"
-          "SUPER, 1, workspace, 1"
-          "SUPER, 2, workspace, 2"
-          "SUPER, 3, workspace, 3"
-          "SUPER, 4, workspace, 4"
-          "SUPER, 5, workspace, 5"
-          "SUPER, 6, workspace, 6"
-          "SUPER, 7, workspace, 7"
-          "SUPER, 8, workspace, 8"
-          "SUPER, 9, workspace, 9"
-          "SUPER, 0, workspace, 10"
-          "SUPER, a, togglespecialworkspace"
+          #"SUPER, q, workspace, r-1"
+          #"SUPER, w, workspace, r+1"
+          #"SUPER, 1, workspace, m~1"
+          #"SUPER, 2, workspace, m~2"
+          #"SUPER, 3, workspace, m~3"
+          #"SUPER, 4, workspace, m~4"
+          #"SUPER, 5, workspace, m~5"
+          #"SUPER, 6, workspace, m~6"
+          #"SUPER, 7, workspace, m~7"
+          #"SUPER, 8, workspace, m~8"
+          #"SUPER, 9, workspace, m~9"
+          #"SUPER, 0, workspace, m~10"
+          #"SUPER, a, togglespecialworkspace"
 
-          "ALT, w, movetoworkspace, +1 # Monitor Num"
-          "ALT, q, movetoworkspace, -1 # Monitor Num"
-          "ALT, 1, movetoworkspace, 1"
-          "ALT, 2, movetoworkspace, 2"
-          "ALT, 3, movetoworkspace, 3"
-          "ALT, 4, movetoworkspace, 4"
-          "ALT, 5, movetoworkspace, 5"
-          "ALT, 6, movetoworkspace, 6"
-          "ALT, 7, movetoworkspace, 7"
-          "ALT, 8, movetoworkspace, 8"
-          "ALT, 9, movetoworkspace, 9"
-          "ALT, 0, movetoworkspace, 10"
-          "ALT, a, movetoworkspace, special"
-
-          "SUPERSHIFT, w, movetoworkspacesilent, +1 # Monitor Num"
-          "SUPERSHIFT, q, movetoworkspacesilent, -1 # Monitor Num"
-          "SUPERSHIFT, 1, movetoworkspacesilent, 1"
-          "SUPERSHIFT, 2, movetoworkspacesilent, 2"
-          "SUPERSHIFT, 3, movetoworkspacesilent, 3"
-          "SUPERSHIFT, 4, movetoworkspacesilent, 4"
-          "SUPERSHIFT, 5, movetoworkspacesilent, 5"
-          "SUPERSHIFT, 6, movetoworkspacesilent, 6"
-          "SUPERSHIFT, 7, movetoworkspacesilent, 7"
-          "SUPERSHIFT, 8, movetoworkspacesilent, 8"
-          "SUPERSHIFT, 9, movetoworkspacesilent, 9"
-          "SUPERSHIFT, 0, movetoworkspacesilent, 10"
-          "SUPERSHIFT, a, movetoworkspacesilent, special"
-
-          "SUPERALT, 1, movecurrentworkspacetomonitor, eDP-1"
-          "SUPERALT, 2, movecurrentworkspacetomonitor, HDMI-A-1"
+          #"SUPERSHIFT, q, movetoworkspace, r-1"
+          #"SUPERSHIFT, w, movetoworkspace, r+1"
+          #"SUPERSHIFT, 1, movetoworkspace, m~1"
+          #"SUPERSHIFT, 2, movetoworkspace, m~2"
+          #"SUPERSHIFT, 3, movetoworkspace, m~3"
+          #"SUPERSHIFT, 4, movetoworkspace, m~4"
+          #"SUPERSHIFT, 5, movetoworkspace, m~5"
+          #"SUPERSHIFT, 6, movetoworkspace, m~6"
+          #"SUPERSHIFT, 7, movetoworkspace, m~7"
+          #"SUPERSHIFT, 8, movetoworkspace, m~8"
+          #"SUPERSHIFT, 9, movetoworkspace, m~9"
+          #"SUPERSHIFT, 0, movetoworkspace, m~10"
+          #"SUPERSHIFT, a, movetoworkspace, special"
 
           "SUPER, semicolon, swapnext"
           "SUPER, apostrophe, togglesplit"
 
-          ", code:276, swapnext"
-          ", code:276, togglesplit"
+          #", code:276, swapnext"
+          #", code:276, togglesplit"
 
-          "ALT, Space, togglegroup"
-          "ALT, j, changegroupactive, f"
-          "ALT, k, changegroupactive, b"
-          "ALT, c, togglesplit"
+          #"ALT, Space, togglegroup"
+          #"ALT, j, changegroupactive, f"
+          #"ALT, k, changegroupactive, b"
+          #"ALT, c, togglesplit"
         ];
 
         plugin = {
@@ -373,16 +356,15 @@ in {
       extraConfig =
         ''
           # SUBMAPS
-          bind = ALT, p, submap, passthrough
+          bind = SUPERSHIFT, p, submap, passthrough
           submap = passthrough
-          # passthrough
-          bind = ALT, p, submap, reset
-          # ~passthrough
+          bind = SUPERSHIFT, p, submap, reset
           submap = reset
+          # ------------
 
-          bind = ALT, R, submap, resize
+          bind = SUPER, E, submap, resize
           submap = resize
-          # resize
+
           binde=, h, resizeactive, 40 0
           binde=, l, resizeactive, -40 0
           binde=, k, resizeactive, 0 -40
@@ -390,10 +372,61 @@ in {
 
           bind = ALT, R, submap, reset
           bind = , escape, submap, reset
-          # ~resize
-          submap = reset
 
-          env = GNUPGHOME, ${config.xdg.configHome}/gnupg
+          submap = reset
+          # ------------
+
+          bind = SUPER, space, submap, move
+          submap = move
+
+          bind = , L, focusmonitor, +1
+          bind = , H, focusmonitor, -1
+
+          bind = , J, workspace, r+1
+          bind = , K, workspace, r-1
+          bind = , 1, workspace, m~1
+          bind = , 2, workspace, m~2
+          bind = , 3, workspace, m~3
+          bind = , 4, workspace, m~4
+          bind = , 5, workspace, m~5
+          bind = , 6, workspace, m~6
+          bind = , 7, workspace, m~7
+          bind = , 8, workspace, m~8
+          bind = , 9, workspace, m~9
+          bind = , 0, workspace, m~10
+          bind = , a, togglespecialworkspace
+
+          bind = SHIFT, L, movecurrentworkspacetomonitor, +1
+          bind = SHIFT, H, movecurrentworkspacetomonitor, -1
+
+          bind = SHIFT, J, movetoworkspacesilent, r+1
+          bind = SHIFT, K, movetoworkspacesilent, r-1
+          bind = SHIFT, 1, movetoworkspacesilent, m~1
+          bind = SHIFT, 2, movetoworkspacesilent, m~2
+          bind = SHIFT, 3, movetoworkspacesilent, m~3
+          bind = SHIFT, 4, movetoworkspacesilent, m~4
+          bind = SHIFT, 5, movetoworkspacesilent, m~5
+          bind = SHIFT, 6, movetoworkspacesilent, m~6
+          bind = SHIFT, 7, movetoworkspacesilent, m~7
+          bind = SHIFT, 8, movetoworkspacesilent, m~8
+          bind = SHIFT, 9, movetoworkspacesilent, m~9
+          bind = SHIFT, 0, movetoworkspacesilent, m~10
+          bind = SHIFT, a, movetoworkspacesilent, special
+
+          bind = SUPER, space, submap, reset
+          bind = , space, submap, reset
+          bind = , escape, submap, reset
+
+          submap = reset
+          # ------------
+          #
+          # Smart gaps
+          workspace = w[tv1]s[false], gapsout:0, gapsin:0
+          workspace = f[1]s[false], gapsout:0, gapsin:0
+          windowrule = bordersize 0, floating:0, onworkspace:w[tv1]s[false]
+          windowrule = rounding 0, floating:0, onworkspace:w[tv1]s[false]
+          windowrule = bordersize 0, floating:0, onworkspace:f[1]s[false]
+          windowrule = rounding 0, floating:0, onworkspace:f[1]s[false]
         ''
         + cfg.hyprland.extraConfig;
     };
@@ -403,9 +436,9 @@ in {
 
       settings = {
         general = {
-          lock_cmd = "pidof hyprlock || hyprlock";
+          lock_cmd = "hyprlock";
           #unlock_cmd = notify-send "Unlock cmd"
-          before_sleep_cmd = "loginctl lock-session";
+          before_sleep_cmd = "hyprlock --no-fade-in";
           #after_resume_cmd = notify-send "After resume cmd"
           #ignore_dbus_inhibit = true;
         };

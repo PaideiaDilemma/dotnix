@@ -58,7 +58,6 @@ in {
           "height" = 27; # Waybar height (to be removed for auto height)
           #"gtk-layer-shell" = true;
           "spacing" = 2;
-          "width" = 1910; # Waybar width
           # Choose the order of the modules
           "modules-left" = [
             "idle_inhibitor"
