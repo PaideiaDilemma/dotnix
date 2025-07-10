@@ -19,7 +19,7 @@
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
-      inputs.hyprutils.follows = "hyprland";
+      #inputs.hyprutils.follows = "hyprland";
     };
 
     hypridle = {
@@ -50,7 +50,12 @@
     # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
     wlclipmgr = {
       url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
-      #inputs.nixpkgs.follows = "nixpkgs"; // does not find procps for some reason
+      #inputs.nixpkgs.follows = "nixpkgs"; fix this
+    };
+
+    zen-browser = {
+      url = "github:PaideiaDilemma/zen-browser-nix-build";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -69,50 +74,50 @@
     ...
   } @ inputs: let
     overlays = [
-      # TODO: renable
-      #inputs.hyprland.overlays.default
-      # TODO: remove
-      inputs.hyprland.inputs.hyprcursor.overlays.default
-      inputs.hyprland.inputs.aquamarine.overlays.default
-      inputs.hyprland.inputs.hyprutils.overlays.default
-      inputs.hyprland.inputs.hyprlang.overlays.default
-      inputs.hyprland.inputs.hyprgraphics.overlays.default
-      inputs.hyprland.inputs.hyprwayland-scanner.overlays.default
-      inputs.hyprland.inputs.xdph.overlays.default
-      inputs.hyprland.overlays.udis86
-      (final: prev: {
-        wayland-protocols-bump = prev.wayland-protocols.overrideAttrs (self: super: {
-          version = "1.43";
+      inputs.hyprland.overlays.default
+      # Use this stuff if they overrides wayland-protocols again
+      #inputs.hyprland.inputs.hyprcursor.overlays.default
+      #inputs.hyprland.inputs.aquamarine.overlays.default
+      #inputs.hyprland.inputs.hyprutils.overlays.default
+      #inputs.hyprland.inputs.hyprlang.overlays.default
+      #inputs.hyprland.inputs.hyprgraphics.overlays.default
+      #inputs.hyprland.inputs.hyprwayland-scanner.overlays.default
+      #inputs.hyprland.inputs.xdph.overlays.default
+      #inputs.hyprland.overlays.udis86
+      #(final: prev: {
+      #  wayland-protocols-bump = prev.wayland-protocols.overrideAttrs (self: super: {
+      #    version = "1.43";
 
-          src = final.fetchurl {
-            url = "https://gitlab.freedesktop.org/wayland/${self.pname}/-/releases/${self.version}/downloads/${self.pname}-${self.version}.tar.xz";
-            hash = "sha256-ujw0Jd0nxXtSkek9upe+EkeWAeALyrJNJkcZSMtkNlM=";
-          };
-        });
-        hyprland = inputs.hyprland.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
-          buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
-        });
-        hyprland-debug = inputs.hyprland.packages.${prev.system}.hyprland-debug.overrideAttrs (oldAttrs: {
-          buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
-        });
-        xdph = inputs.hyprland.packages.${prev.system}.xdph;
-      })
-      # remove end
+      #    src = final.fetchurl {
+      #      url = "https://gitlab.freedesktop.org/wayland/${self.pname}/-/releases/${self.version}/downloads/${self.pname}-${self.version}.tar.xz";
+      #      hash = "sha256-ujw0Jd0nxXtSkek9upe+EkeWAeALyrJNJkcZSMtkNlM=";
+      #    };
+      #  });
+      #  hyprland = inputs.hyprland.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
+      #    buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
+      #  });
+      #  hyprland-debug = inputs.hyprland.packages.${prev.system}.hyprland-debug.overrideAttrs (oldAttrs: {
+      #    buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
+      #  });
+      #  xdph = inputs.hyprland.packages.${prev.system}.xdph;
+      #})
+      inputs.zen-browser.overlays.default
 
       (final: prev: {
         hyprlock = inputs.hyprlock.packages.${prev.system}.default;
         hyprlock-greetd = inputs.hyprlock-greetd.packages.${prev.system}.default;
         hypridle = inputs.hypridle.packages.${prev.system}.default;
       })
+      (final: prev: {
+        pwndbg = inputs.pwndbg.packages.${prev.system}.default;
+      })
+
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/patchelfdd-overlay.nix)
       (import ./overlays/python-packages-overlay.nix)
       (import ./overlays/scripts-overlay.nix)
       (import ./overlays/patchelfdd-overlay.nix)
       (import ./overlays/ctfd-downloader-overlay.nix)
-      (final: prev: {
-        pwndbg = inputs.pwndbg.packages.${prev.system}.default;
-      })
     ];
 
     mkNixos = hardware: host: homeVariant: username: system:
