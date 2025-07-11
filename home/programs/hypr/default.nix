@@ -247,10 +247,15 @@ in {
         # Repeating
         binde = [
           # Zooming
-          "SUPER, I, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 + 0.2}')"
-          "SUPER, O, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 - 0.2}')"
+          "SUPER, I, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 + 0.4}')"
+          "SUPER, O, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 - 0.4}')"
           "CONTROL, Escape, exec, makoctl dismiss"
+          "SHIFTCONTROL, Escape, exec, makoctl dismiss --all"
         ];
+
+        binds = {
+          scroll_event_delay = "10";
+        };
 
         # Long press
         bindo = [
@@ -343,6 +348,10 @@ in {
           #"ALT, j, changegroupactive, f"
           #"ALT, k, changegroupactive, b"
           #"ALT, c, togglesplit"
+          # Zoom
+          "SUPER, mouse_down, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 1.2}')"
+          "SUPER, mouse_up, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 0.8}')"
+          "SUPER, 0, exec, hyprctl -q keyword cursor:zoom_factor 1"
         ];
 
         plugin = {
