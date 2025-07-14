@@ -59,11 +59,6 @@ in {
     home.file."media/picture/avatar.png".source = ./avatar.png;
     home.file.".icons/DeepinV20HyprCursors".source = "${pkgs.deepinV20HyprCursors}/share/icons/DeepinV20HyprCursors";
 
-    home.sessionVariables = mkIf cfg.hyprland.isVirtualMachine {
-      WLR_NO_HARDWARE_CURSORS = "1";
-      WLR_RENDERER_ALLOW_SOFTWARE = "1";
-    };
-
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = false; # USWM instead
@@ -422,6 +417,20 @@ in {
           bind = SHIFT, 0, movetoworkspacesilent, m~10
           bind = SHIFT, a, movetoworkspacesilent, special
 
+          bind = SUPER, J, movetoworkspace, r+1
+          bind = SUPER, K, movetoworkspace, r-1
+          bind = SUPER, 1, movetoworkspace, m~1
+          bind = SUPER, 2, movetoworkspace, m~2
+          bind = SUPER, 3, movetoworkspace, m~3
+          bind = SUPER, 4, movetoworkspace, m~4
+          bind = SUPER, 5, movetoworkspace, m~5
+          bind = SUPER, 6, movetoworkspace, m~6
+          bind = SUPER, 7, movetoworkspace, m~7
+          bind = SUPER, 8, movetoworkspace, m~8
+          bind = SUPER, 9, movetoworkspace, m~9
+          bind = SUPER, 0, movetoworkspace, m~10
+          bind = SUPER, a, movetoworkspace, special
+
           bind = SUPER, space, submap, reset
           bind = , space, submap, reset
           bind = , escape, submap, reset
@@ -430,12 +439,12 @@ in {
           # ------------
           #
           # Smart gaps
-          workspace = w[tv1]s[false], gapsout:0, gapsin:0
-          workspace = f[1]s[false], gapsout:0, gapsin:0
-          windowrule = bordersize 0, floating:0, onworkspace:w[tv1]s[false]
-          windowrule = rounding 0, floating:0, onworkspace:w[tv1]s[false]
-          windowrule = bordersize 0, floating:0, onworkspace:f[1]s[false]
-          windowrule = rounding 0, floating:0, onworkspace:f[1]s[false]
+          #workspace = w[tv1]s[false], gapsout:0, gapsin:0
+          #workspace = f[1]s[false], gapsout:0, gapsin:0
+          #windowrule = bordersize 0, floating:0, onworkspace:w[tv1]s[false]
+          #windowrule = rounding 0, floating:0, onworkspace:w[tv1]s[false]
+          #windowrule = bordersize 0, floating:0, onworkspace:f[1]s[false]
+          #windowrule = rounding 0, floating:0, onworkspace:f[1]s[false]
         ''
         + cfg.hyprland.extraConfig;
     };
@@ -474,9 +483,8 @@ in {
 
       settings = {
         general = {
-          grace = 4;
           hide_cursor = true;
-          #ignore_empty_input = true;
+          ignore_empty_input = true;
         };
 
         bezier = [

@@ -261,7 +261,7 @@ in {
           color: @fgcolor;
           transition-property: background-color;
           transition-duration: .5s;
-          border-radius: 5px;
+          border-radius: 0px;
           /*border-bottom: 1px solid @gray;*/
         }
 

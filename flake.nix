@@ -14,24 +14,29 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprutils = {
+      url = "github:hyprwm/hyprutils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # hyprlock is part of the hyprland overlay, but i want it up to date for testing
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
-      #inputs.hyprutils.follows = "hyprland";
+      inputs.hyprutils.follows = "hyprutils";
+    };
+
+    # for greetd login via hyprlock
+    hyprlock-greetd = {
+      url = "github:PaideiaDilemma/hyprlock?ref=greetdLogin";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland";
+      inputs.hyprutils.follows = "hyprutils";
     };
 
     hypridle = {
       url = "github:hyprwm/hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprland";
-      inputs.hyprutils.follows = "hyprland";
-    };
-
-    # greetd login via hyprlock
-    hyprlock-greetd = {
-      url = "github:PaideiaDilemma/hyprlock?ref=greetdLogin";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
       inputs.hyprutils.follows = "hyprland";
@@ -75,32 +80,15 @@
   } @ inputs: let
     overlays = [
       inputs.hyprland.overlays.default
-      # Use this stuff if they overrides wayland-protocols again
-      #inputs.hyprland.inputs.hyprcursor.overlays.default
-      #inputs.hyprland.inputs.aquamarine.overlays.default
-      #inputs.hyprland.inputs.hyprutils.overlays.default
-      #inputs.hyprland.inputs.hyprlang.overlays.default
-      #inputs.hyprland.inputs.hyprgraphics.overlays.default
-      #inputs.hyprland.inputs.hyprwayland-scanner.overlays.default
-      #inputs.hyprland.inputs.xdph.overlays.default
-      #inputs.hyprland.overlays.udis86
-      #(final: prev: {
-      #  wayland-protocols-bump = prev.wayland-protocols.overrideAttrs (self: super: {
-      #    version = "1.43";
 
-      #    src = final.fetchurl {
-      #      url = "https://gitlab.freedesktop.org/wayland/${self.pname}/-/releases/${self.version}/downloads/${self.pname}-${self.version}.tar.xz";
-      #      hash = "sha256-ujw0Jd0nxXtSkek9upe+EkeWAeALyrJNJkcZSMtkNlM=";
-      #    };
-      #  });
-      #  hyprland = inputs.hyprland.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
-      #    buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
-      #  });
-      #  hyprland-debug = inputs.hyprland.packages.${prev.system}.hyprland-debug.overrideAttrs (oldAttrs: {
-      #    buildInputs = [final.wayland-protocols-bump] ++ oldAttrs.buildInputs;
-      #  });
-      #  xdph = inputs.hyprland.packages.${prev.system}.xdph;
-      #})
+      (final: prev: {
+        hyprland-debug = final.hyprland.override {
+          aquamarine = final.aquamarine.override {debug = true;};
+          hyprutils = final.hyprutils.override {debug = true;};
+          debug = true;
+        };
+      })
+
       inputs.zen-browser.overlays.default
 
       (final: prev: {

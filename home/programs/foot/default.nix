@@ -33,6 +33,7 @@ in {
           font = "Hack Nerd Font Mono:size=${toString cfg.foot.fontSize}";
           dpi-aware = true;
           pad = "5x5";
+          resize-by-cells = "no";
         };
 
         scrollback = {

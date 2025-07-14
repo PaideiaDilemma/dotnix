@@ -9,12 +9,6 @@ with lib; let
   cfg = config.host;
 in {
   options.host = {
-    hyprland.enable = mkOption {
-      type = types.bool;
-      default = config.host.gui.enable;
-      description = "Whether to enable Hyprland";
-    };
-
     default_session = mkOption {
       type = types.enum ["hyprlock_login" "shell"];
       default = "hyprlock_login";
@@ -24,7 +18,7 @@ in {
 
   config = {
     programs.hyprland = {
-      enable = cfg.hyprland.enable;
+      enable = config.host.gui.enable;
       withUWSM = true;
     };
 
@@ -43,10 +37,6 @@ in {
           animation=inputFieldFade, 1, 4, outCirc
           animation=inputFieldWidth, 1, 3, inOutCirc
           animation=inputFieldColors, 1, 6, linear
-
-          general {
-            grace=0
-          }
 
           background {
             monitor=
@@ -102,7 +92,7 @@ in {
 
           login {
             user = max
-            default_session = Hyprland (debug)
+            #default_session=
           }
 
           login-session {
@@ -154,6 +144,8 @@ in {
           }
 
           bind=SUPERSHIFT, E, exit
+          exec-once=mkdir /tmp/greetd
+          env=HOME,/tmp/greetd
           exec-once=${pkgs.hyprlock-greetd}/bin/hyprlock --config ${hyprlock_config} --greetd --session-dirs ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions/ > /tmp/hyprlock_greetd 2>&1
         '';
       in rec {
