@@ -97,7 +97,7 @@ in {
           (uwsm_exec "nm-applet")
           (uwsm_exec "hyprsunset")
           "hyprctl setcursor DeepinV20HyprCursors 32"
-          "GNUPGHOME=${config.xdg.configHome}/gnupg wlclipmgr watch --block \"password store sleep:2\""
+          "GNUPGHOME=${config.xdg.configHome}/gnupg wlclipmgr watch --block \"keepassxc\""
         ];
 
         monitor =

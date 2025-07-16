@@ -9,14 +9,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:PaideiaDilemma/Hyprland";
+    aquamarine = {
+      url = "github:hyprwm/aquamarine";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprutils = {
-      url = "github:hyprwm/hyprutils";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.aquamarine.follows = "aquamarine";
+      inputs.hyprutils.follows = "aquamarine";
     };
 
     # hyprlock is part of the hyprland overlay, but i want it up to date for testing
@@ -24,7 +26,7 @@
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
-      inputs.hyprutils.follows = "hyprutils";
+      inputs.hyprutils.follows = "hyprland";
     };
 
     # for greetd login via hyprlock
@@ -32,7 +34,7 @@
       url = "github:PaideiaDilemma/hyprlock?ref=greetdLogin";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
-      inputs.hyprutils.follows = "hyprutils";
+      inputs.hyprutils.follows = "hyprland";
     };
 
     hypridle = {
@@ -55,7 +57,7 @@
     # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
     wlclipmgr = {
       url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
-      #inputs.nixpkgs.follows = "nixpkgs"; fix this
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     zen-browser = {
