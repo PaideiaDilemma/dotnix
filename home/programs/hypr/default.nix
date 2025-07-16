@@ -144,6 +144,10 @@ in {
           };
         };
 
+        render = {
+          new_render_scheduling = true;
+        };
+
         animations = {
           enabled =
             if cfg.hyprland.enableAnimations
@@ -179,7 +183,6 @@ in {
           preserve_split = true;
           smart_split = true;
           # special_scale_factor = 0.5
-          # no_gaps_when_only = true
         };
 
         misc = {
@@ -192,6 +195,17 @@ in {
           disable_hyprland_logo = 1;
           force_default_wallpaper = 0;
         };
+
+        ecosystem = {
+          enforce_permissions = true;
+        };
+
+        permission = [
+          "${lib.escapeRegex (lib.getExe pkgs.hyprlock)}, screencopy, allow"
+          "${lib.escapeRegex (lib.getExe pkgs.grim)}, screencopy, allow"
+          "${lib.escapeRegex (toString pkgs.xdg-desktop-portal-hyprland)}/libexec/.xdg-desktop-portal-hyprland-wrapped, screencopy, allow"
+          "${lib.escapeRegex (toString pkgs.obs-studio)}/bin/.obs-wrapped, screencopy, allow"
+        ];
 
         blurls = [
           "rofi"
@@ -348,13 +362,6 @@ in {
           "SUPER, mouse_up, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 0.8}')"
           "SUPER, 0, exec, hyprctl -q keyword cursor:zoom_factor 1"
         ];
-
-        plugin = {
-          harpoon = {
-            select_trigger = ", Menu";
-            add_trigger = "SHIFT, Menu";
-          };
-        };
       };
 
       extraConfig =
