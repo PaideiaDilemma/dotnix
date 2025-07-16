@@ -92,6 +92,7 @@
       })
 
       inputs.zen-browser.overlays.default
+      inputs.wlclipmgr.overlays.default
 
       (final: prev: {
         hyprlock = inputs.hyprlock.packages.${prev.system}.default;

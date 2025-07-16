@@ -18,7 +18,7 @@ in {
 
   config = mkIf (cfg.gui.enable && cfg.wlclipmgr.enable) {
     home.packages = [
-      inputs.wlclipmgr.packages.${pkgs.system}.wlclipmgr
+      pkgs.wlclipmgr
     ];
   };
 }
