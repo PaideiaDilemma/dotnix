@@ -27,6 +27,7 @@ in {
     programs.foot = {
       enable = true;
       server.enable = false;
+      package = pkgs.foot;
 
       settings = {
         main = {
@@ -47,27 +48,47 @@ in {
 
         search-bindings = {
           "find-prev" = "Control+p";
-          "find-next" = "Control+Shift+n";
+          "find-next" = "Control+n";
         };
 
         colors = {
           foreground = removeHash colors.base.sun;
           background = removeHash colors.base.shade;
           regular0 = removeHash colors.base.shade;
-          regular1 = removeHash colors.six.red;
-          regular2 = removeHash colors.six.green;
-          regular3 = removeHash colors.six.yellow;
-          regular4 = removeHash colors.six.blue;
-          regular5 = removeHash colors.six.magenta;
-          regular6 = removeHash colors.six.cyan;
+          regular1 = removeHash colors.accent.red;
+          regular2 = removeHash colors.accent.green;
+          regular3 = removeHash colors.accent.yellow;
+          regular4 = removeHash colors.accent.blue;
+          regular5 = removeHash colors.accent.orange;
+          regular6 = removeHash colors.accent.cyan;
           regular7 = removeHash colors.base.sun;
           bright0 = removeHash colors.base.sky_;
-          bright1 = removeHash colors.six'.red;
-          bright2 = removeHash colors.six'.green;
-          bright3 = removeHash colors.six'.yellow;
-          bright4 = removeHash colors.six'.blue;
-          bright5 = removeHash colors.six'.magenta;
-          bright6 = removeHash colors.six'.cyan;
+          bright1 = removeHash colors.accent'.red;
+          bright2 = removeHash colors.accent'.green;
+          bright3 = removeHash colors.accent'.yellow;
+          bright4 = removeHash colors.accent'.blue;
+          bright5 = removeHash colors.accent'.orange;
+          bright6 = removeHash colors.accent'.cyan;
+          bright7 = removeHash colors.base.sun';
+        };
+        colors2 = {
+          foreground = removeHash colors.base.shade;
+          background = removeHash colors.base.sun;
+          regular0 = removeHash colors.base.shade;
+          regular1 = removeHash colors.accent.red;
+          regular2 = removeHash colors.accent.green;
+          regular3 = removeHash colors.accent.yellow;
+          regular4 = removeHash colors.accent.blue;
+          regular5 = removeHash colors.accent.orange;
+          regular6 = removeHash colors.accent.cyan;
+          regular7 = removeHash colors.base.sun;
+          bright0 = removeHash colors.base.sky_;
+          bright1 = removeHash colors.accent'.red;
+          bright2 = removeHash colors.accent'.green;
+          bright3 = removeHash colors.accent'.yellow;
+          bright4 = removeHash colors.accent'.blue;
+          bright5 = removeHash colors.accent'.orange;
+          bright6 = removeHash colors.accent'.cyan;
           bright7 = removeHash colors.base.sun';
         };
       };

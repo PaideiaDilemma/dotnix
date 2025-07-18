@@ -38,13 +38,13 @@ in {
 
       * {
           bg:         ${colors.base.sky_}CC;
-          red:        ${colors.six.red};
-          green:      ${colors.six.green};
-          yellow:     ${colors.six.yellow};
-          blue:       ${colors.six.blue};
-          purple:     ${colors.six.magenta};
-          cyan:       ${colors.six.cyan};
-          emphasis:   ${colors.six.cyan};
+          red:        ${colors.accent.red};
+          green:      ${colors.accent.green};
+          yellow:     ${colors.accent.yellow};
+          blue:       ${colors.accent.blue};
+          purple:     ${colors.accent.purple};
+          cyan:       ${colors.accent.cyan};
+          emphasis:   ${colors.accent.orange};
           text:       ${colors.base.sun};
           text-alt:   ${colors.base.sun_};
           fg:         ${colors.base.sun};

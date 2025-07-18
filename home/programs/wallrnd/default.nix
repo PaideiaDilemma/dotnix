@@ -70,13 +70,13 @@ in {
       shade_p = "${colors.base.shade'}"
       shade = "${colors.base.shade}"
       shade_m = "${colors.base.shade_}"
-      red = "${colors.six.red}"
-      orange = "${colors.seven.orange}"
-      yellow = "${colors.seven.yellow}"
-      green = "${colors.seven.green}"
-      cyan = "${colors.seven.cyan}"
-      blue = "${colors.seven.blue}"
-      purple = "${colors.seven.purple}"
+      red = "${colors.accent.red}"
+      orange = "${colors.accent.orange}"
+      yellow = "${colors.accent.yellow}"
+      green = "${colors.accent.green}"
+      cyan = "${colors.accent.cyan}"
+      blue = "${colors.accent.blue}"
+      purple = "${colors.accent.purple}"
 
       [themes]
       [[themes.penumbra_day]]

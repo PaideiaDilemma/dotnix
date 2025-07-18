@@ -17,16 +17,7 @@ with lib; let
     "shade_"
   ];
 
-  sixNames = [
-    "red"
-    "yellow"
-    "green"
-    "cyan"
-    "blue"
-    "magenta"
-  ];
-
-  sevenNames = [
+  accentColorNames = [
     "red"
     "orange"
     "yellow"
@@ -34,17 +25,6 @@ with lib; let
     "cyan"
     "blue"
     "purple"
-  ];
-
-  eightNames = [
-    "red"
-    "orange"
-    "yellow"
-    "green"
-    "cyan"
-    "blue"
-    "purple"
-    "magenta"
   ];
 
   mapOptions = options:
@@ -63,29 +43,27 @@ with lib; let
 in {
   options.colors = {
     base = mapOptions baseColorNames;
-    six = mapOptions sixNames;
-    six' = mapOptions sixNames;
-    seven = mapOptions sevenNames;
-    eight = mapOptions eightNames;
+    accent = mapOptions accentColorNames;
+    accent' = mapOptions accentColorNames;
 
     console = mkOption {
       type = types.listOf types.str;
       default = [
         (removeHash config.colors.base.shade)
-        (removeHash config.colors.six.red)
-        (removeHash config.colors.six.green)
-        (removeHash config.colors.six.yellow)
-        (removeHash config.colors.six.blue)
-        (removeHash config.colors.six.magenta)
-        (removeHash config.colors.six.cyan)
+        (removeHash config.colors.accent.red)
+        (removeHash config.colors.accent.green)
+        (removeHash config.colors.accent.yellow)
+        (removeHash config.colors.accent.blue)
+        (removeHash config.colors.accent.orange)
+        (removeHash config.colors.accent.cyan)
         (removeHash config.colors.base.sun)
         (removeHash config.colors.base.sky_)
-        (removeHash config.colors.six'.red)
-        (removeHash config.colors.six'.green)
-        (removeHash config.colors.six'.yellow)
-        (removeHash config.colors.six'.blue)
-        (removeHash config.colors.six'.magenta)
-        (removeHash config.colors.six'.cyan)
+        (removeHash config.colors.accent'.red)
+        (removeHash config.colors.accent'.green)
+        (removeHash config.colors.accent'.yellow)
+        (removeHash config.colors.accent'.blue)
+        (removeHash config.colors.accent'.orange)
+        (removeHash config.colors.accent'.cyan)
         (removeHash config.colors.base.sun')
       ];
     };
@@ -105,15 +83,15 @@ in {
       };
       base03 = mkOption {
         type = types.str;
-        default = config.colors.six.sky_;
+        default = config.colors.accent.sky_;
       };
       base04 = mkOption {
         type = types.str;
-        default = config.colors.six.sky';
+        default = config.colors.accent.sky';
       };
       base05 = mkOption {
         type = types.str;
-        default = config.colors.six.sun_;
+        default = config.colors.accent.sun_;
       };
       base06 = mkOption {
         type = types.str;
@@ -153,7 +131,7 @@ in {
       };
       base0F = mkOption {
         type = types.str;
-        default = config.colors.base.magenta;
+        default = config.colors.base.orange;
       };
     };
   };

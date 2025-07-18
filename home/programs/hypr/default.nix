@@ -74,13 +74,13 @@ in {
         "$shade_p" = rgbColor colors.base.shade';
         "$shade" = rgbColor colors.base.shade;
         "$shade_m" = rgbColor colors.base.shade_;
-        "$red" = rgbColor colors.seven.red;
-        "$orange" = rgbColor colors.seven.orange;
-        "$yellow" = rgbColor colors.seven.yellow;
-        "$green" = rgbColor colors.seven.green;
-        "$cyan" = rgbColor colors.seven.cyan;
-        "$blue" = rgbColor colors.seven.blue;
-        "$purple" = rgbColor colors.seven.purple;
+        "$red" = rgbColor colors.accent.red;
+        "$orange" = rgbColor colors.accent.orange;
+        "$yellow" = rgbColor colors.accent.yellow;
+        "$green" = rgbColor colors.accent.green;
+        "$cyan" = rgbColor colors.accent.cyan;
+        "$blue" = rgbColor colors.accent.blue;
+        "$purple" = rgbColor colors.accent.purple;
 
         input = {
           "kb_layout" = "eu";
@@ -522,13 +522,13 @@ in {
 
             outline_thickness = 4;
 
-            fail_color = rgbColor colors.six.red;
+            fail_color = rgbColor colors.accent.red;
 
             outer_color = rgbaColor colors.base.sun "a0";
             inner_color = rgbaColor colors.base.sun "00";
-            check_color = rgbColor colors.six.green;
+            check_color = rgbColor colors.accent.green;
             font_color = rgbColor colors.base.sky;
-            capslock_color = rgbColor colors.six.red;
+            capslock_color = rgbColor colors.accent.red;
 
             dots_size = 0.4;
             dots_spacing = 0.10;

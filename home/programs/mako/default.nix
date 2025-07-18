@@ -29,7 +29,7 @@ in {
         border-color = "${colors.base.sun}";
         border-size = 1;
         border-radius = 6;
-        progress-color = "over ${colors.six.red}CC";
+        progress-color = "over ${colors.accent.red}CC";
         icons = true;
       };
     };

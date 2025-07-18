@@ -225,18 +225,18 @@ in {
       ];
 
       style = ''
-        @define-color critical ${colors.six.red}; /* critical color */
-        @define-color warning ${colors.seven.yellow};  /* warning color */
+        @define-color critical ${colors.accent.red}; /* critical color */
+        @define-color warning ${colors.accent.yellow};  /* warning color */
         @define-color fgcolor ${colors.base.sun};  /* foreground color */
         @define-color bgcolor rgba(99, 99, 99, 0.8);  /* background color */
-        @define-color alert   ${colors.seven.orange};
+        @define-color alert   ${colors.accent.orange};
 
-        @define-color accent1 ${colors.six.red};
-        @define-color accent2 ${colors.six.yellow};
-        @define-color accent3 ${colors.six.green};
-        @define-color accent4 ${colors.six.cyan};
-        @define-color accent5 ${colors.six.blue};
-        @define-color accent6 ${colors.six.magenta};
+        @define-color accent1 ${colors.accent.red};
+        @define-color accent2 ${colors.accent.yellow};
+        @define-color accent3 ${colors.accent.green};
+        @define-color accent4 ${colors.accent.cyan};
+        @define-color accent5 ${colors.accent.blue};
+        @define-color accent6 ${colors.accent.purple};
         @define-color gray ${colors.base.sky};
         @define-color sky_p ${colors.base.sky'};
         @define-color sun_m ${colors.base.sun_};

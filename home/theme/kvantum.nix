@@ -38,22 +38,22 @@
           --replace "mid.light.color=#404552" "mid.light.color=${colors.base.shade'}" \
           --replace "dark.color=#2F343f" "dark.color=${colors.base.shade_}" \
           --replace "mid.color=#2F343f" "mid.color=${colors.base.shade}" \
-          --replace "highlight.color=#5294E2" "highlight.color=${colors.six.blue}" \
-          --replace "inactive.highlight.color=#5294E2" "inactive.highlight.color=${colors.six.blue}"ß \
+          --replace "highlight.color=#5294E2" "highlight.color=${colors.accent.blue}" \
+          --replace "inactive.highlight.color=#5294E2" "inactive.highlight.color=${colors.accent.blue}"ß \
           --replace "text.color=#d3dae3" "text.color=${colors.base.sun}" \
           --replace "window.text.color=#d3dae3" "window.text.color=${colors.base.sun}" \
           --replace "button.text.color=#d3dae3" "button.text.color=${colors.base.sun_}" \
           --replace "disabled.text.color=#898d99" "disabled.text.color=${colors.base.sky}" \
           --replace "tooltip.text.color=#d3dae3" "tooltip.text.color=${colors.base.sun}" \
           --replace "highlight.text.color=#d3dae3" "highlight.text.color=${colors.base.sun}" \
-          --replace "link.color=#1d99f3" "link.color=${colors.six.cyan}" \
-          --replace "link.visited.color=#9b59b6" "link.visited.color=${colors.six.blue}" \
+          --replace "link.color=#1d99f3" "link.color=${colors.accent.cyan}" \
+          --replace "link.visited.color=#9b59b6" "link.visited.color=${colors.accent.blue}" \
 
         sed -i " \
           s/#ffffff/#FFFFFF/g; \
           s/#d3dae3/${colors.base.sun_}/g; \
           s/#898d99/${colors.base.sky}/g; \
-          s/#5294e2/${colors.six.blue}/g;" $out/Penumbra.kvconfig
+          s/#5294e2/${colors.accent.blue}/g;" $out/Penumbra.kvconfig
       '';
     };
 
@@ -71,7 +71,7 @@
         cp $src/ArcDark.svg $out/Penumbra.svg
 
         sed -i " \
-          s/#5294e2/${colors.six.blue}/g; \
+          s/#5294e2/${colors.accent.blue}/g; \
           s/#2f343f/${colors.base.shade'}/g; \
           s/#444a58/${colors.base.sky_}/g; \
           s/#505666/${colors.base.sky_}/g; \
@@ -84,7 +84,7 @@
           s/#2d323d/${colors.base.sky_}/g; \
           s/#2b303b/${colors.base.sky_}/g; \
           s/#262934/${colors.base.shade}/g; \
-          s/#ff4d4d/${colors.six.red}/g; \
+          s/#ff4d4d/${colors.accent.red}/g; \
           s/#4877b1/#5794D0/g; \
           s/#414857/${colors.base.shade}/g; \
           s/#353945/${colors.base.shade}/g;" $out/Penumbra.svg
