@@ -71,6 +71,7 @@ in {
           bright6 = removeHash colors.accent'.cyan;
           bright7 = removeHash colors.base.sun';
         };
+
         colors2 = {
           foreground = removeHash colors.base.shade;
           background = removeHash colors.base.sun;
@@ -81,15 +82,15 @@ in {
           regular4 = removeHash colors.accent.blue;
           regular5 = removeHash colors.accent.orange;
           regular6 = removeHash colors.accent.cyan;
-          regular7 = removeHash colors.base.sun;
-          bright0 = removeHash colors.base.sky_;
+          regular7 = removeHash colors.base.shade;
+          bright0 = removeHash colors.base.sky';
           bright1 = removeHash colors.accent'.red;
           bright2 = removeHash colors.accent'.green;
           bright3 = removeHash colors.accent'.yellow;
           bright4 = removeHash colors.accent'.blue;
           bright5 = removeHash colors.accent'.orange;
           bright6 = removeHash colors.accent'.cyan;
-          bright7 = removeHash colors.base.sun';
+          bright7 = removeHash colors.base.shade_;
         };
       };
     };
