@@ -103,6 +103,19 @@
         pwndbg = inputs.pwndbg.packages.${prev.system}.default;
       })
 
+      (final: prev: {
+        foot = prev.foot.overrideAttrs {
+          version = "latest";
+          src = final.fetchFromGitea {
+            domain = "codeberg.org";
+            owner = "dnkl";
+            repo = "foot";
+            rev = "master";
+            hash = "sha256-WsIaeHy3mLBbDsSGqv8vMkJMPlcEfpupJppg+vDmm/s=";
+          };
+        };
+      })
+
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/patchelfdd-overlay.nix)
       (import ./overlays/python-packages-overlay.nix)
