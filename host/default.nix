@@ -162,11 +162,9 @@ in {
         substituters = [
           "https://cache.nixos.org/"
           "https://hyprland.cachix.org"
-          "http://desktop.local:9777"
         ];
         trusted-public-keys = [
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-          "desktop.local:iDrkQHINmrrOfgGULyQTi7tUPLp6npaKvOGcpES+zaA="
         ];
       };
       extraOptions = "experimental-features = nix-command flakes";
