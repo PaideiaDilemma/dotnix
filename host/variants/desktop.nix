@@ -14,16 +14,20 @@
 
   services.pipewire.wireplumber.extraConfig = {
     "51-scarlet-solo" = {
-      "monitor.alsa.rules" = [ {
-        matches = [ {
-          "device.name" = "~alsa_card.usb-Focusrite*";
-        } ];
-        actions = {
-          update-props = {
-            "api.acp.probe-rate" = 44100;
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+            {
+              "device.name" = "~alsa_card.usb-Focusrite*";
+            }
+          ];
+          actions = {
+            update-props = {
+              "api.acp.probe-rate" = 44100;
+            };
           };
-        };
-      } ];
+        }
+      ];
     };
   };
 }

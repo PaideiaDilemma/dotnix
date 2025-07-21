@@ -26,7 +26,6 @@
   remove-nix-from-path = pkgs.writeShellScriptBin "remove-nix-from-path" ''
     export PATH=$(echo $PATH | sed -e 's|/nix/[^:]*||g')
   '';
-
 in {
   home.packages = with pkgs; [
     hyprsetwallpaper

@@ -101,8 +101,8 @@ in {
         ];
 
         monitor =
-          [",preferred,auto,1"] ++
-          mapAttrsToList (
+          [",preferred,auto,1"]
+          ++ mapAttrsToList (
             name: monitor: "${name}, ${monitor.resolution}, ${monitor.position}, ${monitor.scale}"
           )
           cfg.gui.staticMonitors;

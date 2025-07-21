@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  lib,
   ...
 }: {
   imports = [
@@ -22,7 +23,7 @@
 
   host = {
     boot.enable = false;
-    gui.enable = false;
+    gui.enable = lib.mkForce false;
     libvirtd.enable = false;
     openssh.enable = false;
     resolved.enable = false;
