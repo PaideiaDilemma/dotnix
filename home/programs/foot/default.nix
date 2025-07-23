@@ -72,10 +72,11 @@ in {
           bright7 = removeHash colors.base.sun';
         };
 
+        #light mode
         colors2 = {
-          foreground = removeHash colors.base.shade;
+          foreground = removeHash colors.base.sky_;
           background = removeHash colors.base.sun;
-          regular0 = removeHash colors.base.shade;
+          regular0 = removeHash colors.base.shade';
           regular1 = removeHash colors.accent.red;
           regular2 = removeHash colors.accent.green;
           regular3 = removeHash colors.accent.yellow;
@@ -90,7 +91,7 @@ in {
           bright4 = removeHash colors.accent'.blue;
           bright5 = removeHash colors.accent'.orange;
           bright6 = removeHash colors.accent'.cyan;
-          bright7 = removeHash colors.base.shade_;
+          bright7 = removeHash colors.base.shade;
         };
       };
     };
