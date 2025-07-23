@@ -119,7 +119,7 @@ in {
         libreoffice
         mako
         nwg-look
-        #pcmanfm
+        nemo
         slurp
         spotify
         thunderbird
