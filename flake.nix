@@ -62,7 +62,7 @@
 
     zen-browser = {
       url = "github:PaideiaDilemma/zen-browser-nix-build";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
