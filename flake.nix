@@ -111,7 +111,7 @@
             owner = "dnkl";
             repo = "foot";
             rev = "master";
-            hash = "sha256-3gYfAxeRYxVf4mRjuu+qRBBxxE2sMdeR4e7QGakl2uA=";
+            hash = "sha256-P4uWecz1ftsHRE4/HGuJwaqDmxPN5Xiel+d2NumsBJo=";
           };
         };
       })
