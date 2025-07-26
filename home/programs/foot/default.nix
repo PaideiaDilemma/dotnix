@@ -35,6 +35,8 @@ in {
           dpi-aware = true;
           pad = "5x5";
           resize-by-cells = "no";
+          # For theme switching
+          include = "~/.config/foot/initial_color_theme.ini";
         };
 
         scrollback = {

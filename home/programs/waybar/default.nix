@@ -9,9 +9,14 @@ with lib; let
   colors = config.colors;
   theme_switch = pkgs.writeShellScriptBin "light-dark-theme-switch" ''
     STATE_FILE=$XDG_STATE_HOME/.dark_or_light_mode_toggle
+    FOOT_INITIAL_FILE=$XDG_CONFIG_HOME/foot/initial_color_theme.ini
     STATE_LIGHT="{\"text\": \"\", \"class\": \"light\"}"
     STATE_DARK="{\"text\": \"\", \"class\": \"dark\"}"
     STATE_BUG="{\"text\": \"\", \"class\": \"light\"}"
+
+    if [ ! -e $FOOT_INITIAL_FILE ]; then
+      touch $FOOT_INITIAL_FILE
+    fi
 
     if [ ! -e $STATE_FILE ]; then
       echo "1" > $STATE_FILE
@@ -30,6 +35,7 @@ with lib; let
           echo $STATE_LIGHT
           pkill -USR2 foot
           echo "2" > $STATE_FILE
+          echo "initial-color-theme=2" > $FOOT_INITIAL_FILE
           exit 1
           ;;
         2)
@@ -41,6 +47,7 @@ with lib; let
           echo $STATE_DARK
           pkill -USR1 foot
           echo "1" > $STATE_FILE
+          echo "initial-color-theme=1" > $FOOT_INITIAL_FILE
           exit 0
           ;;
         *)
