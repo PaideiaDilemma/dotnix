@@ -7,6 +7,49 @@
 with lib; let
   cfg = config.hyprhome;
   colors = config.colors;
+  theme_switch = pkgs.writeShellScriptBin "light-dark-theme-switch" ''
+    STATE_FILE=$XDG_STATE_HOME/.dark_or_light_mode_toggle
+    STATE_LIGHT="{\"text\": \"\", \"class\": \"light\"}"
+    STATE_DARK="{\"text\": \"\", \"class\": \"dark\"}"
+    STATE_BUG="{\"text\": \"\", \"class\": \"light\"}"
+
+    if [ ! -e $STATE_FILE ]; then
+      echo "1" > $STATE_FILE
+      echo $STATE_DARK
+      exit 0
+    fi
+
+    while IFS= read -r line; do
+      case "$line" in
+        1)
+          if [ "$1" = "get" ]; then
+            echo $STATE_DARK
+            exit 0
+          fi
+
+          echo $STATE_LIGHT
+          pkill -USR2 foot
+          echo "2" > $STATE_FILE
+          exit 1
+          ;;
+        2)
+          if [ "$1" = "get" ]; then
+            echo $STATE_LIGHT
+            exit 0
+          fi
+
+          echo $STATE_DARK
+          pkill -USR1 foot
+          echo "1" > $STATE_FILE
+          exit 0
+          ;;
+        *)
+          echo $STATE_BUG
+          exit 1337
+          ;;
+      esac
+    done < $STATE_FILE
+  '';
 in {
   options.hyprhome.waybar = {
     enable = mkOption {
@@ -61,6 +104,8 @@ in {
           # Choose the order of the modules
           "modules-left" = [
             "idle_inhibitor"
+            "custom/theme"
+            "custom/separator"
             "hyprland/workspaces"
             "custom/separator"
             "hyprland/submap"
@@ -68,7 +113,8 @@ in {
           ];
           # "modules-center" = [];
           "modules-right" = [
-            "custom/spotify"
+            "custom/separator"
+            "custom/playerctl"
             "custom/separator"
             "cpu"
             "temperature#cpu"
@@ -118,6 +164,13 @@ in {
               "activated" = "";
               "deactivated" = "";
             };
+          };
+          "custom/theme" = {
+            "interval" = "once";
+            "return-type" = "json";
+            "exec" = "${lib.getExe theme_switch} get";
+            "on-click" = "${lib.getExe theme_switch}";
+            "format" = "{}";
           };
           "tray" = {
             "icon-size" = 24;
@@ -212,14 +265,13 @@ in {
             };
             "on-click" = "pavucontrol";
           };
-          "custom/spotify" = {
-            "exec" = "playerctl --player=spotify metadata --format '{{ artist }} - {{ title }}' 2> /dev/null || true";
+          "custom/playerctl" = {
+            "exec" = "playerctl metadata --format '{{ artist }} - {{ title }}' 2> /dev/null || true";
             "interval" = 1;
-            "format" = "{}   ";
-            "return-type" = "json";
-            "on-click" = "playerctl --player=spotify play-pause";
-            "on-scroll-up" = "playerctl --player=spotify next";
-            "on-scroll-down" = "playerctl --player=spotify previous";
+            "format" = " {}";
+            "on-click" = "playerctl  play-pause";
+            "on-scroll-up" = "playerctl  next";
+            "on-scroll-down" = "playerctl previous";
           };
         }
       ];
@@ -257,12 +309,10 @@ in {
         window#waybar {
           padding: 10px 0px 0px;
           background-color: rgba(99, 99, 99	, 0.63);
-          /* dorder-bottom: 0px solid rgba(100, 114, 125, 0.5); */
           color: @fgcolor;
           transition-property: background-color;
           transition-duration: .5s;
           border-radius: 0px;
-          /*border-bottom: 1px solid @gray;*/
         }
 
         window#waybar.hidden {
@@ -351,6 +401,7 @@ in {
         #tray,
         #mode,
         #idle_inhibitor,
+        #custom-theme,
         #custom-power,
         #custom-pacman,
         #custom-language,
@@ -430,17 +481,7 @@ in {
         #custom-waylandvsxorg {
         }
 
-        #custom-pacman {
-        }
-
         #custom-media {
-        }
-
-        #custom-spotify {
-          font-family: "Noto Sans";
-        }
-
-        #custom-media.custom-vlc {
         }
 
         #temperature {
@@ -460,26 +501,41 @@ in {
         }
 
         #idle_inhibitor {
-          border: 1px solid @accent3;
-          margin: 0px 2px 0px;
+          background-color: @bgcolor;
+          color: @fgcolor;
+          margin: 0px 0px 0px 2px;
           padding: 0px 10px 0px 5px;
           min-width: 26px;
         }
 
         #idle_inhibitor.activated {
-          border: 1px solid @accent6;
-          margin: 0px 2px 0px;
+          background-color: @fgcolor;
+          color: @bgcolor;
+          margin: 0px 0px 0px 2px;
           padding: 0px 10px 0px 5px;
           min-width: 26px;
         }
 
-        #custom-language {
+        #custom-theme.dark {
+          background-color: @bgcolor;
+          color: @fgcolor;
+          margin: 0px 0px 0px;
+          padding: 0px 10px 0px 5px;
+          min-width: 26px;
+        }
+
+        #custom-theme.light {
+          background-color: @fgcolor;
+          color: @bgcolor;
+          margin: 0px 0px 0px;
+          padding: 0px 10px 0px 5px;
+          min-width: 26px;
         }
 
         #custom-separator {
           color: @gray;
           margin: 0 0 0 0;
-          padding-bottom: 2px;
+          padding-bottom: 0px;
         }
       '';
     };

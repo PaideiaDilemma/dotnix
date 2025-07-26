@@ -105,8 +105,6 @@ in {
         #cutterPlugins.rz-ghidra
         #bottles - i need to look into nix-flatpak
         burpsuite
-        chromium
-        zen-browser
         gamescope
         ghidra
         gnome-disk-utility
