@@ -670,11 +670,11 @@
     "lazyvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1753525387,
-        "narHash": "sha256-wdXGS57Ec6wnRz0rJZLAo3ZwadlWyZ1aJB+T4+f/mi4=",
+        "lastModified": 1753543023,
+        "narHash": "sha256-POktpASItk9mmSU0XMQ4+k0Ek0jf4JD+bzVD7OTKXH0=",
         "owner": "PaideiaDilemma",
         "repo": "LazyVim",
-        "rev": "f9b7274ded43bebde7d7725c863d05107efdad89",
+        "rev": "cb72103fa04e8112683971e939d36f9a6f6e6f06",
         "type": "github"
       },
       "original": {

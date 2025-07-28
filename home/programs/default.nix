@@ -3,7 +3,7 @@
     ./btop
     ./browser
     ./foot
-    ./gdb
+    ./debuggers
     ./gnupg
     ./hypr
     ./jj

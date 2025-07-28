@@ -101,6 +101,7 @@
       })
       (final: prev: {
         pwndbg = inputs.pwndbg.packages.${prev.system}.default;
+        pwndbg-lldb = inputs.pwndbg.packages.${prev.system}.pwndbg-lldb;
       })
 
       (final: prev: {
