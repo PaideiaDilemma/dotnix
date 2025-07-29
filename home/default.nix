@@ -119,7 +119,6 @@ in {
         nwg-look
         nemo
         slurp
-        spotify
         thunderbird
         vlc
         wdisplays

@@ -20,13 +20,11 @@ in {
     networking = {
       firewall = {
         allowedUDPPorts = [
-          5353 # spotify
           22000 # syncthing
         ];
 
         allowedTCPPorts = [
           9009 # croc
-          57621 # spotify
           22000 # syncthing
           8384 # syncthing gui
           9777 # nix-serve
