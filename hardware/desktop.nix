@@ -74,6 +74,11 @@
     ];
   };
 
+  fileSystems."/musikarchiv" = {
+    device = "/dev/disk/by-uuid/1b299540-eec1-4370-99d4-05dacbaa626f";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/76CB-A1E8";
     fsType = "vfat";
