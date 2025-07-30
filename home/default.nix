@@ -117,7 +117,6 @@ in {
         libreoffice
         mako
         nwg-look
-        nemo
         slurp
         thunderbird
         vlc
@@ -128,6 +127,7 @@ in {
       ++ optionals (cfg.gui.enable) (with pkgs.kdePackages; [
         # KDE Applications
         kdenlive
+        dolphin
       ])
       ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
         # Gnome Applications

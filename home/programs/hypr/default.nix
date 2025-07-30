@@ -87,7 +87,7 @@ in {
           "follow_mouse" = 1;
           "mouse_refocus" = 0;
           #natural_scroll = 0;
-          "kb_options " = "caps:swapescape";
+          "kb_options" = "caps:swapescape,altwin:menu_win";
         };
 
         exec-once = [
@@ -275,7 +275,7 @@ in {
           # Launchers
           "SUPER, Return, exec, $terminal"
           "SUPERSHIFT, Return, exec, $terminal ipython"
-          "SUPER, E, exec, uwsm app -- pcmanfm"
+          "SUPER, E, exec, uwsm app -- dolphin"
 
           # Rofi menus
           "SUPER, D, exec, rofi -show drun -show-icons -run-command \"uwsm app -- {cmd}\""
@@ -319,33 +319,33 @@ in {
           "SUPERSHIFT, k, movewindow, u"
           "SUPERSHIFT, j, movewindow, d"
 
-          #"SUPER, q, workspace, r-1"
-          #"SUPER, w, workspace, r+1"
-          #"SUPER, 1, workspace, m~1"
-          #"SUPER, 2, workspace, m~2"
-          #"SUPER, 3, workspace, m~3"
-          #"SUPER, 4, workspace, m~4"
-          #"SUPER, 5, workspace, m~5"
-          #"SUPER, 6, workspace, m~6"
-          #"SUPER, 7, workspace, m~7"
-          #"SUPER, 8, workspace, m~8"
-          #"SUPER, 9, workspace, m~9"
-          #"SUPER, 0, workspace, m~10"
-          #"SUPER, a, togglespecialworkspace"
+          "SUPER, q, workspace, r-1"
+          "SUPER, w, workspace, r+1"
+          "SUPER, 1, workspace, m~1"
+          "SUPER, 2, workspace, m~2"
+          "SUPER, 3, workspace, m~3"
+          "SUPER, 4, workspace, m~4"
+          "SUPER, 5, workspace, m~5"
+          "SUPER, 6, workspace, m~6"
+          "SUPER, 7, workspace, m~7"
+          "SUPER, 8, workspace, m~8"
+          "SUPER, 9, workspace, m~9"
+          "SUPER, 0, workspace, m~10"
+          "SUPER, a, togglespecialworkspace"
 
-          #"SUPERSHIFT, q, movetoworkspace, r-1"
-          #"SUPERSHIFT, w, movetoworkspace, r+1"
-          #"SUPERSHIFT, 1, movetoworkspace, m~1"
-          #"SUPERSHIFT, 2, movetoworkspace, m~2"
-          #"SUPERSHIFT, 3, movetoworkspace, m~3"
-          #"SUPERSHIFT, 4, movetoworkspace, m~4"
-          #"SUPERSHIFT, 5, movetoworkspace, m~5"
-          #"SUPERSHIFT, 6, movetoworkspace, m~6"
-          #"SUPERSHIFT, 7, movetoworkspace, m~7"
-          #"SUPERSHIFT, 8, movetoworkspace, m~8"
-          #"SUPERSHIFT, 9, movetoworkspace, m~9"
-          #"SUPERSHIFT, 0, movetoworkspace, m~10"
-          #"SUPERSHIFT, a, movetoworkspace, special"
+          "SUPERSHIFT, q, movetoworkspace, r-1"
+          "SUPERSHIFT, w, movetoworkspace, r+1"
+          "SUPERSHIFT, 1, movetoworkspace, m~1"
+          "SUPERSHIFT, 2, movetoworkspace, m~2"
+          "SUPERSHIFT, 3, movetoworkspace, m~3"
+          "SUPERSHIFT, 4, movetoworkspace, m~4"
+          "SUPERSHIFT, 5, movetoworkspace, m~5"
+          "SUPERSHIFT, 6, movetoworkspace, m~6"
+          "SUPERSHIFT, 7, movetoworkspace, m~7"
+          "SUPERSHIFT, 8, movetoworkspace, m~8"
+          "SUPERSHIFT, 9, movetoworkspace, m~9"
+          "SUPERSHIFT, 0, movetoworkspace, m~10"
+          "SUPERSHIFT, a, movetoworkspace, special"
 
           "SUPER, semicolon, swapnext"
           "SUPER, apostrophe, togglesplit"
