@@ -9,16 +9,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprutils = {
+      url = "github:hyprwm/hyprutils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     aquamarine = {
       url = "github:hyprwm/aquamarine";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprutils.follows = "hyprutils";
     };
 
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.aquamarine.follows = "aquamarine";
-      inputs.hyprutils.follows = "aquamarine";
+      inputs.hyprutils.follows = "hyprutils";
     };
 
     # hyprlock is part of the hyprland overlay, but i want it up to date for testing
@@ -26,7 +32,7 @@
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
-      inputs.hyprutils.follows = "hyprland";
+      inputs.hyprutils.follows = "hyprutils";
     };
 
     # for greetd login via hyprlock
@@ -34,14 +40,14 @@
       url = "github:PaideiaDilemma/hyprlock?ref=greetdLogin";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
-      inputs.hyprutils.follows = "hyprland";
+      inputs.hyprutils.follows = "hyprutils";
     };
 
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
-      inputs.hyprutils.follows = "hyprland";
+      inputs.hyprutils.follows = "hyprutils";
     };
 
     hyprland-contrib = {
@@ -105,16 +111,17 @@
       })
 
       (final: prev: {
-        foot = prev.foot.overrideAttrs {
+        foot = prev.foot.overrideAttrs (old: {
           version = "latest";
+          #buildInputs = old.nativeBuildInputs ++ [final.cmake final.pixman];
           src = final.fetchFromGitea {
             domain = "codeberg.org";
             owner = "dnkl";
             repo = "foot";
-            rev = "master";
-            hash = "sha256-dFryKpvn7QJ2xLR37uc0QNij5PHNm/VD9LCwbo8nZMk=";
+            rev = "70d99a80513f574ac6d74989282b3481572513ce";
+            hash = "sha256-bxB//229MUpO0hk4h5F/I8BolPk0InwQl8diiFB+A7Q=";
           };
-        };
+        });
       })
 
       (import ./overlays/deepin-cursors.nix)

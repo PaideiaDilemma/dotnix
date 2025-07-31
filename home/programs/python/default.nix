@@ -5,7 +5,8 @@
   ...
 }: {
   home.packages = [
-    (pkgs.python312.withPackages (pip: [
+    pkgs.uv
+    (pkgs.python3.withPackages (pip: [
       pip.pwntools
       pip.colorama
       pip.ipython

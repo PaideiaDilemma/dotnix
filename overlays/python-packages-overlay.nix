@@ -10,9 +10,11 @@ final: prev: {
             src = prev.fetchFromGitHub {
               owner = "Gallopsled";
               repo = "pwntools";
-              rev = "61804b169bf88ce40a798095ebd7d808b0fe35cb";
-              hash = "sha256-PK8SPhhAQ+0J6vPfINFmyOr4DQRdU3+oFZVxtp0Df9Y=";
+              rev = "32ba51e965643150a91e3f567579d99dae0ba38f";
+              hash = "sha256-/1ZO6j4Xex1DZ+gbTnu8bghgsutAAdhjVk8vbRM0gKE=";
             };
+
+            debugger = final.pwndbg;
           });
       })
     ];

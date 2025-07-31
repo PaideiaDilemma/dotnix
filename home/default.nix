@@ -95,7 +95,6 @@ in {
         tree
         typst
         usbutils
-        uv
         wget
         wl-clipboard
       ])
