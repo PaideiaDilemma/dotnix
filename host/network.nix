@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 # networking configuration
@@ -24,6 +25,7 @@ in {
         ];
 
         allowedTCPPorts = [
+          1400 # noson
           9009 # croc
           22000 # syncthing
           8384 # syncthing gui
@@ -75,7 +77,16 @@ in {
         dnsovertls = "opportunistic";
       };
     };
-
+    # TODO: make this optional
+    # support SSDP https://serverfault.com/a/911286/9166
+    networking.firewall.extraPackages = [ pkgs.ipset ];
+    networking.firewall.extraCommands = ''
+      if ! ipset --quiet list upnp; then
+        ipset create upnp hash:ip,port timeout 3
+      fi
+      iptables -A OUTPUT -d 239.255.255.250/32 -p udp -m udp --dport 1900 -j SET --add-set upnp src,src --exist
+      iptables -A nixos-fw -p udp -m set --match-set upnp dst,dst -j nixos-fw-accept
+    '';
     # Don't wait for network startup
     systemd.services.NetworkManager-wait-online.enable = lib.mkForce true;
   };
