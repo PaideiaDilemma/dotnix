@@ -101,7 +101,7 @@ in {
         ];
 
         monitor =
-          [",preferred,auto,1"]
+          [",preferred,auto-center-up,1"]
           ++ mapAttrsToList (
             name: monitor: "${name}, ${monitor.resolution}, ${monitor.position}, ${monitor.scale}"
           )
