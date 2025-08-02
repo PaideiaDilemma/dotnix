@@ -24,7 +24,6 @@ in {
 
     services.greetd = {
       enable = true;
-      vt = 2;
       settings = let
         hyprlock_config = pkgs.writeText "hyprlock_greet.conf" ''
           bezier=linear, 1, 1, 0, 0
