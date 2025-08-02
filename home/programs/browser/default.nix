@@ -85,55 +85,55 @@ in {
               };
             };
           };
-          userChrome = ''
-            @layer Tabs {
-              .tab-background {
-                  border-radius: 6px !important;
-                  border: 1px solid ${colors.base.sky} !important;
+          #userChrome = ''
+          #  @layer Tabs {
+          #    .tab-background {
+          #        border-radius: 6px !important;
+          #        border: 1px solid ${colors.base.sky} !important;
 
-                  /*border-radius: 6px 6px 0 0 !important;*/
-                  margin: 4px 0px 4px !important;
-                  /*padding: 0px !important;*/
-                  /*margin-bottom: 0px !important;*/
-                  /*box-shadow: 0 0 0px 0px ${colors.base.sky} !important;*/
-                  /*border-bottom-width: 0px !important;*/
-                  /*max-height: 26px !important;*/
-              }
+          #        /*border-radius: 6px 6px 0 0 !important;*/
+          #        margin: 4px 0px 4px !important;
+          #        /*padding: 0px !important;*/
+          #        /*margin-bottom: 0px !important;*/
+          #        /*box-shadow: 0 0 0px 0px ${colors.base.sky} !important;*/
+          #        /*border-bottom-width: 0px !important;*/
+          #        /*max-height: 26px !important;*/
+          #    }
 
-              .tab-background:is([selected],[multiselected]) {
-                  border: 1px solid ${colors.base.sun} !important;
-              }
+          #    .tab-background:is([selected],[multiselected]) {
+          #        border: 1px solid ${colors.base.sun} !important;
+          #    }
 
-              .tab-content {
-                  /*margin: 4px 1px 1px !important;
-                  /*max-height: 26px !important*/;
-                  vertical-align: middle !important;
-              }
+          #    .tab-content {
+          #        /*margin: 4px 1px 1px !important;
+          #        /*max-height: 26px !important*/;
+          #        vertical-align: middle !important;
+          #    }
 
-              .tabbrowser-tab {padding-inline: 1px !important;}
-              /*.tabbrowser-tab:last-of-type {padding-inline: 1px 2px !important;}*/
-              .tabbrowser-tab:first-of-type {padding-inline: 4px 1px !important;}
+          #    .tabbrowser-tab {padding-inline: 1px !important;}
+          #    /*.tabbrowser-tab:last-of-type {padding-inline: 1px 2px !important;}*/
+          #    .tabbrowser-tab:first-of-type {padding-inline: 4px 1px !important;}
 
-              #TabsToolbar {
-                  border-bottom: 0px solid ${colors.base.sun} !important;
-              }
-            }
+          #    #TabsToolbar {
+          #        border-bottom: 0px solid ${colors.base.sun} !important;
+          #    }
+          #  }
 
-            :root{
-              /* reduce padding between menu items */
-              --arrowpanel-menuitem-padding: var(--custom-menuitem-padding-vertical, 6px) var(--custom-menuitem-padding-horizontal, 8px) !important;
-              --arrowpanel-menuitem-margin: 0 var(--custom-menuitem-margin, 4px) !important;
-              --panel-subview-body-padding: var(--custom-menuitem-margin, 4px) 0 !important;
-            }
+          #  :root{
+          #    /* reduce padding between menu items */
+          #    --arrowpanel-menuitem-padding: var(--custom-menuitem-padding-vertical, 6px) var(--custom-menuitem-padding-horizontal, 8px) !important;
+          #    --arrowpanel-menuitem-margin: 0 var(--custom-menuitem-margin, 4px) !important;
+          #    --panel-subview-body-padding: var(--custom-menuitem-margin, 4px) 0 !important;
+          #  }
 
-            #urlbar-background {
-              border-radius: 6px !important;
-            }
+          #  #urlbar-background {
+          #    border-radius: 6px !important;
+          #  }
 
-            #urlbar[breakout][breakout-extend] > #urlbar-background {
-              border-radius: 6px !important;
-            }
-          '';
+          #  #urlbar[breakout][breakout-extend] > #urlbar-background {
+          #    border-radius: 6px !important;
+          #  }
+          #'';
         };
       };
     };

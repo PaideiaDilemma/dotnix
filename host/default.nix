@@ -171,15 +171,7 @@ in {
       };
       extraOptions = "experimental-features = nix-command flakes";
       distributedBuilds = true;
-      buildMachines = [
-        {
-          system = "x86_64-linux";
-          hostName = "desktop.local";
-          sshUser = "max";
-          maxJobs = 4;
-          speedFactor = 10;
-        }
-      ];
+      buildMachines = [];
     };
   };
 }
