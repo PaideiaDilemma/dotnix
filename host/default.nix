@@ -86,7 +86,7 @@ in {
 
     programs.nh = {
       enable = true;
-      clean.enable = true;
+      clean.enable = false;
     };
 
     users.defaultUserShell = pkgs.bash;

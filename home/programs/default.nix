@@ -1,6 +1,7 @@
 {
   imports = [
     ./btop
+    ./bintools
     ./browser
     ./foot
     ./debuggers

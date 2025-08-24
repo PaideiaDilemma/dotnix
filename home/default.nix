@@ -80,6 +80,7 @@ in {
         curl
         distrobox
         file
+        inetutils
         jjui
         jq
         linuxPackages_latest.perf
@@ -90,6 +91,7 @@ in {
         pavucontrol
         rustup
         scrcpy
+        socat
         sqlite
         tinymist
         tree
@@ -105,7 +107,7 @@ in {
         #bottles - i need to look into nix-flatpak
         burpsuite
         gamescope
-        ghidra
+        #ghidra
         gnome-disk-utility
         grim
         imv
