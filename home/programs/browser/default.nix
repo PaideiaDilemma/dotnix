@@ -20,7 +20,7 @@ in {
     };
 
     home.packages = [
-      pkgs.zen-browser
+      #pkgs.zen-browser
     ];
 
     programs.firefox = {

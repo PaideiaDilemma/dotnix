@@ -98,10 +98,11 @@ in {
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;
 
-      plymouth = {
-        enable = true;
-        theme = "breeze";
-      };
+      # looks nice, but keeps draining my battery when on the luks encryption bootup screen.
+      #plymouth = {
+      #  enable = true;
+      #  theme = "breeze";
+      #};
 
       initrd.systemd.enable = true;
 
