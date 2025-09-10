@@ -27,10 +27,6 @@ in {
       enable = true;
       package = pkgs.firefox;
       profiles = {
-        "netflix" = {
-          isDefault = false;
-          id = 1;
-        };
         "asdfnerd" = {
           isDefault = true;
           settings = {
