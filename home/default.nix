@@ -83,7 +83,7 @@ in {
         inetutils
         jjui
         jq
-        linuxPackages_latest.perf
+        perf
         man-pages
         man-pages-posix
         mpv-unwrapped
@@ -105,13 +105,14 @@ in {
         #cutter
         #cutterPlugins.rz-ghidra
         #bottles - i need to look into nix-flatpak
+        audacious
         burpsuite
         gamescope
-        #ghidra
         gnome-disk-utility
         grim
         imv
         inkscape
+        jamesdsp
         keepassxc
         krita
         libnotify.out

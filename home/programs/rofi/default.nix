@@ -24,7 +24,6 @@ in {
   config = mkIf (cfg.gui.enable && cfg.rofi.enable) {
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
       configPath = "${config.xdg.configHome}/rofi/config.rasi";
     };
 

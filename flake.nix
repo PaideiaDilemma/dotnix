@@ -88,14 +88,7 @@
   } @ inputs: let
     overlays = [
       inputs.hyprland.overlays.default
-
-      (final: prev: {
-        hyprland-debug = final.hyprland.override {
-          aquamarine = final.aquamarine.override {debug = true;};
-          hyprutils = final.hyprutils.override {debug = true;};
-          debug = true;
-        };
-      })
+      inputs.hyprland.overlays.hyprland-debug
 
       inputs.zen-browser.overlays.default
       inputs.wlclipmgr.overlays.default
