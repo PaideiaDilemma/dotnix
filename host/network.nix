@@ -49,7 +49,7 @@ in {
 
       networkmanager = {
         enable = true;
-        dns = "systemd-resolved";
+#dns = "systemd-resolved";
         wifi.powersave = true;
       };
 
@@ -70,7 +70,7 @@ in {
 
       # DNS resolver
       resolved = mkIf cfg.resolved.enable {
-        enable = mkDefault true;
+        enable = mkDefault false;
         dnssec = "true";
         domains = ["~."]; # This deactivates the DNS that comes via DHCP apparently
         fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];

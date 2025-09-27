@@ -106,7 +106,6 @@ in {
         #cutterPlugins.rz-ghidra
         #bottles - i need to look into nix-flatpak
         audacious
-        burpsuite
         gamescope
         gnome-disk-utility
         grim

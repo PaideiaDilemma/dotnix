@@ -12,10 +12,10 @@
       enableAnimations = true;
       extraConfig = ''
         gestures {
-          workspace_swipe=1
-          workspace_swipe_distance=250
-          workspace_swipe_cancel_ratio=0.3
-          workspace_swipe_create_new=1
+#workspace_swipe=1
+#         workspace_swipe_distance=250
+#         workspace_swipe_cancel_ratio=0.3
+#         workspace_swipe_create_new=1
         }
 
         device {
