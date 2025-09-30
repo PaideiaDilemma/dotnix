@@ -426,7 +426,7 @@ in {
         #privacy,
         #pulseaudio,
         #systemd-failed-units,
-        #temperature #cpu,
+        #temperature#cpu,
         #tray,
         #language {
           background-color: @bgmodule;
