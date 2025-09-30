@@ -49,7 +49,7 @@ in {
 
       networkmanager = {
         enable = true;
-#dns = "systemd-resolved";
+        #dns = "systemd-resolved";
         wifi.powersave = true;
       };
 
@@ -79,7 +79,7 @@ in {
     };
     # TODO: make this optional
     # support SSDP https://serverfault.com/a/911286/9166
-    networking.firewall.extraPackages = [ pkgs.ipset ];
+    networking.firewall.extraPackages = [pkgs.ipset];
     networking.firewall.extraCommands = ''
       if ! ipset --quiet list upnp; then
         ipset create upnp hash:ip,port timeout 3

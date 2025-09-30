@@ -110,6 +110,7 @@ in {
           "spacing" = 2;
           # Choose the order of the modules
           "modules-left" = [
+            "privacy"
             "idle_inhibitor"
             "custom/theme"
             "custom/separator"
@@ -123,9 +124,9 @@ in {
             "custom/separator"
             "custom/playerctl"
             "custom/separator"
+            "systemd-failed-units"
             "cpu"
             "temperature#cpu"
-            "temperature#gpu"
             "memory"
             (
               if cfg.waybar.battery.enable
@@ -199,20 +200,10 @@ in {
             "format" = " {}%";
           };
           "temperature#cpu" = {
-            # "thermal-zone" = 2;
             "hwmon-path" = "/sys/class/hwmon/hwmon0/temp1_input";
             "critical-threshold" = 80;
             # "format-critical" = "{temperatureC}°C {icon}";
             "format" = "<small><span style=\"italic\">CPU {icon}</span></small> {temperatureC}°C";
-            "format-icons" = ["" "" "" "" ""];
-            "interval" = 3;
-          };
-          "temperature#gpu" = {
-            # "thermal-zone" = 2;
-            "hwmon-path" = "/sys/class/hwmon/hwmon1/temp1_input";
-            "critical-threshold" = 80;
-            # "format-critical" = "{temperatureC}°C {icon}";
-            "format" = "<small><span style=\"italic\">GPU {icon}</span></small> {temperatureC}°C";
             "format-icons" = ["" "" "" "" ""];
             "interval" = 3;
           };
@@ -252,6 +243,30 @@ in {
             "format-linked" = " {ifname} (No IP)";
             "format-disconnected" = "󰤮 Disconnected";
             "format-alt" = "{ifname}: {ipaddr}/{cidr}";
+          };
+          "systemd-failed-units" = {
+            "tooltip-format" = "Displays number of systemd units or ok";
+            "format" = "✗ (system: {nr_failed_system}, user: {nr_failed_user}";
+            "format-ok" = "✓";
+            "hide-on-ok" = false;
+            "system" = true;
+            "user" = true;
+          };
+          "privacy" = {
+            "icon-spacing" = 6;
+            "icon-size" = 16;
+            "modules" = [
+              {
+                "type" = "screenshare";
+                "tooltip" = true;
+                "tooltip-icon-se" = 24;
+              }
+              {
+                "type" = "audio-in";
+                "tooltip" = true;
+                "tooltip-icon-size" = 24;
+              }
+            ];
           };
           "pulseaudio" = {
             # "scroll-step": 1, // %, can be a float
@@ -394,25 +409,25 @@ in {
             color: @accent1;
         }
 
-        #clock,
-        #battery,
-        #temperature #cpu,
-        #temperature #gpu,
-        #cpu,
-        #memory,
-        #temperature,
         #backlight,
-        #network,
-        #pulseaudio,
-        #custom-media,
-        #tray,
-        #mode,
-        #idle_inhibitor,
-        #custom-theme,
-        #custom-power,
-        #custom-pacman,
+        #battery,
+        #clock,
+        #cpu,
         #custom-language,
+        #custom-media,
+        #custom-pacman,
+        #custom-power,
+        #custom-theme,
+        #idle_inhibitor,
+        #memory,
+        #mode,
         #mpd,
+        #network,
+        #privacy,
+        #pulseaudio,
+        #systemd-failed-units,
+        #temperature #cpu,
+        #tray,
         #language {
           background-color: @bgmodule;
           border: 1px solid @gray;
@@ -507,6 +522,11 @@ in {
           border-bottom: 1px solid @fgcolor;
         }
 
+        #privacy {
+          border: 1px solid @fgcolor;
+          margin: 0px -2px 0px 2px;
+        }
+
         #idle_inhibitor {
           background-color: @bgcolor;
           color: @fgcolor;
@@ -518,7 +538,11 @@ in {
         #idle_inhibitor.activated {
           background-color: @fgcolor;
           color: @bgcolor;
-          margin: 0px 0px 0px 2px;
+          min-width: 26px;
+        }
+
+        #custom-theme {
+          margin: 0px 0px 0px;
           padding: 0px 10px 0px 5px;
           min-width: 26px;
         }
@@ -526,17 +550,11 @@ in {
         #custom-theme.dark {
           background-color: @bgcolor;
           color: @fgcolor;
-          margin: 0px 0px 0px;
-          padding: 0px 10px 0px 5px;
-          min-width: 26px;
         }
 
         #custom-theme.light {
           background-color: @fgcolor;
           color: @bgcolor;
-          margin: 0px 0px 0px;
-          padding: 0px 10px 0px 5px;
-          min-width: 26px;
         }
 
         #custom-separator {
