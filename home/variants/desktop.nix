@@ -4,28 +4,26 @@
       enable = true;
       primaryMonitor = "DP-3";
       staticMonitors = {
-        "HDMI-A-1" = {
-          resolution = "1920x1080@120.00";
-          position = "0x597";
-          scale = "1";
+        "DP-3" = {
+          resolution = "1920x1080@144.00";
+          position = "0x1024";
           initalWorkspace = "1";
         };
-        "DP-3" = {
-          resolution = "1920x1080@60";
-          position = "1920x1024";
-          scale = "1";
-          initalWorkspace = "10";
-        };
         "DP-2" = {
+          resolution = "1440x900@59.88700";
+          position = "1920x1024";
+          initalWorkspace = "10";
+          transform = "3";
+        };
+        "DP-1" = {
           resolution = "1280x1024@75.025";
-          position = "1920x0";
-          scale = "1";
+          position = "1280x0";
           initalWorkspace = "100";
         };
       };
     };
     foot.fontSize = 13;
-    waybar.output = "HDMI-A-1";
+    waybar.output = "DP-3";
     hyprland = {
       enable = true;
     };

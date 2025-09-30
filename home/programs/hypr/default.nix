@@ -103,7 +103,7 @@ in {
         monitor =
           [",preferred,auto-center-up,1"]
           ++ mapAttrsToList (
-            name: monitor: "${name}, ${monitor.resolution}, ${monitor.position}, ${monitor.scale}"
+            name: monitor: "${name}, ${monitor.resolution}, ${monitor.position or "0x0"}, ${monitor.scale or "1"}, transform, ${monitor.transform or "0"}"
           )
           cfg.gui.staticMonitors;
 
