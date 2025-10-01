@@ -6,11 +6,11 @@ final: prev: {
         pwntools =
           pyprev.pwntools.overridePythonAttrs
           (oldAttrs: {
-            version = "4.15.0dev";
+            version = "4.15.0beta1";
             src = prev.fetchFromGitHub {
               owner = "Gallopsled";
               repo = "pwntools";
-              rev = "32ba51e965643150a91e3f567579d99dae0ba38f";
+              rev = "8b6543466a2265b9682fd04e85a98999123c7a94";
               hash = "sha256-/1ZO6j4Xex1DZ+gbTnu8bghgsutAAdhjVk8vbRM0gKE=";
             };
 
