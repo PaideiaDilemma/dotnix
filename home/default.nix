@@ -99,6 +99,8 @@ in {
         usbutils
         wget
         wl-clipboard
+        # Handy perf top alias with some defauls
+        (writeShellScriptBin "perf-top" "perf top -K -g -H -e cycles -p $@")
       ])
       ++ optionals (cfg.gui.enable) (with pkgs; [
         # Graphical Applications
