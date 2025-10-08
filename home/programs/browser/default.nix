@@ -19,10 +19,6 @@ in {
       ];
     };
 
-    home.packages = [
-      #pkgs.zen-browser
-    ];
-
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;
