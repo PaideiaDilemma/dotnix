@@ -85,7 +85,6 @@
       inputs.hyprland.overlays.default
       inputs.hyprland.overlays.hyprland-debug
 
-      inputs.zen-browser.overlays.default
       inputs.wlclipmgr.overlays.default
 
       (final: prev: {
@@ -98,20 +97,7 @@
         pwndbg-lldb = inputs.pwndbg.packages.${prev.system}.pwndbg-lldb;
       })
 
-      (final: prev: {
-        foot = prev.foot.overrideAttrs (old: {
-          version = "latest";
-          #buildInputs = old.nativeBuildInputs ++ [final.cmake final.pixman];
-          src = final.fetchFromGitea {
-            domain = "codeberg.org";
-            owner = "dnkl";
-            repo = "foot";
-            rev = "70d99a80513f574ac6d74989282b3481572513ce";
-            hash = "sha256-bxB//229MUpO0hk4h5F/I8BolPk0InwQl8diiFB+A7Q=";
-          };
-        });
-      })
-
+      (import ./overlays/fix-cmake-compat.nix) # TODO: remove
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/patchelfdd-overlay.nix)
       (import ./overlays/python-packages-overlay.nix)

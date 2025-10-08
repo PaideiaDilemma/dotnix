@@ -25,7 +25,6 @@ in {
 
       libvirtd = lib.mkIf cfg.libvirtd.enable {
         enable = true;
-        qemu.ovmf.enable = true;
       };
 
       kvmgt.enable = true;
