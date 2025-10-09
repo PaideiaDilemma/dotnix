@@ -29,7 +29,7 @@
 
     # hyprlock is part of the hyprland overlay, but i want it up to date for testing
     hyprlock = {
-      url = "github:PaideiaDilemma/hyprlock?ref=new-resource-manager";
+      url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "hyprland";
       inputs.hyprutils.follows = "hyprutils";
