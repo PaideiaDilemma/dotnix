@@ -6,6 +6,8 @@
   #services.ollama.acceleration = "rocm";
   host.localllm.enable = false;
 
+  services.desktopManager.plasma6.enable = true;
+
   services.nix-serve = {
     enable = true;
     secretKeyFile = "/var/desktop-cache-local-priv-key.pem";
