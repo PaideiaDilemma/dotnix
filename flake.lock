@@ -671,11 +671,11 @@
     "minimax": {
       "flake": false,
       "locked": {
-        "lastModified": 1760458390,
-        "narHash": "sha256-tdfzPkRHZvju71lbj8wsN+06Xz/RineJ/EJCAzIDr08=",
+        "lastModified": 1760525278,
+        "narHash": "sha256-kkCKcdpe3iM1WoQfbfnt8IPEZrwHjPp5LPBfxBSTpm8=",
         "owner": "PaideiaDilemma",
         "repo": "nvim-minimax",
-        "rev": "69fc81aa21da8a19a868989d04999d821460a96e",
+        "rev": "e3e4708374a7bf71c8e29087a5041aaffb787fd8",
         "type": "github"
       },
       "original": {
