@@ -8,15 +8,10 @@
 with lib; let
   cfg = config.hyprhome;
 in {
-  options.hyprhome.lazyvim = {
-    enable = mkOption {
-      default = true;
-      description = "Whether to enable my lazyvim configuration.";
-      type = types.bool;
-    };
+  options.hyprhome = {
   };
 
-  config = mkIf (cfg.lazyvim.enable) {
+  config = {
     home.packages = with pkgs; [
       clang-tools
       fd
@@ -28,7 +23,13 @@ in {
       ripgrep
       unzip
       jdk17
+      tree-sitter
+      bat
     ];
+
+    xdg.configFile."nvim-minimax/" = {
+      source = "${inputs.minimax}";
+    };
 
     xdg.configFile."lazyvim/init.lua" = {
       source = "${inputs.lazyvim}/init.lua";

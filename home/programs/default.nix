@@ -9,7 +9,7 @@
     ./hypr
     ./jj
     ./kde
-    ./lazyvim
+    ./neovim
     ./mako
     ./obs
     ./python

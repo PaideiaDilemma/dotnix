@@ -3,7 +3,7 @@
 in {
   systemd.user.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    NVIM_APPNAME = "lazyvim";
+    NVIM_APPNAME = "nvim-minimax";
     BROWSER = "firefox";
     TERMINAL = "${cfg.terminal}";
     TERM_PROGRAM = "${cfg.terminal}";

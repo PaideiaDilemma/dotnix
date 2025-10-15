@@ -128,7 +128,7 @@ in {
     };
 
     shellInit = ''
-      export NVIM_APPNAME=lazyvim
+      export NVIM_APPNAME=nvim-minimax
     '';
   };
 

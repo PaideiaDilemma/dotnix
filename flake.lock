@@ -668,6 +668,22 @@
         "type": "github"
       }
     },
+    "minimax": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760458390,
+        "narHash": "sha256-tdfzPkRHZvju71lbj8wsN+06Xz/RineJ/EJCAzIDr08=",
+        "owner": "PaideiaDilemma",
+        "repo": "nvim-minimax",
+        "rev": "69fc81aa21da8a19a868989d04999d821460a96e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PaideiaDilemma",
+        "repo": "nvim-minimax",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1760106635,
@@ -842,6 +858,7 @@
         "hyprlock-greetd": "hyprlock-greetd",
         "hyprutils": "hyprutils",
         "lazyvim": "lazyvim",
+        "minimax": "minimax",
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
