@@ -11,7 +11,7 @@ final: prev: {
               owner = "Gallopsled";
               repo = "pwntools";
               rev = "480f174bcfb367297916acbc9b33878730257ae1";
-              hash = "sha256-E3iNQe0NeZAb7F7b+0eU3DBne8YShN1RuqQoGpSaAbk=";
+              hash = "sha256-3xt9J47mGVsnEgbxbS6SKlOmIW0CN1BPzPq/zVy03pQ=";
             };
 
             debugger = final.pwndbg; # No worky?
