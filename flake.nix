@@ -93,13 +93,13 @@
       inputs.wlclipmgr.overlays.default
 
       (final: prev: {
-        hyprlock = inputs.hyprlock.packages.${prev.system}.default;
-        hyprlock-greetd = inputs.hyprlock-greetd.packages.${prev.system}.default;
-        hypridle = inputs.hypridle.packages.${prev.system}.default;
+        hyprlock = inputs.hyprlock.packages.${prev.stdenv.hostPlatform.system}.default;
+        hyprlock-greetd = inputs.hyprlock-greetd.packages.${prev.stdenv.hostPlatform.system}.default;
+        hypridle = inputs.hypridle.packages.${prev.stdenv.hostPlatform.system}.default;
       })
       (final: prev: {
-        pwndbg = inputs.pwndbg.packages.${prev.system}.default;
-        pwndbg-lldb = inputs.pwndbg.packages.${prev.system}.pwndbg-lldb;
+        pwndbg = inputs.pwndbg.packages.${prev.stdenv.hostPlatform.system}.default;
+        pwndbg-lldb = inputs.pwndbg.packages.${prev.stdenv.hostPlatform.system}.pwndbg-lldb;
       })
 
       (import ./overlays/fix-cmake-compat.nix) # TODO: remove

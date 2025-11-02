@@ -186,8 +186,10 @@ in {
       git = {
         enable = true;
         lfs.enable = true;
-        userName = cfg.fullName;
-        userEmail = cfg.email;
+        settings = {
+          userName = cfg.fullName;
+          userEmail = cfg.email;
+        };
       };
       nix-index.enable = true;
     };

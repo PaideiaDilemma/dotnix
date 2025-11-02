@@ -49,7 +49,7 @@ in {
       #style.name = "kvantum";
     };
 
-    home.packages = [pkgs.deepinV20XCursors pkgs.libsForQt5.qt5ct pkgs.qt6ct];
+    home.packages = [pkgs.deepinV20XCursors pkgs.libsForQt5.qt5ct pkgs.qt6Packages.qt6ct];
     systemd.user.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";
   };
 }
