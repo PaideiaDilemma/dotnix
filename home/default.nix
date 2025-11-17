@@ -124,7 +124,6 @@ in {
         thunderbird
         vlc
         wdisplays
-        webcord
         wlr-randr
       ])
       ++ optionals (cfg.gui.enable) (with pkgs.kdePackages; [
@@ -187,8 +186,10 @@ in {
         enable = true;
         lfs.enable = true;
         settings = {
-          userName = cfg.fullName;
-          userEmail = cfg.email;
+          user = {
+            name = cfg.fullName;
+            email = cfg.email;
+          };
         };
       };
       nix-index.enable = true;

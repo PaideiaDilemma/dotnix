@@ -97,7 +97,7 @@ in {
           (uwsm_exec "nm-applet")
           (uwsm_exec "hyprsunset")
           "hyprctl setcursor DeepinV20HyprCursors 32"
-          "GNUPGHOME=${config.xdg.configHome}/gnupg wlclipmgr watch --block \"keepassxc\""
+          "/home/max/desk/clipzwl/result/bin/clipzwl watch --block \"keepassxc\""
         ];
 
         monitor =
@@ -281,7 +281,7 @@ in {
           "SUPER, D, exec, rofi -show drun -show-icons -run-command \"uwsm app -- {cmd}\""
           "SUPER, R, exec, rofi -show run -run-shell-command '{terminal} fish -ic \"{cmd} && read\"'"
           "SUPER, F, exec, rofi -show window -show-icons"
-          "SUPER, V, exec, wlclipmgr restore -i \"$(wlclipmgr list -l 100 | rofi -dmenu | awk '{print $1}')\""
+          "SUPER, V, exec, /home/max/desk/clipzwl/result/bin/clipzwl restore \"$(/home/max/desk/clipzwl/result/bin/clipzwl list 1000 | rofi -dmenu | awk '{print $1}')\""
 
           # Notification Control
           "CONTROLSHIFT, Escape, exec, makoctl dismiss --all"
