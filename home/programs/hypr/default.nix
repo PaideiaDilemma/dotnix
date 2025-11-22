@@ -96,8 +96,8 @@ in {
           (uwsm_exec "kdeconnect-indicator")
           (uwsm_exec "nm-applet")
           (uwsm_exec "hyprsunset")
+          (uwsm_exec "/home/max/desk/clipzwl/result/bin/clipzwl init") # dev
           "hyprctl setcursor DeepinV20HyprCursors 32"
-          "/home/max/desk/clipzwl/result/bin/clipzwl watch --block \"keepassxc\""
         ];
 
         monitor =
@@ -125,21 +125,20 @@ in {
           );
 
         general = {
-          gaps_in = 4;
-          gaps_out = 5;
+          gaps_in = 1;
+          gaps_out = 2;
           border_size = 1;
           snap.enabled = 1;
-          "col.active_border" = rgbColor colors.base.sun;
+          "col.active_border" = rgbColor colors.base.sun';
           "col.inactive_border" = rgbaColor colors.base.sky "a0";
         };
 
         decoration = {
           rounding = 6;
           shadow = {
-            enabled = 1;
-            range = 14;
-            render_power = 3;
-            ignore_window = 1;
+            enabled = true;
+            range = 5;
+            render_power = 4;
             color = rgbaColor colors.base.shade "a0";
           };
         };
@@ -268,7 +267,7 @@ in {
 
         # Long press
         bindo = [
-          "SHIFT, l, exec, hyprlock"
+          "ALT, L, exec, hyprlock"
         ];
 
         bind = [
@@ -281,6 +280,7 @@ in {
           "SUPER, D, exec, rofi -show drun -show-icons -run-command \"uwsm app -- {cmd}\""
           "SUPER, R, exec, rofi -show run -run-shell-command '{terminal} fish -ic \"{cmd} && read\"'"
           "SUPER, F, exec, rofi -show window -show-icons"
+          # Dev
           "SUPER, V, exec, /home/max/desk/clipzwl/result/bin/clipzwl restore \"$(/home/max/desk/clipzwl/result/bin/clipzwl list 1000 | rofi -dmenu | awk '{print $1}')\""
 
           # Notification Control

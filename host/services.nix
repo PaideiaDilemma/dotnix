@@ -28,6 +28,9 @@ in {
 
     services.dbus.enable = true;
 
+    services.nscd.enable = true;
+    services.nscd.enableNsncd = true;
+
     services.xserver = {
       enable = cfg.gui.enable;
       xkb.layout = "us";

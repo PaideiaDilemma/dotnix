@@ -246,7 +246,7 @@ in {
           };
           "systemd-failed-units" = {
             "tooltip-format" = "Displays number of systemd units or ok";
-            "format" = "✗ (system: {nr_failed_system}, user: {nr_failed_user}";
+            "format" = "✗ (system: {nr_failed_system}, user: {nr_failed_user})";
             "format-ok" = "✓";
             "hide-on-ok" = false;
             "system" = true;

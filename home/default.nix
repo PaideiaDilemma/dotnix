@@ -123,8 +123,8 @@ in {
         slurp
         thunderbird
         vlc
-        wdisplays
         wlr-randr
+        nwg-displays
       ])
       ++ optionals (cfg.gui.enable) (with pkgs.kdePackages; [
         # KDE Applications
