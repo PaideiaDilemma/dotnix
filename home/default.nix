@@ -95,7 +95,14 @@ in {
         sqlite
         tinymist
         tree
-        typst
+        (pkgs.typst.withPackages (ps:
+          with ps; [
+            tableau-icons
+            cetz_0_3_4
+            oxifmt
+            definitely-not-isec-slides
+            polylux
+          ]))
         usbutils
         wget
         wl-clipboard
