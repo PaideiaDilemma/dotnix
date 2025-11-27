@@ -10,17 +10,17 @@
 
     src = pkgs.fetchzip {
       url = "https://registry.npmjs.org/@tabler/icons-webfont/-/icons-webfont-${version}.tgz";
-      sha256 = "sha256-0SK3tJR37SlcCHfDr6TWUsExpGVuSveN6OzvATU3OQw=";
-      stripRoot = false;
+      sha256 = "sha256-YdqsDxF1T7lNlPJjB9g3SyRWGHpZ+RUda1lKfggP+FQ=";
     };
 
     installPhase = ''
       runHook preInstall
 
       mkdir -p "$out/share/fonts/"{ttf,woff,woff2}
-      cp webfont/fonts/tabler-icons.ttf "$out/share/fonts/ttf/"
-      cp webfont/fonts/tabler-icons.woff "$out/share/fonts/woff/"
-      cp webfont/fonts/tabler-icons.woff2 "$out/share/fonts/woff2/"
+      ls -alh .
+      cp package/dist/fonts/tabler-icons.ttf "$out/share/fonts/ttf/"
+      cp package/dist/fonts/tabler-icons.woff "$out/share/fonts/woff/"
+      cp package/dist/fonts/tabler-icons.woff2 "$out/share/fonts/woff2/"
 
       runHook postInstall
     '';
