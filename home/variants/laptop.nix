@@ -11,12 +11,8 @@
       enable = true;
       enableAnimations = true;
       extraConfig = ''
-                gestures {
-        #workspace_swipe=1
-        #         workspace_swipe_distance=250
-        #         workspace_swipe_cancel_ratio=0.3
-        #         workspace_swipe_create_new=1
-                }
+                gesture = 3, vertical, workspace
+                gesture = 3, left, dispatcher, exec, hyprlock --grace 2
 
                 device {
                   name = AT Translated Set 2 keyboard
