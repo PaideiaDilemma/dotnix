@@ -9,7 +9,6 @@ with lib; let
   cfg = config.hyprhome;
 in {
   imports = [
-    ./environment.nix
     ../colors/penumbra.nix
     ./programs
     ./theme
@@ -177,16 +176,26 @@ in {
       };
     };
 
-    xdg.configFile."user-dirs.dirs".text = ''
-      XDG_DESKTOP_DIR="$HOME/desk"
-      XDG_DOCUMENTS_DIR="$HOME/doc"
-      XDG_MUSIC_DIR="$HOME/media/music"
-      XDG_PICTURES_DIR="$HOME/media/picture"
-      XDG_PUBLICSHARE_DIR="$HOME/pub"
-      XDG_TEMPLATES_DIR="$HOME/template"
-      XDG_VIDEOS_DIR="$HOME/media/video"
-      XDG_DOWNLOAD_DIR="$HOME/installf"
-    '';
+    xdg.terminal-exec = {
+      enable = true;
+      settings = {
+        default = [
+          "foot.desktop"
+        ];
+      };
+    };
+
+    xdg.userDirs = {
+      enable = true;
+      desktop = "${config.home.homeDirectory}/desk";
+      documents = "${config.home.homeDirectory}/doc";
+      music = "${config.home.homeDirectory}/media/music";
+      pictures = "${config.home.homeDirectory}/media/picture";
+      videos = "${config.home.homeDirectory}/media/video";
+      publicShare = "${config.home.homeDirectory}/pub";
+      templates = "${config.home.homeDirectory}/template";
+      download = "${config.home.homeDirectory}/installf";
+    };
 
     programs = {
       git = {

@@ -1,15 +1,15 @@
 {pkgs, ...}: {
-  users.groups.render.members = ["max"];
+  # users.groups.render.members = ["max"];
   #hardware.amdgpu.opencl.enable = true;
   #nixpkgs.config.rocmSupport = true;
   #services.ollama.rocmOverrideGfx = "10.3.0";
   #services.ollama.acceleration = "rocm";
   host.localllm.enable = false;
 
-  services.desktopManager.plasma6.enable = true;
+  #services.desktopManager.plasma6.enable = true;
 
   services.nix-serve = {
-    enable = true;
+    enable = false;
     secretKeyFile = "/var/desktop-cache-local-priv-key.pem";
     port = 9777;
   };

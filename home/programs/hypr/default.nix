@@ -8,9 +8,34 @@
 with lib; let
   cfg = config.hyprhome;
   colors = config.colors;
-  uwsm_exec = exec: "uwsm app -- ${exec}";
+  systemd_run = command: ''systemd-run --user --quiet --slice-inherit --scope ${command}'';
   rgbColor = hexcolor: "rgb(${removePrefix "#" hexcolor})";
   rgbaColor = hexcolor: alpha: "rgba(${removePrefix "#" hexcolor}${alpha})";
+  envVars = {
+    NIXOS_OZONE_WL = "1";
+    NVIM_APPNAME = "nvim-minimax";
+    BROWSER = "firefox";
+    TERMINAL = "${cfg.terminal}";
+    TERM_PROGRAM = "${cfg.terminal}";
+
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+
+    MOZ_ENABLE_WAYLAND = "1";
+
+    XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+    XDG_STATE_HOME = "${config.home.homeDirectory}/.local/state";
+
+    HYPRCURSOR_THEME = "DeepinV20HyprCursors";
+    HYPRCURSOR_SIZE = "32";
+    GNUPGHOME = "${config.xdg.configHome}/gnupg";
+  };
+  envConvert = k: v: ''${k},${lib.concatStringsSep ":" v}'';
+  env = lib.mapAttrsToList envConvert (lib.mapAttrs (n: lib.toList) envVars);
 in {
   options.hyprhome.hyprland = {
     enable = mkOption {
@@ -50,7 +75,6 @@ in {
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       networkmanagerapplet
       swww
-      uwsm
       waybar
       hyprsunset
     ];
@@ -61,9 +85,11 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.enable = false; # USWM instead
+      systemd.enable = true;
 
       settings = {
+        inherit env;
+
         "$terminal" = cfg.hyprland.terminal;
         "$sun_p" = rgbColor colors.base.sun';
         "$sun" = rgbColor colors.base.sun;
@@ -91,12 +117,12 @@ in {
         };
 
         exec-once = [
-          (uwsm_exec "swww-daemon")
-          (uwsm_exec "waybar")
-          (uwsm_exec "kdeconnect-indicator")
-          (uwsm_exec "nm-applet")
-          (uwsm_exec "hyprsunset")
-          (uwsm_exec "/home/max/desk/clipzwl/result/bin/clipzwl init") # dev
+          (systemd_run "swww-daemon")
+          (systemd_run "waybar")
+          (systemd_run "kdeconnect-indicator")
+          (systemd_run "nm-applet")
+          (systemd_run "hyprsunset")
+          (systemd_run "/home/max/desk/clipzwl/result/bin/clipzwl init") # dev
           "hyprctl setcursor DeepinV20HyprCursors 32"
         ];
 
@@ -272,10 +298,10 @@ in {
           # Launchers
           "SUPER, Return, exec, $terminal"
           "SUPERSHIFT, Return, exec, $terminal ipython"
-          "SUPER, E, exec, uwsm app -- dolphin"
+          ''SUPER, E, exec, ${systemd_run "dolphin"}''
 
           # Rofi menus
-          "SUPER, D, exec, rofi -show drun -show-icons -run-command \"uwsm app -- {cmd}\""
+          ''SUPER, D, exec, rofi -show drun -show-icons -run-command "${systemd_run "{cmd}"}"''
           "SUPER, R, exec, rofi -show run -run-shell-command '{terminal} fish -ic \"{cmd} && read\"'"
           "SUPER, F, exec, rofi -show window -show-icons"
           # Dev

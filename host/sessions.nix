@@ -19,7 +19,6 @@ in {
   config = {
     programs.hyprland = {
       enable = config.host.gui.enable;
-      withUWSM = true;
     };
 
     services.greetd = {
@@ -96,12 +95,12 @@ in {
 
           login-session {
             name = Hyprland (debug)
-            exec = ${pkgs.uwsm}/bin/uwsm start -N "Hyprland (debug)"  -- ${pkgs.hyprland-debug}/bin/Hyprland --config ~/.config/hypr/hyprland.conf
+            exec = ${pkgs.hyprland-debug}/bin/Hyprland --config ~/.config/hypr/hyprland.conf
           }
 
           login-session {
             name = Hyprland (debug TRACE)
-            exec = ${pkgs.uwsm}/bin/uwsm start -N "Hyprland (debug TRACE)"  -- HYPRLAND_TRACE=1 AQ_TRACE=1 ${pkgs.hyprland-debug}/bin/Hyprland --config ~/.config/hypr/hyprland.conf
+            exec = HYPRLAND_TRACE=1 AQ_TRACE=1 ${pkgs.hyprland-debug}/bin/Hyprland --config ~/.config/hypr/hyprland.conf
           }
 
           session-picker {
