@@ -10,7 +10,7 @@
 in {
   programs.fzf = {
     enable = true;
-    #enableFishIntegration = true;
+    enableFishIntegration = true; # TODO: remplace with fzf-lua
   };
 
   programs.bash = {
@@ -113,13 +113,8 @@ in {
         };
       }
       {
-        name = "fzf.fish";
-        src = pkgs.fetchFromGitHub {
-          owner = "PatrickF1";
-          repo = "fzf.fish";
-          rev = "8920367cf85eee5218cc25a11e209d46e2591e7a";
-          hash = "sha256-T8KYLA/r/gOKvAivKRoeqIwE2pINlxFQtZJHpOy9GMM=";
-        };
+        name = "fzf-lua.fish";
+        src = ./fzf-lua;
       }
     ];
 

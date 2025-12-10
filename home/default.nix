@@ -71,7 +71,6 @@ in {
       (with pkgs; [
         # Terminal Applications
         appimage-run
-        bat
         btop
         catimg
         cryptsetup
@@ -198,6 +197,12 @@ in {
     };
 
     programs = {
+      bat = {
+        enable = true;
+        config = {
+          theme = "ansi";
+        };
+      };
       git = {
         enable = true;
         lfs.enable = true;
