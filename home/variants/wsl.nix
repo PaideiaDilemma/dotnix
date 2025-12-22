@@ -8,7 +8,7 @@
 
   home.packages = with pkgs; [
     nodejs
-    pinentry
+    pinentry-qt
     libsecret
   ];
 }

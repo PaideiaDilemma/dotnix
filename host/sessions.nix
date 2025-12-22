@@ -16,7 +16,7 @@ in {
     };
   };
 
-  config = {
+  config = lib.mkIf (cfg.gui.enable) {
     programs.hyprland = {
       enable = config.host.gui.enable;
     };
