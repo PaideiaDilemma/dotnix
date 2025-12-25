@@ -51,6 +51,8 @@ in {
 
     services.blueman.enable = true;
 
+    services.fprintd.enable = true;
+
     security.rtkit.enable = true;
 
     programs.wireshark.enable = true;

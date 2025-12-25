@@ -23,16 +23,6 @@ in {
         type = types.bool;
       };
 
-      staticMonitors = mkOption {
-        type = types.attrsOf (types.attrsOf (types.str));
-        default = {};
-      };
-
-      primaryMonitor = mkOption {
-        default = "";
-        description = "The primary monitor";
-        type = types.str;
-      };
     };
 
     username = mkOption {

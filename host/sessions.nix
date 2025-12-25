@@ -94,13 +94,8 @@ in {
           }
 
           login-session {
-            name = Hyprland (debug)
-            exec = ${pkgs.hyprland-debug}/bin/Hyprland --config ~/.config/hypr/hyprland.conf
-          }
-
-          login-session {
-            name = Hyprland (debug TRACE)
-            exec = HYPRLAND_TRACE=1 AQ_TRACE=1 ${pkgs.hyprland-debug}/bin/Hyprland --config ~/.config/hypr/hyprland.conf
+            name = Hyprland (TRACE)
+            exec = HYPRLAND_TRACE=1 AQ_TRACE=1 ${pkgs.hyprland}/bin/Hyprland --config ~/.config/hypr/hyprland.conf
           }
 
           session-picker {

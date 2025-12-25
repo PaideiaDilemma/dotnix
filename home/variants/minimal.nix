@@ -4,7 +4,6 @@
     # be the same on every boot.
     gui = {
       enable = false;
-      staticMonitors = {};
     };
   };
 }

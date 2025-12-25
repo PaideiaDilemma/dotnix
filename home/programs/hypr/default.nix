@@ -71,7 +71,6 @@ in {
       deepinV20HyprCursors
       hyprlock
       hyprpicker
-      hyprsetwallpaper
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       networkmanagerapplet
       swww
@@ -108,6 +107,12 @@ in {
         "$blue" = rgbColor colors.accent.blue;
         "$purple" = rgbColor colors.accent.purple;
 
+        source = [
+            # nwg displays
+            "~/.config/hypr/monitors.conf"
+            "~/.config/hypr/workspaces.conf"
+        ];
+
         input = {
           "kb_layout" = "eu";
           "follow_mouse" = 1;
@@ -125,30 +130,6 @@ in {
           (systemd_run "/home/max/desk/clipzwl/result/bin/clipzwl init") # dev
           "hyprctl setcursor DeepinV20HyprCursors 32"
         ];
-
-        monitor =
-          [",preferred,auto-center-up,1"]
-          ++ mapAttrsToList (
-            name: monitor: "${name}, ${monitor.resolution}, ${monitor.position or "0x0"}, ${monitor.scale or "1"}, transform, ${monitor.transform or "0"}"
-          )
-          cfg.gui.staticMonitors;
-
-        workspace =
-          mapAttrsToList (
-            name: monitor: "${monitor.initalWorkspace}, monitor:${name}, default:true, persistent:true"
-          )
-          cfg.gui.staticMonitors;
-
-        exec =
-          (mapAttrsToList (
-              name: monitor: "sleep 1 && swww img -o ${name} ~/media/picture/wal${name}.png"
-            )
-            cfg.gui.staticMonitors)
-          ++ (
-            if (lib.attrNames cfg.gui.staticMonitors == [])
-            then ["swww img ~/media/picture/wal.png"]
-            else []
-          );
 
         general = {
           gaps_in = 1;
@@ -500,10 +481,6 @@ in {
           {
             timeout = 800;
             on-timeout = "hyprctl dispatch dpms off";
-          }
-          {
-            timeout = 100;
-            on-timeout = "hyprsetwallpaper -g -c";
           }
         ];
       };
