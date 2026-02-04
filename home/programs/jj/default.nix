@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = [
-    pkgs.kdiff3
+    pkgs.difftastic
   ];
   programs.jujutsu = {
     enable = true;
@@ -21,7 +21,7 @@
         s = ["status" "--no-pager"];
       };
       ui = {
-        diff-editor = "kdiff3";
+        diff-formatter = ["difft" "--color=always" "$left" "$right"];
       };
       merge-tools.diffconflicts.program = "vimdiff";
     };

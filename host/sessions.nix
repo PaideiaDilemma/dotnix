@@ -95,7 +95,7 @@ in {
 
           login-session {
             name = Hyprland (TRACE)
-            exec = HYPRLAND_TRACE=1 AQ_TRACE=1 ${pkgs.hyprland}/bin/Hyprland --config ~/.config/hypr/hyprland.conf
+            exec = HYPRLAND_TRACE=1 AQ_TRACE=1 ${pkgs.hyprland}/bin/start-hyprland -- --config ~/.config/hypr/hyprland.conf
           }
 
           session-picker {
@@ -146,7 +146,7 @@ in {
           command = "$SHELL -l";
         };
         hyprlock_login = {
-          command = "${pkgs.hyprland}/bin/Hyprland --config ${hyprland_config} > /dev/null 2>&1";
+          command = "${pkgs.hyprland}/bin/start-hyprland -- --config ${hyprland_config} > /dev/null 2>&1";
         };
 
         default_session =

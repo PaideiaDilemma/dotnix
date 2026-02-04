@@ -19,6 +19,5 @@
     ./syncthing
     ./wallrnd
     ./waybar
-    ./wlclipmgr
   ];
 }

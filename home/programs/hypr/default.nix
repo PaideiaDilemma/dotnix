@@ -108,9 +108,9 @@ in {
         "$purple" = rgbColor colors.accent.purple;
 
         source = [
-            # nwg displays
-            "~/.config/hypr/monitors.conf"
-            "~/.config/hypr/workspaces.conf"
+          # nwg displays
+          "~/.config/hypr/monitors.conf"
+          "~/.config/hypr/workspaces.conf"
         ];
 
         input = {

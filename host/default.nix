@@ -53,7 +53,7 @@ in {
 
   config = {
     programs = {
-      adb.enable = true;
+      #adb.enable = true;
       command-not-found.enable = false;
       dconf.enable = true;
       git.enable = true;

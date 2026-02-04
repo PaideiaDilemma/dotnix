@@ -65,12 +65,6 @@
       flake = false;
     };
 
-    # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
-    wlclipmgr = {
-      url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
@@ -89,8 +83,6 @@
     overlays = [
       inputs.hyprland.overlays.default
       #inputs.hyprland.overlays.hyprland-debug
-
-      inputs.wlclipmgr.overlays.default
 
       (final: prev: {
         hyprlock = inputs.hyprlock.packages.${prev.stdenv.hostPlatform.system}.default;

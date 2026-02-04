@@ -22,7 +22,6 @@ in {
         description = "Enable GUI?";
         type = types.bool;
       };
-
     };
 
     username = mkOption {
@@ -123,7 +122,6 @@ in {
       ])
       ++ optionals (cfg.gui.enable) (with pkgs.kdePackages; [
         # KDE Applications
-        kdenlive
         dolphin
       ])
       ++ optionals (cfg.gui.enable) (with pkgs.gnome; [
