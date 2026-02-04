@@ -30,6 +30,7 @@ in {
           22000 # syncthing
           8384 # syncthing gui
           9777 # nix-serve
+          5900 # wayvnc
         ];
 
         allowedTCPPortRanges = [

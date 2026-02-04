@@ -65,16 +65,10 @@
       flake = false;
     };
 
-    libfprint-goodix = {
-        url = "git+file:///home/max/desk/libfprint-goodix-dev";
-      flake = false;
-    };
-
-    # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
-    wlclipmgr = {
-      url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # libfprint-goodix = {
+    #     url = "git+file:///home/max/desk/libfprint-goodix-dev";
+    #   flake = false;
+    # };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";

@@ -922,7 +922,8 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
-        "pwndbg": "pwndbg"
+        "pwndbg": "pwndbg",
+        "wlclipmgr": "wlclipmgr"
       }
     },
     "systems": {
@@ -1015,6 +1016,21 @@
         "type": "github"
       }
     },
+    "systems_7": {
+      "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
+      }
+    },
     "uv2nix": {
       "inputs": {
         "nixpkgs": [
@@ -1038,6 +1054,29 @@
         "owner": "pyproject-nix",
         "repo": "uv2nix",
         "type": "github"
+      }
+    },
+    "wlclipmgr": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems_7"
+      },
+      "locked": {
+        "lastModified": 1753100172,
+        "narHash": "sha256-ENCGPElTWAzNwTRmsJEfsr66LGjD+HyNICHJi+lHWRM=",
+        "ref": "refs/heads/main",
+        "rev": "61c1c8745b74373b1e65f2a974c2be8e6236ff36",
+        "revCount": 19,
+        "submodules": true,
+        "type": "git",
+        "url": "https://www.github.com/PaideiaDilemma/wlclipmgr"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://www.github.com/PaideiaDilemma/wlclipmgr"
       }
     },
     "xdph": {
