@@ -65,6 +65,17 @@
       flake = false;
     };
 
+    libfprint-goodix = {
+        url = "git+file:///home/max/desk/libfprint-goodix-dev";
+      flake = false;
+    };
+
+    # Simplify once lazy trees are available https://github.com/NixOS/nix/pull/6530
+    wlclipmgr = {
+      url = "git+https://www.github.com/PaideiaDilemma/wlclipmgr?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
@@ -93,7 +104,28 @@
         pwndbg = inputs.pwndbg.packages.${prev.stdenv.hostPlatform.system}.default;
         pwndbg-lldb = inputs.pwndbg.packages.${prev.stdenv.hostPlatform.system}.pwndbg-lldb;
       })
+      (final: prev: {
+        libfprint-goodix-dev = prev.libfprint.overrideAttrs(prevAttrs: {
+          pname = "libfprint-goodix-dev";
+          version = "0.0.1";
+          buildInputs = prevAttrs.buildInputs ++ [ prev.nss prev.cmake ];
+          src = inputs.libfprint-goodix;
+          installCheckPhase = ""; # some crash when testing hwdb
+        });
 
+        fprintd-compat = prev.fprintd.overrideAttrs(prevAttrs: rec {
+          version = "1.94.4";
+
+          src = prev.fetchFromGitLab {
+            domain = "gitlab.freedesktop.org";
+            owner = "libfprint";
+            repo = "fprintd";
+            rev = "refs/tags/v${version}";
+            hash = "sha256-B2g2d29jSER30OUqCkdk3+Hv5T3DA4SUKoyiqHb8FeU=";
+          };
+        });
+        fprintd-goodix = final.fprintd-compat.override({ libfprint = final.libfprint-goodix-dev; });
+      })
       (import ./overlays/fix-cmake-compat.nix) # TODO: remove
       (import ./overlays/deepin-cursors.nix)
       (import ./overlays/patchelfdd-overlay.nix)
@@ -160,7 +192,7 @@
       iso = mkNixos "minimal" "minimal" "minimal" "max" "x86_64-linux";
       vm = mkNixos "vm1" "minimal" "minimal" "max" "x86_64-linux";
 
-      laptop = mkNixos "laptop" "default" "laptop" "max" "x86_64-linux";
+      laptop = mkNixos "laptop" "laptop" "laptop" "max" "x86_64-linux";
       desktop = mkNixos "desktop" "desktop" "desktop" "max" "x86_64-linux";
       # currently it is handier for the username to just be "nixos"
       # https://discourse.nixos.org/t/set-default-user-in-wsl2-nixos-distro/38328/3
@@ -173,14 +205,6 @@
       "max@laptop" = mkHome "laptop" "max" nixpkgs.legacyPackages.x86_64-linux;
       "max@desktop" = mkHome "desktop" "max" nixpkgs.legacyPackages.x86_64-linux;
       "nixos@wsl" = mkHome "wsl" "nixos" nixpkgs.legacyPackages.x86_64-linux;
-    };
-
-    devShells.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.mkShell {
-      name = "dotnix";
-      packages = with nixpkgs.legacyPackages.x86_64-linux; [
-        alejandra
-        git
-      ];
     };
 
     formatter = nixpkgs.legacyPackages.x86_64-linux.alejandra;
