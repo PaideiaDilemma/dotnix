@@ -25,12 +25,12 @@
       runHook postInstall
     '';
 
-    meta = with lib; {
+    meta = {
       description = "Tabler icons font";
       longDescription = '''';
       homepage = "https://tabler.io/icons";
-      license = licenses.mit;
-      platforms = platforms.all;
+      license = lib.licenses.mit;
+      platforms = lib.platforms.all;
       maintainer = [];
     };
   };

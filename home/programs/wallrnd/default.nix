@@ -4,8 +4,8 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
   colors = config.colors;
   wallrnd = pkgs.rustPlatform.buildRustPackage {
     name = "wallrnd";
@@ -24,15 +24,15 @@ with lib; let
     ];
   };
 in {
-  options.hyprhome.wallrnd = {
-    enable = mkOption {
+  options.dotnix.wallrnd = {
+    enable = lib.mkOption {
       default = true;
       description = "Whether to enable the wallrnd.";
-      type = types.bool;
+      type = lib.types.bool;
     };
   };
 
-  config = mkIf (cfg.gui.enable && cfg.wallrnd.enable) {
+  config = lib.mkIf (cfg.gui.enable && cfg.wallrnd.enable) {
     home.packages = [
       wallrnd
     ];

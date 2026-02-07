@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-with lib; let
+let
   cfg = config.penumbra;
   penumbra = {
     seven = {
@@ -67,13 +67,13 @@ with lib; let
     };
   };
 
-  removeHash = str: (removePrefix "#" str);
+  removeHash = str: (lib.removePrefix "#" str);
 in {
   imports = [./default.nix];
 
   options.penumbra = {
-    set = mkOption {
-      type = types.enum ["balanced" "contrast'" "contrast''"];
+    set = lib.mkOption {
+      type = lib.types.enum ["balanced" "contrast'" "contrast''"];
       default = "balanced";
     };
   };

@@ -4,8 +4,9 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  inherit (lib) mkOption types;
+  cfg = config.dotnix;
   colors = config.colors;
   theme_switch = pkgs.writeShellScriptBin "light-dark-theme-switch" ''
     STATE_FILE=$XDG_STATE_HOME/.dark_or_light_mode_toggle
@@ -58,7 +59,7 @@ with lib; let
     done < $STATE_FILE
   '';
 in {
-  options.hyprhome.waybar = {
+  options.dotnix.waybar = {
     enable = mkOption {
       default = true;
       description = "Whether to enable waybar.";
@@ -84,7 +85,7 @@ in {
     };
   };
 
-  config = mkIf (cfg.gui.enable && cfg.waybar.enable) {
+  config = lib.mkIf (cfg.gui.enable && cfg.waybar.enable) {
     home.packages = with pkgs; [
       playerctl
       pavucontrol

@@ -4,18 +4,14 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
+  colors = config.colors;
 in {
-  options.hyprhome.swaylock = {
-  };
-
-  config = mkIf (cfg.gui.enable && cfg.obs.enable) {
-    programs.swaylock = {
-      enable = true;
-      settings = {
-        color = "#000000";
-      };
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      color = "${colors.base.shade}";
     };
   };
 }

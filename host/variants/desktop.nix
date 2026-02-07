@@ -4,7 +4,7 @@
   #nixpkgs.config.rocmSupport = true;
   #services.ollama.rocmOverrideGfx = "10.3.0";
   #services.ollama.acceleration = "rocm";
-  host.localllm.enable = false;
+  dotnix.localllm.enable = false;
 
   #services.desktopManager.plasma6.enable = true;
 

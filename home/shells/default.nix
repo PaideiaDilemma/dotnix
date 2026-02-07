@@ -4,18 +4,18 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
 in {
-  options.hyprhome.direnvs = {
-    enable = mkOption {
+  options.dotnix.direnvs = {
+    enable = lib.mkOption {
       type = lib.types.bool;
       default = true;
       description = "Whether to link direnvs";
     };
   };
 
-  config = mkIf cfg.direnvs.enable {
+  config = lib.mkIf cfg.direnvs.enable {
     home.file."CTF/shell.nix".source = ./ctf-shell.nix;
   };
 }

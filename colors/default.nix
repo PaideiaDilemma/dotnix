@@ -4,7 +4,8 @@
   pkgs,
   ...
 }:
-with lib; let
+let
+  inherit (lib) mkOption types;
   baseColorNames = [
     "sun'"
     "sun"
@@ -28,7 +29,7 @@ with lib; let
   ];
 
   mapOptions = options:
-    listToAttrs (
+    lib.listToAttrs (
       map
       (name: {
         inherit name;
@@ -39,7 +40,7 @@ with lib; let
       options
     );
 
-  removeHash = str: removePrefix "#" str;
+  removeHash = str: lib.removePrefix "#" str;
 in {
   options.colors = {
     base = mapOptions baseColorNames;

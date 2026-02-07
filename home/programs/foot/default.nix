@@ -4,26 +4,26 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
   colors = config.colors;
-  removeHash = str: removePrefix "#" str;
+  removeHash = str: lib.removePrefix "#" str;
 in {
-  options.hyprhome.foot = {
-    enable = mkOption {
+  options.dotnix.foot = {
+    enable = lib.mkOption {
       default = true;
       description = "Whether to enable foot terminal";
-      type = types.bool;
+      type = lib.types.bool;
     };
 
-    fontSize = mkOption {
+    fontSize = lib.mkOption {
       default = 8;
       description = "Font size";
-      type = types.int;
+      type = lib.types.int;
     };
   };
 
-  config = mkIf (cfg.gui.enable && cfg.foot.enable) {
+  config = lib.mkIf (cfg.gui.enable && cfg.foot.enable) {
     programs.foot = {
       enable = true;
       server.enable = false;

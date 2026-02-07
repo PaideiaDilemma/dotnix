@@ -4,18 +4,18 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
 in {
-  options.hyprhome.obs = {
-    enable = mkOption {
+  options.dotnix.obs = {
+    enable = lib.mkOption {
       default = true;
       description = "Whether to enable obs";
-      type = types.bool;
+      type = lib.types.bool;
     };
   };
 
-  config = mkIf (cfg.gui.enable && cfg.obs.enable) {
+  config = lib.mkIf (cfg.gui.enable && cfg.obs.enable) {
     programs.obs-studio = {
       enable = true;
     };

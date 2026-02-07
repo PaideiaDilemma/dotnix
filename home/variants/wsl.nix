@@ -1,6 +1,5 @@
 {pkgs, ...}: {
-  hyprhome = {
-    gui.enable = false;
+  dotnix = {
     hyprland = {
       enable = false;
     };

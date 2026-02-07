@@ -5,11 +5,11 @@
   lib,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
   colors = config.colors;
 in {
-  config = mkIf (cfg.gui.enable) {
+  config = lib.mkIf (cfg.gui.enable) {
     programs.chromium = {
       enable = true;
       extensions = [

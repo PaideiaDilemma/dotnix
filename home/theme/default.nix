@@ -5,15 +5,15 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
 in {
   imports = [
     ./qtct.nix
     #./kvantum.nix
   ];
 
-  config = mkIf (cfg.gui.enable) {
+  config = lib.mkIf (cfg.gui.enable) {
     home.pointerCursor = {
       gtk.enable = true;
       x11.enable = true;

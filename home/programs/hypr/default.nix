@@ -5,39 +5,15 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  inherit (lib) mkOption types removePrefix;
+  cfg = config.dotnix;
   colors = config.colors;
   systemd_run = command: ''systemd-run --user --quiet --slice-inherit --scope ${command}'';
   rgbColor = hexcolor: "rgb(${removePrefix "#" hexcolor})";
   rgbaColor = hexcolor: alpha: "rgba(${removePrefix "#" hexcolor}${alpha})";
-  envVars = {
-    NIXOS_OZONE_WL = "1";
-    NVIM_APPNAME = "nvim-minimax";
-    BROWSER = "firefox";
-    TERMINAL = "${cfg.terminal}";
-    TERM_PROGRAM = "${cfg.terminal}";
-
-    _JAVA_AWT_WM_NONREPARENTING = "1";
-
-    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    QT_QPA_PLATFORM = "wayland;xcb";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    QT_QPA_PLATFORMTHEME = "qt6ct";
-
-    MOZ_ENABLE_WAYLAND = "1";
-
-    XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
-    XDG_STATE_HOME = "${config.home.homeDirectory}/.local/state";
-
-    HYPRCURSOR_THEME = "DeepinV20HyprCursors";
-    HYPRCURSOR_SIZE = "32";
-    GNUPGHOME = "${config.xdg.configHome}/gnupg";
-  };
-  envConvert = k: v: ''${k},${lib.concatStringsSep ":" v}'';
-  env = lib.mapAttrsToList envConvert (lib.mapAttrs (n: lib.toList) envVars);
 in {
-  options.hyprhome.hyprland = {
+  options.dotnix.hyprland = {
     enable = mkOption {
       default = true;
       description = "Whether to enable the hyprland desktop.";
@@ -66,7 +42,7 @@ in {
     };
   };
 
-  config = mkIf (cfg.gui.enable && cfg.hyprland.enable) {
+  config = lib.mkIf (cfg.gui.enable && cfg.hyprland.enable) {
     home.packages = with pkgs; [
       deepinV20HyprCursors
       hyprlock
@@ -84,11 +60,9 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.enable = true;
+      systemd.enable = false;
 
       settings = {
-        inherit env;
-
         "$terminal" = cfg.hyprland.terminal;
         "$sun_p" = rgbColor colors.base.sun';
         "$sun" = rgbColor colors.base.sun;
@@ -122,12 +96,13 @@ in {
         };
 
         exec-once = [
-          (systemd_run "swww-daemon")
-          (systemd_run "waybar")
+          (systemd_run "/home/max/desk/clipzwl/result/bin/clipzwl init") # dev
+          (systemd_run "hyprsunset")
+          (systemd_run "jamesdsp --tray")
           (systemd_run "kdeconnect-indicator")
           (systemd_run "nm-applet")
-          (systemd_run "hyprsunset")
-          (systemd_run "/home/max/desk/clipzwl/result/bin/clipzwl init") # dev
+          (systemd_run "swww-daemon")
+          (systemd_run "waybar")
           "hyprctl setcursor DeepinV20HyprCursors 32"
         ];
 

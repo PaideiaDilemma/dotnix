@@ -5,20 +5,63 @@
   inputs,
   ...
 }:
-with lib; let
-  cfg = config.host;
+let
+  cfg = config.dotnix;
+  envVars = {
+    NIXOS_OZONE_WL = "1";
+    NVIM_APPNAME = "nvim-minimax";
+    BROWSER = "firefox";
+    TERMINAL = "${cfg.terminal}";
+    TERM_PROGRAM = "${cfg.terminal}";
+
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+
+    MOZ_ENABLE_WAYLAND = "1";
+
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_STATE_HOME = "$HOME/.local/state";
+
+    HYPRCURSOR_THEME = "DeepinV20HyprCursors";
+    HYPRCURSOR_SIZE = "32";
+    GNUPGHOME = "$XDG_CONFIG_HOME/gnupg";
+  };
+  # This is to export the env above in the launchMyCompositor script.
+  envConvert = k: v: ''export ${k}="${lib.concatStringsSep ":" v}"'';
+  exportEnvList = lib.mapAttrsToList envConvert (lib.mapAttrs (n: lib.toList) envVars);
+  exportEnvString = lib.concatStringsSep "\n" exportEnvList;
+
+  # This is to import the env above to systemd (user)
+  envKeywordConvert = k: v: "${k}";
+  envKeywordList = lib.mapAttrsToList envKeywordConvert (lib.mapAttrs (n: lib.toList) envVars);
+  importEnvKeywordsString = lib.concatStringsSep " " envKeywordList;
+
+  launchMyCompositor = pkgs.writeShellScriptBin "launchMyCompositor" ''
+    ${exportEnvString}
+
+    systemctl --user import-environment ${importEnvKeywordsString}
+
+    exec $@
+  '';
 in {
-  options.host = {
-    default_session = mkOption {
-      type = types.enum ["hyprlock_login" "shell"];
+  options.dotnix = {
+    default_session = lib.mkOption {
+      type = lib.types.enum ["hyprlock_login" "shell"];
       default = "hyprlock_login";
       description = "Default session to start at startup";
     };
   };
 
   config = lib.mkIf (cfg.gui.enable) {
+    environment.systemPackages = with pkgs; [
+      niri-unstable
+    ];
     programs.hyprland = {
-      enable = config.host.gui.enable;
+      enable = config.dotnix.gui.enable;
     };
 
     services.greetd = {
@@ -93,9 +136,20 @@ in {
             #default_session=
           }
 
+          # TODO: Start via systemd
+          login-session {
+            name = Niri
+            exec = ${lib.getExe launchMyCompositor} niri --session
+          }
+
+          login-session {
+            name = Hyprland
+            exec = ${lib.getExe launchMyCompositor} ${pkgs.hyprland}/bin/start-hyprland -- --config ~/.config/hypr/hyprland.conf
+          }
+
           login-session {
             name = Hyprland (TRACE)
-            exec = HYPRLAND_TRACE=1 AQ_TRACE=1 ${pkgs.hyprland}/bin/start-hyprland -- --config ~/.config/hypr/hyprland.conf
+            exec = HYPRLAND_TRACE=1 AQ_TRACE=1 ${lib.getExe launchMyCompositor} ${pkgs.hyprland}/bin/start-hyprland -- --config ~/.config/hypr/hyprland.conf
           }
 
           session-picker {
@@ -145,7 +199,9 @@ in {
         shell_session = {
           command = "$SHELL -l";
         };
+
         hyprlock_login = {
+          # TODO: replace with sway
           command = "${pkgs.hyprland}/bin/start-hyprland -- --config ${hyprland_config} > /dev/null 2>&1";
         };
 

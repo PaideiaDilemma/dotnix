@@ -1,8 +1,5 @@
 {...}: {
-  hyprhome = {
-    gui = {
-      enable = true;
-    };
+  dotnix = {
     foot.fontSize = 13;
     waybar.output = "DP-3";
     hyprland = {

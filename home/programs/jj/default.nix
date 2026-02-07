@@ -10,8 +10,8 @@
     enable = true;
     settings = {
       user = {
-        name = config.hyprhome.fullName;
-        email = config.hyprhome.email;
+        name = config.dotnix.fullName;
+        email = config.dotnix.email;
       };
       colors = {
         "diff token" = {underline = false;};

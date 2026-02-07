@@ -4,13 +4,13 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.host;
+let
+  cfg = config.dotnix;
 in {
-  options.host.libvirtd.enable = mkOption {
+  options.dotnix.libvirtd.enable = lib.mkOption {
     default = true;
     description = "Enable libvirtd";
-    type = types.bool;
+    type = lib.types.bool;
   };
 
   config = {

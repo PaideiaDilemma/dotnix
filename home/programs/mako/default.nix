@@ -4,19 +4,19 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
   colors = config.colors;
 in {
-  options.hyprhome.mako = {
-    enable = mkOption {
+  options.dotnix.mako = {
+    enable = lib.mkOption {
       default = true;
       description = "Whether to enable mako notifications.";
-      type = types.bool;
+      type = lib.types.bool;
     };
   };
 
-  config = mkIf (cfg.gui.enable && cfg.mako.enable) {
+  config = lib.mkIf (cfg.gui.enable && cfg.mako.enable) {
     services.mako = {
       enable = true;
       settings = {

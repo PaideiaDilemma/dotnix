@@ -4,19 +4,19 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
   colors = config.colors;
 in {
-  options.hyprhome.syncthing = {
-    enable = mkOption {
+  options.dotnix.syncthing = {
+    enable = lib.mkOption {
       default = true;
       description = "Whether to enable file sync.";
-      type = types.bool;
+      type = lib.types.bool;
     };
   };
 
-  config = mkIf (cfg.syncthing.enable) {
+  config = lib.mkIf (cfg.syncthing.enable) {
     services.syncthing = {
       enable = true;
     };

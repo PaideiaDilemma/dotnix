@@ -5,17 +5,17 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.host;
+let
+  cfg = config.dotnix;
 in {
-  options.host = {
-    openssh.enable = mkOption {
-      type = types.bool;
+  options.dotnix = {
+    openssh.enable = lib.mkOption {
+      type = lib.types.bool;
       default = true;
       description = "Wheather to enable the openssh service";
     };
-    flatpak.enable = mkOption {
-      type = types.bool;
+    flatpak.enable = lib.mkOption {
+      type = lib.types.bool;
       default = true;
       description = "Wheather to enable the flatpak service";
     };

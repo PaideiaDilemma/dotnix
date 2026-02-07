@@ -5,8 +5,8 @@
   colors,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
   removeHash = str: lib.removePrefix "#" str;
   oomoxPatch = {
     name,

@@ -6,7 +6,7 @@
 }: let
   removeHash = str: (lib.removePrefix "#" str);
   colors = config.colors;
-  cfg = config.hyprhome;
+  cfg = config.dotnix;
 in {
   programs.fzf = {
     enable = true;

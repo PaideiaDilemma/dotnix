@@ -55,6 +55,11 @@
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lazyvim = {
       url = "github:PaideiaDilemma/LazyVim";
       flake = false;
@@ -88,6 +93,7 @@
     overlays = [
       inputs.hyprland.overlays.default
       #inputs.hyprland.overlays.hyprland-debug
+      inputs.niri.overlays.niri
 
       (final: prev: {
         hyprlock = inputs.hyprlock.packages.${prev.stdenv.hostPlatform.system}.default;
@@ -136,6 +142,7 @@
           inherit overlays;
         };
         modules = [
+          ./options
           ./hardware/${hardware}.nix
           ./host
           ./host/variants/${host}.nix
@@ -155,10 +162,11 @@
             home-manager.extraSpecialArgs = specialArgs;
             home-manager.users.${username} = {...}: {
               imports = [
+                ./options
                 ./home
                 ./home/variants/${homeVariant}.nix
               ];
-              hyprhome.username = username;
+              dotnix.username = username;
             };
           }
         ];
@@ -172,8 +180,12 @@
         };
         modules = [
           ({...}: {
-            imports = [./home ./home/variants/${homeVariant}.nix];
-            hyprhome.username = username;
+            imports = [
+              ./options
+              ./home
+              ./home/variants/${homeVariant}.nix
+              ];
+            dotnix.username = username;
             nixpkgs = {
               config.allowUnfree = true;
               inherit overlays;

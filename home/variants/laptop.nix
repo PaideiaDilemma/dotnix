@@ -1,9 +1,5 @@
 {pkgs, ...}: {
-  hyprhome = {
-    gui = {
-      enable = true;
-      primaryMonitor = "eDP-1";
-    };
+  dotnix = {
     waybar.battery.enable = true;
     waybar.output = "eDP-1";
     hyprland = {

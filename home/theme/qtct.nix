@@ -5,7 +5,7 @@
   ...
 }: let
   colors = config.colors;
-  cfg = config.hyprhome;
+  cfg = config.dotnix;
 in {
   config = lib.mkIf (cfg.gui.enable) {
     xdg.configFile."qt5ct/colors/Penumbra.conf".text = ''

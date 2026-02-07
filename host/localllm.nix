@@ -4,15 +4,15 @@
   ...
 }:
 # networking configuration
-with lib; let
-  cfg = config.host;
+let
+  cfg = config.dotnix;
 in {
-  options.host.localllm = {
+  options.dotnix.localllm = {
     # Mainly used to disable this config for wsl
-    enable = mkOption {
+    enable = lib.mkOption {
       default = true;
       description = "Whether to enable ollama and stuff";
-      type = types.bool;
+      type = lib.types.bool;
     };
   };
 

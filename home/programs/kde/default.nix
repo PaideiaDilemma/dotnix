@@ -4,19 +4,19 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
   colors = config.colors;
 in {
-  options.hyprhome.kdeApplications = {
-    enable = mkOption {
+  options.dotnix.kdeApplications = {
+    enable = lib.mkOption {
       default = true;
       description = "Whether to enable KDE applications.";
-      type = types.bool;
+      type = lib.types.bool;
     };
   };
 
-  config = mkIf (cfg.gui.enable && cfg.kdeApplications.enable) {
+  config = lib.mkIf (cfg.gui.enable && cfg.kdeApplications.enable) {
     home.packages = with pkgs.kdePackages; [
       qtsvg
       breeze-icons

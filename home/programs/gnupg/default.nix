@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.hyprhome;
+  cfg = config.dotnix;
 in {
   programs.gpg = {
     enable = true;

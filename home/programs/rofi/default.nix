@@ -4,11 +4,12 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  inherit (lib) mkOption types;
+  cfg = config.dotnix;
   colors = config.colors;
 in {
-  options.hyprhome.rofi = {
+  options.dotnix.rofi = {
     enable = mkOption {
       default = true;
       description = "Whether to enable rofi.";
@@ -21,7 +22,7 @@ in {
     };
   };
 
-  config = mkIf (cfg.gui.enable && cfg.rofi.enable) {
+  config = lib.mkIf (cfg.gui.enable && cfg.rofi.enable) {
     programs.rofi = {
       enable = true;
       configPath = "${config.xdg.configHome}/rofi/config.rasi";

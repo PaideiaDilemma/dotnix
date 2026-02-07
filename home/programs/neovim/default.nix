@@ -5,10 +5,10 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.hyprhome;
+let
+  cfg = config.dotnix;
 in {
-  options.hyprhome = {
+  options.dotnix = {
   };
 
   config = {

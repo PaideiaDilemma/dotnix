@@ -6,8 +6,8 @@
   overlays,
   ...
 }:
-with lib; let
-  cfg = config.host;
+let
+  cfg = config.dotnix;
 in {
   imports = [
     ./fonts.nix
@@ -18,38 +18,6 @@ in {
     ./localllm.nix
     ../colors/penumbra.nix
   ];
-
-  options.host = {
-    boot.enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable boot services?";
-    };
-
-    gui.enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable GUI?";
-    };
-
-    steam.enable = mkOption {
-      type = types.bool;
-      default = config.host.gui.enable;
-      description = "Whether to enable Steam";
-    };
-
-    keyMap = mkOption {
-      type = types.str;
-      default = "us";
-      description = "Console keymap";
-    };
-
-    dotfileLocation = mkOption {
-      type = types.str;
-      default = "\${HOME}/nixos-dotfiles";
-      description = "Location of the dotfiles flake";
-    };
-  };
 
   config = {
     programs = {
@@ -142,7 +110,7 @@ in {
         libevdev
         home-manager
       ]
-      ++ optionals cfg.gui.enable [
+      ++ lib.optionals cfg.gui.enable [
         brightnessctl
       ];
 

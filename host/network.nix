@@ -5,15 +5,15 @@
   ...
 }:
 # networking configuration
-with lib; let
-  cfg = config.host;
+let
+  cfg = config.dotnix;
 in {
-  options.host.resolved = {
+  options.dotnix.resolved = {
     # Mainly used to disable this config for wsl
-    enable = mkOption {
+    enable = lib.mkOption {
       default = true;
       description = "Whether to use the networking configuration";
-      type = types.bool;
+      type = lib.types.bool;
     };
   };
 
@@ -70,12 +70,16 @@ in {
       };
 
       # DNS resolver
-      resolved = mkIf cfg.resolved.enable {
-        enable = mkDefault false;
-        dnssec = "true";
-        domains = ["~."]; # This deactivates the DNS that comes via DHCP apparently
-        fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
-        dnsovertls = "opportunistic";
+      resolved = lib.mkIf cfg.resolved.enable {
+        enable = lib.mkDefault false;
+        settings = {
+          Resolve = {
+            domains = ["~."]; # This deactivates the DNS that comes via DHCP apparently
+            DNSSEC = "true";
+            fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+            DNSOverTLS = "opportunistic";
+          };
+        };
       };
     };
     # TODO: make this optional

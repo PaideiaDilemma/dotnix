@@ -9,8 +9,9 @@
     ./hypr
     ./jj
     ./kde
-    ./neovim
     ./mako
+    ./neovim
+    ./niri
     ./obs
     ./python
     ./rofi
