@@ -19,12 +19,19 @@ in {
       default = true;
       description = "Wheather to enable the flatpak service";
     };
+    sunshine.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Wheather to enable the sunshine service";
+    };
   };
 
   config = {
     services.openssh.enable = cfg.openssh.enable;
 
     services.flatpak.enable = cfg.flatpak.enable;
+
+    services.sunshine.enable = cfg.sunshine.enable;
 
     services.dbus.enable = true;
 

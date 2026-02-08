@@ -30,7 +30,8 @@ in {
           22000 # syncthing
           8384 # syncthing gui
           9777 # nix-serve
-          5900 # wayvnc
+        ] ++ lib.optionals (cfg.sunshine.enable) [
+          47989
         ];
 
         allowedTCPPortRanges = [
@@ -45,6 +46,11 @@ in {
             from = 1714;
             to = 1764;
           } # KDE Connect
+        ] ++ lib.optionals (cfg.sunshine.enable) [
+          {
+            from = 47998;
+            to = 48000;
+          }
         ];
       };
 

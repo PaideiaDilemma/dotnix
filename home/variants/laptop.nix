@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  home.packages = with pkgs; [
+    moonlight
+  ];
   dotnix = {
     waybar.battery.enable = true;
     waybar.output = "eDP-1";

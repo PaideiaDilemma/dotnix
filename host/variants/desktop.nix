@@ -5,6 +5,7 @@
   #services.ollama.rocmOverrideGfx = "10.3.0";
   #services.ollama.acceleration = "rocm";
   dotnix.localllm.enable = false;
+  dotnix.sunshine.enable = true;
 
   #services.desktopManager.plasma6.enable = true;
 
