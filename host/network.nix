@@ -32,6 +32,8 @@ in {
           9777 # nix-serve
         ] ++ lib.optionals (cfg.sunshine.enable) [
           47989
+          47984
+          48010
         ];
 
         allowedTCPPortRanges = [

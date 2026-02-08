@@ -9,7 +9,7 @@ let
   cfg = config.dotnix;
 in {
   imports = [
-    ./qtct.nix
+    #./qtct.nix
     #./kvantum.nix
   ];
 
@@ -45,10 +45,10 @@ in {
     qt = {
       enable = true;
       # instead handled below
-      platformTheme.name = null;
-      #style.name = "kvantum";
+      platformTheme.name = "breeze";
+      style.name = "breeze";
     };
 
-    home.packages = [pkgs.deepinV20XCursors pkgs.libsForQt5.qt5ct pkgs.qt6Packages.qt6ct];
+    home.packages = [pkgs.deepinV20XCursors];
   };
 }
