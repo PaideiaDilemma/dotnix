@@ -85,11 +85,11 @@ in {
           }
 
           // Uncomment this to make the mouse warp to the center of newly focused windows.
-          // warp-mouse-to-focus
+          warp-mouse-to-focus
 
           // Focus windows and outputs automatically when moving the mouse into them.
           // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-          // focus-follows-mouse max-scroll-amount="0%"
+          focus-follows-mouse max-scroll-amount="100%"
       }
 
       // You can configure outputs by their name, which you can find
@@ -190,7 +190,7 @@ in {
               // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
               // Color of the ring on the active monitor.
-              active-color "${colors.accent.cyan}"
+              active-color "${colors.accent.green}"
 
               // Color of the ring on inactive monitors.
               //
@@ -305,7 +305,7 @@ in {
 
       hotkey-overlay {
           // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-          // skip-at-startup
+          skip-at-startup
       }
 
       // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -371,8 +371,8 @@ in {
 
       // Example: enable rounded corners for all windows.
       // (This example rule is commented out with a "/-" in front.)
-      /-window-rule {
-          geometry-corner-radius 12
+      window-rule {
+          geometry-corner-radius 6
           clip-to-geometry true
       }
 
@@ -655,6 +655,7 @@ in {
           Print { screenshot; }
           Ctrl+Print { screenshot-screen; }
           Alt+Print { screenshot-window; }
+          Mod+Shift+S { screenshot; }
 
           // Applications such as remote-desktop clients and software KVM switches may
           // request that niri stops processing the keyboard shortcuts defined here

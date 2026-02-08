@@ -59,6 +59,7 @@ in {
   config = lib.mkIf (cfg.gui.enable) {
     environment.systemPackages = with pkgs; [
       niri-unstable
+      xwayland-satellite # xwayland support for niri
     ];
     programs.hyprland = {
       enable = config.dotnix.gui.enable;

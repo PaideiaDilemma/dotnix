@@ -116,9 +116,11 @@ in {
             "custom/theme"
             "custom/separator"
             "hyprland/workspaces"
+            "niri/workspaces"
             "custom/separator"
             "hyprland/submap"
             "hyprland/window"
+            "niri/window"
           ];
           # "modules-center" = [];
           "modules-right" = [
@@ -161,6 +163,14 @@ in {
           "hyprland/submap" = {
             "format" = "󰘴 {} ";
             "tooltip" = false;
+          };
+          "niri/workspaces" = {
+            "format" = "{index}";
+            "tooltip-format" = "{title}";
+            "all-outputs" = true;
+          };
+          "niri/window" = {
+            "format" = "{title}";
           };
           "custom/separator" = {
             "format" = "|";
